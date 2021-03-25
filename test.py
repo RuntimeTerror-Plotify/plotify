@@ -1,3 +1,4 @@
+import pandas as pd
 import sys, json, numpy as np
 import csv
 
@@ -13,17 +14,22 @@ def main():
     # get our data as an array from read_in()
     lines = read_in()
 
-    with open(lines, "r") as csvfile:
-        # creating a csv reader object
-        csvreader = csv.reader(csvfile)
-        # extracting field names through first row
-        fields = next(csvreader)
-        print(fields)
-        for row in csvreader:
-            print(row)
-            rows.append(row)
+    df = pd.read_csv(lines)
+    for dtype in df.dtypes.iteritems():
+        print(dtype)
 
-        print("Total no. of rows: %d" % (csvreader.line_num))
+    # with open(lines, "r") as csvfile:
+    #     # creating a csv reader object
+    #     csvreader = csv.reader(csvfile)
+    #     # extracting field names through first row
+    #     fields = next(csvreader)
+    #     print(fields)
+    #     for row in csvreader:
+    #         rows.append(row[0], row[1], row[2:])
+
+    # print(rows)
+
+    # print("Total no. of rows: %d" % (csvreader.line_num))
 
 
 # start process

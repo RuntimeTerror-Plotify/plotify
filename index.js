@@ -32,14 +32,19 @@ app.post("/file_upload", uploadDisk.single("file"), function (req, res) {
   console.log(req.file);
   var spawn = require("child_process").spawn,
     py = spawn("python", ["test.py"]),
-    data = "public/Housing.csv",
-    dataString = "";
+    data = req.file.destination + req.file.originalname,
+    dataString = [];
 
   py.stdout.on("data", function (data) {
-    dataString += data.toString();
+    dataString.push(data.toString());
+    console.log("DATA");
   });
   py.stdout.on("end", function () {
-    res.send(dataString);
+    console.log(dataString[0]);
+    var resp = dataString[0].split("\r\n");
+    console.log(resp);
+
+    res.render("response", { list: resp });
   });
   py.stdin.write(JSON.stringify(data));
   py.stdin.end();
