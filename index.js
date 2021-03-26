@@ -29,6 +29,8 @@ var uploadDisk = multer({
 });
 
 let filePath = "";
+let fileName = "";
+let basic = [];
 
 app.get("/", function (req, res) {
   res.render("home_page");
@@ -36,14 +38,14 @@ app.get("/", function (req, res) {
 
 app.post("/file_upload", uploadDisk.single("file"), function (req, res) {
   filePath = req.file.destination + req.file.originalname;
+  fileName = req.file.originalname;
   res.redirect("/data_analysis");
 });
 
-app.get("/data_analysis", function (res, res) {
+app.get("/data_analysis", function (req, res) {
   //Python Script Code
   var py = spawn("python", ["basic.py"]),
-    data = filePath,
-    basic = [];
+    data = filePath;
 
   py.stdout.on("data", function (output) {
     basic.push(output.toString());
@@ -51,12 +53,20 @@ app.get("/data_analysis", function (res, res) {
 
   py.stdout.on("end", function () {
     basic = JSON.parse(basic[0]);
-    res.render("response", { list: basic });
+    res.render("basic_info", { list: basic });
   });
 
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
+});
+
+app.get("/plot_graph", function (req, res) {
+  res.render("plot_graph", {
+    numericalData: basic.numerical,
+    categoricalData: basic.categorical,
+    fileName: fileName,
+  });
 });
 
 app.listen(3000, function () {
