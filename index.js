@@ -65,6 +65,7 @@ app.get("/plot_graph", function (req, res) {
   res.render("plot_graph", {
     numericalData: basic.numerical,
     categoricalData: basic.categorical,
+    shape: basic.shape,
     fileName: fileName,
   });
 });

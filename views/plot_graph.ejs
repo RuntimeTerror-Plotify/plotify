@@ -6,103 +6,69 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/css/plotgraph.css">
 </head>
 
 <body>
 
-    <form id="dataForm">
-        <input type="radio" value='Numerical' name="dataType" onclick="dataClick(this.value)" checked>Numerical</input>
-        <input type="radio" value='Categorical' name="dataType" onclick="dataClick(this.value)">Categorical</input>
-    </form>
-
-
-
-
-    <form id="numColumnForm">
-        <%numericalData.forEach(function(item){%>
-        <input type="radio" value='<%=item%>' name="column" class="column"
-            onclick="columnClick(this.value)"><%=item%></input>
-        <%})%>
-    </form>
-
-    <form id="catColumnForm" style="display: none;">
-        <%categoricalData.forEach(function(item){%>
-        <input type="radio" value='<%=item%>' name="column" class="column"
-            onclick="columnClick(this.value)"><%=item%></input>
-        <%})%>
-    </form>
+    <div id="topPanel" class="toppanel">
+        <form id="dataForm">
+            <input type="radio" value='Numerical' name="dataType" onclick="dataClick(this.value)" checked>Numerical</input>
+            <input type="radio" value='Categorical' name="dataType" onclick="dataClick(this.value)">Categorical</input>
+        </form>
+    </div>
+    
+    <div id="leftPanel" class="leftpanel">
+        <form id="numColumnForm">
+            <%numericalData.forEach(function(item){%>
+            <p>
+                <input type="radio" value='<%=item%>' name="column" class="column"
+                onclick="columnClick(this.value)"><%=item%></input>
+            </p>
+            <%})%>
+        </form>
+    
+        <form id="catColumnForm" style="display: none;">
+            <%categoricalData.forEach(function(item){%>
+            <p>
+                <input type="radio" value='<%=item%>' name="column" class="column"
+                onclick="columnClick(this.value)"><%=item%></input>
+            </p>
+            
+            <%})%>
+        </form>
+    </div>
 
     <br><br>
+    <div id="rightPanel" class="rightpanel">
+        <form id="numGraphForm">
+            <p><input type="radio" value='histogram' name="type" onclick="typeClick(this.value)" checked>Histogram</input></p>
+            <p><input type="radio" value='box' name="type" onclick="typeClick(this.value)">Box Plot</input></p> 
+        </form>
+    
+        <form id="catGraphForm" style="display: none;">
+            <p><input type="radio" value='bar' name="type" onclick="typeClick(this.value)" checked>Bar</input></p>
+            <p><input type="radio" value='pie' name="type" onclick="typeClick(this.value)">Pie Chart</input></p>
+        </form>
+    </div>
 
+    <div class="main">
+        <div id="myDiv" style="width:800px;height:400px;"></div>
+    </div>
 
-    <form id="numGraphForm">
-        <input type="radio" value='Histogram' name="type" onclick="typeClick(this.value)" checked>Histogram</input>
-        <input type="radio" value='BoxPlot' name="type" onclick="typeClick(this.value)">Box Plot</input>
-    </form>
-
-    <form id="catGraphForm" style="display: none;">
-        <input type="radio" value='Bar' name="type" onclick="typeClick(this.value)" checked>Bar</input>
-        <input type="radio" value='Pie' name="type" onclick="typeClick(this.value)">Pie Chart</input>
-    </form>
+    
 
 
 </body>
 
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js" integrity="sha512-Y8iWYJDo6HiTo5xtml1g4QqHtl/PO1w+dmUpQfQSOTqKNsMhExfyPN2ncNAe9JuJUSKzwK/b6oaNPop4MXzkwg==" crossorigin="anonymous"></script>
 <script>
-    let fileName = '<%-fileName%>'
-    let graphType = "Histogram";
-    let columnName;
-
-    columnName = $("#numColumnForm input").first()[0].value;
-    $("#numColumnForm input").first().attr('checked', 'checked');
-    makeGraph(columnName, graphType);
-
-    function dataClick(value) {
-        if (value == "Numerical") {
-            $("#numGraphForm").css('display', 'block');
-            $("#numColumnForm").css('display', 'block');
-            $("#catGraphForm").css('display', 'none');
-            $("#catColumnForm").css('display', 'none');
-            graphType = "Histogram";
-            columnName = $("#numColumnForm input").first()[0].value;
-            $("#numColumnForm input").first().prop('checked', true);
-            $("#numGraphForm input").first().prop('checked', true);
-            makeGraph(columnName, graphType);
-
-
-
-        } else if (value == "Categorical") {
-            $("#numGraphForm").css('display', 'none');
-            $("#numColumnForm").css('display', 'none');
-            $("#catGraphForm").css('display', 'block');
-            $("#catColumnForm").css('display', 'block');
-            graphType = "Bar";
-            columnName = $("#catColumnForm input").first()[0].value;
-            $("#catColumnForm input").first().prop('checked', true);
-            $("#catGraphForm input").first().prop('checked', true);
-            makeGraph(columnName, graphType);
-        }
-    }
-
-
-    function columnClick(value) {
-        columnName = value;
-        makeGraph(columnName, graphType);
-    }
-
-    function typeClick(value) {
-        graphType = value;
-        makeGraph(columnName, graphType);
-    }
-
-    function makeGraph(columnName, graphType) {
-        //Make Graph
-        console.log(columnName + " " + graphType)
-    }
+    let fileName = '<%-fileName%>';
+    let shape = '<%-shape%>';
 </script>
+<script src="/plotGraph.js"></script>
 
 
 </html>

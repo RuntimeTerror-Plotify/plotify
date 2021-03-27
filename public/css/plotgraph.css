@@ -1,0 +1,51 @@
+.toppanel {
+    position: fixed;
+    background-color: yellow;
+    z-index: 1;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    padding-top: 50px;
+    font-size: 20px;
+    top: 0;
+    left: 0;
+}
+
+.leftpanel {
+    height: 100%; 
+    width: 200px;
+    position: fixed; 
+    z-index: 1; 
+    top: 150px;
+    left: 0;
+    background-color: pink;
+    overflow-x: hidden; 
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rightpanel {
+    height: 100%; 
+    width: 200px;
+    position: fixed; 
+    z-index: 1; 
+    top: 150px;
+    right: 0;
+    background-color: pink;
+    overflow-x: hidden; 
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .main {
+    margin-left: 200px;
+    margin-top: 150px;
+    margin-right: 200px; /* Same as the width of the sidebar */
+    padding: 0px 10px;
+  }
+
+  .leftpanel p{
+    width: 180px;
+    word-wrap: break-word;
+  }
