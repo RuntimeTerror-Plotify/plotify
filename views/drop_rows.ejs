@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drop rows</title>
+</head>
+<body>
+    <form action="/drop_rows" method="POST">
+        <h1>Drop rows with NA values</h1>
+        <h4>tips</h4>
+        <p>First drop the columns with high percentage on na values else your dataframe would result with high loss of data.</p>
+        <label for="">threshold</label>
+        <input type="number" name="threshold" id="" value="0">
+        <br>
+        <label for="">Mode: </label>
+        <input type="radio" name="mode" id="" value="all">All <br>
+        <input type="radio" name="mode" id="" value="specific">Specific <br>
+        <h2>Select specific columns of a row for which nan will be checked</h2>
+        
+        <% list.columns.forEach(function (col,i) { %>
+            <input type="checkbox" name="subset" id="" value="<%=col%>"> <%=col%>
+            <br>
+        <% }) %>
+        <button type="submit">Submit</button> 
+    </form>
+</body>
+</html>

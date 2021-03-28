@@ -44,6 +44,7 @@ app.post("/file_upload", uploadDisk.single("file"), function (req, res) {
 
 app.get("/data_analysis", function (req, res) {
   //Python Script Code
+  basic = []
   var py = spawn("python", ["basic.py"]),
     data = filePath;
 
@@ -69,6 +70,53 @@ app.get("/plot_graph", function (req, res) {
     fileName: fileName,
   });
 });
+
+app.get("/drop_columns",function(req,res){
+  res.render("drop_columns",{list: basic});
+})
+
+app.post("/drop_columns",function(req,res){
+  let out = [];
+  var py = spawn("python", ["drop_col.py"]),
+    data = [req.body.drop_col,filePath];
+
+  py.stdout.on("data", function (output) {
+    out.push(output.toString());
+  });
+
+  py.stdout.on("end", function () {
+    res.redirect("/data_analysis");
+  });
+
+  py.stdin.write(JSON.stringify(data));
+
+  py.stdin.end();
+
+})
+
+app.get("/drop_rows",function(req,res){
+  res.render("drop_rows",{list: basic});
+})
+
+app.post("/drop_rows",function(req,res){
+  let out = [];
+  var py = spawn("python", ["drop_row.py"]),
+    data = [filePath, req.body.threshold, req.body.mode, req.body.subset];
+
+  py.stdout.on("data", function (output) {
+    out.push(output.toString());
+  });
+
+  py.stdout.on("end", function () {
+    // console.log(out);
+    res.redirect("/data_analysis");
+  });
+
+  py.stdin.write(JSON.stringify(data));
+
+  py.stdin.end();
+
+})
 
 app.listen(3000, function () {
   console.log("server started");
