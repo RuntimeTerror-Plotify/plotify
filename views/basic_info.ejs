@@ -21,6 +21,10 @@
 
 <body>
     <div>
+
+        <% if (list.columns == "empty"){ %>
+        <h2>Dataframe seems to be empty</h2>
+        <% } else{%>
         <h3>shape :</h3>
         <%=list.shape%>
         <br>
@@ -45,6 +49,18 @@
                 <th>count</th>
                 <% list.count.forEach(function (ct) { %>
                 <td><%= ct %> </td>
+                <% }); %>
+            </tr>
+            <tr>
+                <th>Null values</th>
+                <% list.null_val.forEach(function (nu) { %>
+                <td><%= nu %> </td>
+                <% }); %>
+            </tr>
+            <tr>
+                <th>Null percent</th>
+                <% list.null_val.forEach(function (nu,i) { %>
+                <td><%= (nu/(nu+list.count[i]))*100 %> </td>
                 <% }); %>
             </tr>
         </table>
@@ -138,6 +154,10 @@
                 <% }); %>
             </tr>
         </table>
+        <a href="/plot_graph" role="button">Plot Graph</a>
+        <a href="/drop_columns" role="button">Drop Columns </a>
+        <a href="/drop_rows" role="button">Drop rows with nan values </a>
+        <% } %>
     </div>
 
     <br>
@@ -146,6 +166,8 @@
     <a href="/categorical_labeling" role="button">Categorical Labeling</a>
     <br>
     <br>
+
+
 
 
 </body>
