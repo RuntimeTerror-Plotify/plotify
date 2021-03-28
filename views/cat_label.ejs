@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div>
+        <h1>Encoding Labels</h1>
+
+        <form id="encodingLabels" method="POST">
+            <% categoricalData.forEach(function(column){%>
+            <input type="radio" id='<%=column%>' name="encodingLabel" value='<%=column%>'><%=column%></input>
+            <%})%>
+            <br>
+            <button type="submit" onclick="sub(event)">Submit</button>
+        </form>
+
+        <div id="result"></div>
+
+
+
+    </div>
+
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    function sub(event) {
+        event.preventDefault();
+        var column = $("#encodingLabels input:checked").val();
+        var type = $("#encodingLabels input:checked").attr("name");
+
+        $.ajax({
+            url: '/categorical_labeling',
+            type: 'post',
+            data: {
+                column: column,
+                type: type,
+            },
+            success: function (response) {
+                console.log(response.uniqueValues);
+                response = JSON.stringify(response.uniqueValues);
+                $("#result").html(response);
+            }
+        });
+
+
+
+    }
+</script>
+
+
+
+
+</html>
