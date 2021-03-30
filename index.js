@@ -78,23 +78,23 @@ app.get("/categorical_labeling", function (req, res) {
 app.post("/categorical_labeling", function (req, res) {
   // var columnName = req.body.column;
   // var type = req.body.type;
-  var x = [];
-
+  var x = req.body;
+  var type = Object.keys(x)[0];
+  var column = Object.values(x)[0];
+  
+  
   var py = spawn("python", ["labelling.py"]),
     data = {
       filePath: filePath,
-      column: req.body.column,
-      type: req.body.type,
+      column: column,
+      type: type,
     };
 
   py.stdout.on("data", function (output) {
-    x.push(output.toString());
   });
 
   py.stdout.on("end", function () {
-    x = JSON.parse(x[0]);
-    res.send(x);
-    // res.render("basic_info", { list: basic });
+    res.redirect("/data_analysis");
   });
 
   py.stdin.write(JSON.stringify(data));

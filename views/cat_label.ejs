@@ -11,15 +11,31 @@
 <body>
 
     <div>
-        <h1>Encoding Labels</h1>
+        
 
-        <form id="encodingLabels" method="POST">
+        <form id="catLabels" method="POST">
+            <h1>Encoding Labels</h1>
             <% categoricalData.forEach(function(column){%>
-            <input type="radio" id='<%=column%>' name="encodingLabel" value='<%=column%>'><%=column%></input>
+                <input type="radio" id='<%=column%>' name="encodingLabel" value='<%=column%>'><%=column%></input>
             <%})%>
             <br>
-            <button type="submit" onclick="sub(event)">Submit</button>
+            <h1>One Hot Encoding</h1>
+            <% categoricalData.forEach(function(column){%>
+                <input type="radio" id='<%=column%>' name="oneHotEncoding" value='<%=column%>'><%=column%></input>
+            <%})%>
+            <br>
+            <h1>Binary Encoding</h1>
+            <% categoricalData.forEach(function(column){%>
+                <input type="radio" id='<%=column%>' name="binaryEncoding" value='<%=column%>'><%=column%></input>
+            <%})%>
+            <br>
+            <button type="submit">Submit</button>
         </form>
+
+        
+        <br>
+        <br>
+        <br>
 
         <div id="result"></div>
 
@@ -32,28 +48,34 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    function sub(event) {
-        event.preventDefault();
-        var column = $("#encodingLabels input:checked").val();
-        var type = $("#encodingLabels input:checked").attr("name");
+    $('input[type=radio]').change(function() {
+        // When any radio button on the page is selected,
+        // then deselect all other radio buttons.
+        $('input[type=radio]:checked').not(this).prop('checked', false);
+    });
+    // function sub(event) {
+    //     event.preventDefault();
+    //     console.log(event)
+    //     var column = $("input:checked").val();
+    //     var type = $("input:checked").attr("name");
 
-        $.ajax({
-            url: '/categorical_labeling',
-            type: 'post',
-            data: {
-                column: column,
-                type: type,
-            },
-            success: function (response) {
-                console.log(response.uniqueValues);
-                response = JSON.stringify(response.uniqueValues);
-                $("#result").html(response);
-            }
-        });
+    //     $.ajax({
+    //         url: '/categorical_labeling',
+    //         type: 'post',
+    //         data: {
+    //             column: column,
+    //             type: type,
+    //         },
+    //         success: function (response) {
+    //             console.log(response.uniqueValues);
+    //             response = JSON.stringify(response.uniqueValues);
+    //             $("#result").html(response);
+    //         }
+    //     });
 
 
 
-    }
+    // }
 </script>
 
 
