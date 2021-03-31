@@ -13,7 +13,7 @@ def main():
 
     df = df.drop(columns=cols)
 
-    df.to_csv(lines[1],index=False)
+    df.to_csv(lines[1], index=False)
 
     # output = {
     #     # "file" : file,
@@ -22,7 +22,7 @@ def main():
     # output = json.dumps(output)
 
     # print(output)
-    
+
 
 # start process
 if __name__ == "__main__":

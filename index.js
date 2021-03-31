@@ -71,7 +71,7 @@ app.get("/plot_graph", function (req, res) {
   });
 });
 
-app.get("/categorical_labeling", function (req, res) {
+app.get("/categorical_labelling", function (req, res) {
   res.render("cat_label", { categoricalData: basic.categorical });
 });
 
@@ -81,8 +81,7 @@ app.post("/categorical_labeling", function (req, res) {
   var x = req.body;
   var type = Object.keys(x)[0];
   var column = Object.values(x)[0];
-  
-  
+
   var py = spawn("python", ["labelling.py"]),
     data = {
       filePath: filePath,
@@ -90,8 +89,7 @@ app.post("/categorical_labeling", function (req, res) {
       type: type,
     };
 
-  py.stdout.on("data", function (output) {
-  });
+  py.stdout.on("data", function (output) {});
 
   py.stdout.on("end", function () {
     res.redirect("/data_analysis");
@@ -142,6 +140,35 @@ app.post("/drop_rows", function (req, res) {
   py.stdout.on("end", function () {
     // console.log(out);
     res.redirect("/data_analysis");
+  });
+
+  py.stdin.write(JSON.stringify(data));
+
+  py.stdin.end();
+});
+
+app.get("/corr_matrix", function (req, res) {
+  res.render("corr_matrix", { numericalData: basic.numerical });
+});
+
+app.post("/corr_matrix", function (req, res) {
+  var out = "";
+  var py = spawn("python", ["corr_matrix.py"]),
+    data = {
+      filePath: filePath,
+      column: req.body.column,
+    };
+
+  py.stdout.on("data", function (output) {
+    // console.log(output.toString());
+    out += output.toString();
+  });
+
+  py.stdout.on("end", function () {
+    out = JSON.parse(out);
+    // console.log(out);
+    res.send(out);
+    // res.redirect("/data_analysis");
   });
 
   py.stdin.write(JSON.stringify(data));

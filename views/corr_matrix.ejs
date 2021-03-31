@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <form>
+        <h1>Correlation Matrix</h1>
+        <% numericalData.forEach(function(column){%>
+        <input type="checkbox" id='<%=column%>' name="column" value='<%=column%>'><%=column%></input>
+        <%})%>
+        <button type="submit" onclick="sub(event)">Submit</button>
+        <br>
+    </form>
+
+    <div class="main">
+        <div id="myDiv" style="width:800px;height:400px;"></div>
+    </div>
+
+
+
+</body>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js"
+    integrity="sha512-Y8iWYJDo6HiTo5xtml1g4QqHtl/PO1w+dmUpQfQSOTqKNsMhExfyPN2ncNAe9JuJUSKzwK/b6oaNPop4MXzkwg=="
+    crossorigin="anonymous"></script>
+<script>
+    function sub(event) {
+        event.preventDefault();
+        var column = [];
+        $('input[type=checkbox]:checked').each(function (col) {
+            column.push($(this).val());
+        });
+
+        $.ajax({
+            url: '/corr_matrix',
+            type: 'post',
+            data: {
+                column: column,
+            },
+            success: function (response) {
+                var data = [{
+                    z: response.reverse(),
+                    x: column,
+                    y: column.slice().reverse(),
+                    type: 'heatmap'
+                }];
+
+                Plotly.newPlot('myDiv', data);
+            }
+        });
+
+    }
+</script>
+
+</html>
