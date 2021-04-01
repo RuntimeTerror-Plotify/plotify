@@ -176,6 +176,37 @@ app.post("/corr_matrix", function (req, res) {
   py.stdin.end();
 });
 
+app.get("/data_transform", function (req, res) {
+  res.render("data_transformation", { numericalData: basic.numerical });
+});
+
+app.post("/data_transform", function (req, res) {
+  var type = Object.keys(req.body)[0];
+  var column = Object.values(req.body)[0];
+
+  var py = spawn("python", ["data_transform.py"]),
+    data = {
+      filePath: filePath,
+      type: type,
+      column: column,
+    };
+
+  py.stdout.on("data", function (output) {
+    // out += output.toString();
+  });
+
+  py.stdout.on("end", function () {
+    // out = JSON.parse(out);
+    // console.log(out);
+    // res.send(out);
+    res.redirect("/data_analysis");
+  });
+
+  py.stdin.write(JSON.stringify(data));
+
+  py.stdin.end();
+});
+
 app.listen(3000, function () {
   console.log("server started");
 });
