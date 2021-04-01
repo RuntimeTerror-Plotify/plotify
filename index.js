@@ -44,6 +44,7 @@ app.post("/file_upload", uploadDisk.single("file"), function (req, res) {
 
 app.get("/data_analysis", function (req, res) {
   //Python Script Code
+
   basic = [];
   var py = spawn("python", ["basic.py"]),
     data = filePath;
@@ -112,6 +113,7 @@ app.post("/drop_columns", function (req, res) {
     data = [req.body.drop_col, filePath];
 
   py.stdout.on("data", function (output) {
+    cons;
     out.push(output.toString());
   });
 
@@ -200,6 +202,33 @@ app.post("/data_transform", function (req, res) {
     // console.log(out);
     // res.send(out);
     res.redirect("/data_analysis");
+  });
+
+  py.stdin.write(JSON.stringify(data));
+
+  py.stdin.end();
+});
+
+app.get("/pca", function (req, res) {
+  res.render("pca", { numericalData: basic.numerical });
+});
+
+app.post("/pca", function (req, res) {
+  var out = "";
+  var py = spawn("python", ["pca.py"]),
+    data = {
+      filePath: filePath,
+    };
+
+  py.stdout.on("data", function (output) {
+    out += output;
+  });
+
+  py.stdout.on("end", function () {
+    out = JSON.parse(out);
+    // console.log(out);
+    res.send(out);
+    // res.redirect("/data_analysis");
   });
 
   py.stdin.write(JSON.stringify(data));
