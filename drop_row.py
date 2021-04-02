@@ -12,19 +12,19 @@ def main():
     df = df.replace(r'^\s*$', np.NaN, regex=True)
     df = df.replace(r'NA', np.NaN, regex=True)
 
-    if lines[2] == "all":
-        print("all")
-        df = df.dropna(thresh = lines[1])
+    if lines[1] == "all":
+        # print("all")
+        df = df.dropna()
 
-    if lines[2] == "specific":
+    if lines[1] == "specific":
         sub = []
-        if type(lines[3]) == str:
-            sub.append(lines[3])
+        if type(lines[2]) == str:
+            sub.append(lines[2])
         else:
-            sub = lines[3]
-        print("specific")
-        print(sub)
-        df = df.dropna(thresh = lines[1],axis = 0, how = 'any',subset = sub)
+            sub = lines[2]
+        # print("specific")
+        # print(sub)
+        df = df.dropna(axis = 0, how = 'any',subset = sub)
 
     df.to_csv(lines[0],index=False)
 
