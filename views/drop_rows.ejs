@@ -21,6 +21,8 @@
         
         <% list.columns.forEach(function (col,i) { %>
             <input type="checkbox" name="subset" id="" value="<%=col%>"> <%=col%>
+            <Label>Nan percent: </Label>
+            <%=list.null_val[i]/(list.null_val[i]+list.count[i])*100%>
             <br>
         <% }) %>
         <button type="submit">Submit</button> 
