@@ -118,6 +118,30 @@ app.post("/drop_rows",function(req,res){
 
 })
 
+app.get("/fill_nan",function(req,res){
+  res.render("fill_nan",{list:basic});
+})
+
+app.post("/fill_nan",function(req,res){
+  console.log(filePath)
+  let out = [];
+  var py = spawn("python", ["fill_nan.py"]),
+    data = [filePath, req.body.col_type, req.body.column, req.body.method];
+
+  py.stdout.on("data", function (output) {
+    out.push(output.toString());
+  });
+
+  py.stdout.on("end", function () {
+    console.log(out);
+    res.redirect("/data_analysis");
+  });
+
+  py.stdin.write(JSON.stringify(data));
+
+  py.stdin.end();
+})
+
 app.listen(3000, function () {
   console.log("server started");
 });

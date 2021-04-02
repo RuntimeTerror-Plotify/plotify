@@ -13,7 +13,7 @@ def main():
     df = df.replace(r'NA', np.NaN, regex=True)
 
     if lines[2] == "all":
-        print("all")
+        # print("all")
         df = df.dropna(thresh = lines[1])
 
     if lines[2] == "specific":
@@ -22,8 +22,8 @@ def main():
             sub.append(lines[3])
         else:
             sub = lines[3]
-        print("specific")
-        print(sub)
+        # print("specific")
+        # print(sub)
         df = df.dropna(thresh = lines[1],axis = 0, how = 'any',subset = sub)
 
     df.to_csv(lines[0],index=False)
