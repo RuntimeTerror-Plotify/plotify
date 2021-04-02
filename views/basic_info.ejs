@@ -68,6 +68,11 @@
         <br>
         <br>
         <h3>Numerical data statistical description</h3>
+
+        <% if (list.numerical == "empty"){ %>
+        <h6>Numerical Dataframe seems to be empty</h6>
+        <% } else{%>
+
         <table style="width: 80%;">
             <tr>
                 <th>columns</th>
@@ -124,10 +129,14 @@
                 <% }); %>
             </tr>
         </table>
+        <%}%>
         <br>
         <br>
         <br>
         <h3>categorical data statistical description</h3>
+        <% if (list.categorical == "empty"){ %>
+        <h6>Categorical Dataframe seems to be empty</h6>
+        <% } else{%>
         <table style="width: 100%;">
             <tr>
                 <th>columns</th>
@@ -154,6 +163,7 @@
                 <% }); %>
             </tr>
         </table>
+        <%}%>
 
         <% } %>
     </div>

@@ -50,6 +50,7 @@ app.get("/data_analysis", function (req, res) {
     data = filePath;
 
   py.stdout.on("data", function (output) {
+    // console.log(output.toString());
     basic.push(output.toString());
   });
 
