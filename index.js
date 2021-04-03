@@ -48,7 +48,7 @@ app.get("/data_analysis", function (req, res) {
     data = filePath;
 
   py.stdout.on("data", function (output) {
-    console.log(output.toString());
+    // console.log(output.toString());
     basic.push(output.toString());
   });
 
@@ -84,7 +84,7 @@ app.get("/categorical_labelling", function (req, res) {
   res.render("cat_label", { categoricalData: basic.categorical });
 });
 
-app.post("/categorical_labeling", function (req, res) {
+app.post("/categorical_labelling", function (req, res) {
   // var columnName = req.body.column;
   // var type = req.body.type;
   var x = req.body;
