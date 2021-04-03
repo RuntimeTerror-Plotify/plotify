@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fill Nan</title>
+</head>
+<body>
+    <input type="radio" name="mode" value="categorical" onclick="check_cat()"> categorical
+    <input type="radio" name="mode" value="numerical" onclick="check_num()"> Numerical
+    <div id="categorical">
+        <form action="/fill_nan" method="POST">
+            <h3>Categorical Column</h3>
+            <select name="column" id="">
+                <option value="" selected>Select</option>
+                <% list.categorical.forEach(function(cat){ %>
+                    <option value="<%=cat%>"><%=cat%></option>
+                <% }) %>
+            </select>
+            <select name="method" id="">
+                <option value="" selected>Select</option>
+                <option value="top">Top Class</option>
+                <option value="unk">Unknown Class</option>
+            </select>
+            <button type="submit" name="col_type" value="cat">Submit</button>
+        </form>
+    </div>
+    <div id="numerical">
+        <form action="/fill_nan" method="POST" id="form">
+            <h3>Numerical Column</h3>
+            <select name="column" id="">
+                <option value="" selected>Select</option>
+                <% list.numerical.forEach(function(cat){ %>
+                    <option value="<%=cat%>"><%=cat%></option>
+                <% }) %>
+            </select>
+            <select name="method" id="">
+                <option value="" selected>Select</option>
+                <option value="zero">Fill zeros</option>
+                <option value="mean">Fill mean</option>
+                <option value="median">Fill median</option>
+                <option value="min">Fill minimum</option>
+                <option value="max">Fill maximum</option>
+                <option value="b_fill">Backward Fill</option>
+                <option value="f_fill">Forward Fill</option>
+            </select>
+            <button type="submit" name="col_type" value="num">Submit</button>
+        </form>
+    </div>
+</body>
+<script>
+    document.getElementById("categorical").style.visibility = "hidden";
+    document.getElementById("numerical").style.visibility = "hidden";
+    function check_cat(){
+        document.getElementById("form").reset();
+        document.getElementById("numerical").style.visibility = "hidden";
+        document.getElementById("categorical").style.visibility = "visible";
+    }
+    function check_num(){
+        document.getElementById("form").reset();
+        document.getElementById("categorical").style.visibility = "hidden";
+        document.getElementById("numerical").style.visibility = "visible";
+    }
+</script>
+</html>

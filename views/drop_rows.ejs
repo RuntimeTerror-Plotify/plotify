@@ -11,8 +11,6 @@
         <h1>Drop rows with NA values</h1>
         <h4>tips</h4>
         <p>First drop the columns with high percentage on na values else your dataframe would result with high loss of data.</p>
-        <label for="">threshold</label>
-        <input type="number" name="threshold" id="" value="0">
         <br>
         <label for="">Mode: </label>
         <input type="radio" name="mode" id="" value="all">All <br>
@@ -21,6 +19,8 @@
         
         <% list.columns.forEach(function (col,i) { %>
             <input type="checkbox" name="subset" id="" value="<%=col%>"> <%=col%>
+            <Label>Nan percent: </Label>
+            <%=list.null_val[i]/(list.null_val[i]+list.count[i])*100%>
             <br>
         <% }) %>
         <button type="submit">Submit</button> 

@@ -44,11 +44,13 @@ app.post("/file_upload", uploadDisk.single("file"), function (req, res) {
 
 app.get("/data_analysis", function (req, res) {
   //Python Script Code
+
   basic = [];
   var py = spawn("python", ["basic.py"]),
     data = filePath;
 
   py.stdout.on("data", function (output) {
+    // console.log(output.toString());
     basic.push(output.toString());
   });
 
@@ -112,6 +114,7 @@ app.post("/drop_columns", function (req, res) {
     data = [req.body.drop_col, filePath];
 
   py.stdout.on("data", function (output) {
+    cons;
     out.push(output.toString());
   });
 
@@ -131,7 +134,7 @@ app.get("/drop_rows", function (req, res) {
 app.post("/drop_rows", function (req, res) {
   let out = [];
   var py = spawn("python", ["drop_row.py"]),
-    data = [filePath, req.body.threshold, req.body.mode, req.body.subset];
+    data = [filePath, req.body.mode, req.body.subset];
 
   py.stdout.on("data", function (output) {
     out.push(output.toString());
@@ -206,6 +209,99 @@ app.post("/data_transform", function (req, res) {
 
   py.stdin.end();
 });
+
+app.get("/pca", function (req, res) {
+  res.render("pca", { numericalData: basic.numerical });
+});
+
+app.post("/pca", function (req, res) {
+  var out = "";
+  var py = spawn("python", ["pca.py"]),
+    data = {
+      filePath: filePath,
+    };
+
+  py.stdout.on("data", function (output) {
+    out += output;
+  });
+
+  py.stdout.on("end", function () {
+    out = JSON.parse(out);
+    // console.log(out);
+    res.send(out);
+    // res.redirect("/data_analysis");
+  });
+
+  py.stdin.write(JSON.stringify(data));
+
+  py.stdin.end();
+});
+
+app.get("/fill_nan",function(req,res){
+  res.render("fill_nan",{list:basic});
+})
+
+app.post("/fill_nan",function(req,res){
+  console.log(filePath)
+  let out = [];
+  var py = spawn("python", ["fill_nan.py"]),
+    data = [filePath, req.body.col_type, req.body.column, req.body.method];
+
+  py.stdout.on("data", function (output) {
+    out.push(output.toString());
+  });
+
+  py.stdout.on("end", function () {
+    console.log(out);
+    res.redirect("/data_analysis");
+  });
+
+  py.stdin.write(JSON.stringify(data));
+
+  py.stdin.end();
+})
+
+app.get("/remove_outlier",function(req,res){
+  res.render("outlier",{numerical: basic.numerical})
+})
+
+app.post("/remove_outlier",function(req,res){
+  let out = [];
+  var py = spawn("python", ["remove_outlier.py"]),
+    data = [filePath, req.body.thresh];
+
+  py.stdout.on("data", function (output) {
+    out.push(output.toString());
+  });
+
+  py.stdout.on("end", function () {
+    console.log(out);
+    res.redirect("/data_analysis");
+  });
+
+  py.stdin.write(JSON.stringify(data));
+
+  py.stdin.end();
+})
+
+app.post("/clip_values", function(req,res){
+  let out = [];
+  var py = spawn("python", ["clip_values.py"]),
+    data = [filePath, req.body.minthresh, req.body.maxthresh, req.body.col];
+
+  py.stdout.on("data", function (output) {
+    out.push(output.toString());
+  });
+
+  py.stdout.on("end", function () {
+    console.log(out);
+    res.redirect("/data_analysis");
+  });
+
+  py.stdin.write(JSON.stringify(data));
+
+  py.stdin.end();
+})
 
 app.listen(3000, function () {
   console.log("server started");
