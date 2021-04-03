@@ -43,8 +43,6 @@ app.post("/file_upload", uploadDisk.single("file"), function (req, res) {
 });
 
 app.get("/data_analysis", function (req, res) {
-  //Python Script Code
-
   basic = [];
   var py = spawn("python", ["basic.py"]),
     data = filePath;
@@ -55,8 +53,16 @@ app.get("/data_analysis", function (req, res) {
   });
 
   py.stdout.on("end", function () {
-    basic = JSON.parse(basic[0]);
-    res.render("basic_info", { list: basic });
+    try {
+      basic = JSON.parse(basic[0]);
+      if (basic.shape) {
+        res.render("basic_info", { list: basic });
+      } else {
+        res.send("No Data is Parsed , Your data may be Empty");
+      }
+    } catch (err) {
+      res.send("Can't Parse to JSON");
+    }
   });
 
   py.stdin.write(JSON.stringify(data));
@@ -66,6 +72,7 @@ app.get("/data_analysis", function (req, res) {
 
 app.get("/plot_graph", function (req, res) {
   res.render("plot_graph", {
+    columns: basic.columns,
     numericalData: basic.numerical,
     categoricalData: basic.categorical,
     shape: basic.shape,
@@ -77,7 +84,7 @@ app.get("/categorical_labelling", function (req, res) {
   res.render("cat_label", { categoricalData: basic.categorical });
 });
 
-app.post("/categorical_labeling", function (req, res) {
+app.post("/categorical_labelling", function (req, res) {
   // var columnName = req.body.column;
   // var type = req.body.type;
   var x = req.body;
@@ -237,12 +244,12 @@ app.post("/pca", function (req, res) {
   py.stdin.end();
 });
 
-app.get("/fill_nan",function(req,res){
-  res.render("fill_nan",{list:basic});
-})
+app.get("/fill_nan", function (req, res) {
+  res.render("fill_nan", { list: basic });
+});
 
-app.post("/fill_nan",function(req,res){
-  console.log(filePath)
+app.post("/fill_nan", function (req, res) {
+  console.log(filePath);
   let out = [];
   var py = spawn("python", ["fill_nan.py"]),
     data = [filePath, req.body.col_type, req.body.column, req.body.method];
@@ -259,13 +266,13 @@ app.post("/fill_nan",function(req,res){
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
-})
+});
 
-app.get("/remove_outlier",function(req,res){
-  res.render("outlier",{numerical: basic.numerical})
-})
+app.get("/remove_outlier", function (req, res) {
+  res.render("outlier", { numerical: basic.numerical });
+});
 
-app.post("/remove_outlier",function(req,res){
+app.post("/remove_outlier", function (req, res) {
   let out = [];
   var py = spawn("python", ["remove_outlier.py"]),
     data = [filePath, req.body.thresh];
@@ -282,9 +289,9 @@ app.post("/remove_outlier",function(req,res){
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
-})
+});
 
-app.post("/clip_values", function(req,res){
+app.post("/clip_values", function (req, res) {
   let out = [];
   var py = spawn("python", ["clip_values.py"]),
     data = [filePath, req.body.minthresh, req.body.maxthresh, req.body.col];
@@ -301,7 +308,7 @@ app.post("/clip_values", function(req,res){
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
-})
+});
 
 app.listen(3000, function () {
   console.log("server started");

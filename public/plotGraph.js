@@ -1,6 +1,7 @@
-let graphType = "histogram";
+let graphType;
 let columnName;
-let typeOfData = "Numerical";
+let typeOfData;
+
 fileName = fileName;
 shape = shape.split(",").map((value) => {
   return parseInt(value);
@@ -38,45 +39,44 @@ $(document).ready(function () {
       data.push(temp);
     });
 
-    columnName = $("#numColumnForm input").first()[0].value;
-    $("#numColumnForm input").first().attr("checked", "checked");
-    makeGraph(columnName, graphType, typeOfData);
+    $("#dataForm input").first().attr("checked", "checked");
+    dataClick();
   }
 });
 
-function dataClick(value) {
-  typeOfData = value;
-  if (value == "Numerical") {
+function dataClick() {
+  typeOfData = $("#topPanel input:checked").val();
+
+  // console.log(typeOfData);
+  if (typeOfData == "Numerical") {
     $("#numGraphForm").css("display", "block");
     $("#numColumnForm").css("display", "block");
     $("#catGraphForm").css("display", "none");
     $("#catColumnForm").css("display", "none");
-    graphType = "histogram";
-    columnName = $("#numColumnForm input").first()[0].value;
+    // graphType = "histogram";
+    // columnName = $("#numColumnForm input").first()[0].value;
     $("#numColumnForm input").first().prop("checked", true);
     $("#numGraphForm input").first().prop("checked", true);
-    makeGraph(columnName, graphType, typeOfData);
-  } else if (value == "Categorical") {
+    makeGraph();
+  } else if (typeOfData == "Categorical") {
     $("#numGraphForm").css("display", "none");
     $("#numColumnForm").css("display", "none");
     $("#catGraphForm").css("display", "block");
     $("#catColumnForm").css("display", "block");
-    graphType = "bar";
-    columnName = $("#catColumnForm input").first()[0].value;
+    // graphType = "bar";
+    // columnName = $("#catColumnForm input").first()[0].value;
     $("#catColumnForm input").first().prop("checked", true);
     $("#catGraphForm input").first().prop("checked", true);
-    makeGraph(columnName, graphType, typeOfData);
+    makeGraph();
   }
 }
 
 function columnClick(value) {
-  columnName = value;
-  makeGraph(columnName, graphType, typeOfData);
+  makeGraph();
 }
 
 function typeClick(value) {
-  graphType = value;
-  makeGraph(columnName, graphType, typeOfData);
+  makeGraph();
 }
 
 function getMap(arr) {
@@ -91,13 +91,18 @@ function getMap(arr) {
   return map;
 }
 
-function makeGraph(columnName, graphType, typeOfData) {
+function makeGraph() {
   //Make Graph
+  // console.log($("#rightPanel input"));
+  graphType = $("#rightPanel input:checked").val();
+  columnName = $("#leftPanel input:checked").val();
+  typeOfData = $("#topPanel input:checked").val();
+
   console.log(columnName + " " + graphType);
   var index = columns.indexOf(columnName);
-  console.log(index);
+  // console.log(index);
   var x = data[index];
-  console.log(x);
+  // console.log(x);
   if (typeOfData == "Numerical") {
     var trace = {
       x: x,
