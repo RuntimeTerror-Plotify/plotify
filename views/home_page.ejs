@@ -69,13 +69,19 @@
           </button>
         </div>
         <form action="/file_upload" method="POST" enctype="multipart/form-data">
-          <div class="modal-body">
-            <input type="file" name="file" id="file" class="inputfile" />
-            <label for="file"><strong>Choose a file</strong></label>
+        <div class="modal-body" style="height: 200px;">
+          <div class="form-group row">
+            <label class="profile-file">
+              <input type="file" name="file" ref="upload" id="file" aria-label="File Input" onchange="getFileContent()">
+              <span class="profileFile-custom content"></span>
+            </label>
+            <h6 class="fileName" id="contentName" style="text-align:left;"><span class="nofile" >No files Selected</span></h6>
           </div>
+        </div>
+          
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Upload File</button>
+            <button type="button" class="btn" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn">Upload File</button>
           </div>
         </form>
       </div>
@@ -97,27 +103,12 @@
   </script>
   <script src="/js/homepage.js"></script>
   <script>
-    var inputs = document.querySelectorAll( '.inputfile' );
-Array.prototype.forEach.call( inputs, function( input )
-{
-	var label	 = input.nextElementSibling,
-		labelVal = label.innerHTML;
-
-	input.addEventListener( 'change', function( e )
-	{
-		var fileName = '';
-		// if( this.files && this.files.length > 1 )
-		// 	fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
-		// else
-		// 	fileName = e.target.value.split( "\" ).pop();
-
-		if( fileName )
-			label.querySelector( 'span' ).innerHTML = fileName;
-		else
-			label.innerHTML = labelVal;
-	});
-});
-  </script>
+    function getFileContent()
+    {
+        var x = document.getElementById('file');
+        document.getElementById('contentName').innerHTML = x.value.split('\\').pop();
+    }
+</script>
   
 </body>
 
