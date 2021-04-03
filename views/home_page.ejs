@@ -51,26 +51,27 @@
   
   <div class="bg-dark py-4" style="width: 100%;margin-top: 100px;">
     <div class="container text-center">
-      <p class="text-muted mb-0 py-2">© 2019 Bootstrapious All rights reserved.</p>
+      <p class="text-muted mb-0 py-2">© 2021 Plotify All rights reserved.</p>
     </div>
   </div>
 
 
 
   <!-- Modal -->
-  <div class="modal fade" id="uploadFile" tabindex="-1" role="dialog" aria-labelledby="uploadFileTitle"
+  <div class="modal fade" id="uploadFile" tabindex="-1" aria-labelledby="uploadFileTitle"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="uploadFileTitle">Upload .csv file</h5>
+          <h5 class="modal-title" id="uploadFileTitle">Upload file</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <form action="/file_upload" method="POST" enctype="multipart/form-data">
           <div class="modal-body">
-            <input type="file" name="file">
+            <input type="file" name="file" id="file" class="inputfile" />
+            <label for="file"><strong>Choose a file</strong></label>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -95,7 +96,29 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
   </script>
   <script src="/js/homepage.js"></script>
+  <script>
+    var inputs = document.querySelectorAll( '.inputfile' );
+Array.prototype.forEach.call( inputs, function( input )
+{
+	var label	 = input.nextElementSibling,
+		labelVal = label.innerHTML;
 
+	input.addEventListener( 'change', function( e )
+	{
+		var fileName = '';
+		// if( this.files && this.files.length > 1 )
+		// 	fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+		// else
+		// 	fileName = e.target.value.split( "\" ).pop();
+
+		if( fileName )
+			label.querySelector( 'span' ).innerHTML = fileName;
+		else
+			label.innerHTML = labelVal;
+	});
+});
+  </script>
+  
 </body>
 
 </html>
