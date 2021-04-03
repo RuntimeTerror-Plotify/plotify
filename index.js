@@ -43,20 +43,26 @@ app.post("/file_upload", uploadDisk.single("file"), function (req, res) {
 });
 
 app.get("/data_analysis", function (req, res) {
-  //Python Script Code
-
   basic = [];
   var py = spawn("python", ["basic.py"]),
     data = filePath;
 
   py.stdout.on("data", function (output) {
-    // console.log(output.toString());
+    console.log(output.toString());
     basic.push(output.toString());
   });
 
   py.stdout.on("end", function () {
-    basic = JSON.parse(basic[0]);
-    res.render("basic_info", { list: basic });
+    try {
+      basic = JSON.parse(basic[0]);
+      if (basic.shape) {
+        res.render("basic_info", { list: basic });
+      } else {
+        res.send("No Data is Parsed , Your data may be Empty");
+      }
+    } catch (err) {
+      res.send("Can't Parse to JSON");
+    }
   });
 
   py.stdin.write(JSON.stringify(data));
