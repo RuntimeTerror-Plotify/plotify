@@ -8,45 +8,69 @@
     <title>Begin!!</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-    </script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600&family=Sacramento&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/basicpage.css">
 </head>
 
 <body>
+    <section>
+        <aside class="sidebar">
+            <header>
+                plotify
+            </header>
+            <nav class="sidebar-nav">
+    
+            <ul>
+                <li>
+                    <a href="#"><span>Handle Null Values</span></a>
+                    <ul class="nav-flyout">
+                        <li>
+                            <a href="/drop_columns">Drop Columns</a>
+                        </li>
+                        <li>
+                            <a href="/drop_rows">Drop rows with nan values</a>
+                        </li>
+                        <li>
+                            <a href="/fill_nan">Fill nan values</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/remove_outlier"><span>Remove outlier</span></a>
+                </li>
+                <li>
+                    <a href="#" role="button" data-toggle="modal" data-target="#categorical_labelling">
+                        <span>Categorical Labelling</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/data_transform"><span>Data Tranformation</span></a>
+                </li>
+                <li>
+                    <a href="/pca"><span>Principal Component Analysis</span></a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+</section>
+    
     <div>
-        <div id="leftPanel" class="leftpanel">
-            <a href="/drop_columns" role="button">Drop Columns </a>
-            <br>
-            <a href="/drop_rows" role="button">Drop rows with nan values </a>
-            <br>
-            <a href="/plot_graph" role="button">Plot Graph</a>
-            <br>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#categorical_labelling">
-                Categorical Labelling
-            </button>
-            <br>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#correlation_matrix">
-                Correlation Matrix
-            </button>
-            <br>
-            <a href="/data_transform" role="button">Data Tranformation</a>
-            <br>
-            <a href="/pca" role="button">Principal Component Analysis</a>
-            <br>
-            <a href="/fill_nan" role="button">Fill nan values </a>
-            <br>
-            <a href="/remove_outlier" role="button">Remove outlier</a>
-        </div>
+        
 
         <div class="main">
+
+            
+            <div>
+                <a href="/plot_graph" role="button">Plot Graph</a>
+                <br>
+                <br>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#correlation_matrix">
+                    Correlation Matrix
+                </button>
+                <br>
+            </div>
+
             <% if (list.columns == "empty"){ %>
             <h2>Dataframe seems to be empty</h2>
             <% } else{%>
@@ -192,6 +216,8 @@
         
                 <% } %>
         </div>
+
+
     </div>
 
 
@@ -280,9 +306,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js"
     integrity="sha512-Y8iWYJDo6HiTo5xtml1g4QqHtl/PO1w+dmUpQfQSOTqKNsMhExfyPN2ncNAe9JuJUSKzwK/b6oaNPop4MXzkwg=="
-    crossorigin="anonymous">
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
 </script>
-<script script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>
+
+<script>
     $('#catLabels input[type=radio]').change(function () {
         // When any radio button on the page is selected,
         // then deselect all other radio buttons.
