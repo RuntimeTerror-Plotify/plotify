@@ -13,42 +13,67 @@
 
     <div id="topPanel" class="toppanel">
         <form id="dataForm">
-            <input type="radio" value='Numerical' name="dataType" onclick="dataClick(this.value)" checked>Numerical</input>
-            <input type="radio" value='Categorical' name="dataType" onclick="dataClick(this.value)">Categorical</input>
+            <% if (numericalData != "empty"){ %>
+            <input type="radio" value='Numerical' name="dataType" onclick="dataClick()">Numerical</input><% } %>
+            <% if (categoricalData != "empty"){ %>
+            <input type="radio" value='Categorical' name="dataType" onclick="dataClick()">Categorical</input>
+            <% } %>
         </form>
     </div>
-    
+
     <div id="leftPanel" class="leftpanel">
-        <form id="numColumnForm">
-            <%numericalData.forEach(function(item){%>
-            <p>
-                <input type="radio" value='<%=item%>' name="column" class="column"
-                onclick="columnClick(this.value)"><%=item%></input>
-            </p>
-            <%})%>
-        </form>
-    
-        <form id="catColumnForm" style="display: none;">
-            <%categoricalData.forEach(function(item){%>
-            <p>
-                <input type="radio" value='<%=item%>' name="column" class="column"
-                onclick="columnClick(this.value)"><%=item%></input>
-            </p>
-            
-            <%})%>
+        <form>
+            <div id="numColumnForm">
+                <% if (numericalData != "empty"){ %>
+
+                <%numericalData.forEach(function(item){%>
+                <p>
+                    <input type="radio" value='<%=item%>' name="column" class="column"
+                        onclick="columnClick(this.value)"><%=item%></input>
+                </p>
+                <%})%>
+
+                <% } %>
+            </div>
+
+
+
+            <div id="catColumnForm" style="display: none;">
+                <% if (categoricalData != "empty"){ %>
+
+                <%categoricalData.forEach(function(item){%>
+                <p>
+                    <input type="radio" value='<%=item%>' name="column" class="column"
+                        onclick="columnClick(this.value)"><%=item%></input>
+                </p>
+
+                <%})%>
+                <% } %>
+            </div>
         </form>
     </div>
 
     <br><br>
     <div id="rightPanel" class="rightpanel">
-        <form id="numGraphForm">
-            <p><input type="radio" value='histogram' name="type" onclick="typeClick(this.value)" checked>Histogram</input></p>
-            <p><input type="radio" value='box' name="type" onclick="typeClick(this.value)">Box Plot</input></p> 
-        </form>
-    
-        <form id="catGraphForm" style="display: none;">
-            <p><input type="radio" value='bar' name="type" onclick="typeClick(this.value)" checked>Bar</input></p>
-            <p><input type="radio" value='pie' name="type" onclick="typeClick(this.value)">Pie Chart</input></p>
+        <form>
+            <div id="numGraphForm">
+                <% if (numericalData != "empty"){ %>
+
+                <p><input type="radio" value='histogram' name="type" onclick="typeClick(this.value)"
+                        checked>Histogram</input></p>
+                <p><input type="radio" value='box' name="type" onclick="typeClick(this.value)">Box Plot</input></p>
+
+                <% } %>
+            </div>
+
+            <div id="catGraphForm" style="display: none;">
+                <% if (categoricalData != "empty"){ %>
+
+                <p><input type="radio" value='bar' name="type" onclick="typeClick(this.value)" checked>Bar</input></p>
+                <p><input type="radio" value='pie' name="type" onclick="typeClick(this.value)">Pie Chart</input></p>
+
+                <% } %>
+            </div>
         </form>
     </div>
 
@@ -56,17 +81,21 @@
         <div id="myDiv" style="width:800px;height:400px;"></div>
     </div>
 
-    
+
 
 
 </body>
 
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js" integrity="sha512-Y8iWYJDo6HiTo5xtml1g4QqHtl/PO1w+dmUpQfQSOTqKNsMhExfyPN2ncNAe9JuJUSKzwK/b6oaNPop4MXzkwg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js"
+    integrity="sha512-Y8iWYJDo6HiTo5xtml1g4QqHtl/PO1w+dmUpQfQSOTqKNsMhExfyPN2ncNAe9JuJUSKzwK/b6oaNPop4MXzkwg=="
+    crossorigin="anonymous"></script>
 <script>
     let fileName = '<%-fileName%>';
     let shape = '<%-shape%>';
+    let numericalData = '<%-numericalData%>';
+    let categoricalData = '<%-categoricalData%>';
 </script>
 <script src="/plotGraph.js"></script>
 

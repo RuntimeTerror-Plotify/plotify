@@ -66,6 +66,7 @@ app.get("/data_analysis", function (req, res) {
 
 app.get("/plot_graph", function (req, res) {
   res.render("plot_graph", {
+    columns: basic.columns,
     numericalData: basic.numerical,
     categoricalData: basic.categorical,
     shape: basic.shape,
@@ -237,12 +238,12 @@ app.post("/pca", function (req, res) {
   py.stdin.end();
 });
 
-app.get("/fill_nan",function(req,res){
-  res.render("fill_nan",{list:basic});
-})
+app.get("/fill_nan", function (req, res) {
+  res.render("fill_nan", { list: basic });
+});
 
-app.post("/fill_nan",function(req,res){
-  console.log(filePath)
+app.post("/fill_nan", function (req, res) {
+  console.log(filePath);
   let out = [];
   var py = spawn("python", ["fill_nan.py"]),
     data = [filePath, req.body.col_type, req.body.column, req.body.method];
@@ -259,13 +260,13 @@ app.post("/fill_nan",function(req,res){
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
-})
+});
 
-app.get("/remove_outlier",function(req,res){
-  res.render("outlier",{numerical: basic.numerical})
-})
+app.get("/remove_outlier", function (req, res) {
+  res.render("outlier", { numerical: basic.numerical });
+});
 
-app.post("/remove_outlier",function(req,res){
+app.post("/remove_outlier", function (req, res) {
   let out = [];
   var py = spawn("python", ["remove_outlier.py"]),
     data = [filePath, req.body.thresh];
@@ -282,9 +283,9 @@ app.post("/remove_outlier",function(req,res){
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
-})
+});
 
-app.post("/clip_values", function(req,res){
+app.post("/clip_values", function (req, res) {
   let out = [];
   var py = spawn("python", ["clip_values.py"]),
     data = [filePath, req.body.minthresh, req.body.maxthresh, req.body.col];
@@ -301,7 +302,7 @@ app.post("/clip_values", function(req,res){
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
-})
+});
 
 app.listen(3000, function () {
   console.log("server started");
