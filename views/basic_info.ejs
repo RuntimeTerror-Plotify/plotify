@@ -264,15 +264,20 @@
                 <div class="modal-body">
                     <form id="catLabels" method="POST" action="/categorical_labelling">
                         <h1>Encoding Labels</h1>
+
+                        <%if(list.categorical != "empty"){%>
                         <% list.categorical.forEach(function(column){%>
-                        <input type="radio" id='<%=column%>' name="encodingLabel"
+                        <input type="checkbox" id='<%=column%>' name="encodingLabel"
                             value='<%=column%>'><%=column%></input>
                         <%})%>
+                        <% } %>
                         <br>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
+                    <input type="checkbox" name="encodingLabel" value="" class="selectall">Select
+                    All</input>
                 </div>
 
             </div>
@@ -293,11 +298,15 @@
                 </div>
                 <div class="modal-body">
                     <form id="catLabels" method="POST" action="/categorical_labelling">
+                        <%if(list.categorical != "empty"){%>
                         <h1>One Hot Encoding</h1>
                         <% list.categorical.forEach(function(column){%>
-                        <input type="radio" id='<%=column%>' name="oneHotEncoding"
+                        <input type="checkbox" id='<%=column%>' name="oneHotEncoding"
                             value='<%=column%>'><%=column%></input>
                         <%})%>
+                        <% } %>
+                        <input type="checkbox" name="oneHotEncoding" class="selectall">Select
+                        All</input>
                         <br>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -323,11 +332,14 @@
                 </div>
                 <div class="modal-body">
                     <form id="catLabels" method="POST" action="/categorical_labelling">
+                        <%if(list.categorical != "empty"){%>
                         <h1>Binary Encoding</h1>
                         <% list.categorical.forEach(function(column){%>
-                        <input type="radio" id='<%=column%>' name="binaryEncoding"
-                            value='<%=column%>'><%=column%></input>
+                        <input type="checkbox" name="binaryEncoding" value='<%=column%>'><%=column%></input>
                         <%})%>
+                        <% } %>
+                        <input type="checkbox" name="binaryEncoding" class="selectall">Select
+                        All</input>
                         <br>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>

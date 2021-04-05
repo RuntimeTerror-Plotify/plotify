@@ -56,6 +56,7 @@ app.get("/data_analysis", function (req, res) {
     try {
       basic = JSON.parse(basic[0]);
       if (basic.shape) {
+        console.log(basic);
         res.render("basic_info", { list: basic });
       } else {
         res.send("No Data is Parsed , Your data may be Empty");
@@ -88,9 +89,11 @@ app.post("/categorical_labelling", function (req, res) {
   // var columnName = req.body.column;
   // var type = req.body.type;
   var x = req.body;
+  var column = [];
   var type = Object.keys(x)[0];
-  var column = Object.values(x)[0];
+  column = column.concat(Object.values(x)[0]);
 
+  console.log(column);
   var py = spawn("python", ["labelling.py"]),
     data = {
       filePath: filePath,
@@ -107,8 +110,6 @@ app.post("/categorical_labelling", function (req, res) {
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
-
-  // res.redirect("/categorical_labeling", { categoricalData: basic.categorical });
 });
 
 app.get("/drop_columns", function (req, res) {
