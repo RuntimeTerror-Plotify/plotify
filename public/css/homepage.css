@@ -1,5 +1,5 @@
 /* ----------------------------------------card------------------------------------------------- */
-
+/* rgba(24, 77, 71, 1)  rgba(190, 229, 211, 0.5)*/
 @import url('https://fonts.googleapis.com/css?family=Cardo:400i|Rubik:400,700&display=swap');
  :root {
 	 --d: 700ms;
@@ -264,7 +264,7 @@
     z-index: 6;
     display: block;
     content: "Browse";
-    background: rgba(252, 223, 3, 1);
+    background: #f0d404;
     color: #000;
     -webkit-box-shadow: -2px 10px 20px -1px rgb(252 223 3 / 40%);
     -moz-box-shadow: -2px 10px 20px -1px rgba(252,223,3, 0.4);
@@ -309,8 +309,8 @@ span.profileFile-custom:hover:before {
 }
 
 .modal-footer .btn{
-	color: #fcdf03;
-	background-color: #000;
+	color: #c4ad06;
+	background-color: #353535;
 	font-size: 1rem;
 	font-weight: bold;
 	-webkit-box-shadow: -2px 5px 10px -1px rgb(0 0 0 / 40%);
@@ -320,8 +320,8 @@ span.profileFile-custom:hover:before {
 }
 
 .modal-footer .btn:hover {
-	background-color: #0d0d0d !important;
-	color: #fcdf03 !important;
+	background-color: #030303 !important;
+	color: #c4ad06 !important;
 	border: none;
 }
 
