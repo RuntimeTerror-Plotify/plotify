@@ -111,9 +111,6 @@ app.post("/categorical_labelling", function (req, res) {
   // res.redirect("/categorical_labeling", { categoricalData: basic.categorical });
 });
 
-app.get("/drop_columns", function (req, res) {
-  res.render("drop_columns", { list: basic });
-});
 
 app.post("/drop_columns", function (req, res) {
   let out = [];
@@ -132,10 +129,6 @@ app.post("/drop_columns", function (req, res) {
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
-});
-
-app.get("/drop_rows", function (req, res) {
-  res.render("drop_rows", { list: basic });
 });
 
 app.post("/drop_rows", function (req, res) {
@@ -242,10 +235,6 @@ app.post("/pca", function (req, res) {
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
-});
-
-app.get("/fill_nan", function (req, res) {
-  res.render("fill_nan", { list: basic });
 });
 
 app.post("/fill_nan", function (req, res) {

@@ -26,12 +26,18 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle"  data-toggle="dropdown">Handle Null Values<span class="caret"></span></a>
                 <ul class="dropdown-menu animated fadeInLeft" role="menu">
-                    <li><a href="/drop_columns">Drop Columns</a></li>
-                    <li><a href="/drop_rows">Drop rows with nan values</a></li>
-                    <li><a href="/fill_nan">Fill nan values</a></li>
+                    <li><a href="#" role="button" data-toggle="modal" data-target="#drop_col">Drop column</a></li>
+                    <li><a href="#" role="button" data-toggle="modal" data-target="#drop_row">Drop rows with nan values</a></li>
+                    <li><a href="#" role="button" data-toggle="modal" data-target="#fill_na">Fill nan values</a></li>
                 </ul>
             </li>
-            <li><a href="/remove_outlier">Remove outlier</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle"  data-toggle="dropdown">Remove Outliers<span class="caret"></span></a>
+                <ul class="dropdown-menu animated fadeInLeft" role="menu">
+                    <li><a href="#" role="button" data-toggle="modal" data-target="#clip_values">Clip values</a></li>
+                    <li><a href="#" role="button" data-toggle="modal" data-target="#drop_outliers">Drop outliers</a></li>
+                </ul>
+            </li>
             <li><a href="#" role="button" data-toggle="modal" data-target="#categorical_labelling">Categorical Labelling</a></li>
             <li><a href="/data_transform">Data Tranformation</a></li>
             <li><a href="/pca">Principal Component Analysis</a></li>
@@ -247,8 +253,205 @@
      
          </div>
          
-   
-    
+    <!--fill nan Modal -->
+    <div class="modal fade" id="fill_na" tabindex="-1" role="dialog"
+        aria-labelledby="drop_col" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="">Fill nan values</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="radio" name="mode" value="categorical" onclick="check_cat()"> categorical
+                    <input type="radio" name="mode" value="numerical" onclick="check_num()"> Numerical
+                    <div id="categorical">
+                        <form action="/fill_nan" method="POST">
+                            <h3>Categorical Column</h3>
+                            <select name="column" id="">
+                                <option value="" selected>Select</option>
+                                <% list.categorical.forEach(function(cat){ %>
+                                    <option value="<%=cat%>"><%=cat%></option>
+                                <% }) %>
+                            </select>
+                            <select name="method" id="">
+                                <option value="" selected>Select</option>
+                                <option value="top">Top Class</option>
+                                <option value="unk">Unknown Class</option>
+                            </select>
+                            <button type="submit" name="col_type" value="cat">Submit</button>
+                        </form>
+                    </div>
+                    <div id="numerical">
+                        <form action="/fill_nan" method="POST" id="form">
+                            <h3>Numerical Column</h3>
+                            <select name="column" id="">
+                                <option value="" selected>Select</option>
+                                <% list.numerical.forEach(function(cat){ %>
+                                    <option value="<%=cat%>"><%=cat%></option>
+                                <% }) %>
+                            </select>
+                            <select name="method" id="">
+                                <option value="" selected>Select</option>
+                                <option value="zero">Fill zeros</option>
+                                <option value="mean">Fill mean</option>
+                                <option value="median">Fill median</option>
+                                <option value="min">Fill minimum</option>
+                                <option value="max">Fill maximum</option>
+                                <option value="b_fill">Backward Fill</option>
+                                <option value="f_fill">Forward Fill</option>
+                            </select>
+                            <button type="submit" name="col_type" value="num">Submit</button>
+                        </form>
+                        <script>
+                            document.getElementById("categorical").style.visibility = "hidden";
+                            document.getElementById("numerical").style.visibility = "hidden";
+                            function check_cat(){
+                                document.getElementById("form").reset();
+                                document.getElementById("numerical").style.visibility = "hidden";
+                                document.getElementById("categorical").style.visibility = "visible";
+                            }
+                            function check_num(){
+                                document.getElementById("form").reset();
+                                document.getElementById("categorical").style.visibility = "hidden";
+                                document.getElementById("numerical").style.visibility = "visible";
+                            }
+                        </script>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--drop rows Modal -->
+    <div class="modal fade" id="drop_row" tabindex="-1" role="dialog"
+        aria-labelledby="drop_col" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="">Drop rows</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/drop_rows" method="POST">
+                        <h1>Drop rows with NA values</h1>
+                        <h4>tips</h4>
+                        <p>First drop the columns with high percentage on na values else your dataframe would result with high loss of data.</p>
+                        <br>
+                        <label for="">Mode: </label>
+                        <input type="radio" name="mode" id="" value="all">All <br>
+                        <input type="radio" name="mode" id="" value="specific">Specific <br>
+                        <h2>Select specific columns of a row for which nan will be checked</h2>
+                        
+                        <% list.columns.forEach(function (col,i) { %>
+                            <input type="checkbox" name="subset" id="" value="<%=col%>"> <%=col%>
+                            <Label>Nan percent: </Label>
+                            <%=list.null_val[i]/(list.null_val[i]+list.count[i])*100%>
+                            <br>
+                        <% }) %>
+                        <button type="submit">Submit</button> 
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--drop column Modal -->
+    <div class="modal fade" id="drop_col" tabindex="-1" role="dialog"
+        aria-labelledby="drop_col" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="">Drop Columns</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4>Tips:</h4>
+                    <p>Drop columns with max nan values or high nan percent</p>
+
+                    <form action="/drop_columns" method="POST">
+                        <table>
+                        <% list.columns.forEach(function(col,i){ %>
+                            <tr>
+                            <td><input type="checkbox" name="drop_col" value="<%=col%>" id=""> <%=col%> </td> 
+                            <td><label for="">NAN percent</label>
+                            <label for=""><%=list.null_val[i]/(list.null_val[i]+list.count[i])*100%></label>
+                            </td>
+                            </tr>
+                        <% }); %>
+                    </table>
+                    <button type="submit"> drop_col </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--clip_values Modal -->
+    <div class="modal fade" id="clip_values" tabindex="-1" role="dialog"
+        aria-labelledby="drop_col" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="">Clip values</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/clip_values" method="POST">
+                        <h1>Clip values</h1>
+                        <label for="">Min threshold</label>
+                        <input type="number" name="minthresh" id="">
+                        <label for="">Max threshold</label>
+                        <input type="number" name="maxthresh" id="">
+                        <select name="col" id="">
+                            <% list.numerical.forEach(function(num) { %>
+                                <option value="<%=num%>"><%=num%></option>
+                            <% }) %>
+                        </select>
+                        <br>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--drop r outlier Modal -->
+    <div class="modal fade" id="drop_outliers" tabindex="-1" role="dialog"
+        aria-labelledby="drop_col" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="">Drop outliers</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/remove_outlier" method="POST">
+                        <label for="">Z threshold value: </label>
+                        <input type="number" name="thresh" id="">
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
     
 
 
