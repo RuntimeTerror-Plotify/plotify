@@ -28,13 +28,10 @@ $(document).ready(function () {
 
 function corrSub(event) {
   event.preventDefault();
-  console.log("here");
   var column = [];
   $("#corrMat input[type=checkbox]:checked").each(function (col) {
     column.push($(this).val());
   });
-  console.log(column);
-
   $.ajax({
     url: "/corr_matrix",
     type: "post",
@@ -62,6 +59,24 @@ $(".selectall").click(function () {
   $(classname).each(function () {
     this.checked = checked;
   });
+});
+
+$("#modal-search-Input").keyup(function () {
+  var $input = $("#modal-search-Input");
+  filter = $input.val().toUpperCase();
+  console.log(filter);
+  var ul = $("#modal-ul");
+  var li = ul.find("li");
+
+  for (i = 0; i < li.length; i++) {
+    la = li[i].getElementsByTagName("label")[0];
+    txtValue = la.textContent || la.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
 });
 
 function run() {
