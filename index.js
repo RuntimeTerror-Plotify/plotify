@@ -182,8 +182,11 @@ app.get("/data_transform", function (req, res) {
 });
 
 app.post("/data_transform", function (req, res) {
-  var type = Object.keys(req.body)[0];
-  var column = Object.values(req.body)[0];
+  var x = req.body;
+  var column = [];
+  var type = Object.keys(x)[0];
+  column = column.concat(Object.values(x)[0]);
+  console.log(column);
 
   var py = spawn("python", ["data_transform.py"]),
     data = {
@@ -192,9 +195,7 @@ app.post("/data_transform", function (req, res) {
       column: column,
     };
 
-  py.stdout.on("data", function (output) {
-    // out += output.toString();
-  });
+  py.stdout.on("data", function (output) {});
 
   py.stdout.on("end", function () {
     // out = JSON.parse(out);

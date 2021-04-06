@@ -58,7 +58,20 @@
                                 Encoding</a></li>
                     </ul>
                 </li>
-                <li><a href="/data_transform">Data Tranformation</a></li>
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Tranformation<span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu animated fadeInLeft" role="menu">
+                        <li><a href="#" role="button" data-toggle="modal" data-target="#Min_Max">Min-Max</a></li>
+                        <li><a href="#" role="button" data-toggle="modal" data-target="#Z_Score">Z_Score</a>
+                        </li>
+                        <li><a href="#" role="button" data-toggle="modal" data-target="#Square_Root">Square_Root</a>
+                        </li>
+                        <li><a href="#" role="button" data-toggle="modal" data-target="#Cube_Root">Cube_Root</a>
+                        </li>
+                        <li><a href="#" role="button" data-toggle="modal" data-target="#Log">Log</a></li>
+                        <li><a href="#" role="button" data-toggle="modal" data-target="#Square">Square</a></li>
+                    </ul>
+                </li>
                 <li><a href="/pca" role="button" data-toggle="modal" data-target="#pca">Principal Component
                         Analysis</a></li>
 
@@ -569,13 +582,14 @@
                             value='<%=column%>'><%=column%></input>
                         <%})%>
                         <% } %>
-                        <input type="checkbox" name="oneHotEncoding" class="selectall">Select
-                        All</input>
+
                         <br>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
+                    <input type="checkbox" name="oneHotEncoding" class="selectall">Select
+                    All</input>
                 </div>
 
             </div>
@@ -602,18 +616,238 @@
                         <input type="checkbox" name="binaryEncoding" value='<%=column%>'><%=column%></input>
                         <%})%>
                         <% } %>
-                        <input type="checkbox" name="binaryEncoding" class="selectall">Select
-                        All</input>
-                        <br>
+
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
+                    <input type="checkbox" name="binaryEncoding" class="selectall">Select
+                    All</input>
+                    <br>
                 </div>
 
             </div>
         </div>
     </div>
+
+
+
+
+    <!--Data Transform Modal -->
+
+
+    <!--Min-Max Modal -->
+    <div class="modal fade" id="Min_Max" tabindex="-1" role="dialog" aria-labelledby="DataTransform" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Data Transform Modal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="min-max" method="POST" action="/data_transform">
+                        <%if(list.numerical != "empty"){%>
+                        <h1>Min-Max</h1>
+                        <% list.numerical.forEach(function(column){%>
+                        <input type="checkbox" name="min-max" value='<%=column%>'><%=column%></input>
+                        <%})%>
+                        <% } %>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                        <br>
+                    </form>
+                    <input type="checkbox" name="min-max" class="selectall">Select
+                    All</input>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--Z-Score Modal -->
+    <div class="modal fade" id="Z_Score" tabindex="-1" role="dialog" aria-labelledby="DataTransform" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Data Transform Modal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="z-score" method="POST" action="/data_transform">
+                        <%if(list.numerical != "empty"){%>
+                        <h1>Z-Score</h1>
+                        <% list.numerical.forEach(function(column){%>
+                        <input type="checkbox" name="min-max" value='<%=column%>'><%=column%></input>
+                        <%})%>
+                        <% } %>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+
+                        <br>
+                    </form>
+                    <input type="checkbox" name="min-max" class="selectall">Select
+                    All</input>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--Square-Root Modal -->
+    <div class="modal fade" id="Square_Root" tabindex="-1" role="dialog" aria-labelledby="DataTransform"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Data Transform Modal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="square-root" method="POST" action="/data_transform">
+                        <%if(list.numerical != "empty"){%>
+                        <h1>Square-Root</h1>
+                        <% list.numerical.forEach(function(column){%>
+                        <input type="checkbox" name="min-max" value='<%=column%>'><%=column%></input>
+                        <%})%>
+                        <% } %>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+
+                        <br>
+                    </form>
+                    <input type="checkbox" name="min-max" class="selectall">Select
+                    All</input>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--Cube-Root Modal -->
+    <div class="modal fade" id="Cube_Root" tabindex="-1" role="dialog" aria-labelledby="DataTransform"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Data Transform Modal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="cube-root" method="POST" action="/data_transform">
+                        <%if(list.numerical != "empty"){%>
+                        <h1>Cube-Root</h1>
+                        <% list.numerical.forEach(function(column){%>
+                        <input type="checkbox" name="min-max" value='<%=column%>'><%=column%></input>
+                        <%})%>
+                        <% } %>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+
+                        <br>
+                    </form>
+                    <input type="checkbox" name="min-max" class="selectall">Select
+                    All</input>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--Log Modal -->
+    <div class="modal fade" id="Log" tabindex="-1" role="dialog" aria-labelledby="DataTransform" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Data Transform Modal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="log" method="POST" action="/data_transform">
+                        <%if(list.numerical != "empty"){%>
+                        <h1>Log</h1>
+                        <% list.numerical.forEach(function(column){%>
+                        <input type="checkbox" name="min-max" value='<%=column%>'><%=column%></input>
+                        <%})%>
+                        <% } %>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+
+                        <br>
+                    </form>
+                    <input type="checkbox" name="min-max" class="selectall">Select
+                    All</input>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--Square Modal -->
+    <div class="modal fade" id="Square" tabindex="-1" role="dialog" aria-labelledby="DataTransform" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Data Transform Modal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="square" method="POST" action="/data_transform">
+                        <%if(list.numerical != "empty"){%>
+                        <h1>Square</h1>
+                        <% list.numerical.forEach(function(column){%>
+                        <input type="checkbox" name="min-max" value='<%=column%>'><%=column%></input>
+                        <%})%>
+                        <% } %>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+
+                        <br>
+                    </form>
+                    <input type="checkbox" name="min-max" class="selectall">Select
+                    All</input>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
 
 
 
@@ -664,6 +898,10 @@
                 </div>
                 <div class="modal-body">
                     <button onclick="run()">Run</button>
+
+                    <P style="color: red;">*IF YOU RUN pca ALL YOUR CATEGORICAL COLUMN WILL BE DELETED IF THERE IS
+                        ANY*
+                    </P>
 
                     <div class="main">
                         <div id="pcaGraph" style="width:800px;height:300px;"></div>
