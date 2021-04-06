@@ -51,7 +51,7 @@ function corrSub(event) {
         },
       ];
 
-      Plotly.newPlot("myDiv", data);
+      Plotly.newPlot("corrGraph", data);
     },
   });
 }
@@ -63,3 +63,23 @@ $(".selectall").click(function () {
     this.checked = checked;
   });
 });
+
+function run() {
+  $.ajax({
+    url: "/pca",
+    type: "post",
+    success: function (response) {
+      var data = [
+        {
+          x: response.columnNames,
+          y: response.values,
+          type: "bar",
+        },
+      ];
+
+      Plotly.newPlot("pcaGraph", data);
+
+      $("#pcaDiv").css("display", "block");
+    },
+  });
+}

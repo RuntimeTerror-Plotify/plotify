@@ -92,7 +92,6 @@ app.post("/categorical_labelling", function (req, res) {
   var type = Object.keys(x)[0];
   column = column.concat(Object.values(x)[0]);
 
-  console.log(column);
   var py = spawn("python", ["labelling.py"]),
     data = {
       filePath: filePath,
