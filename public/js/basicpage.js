@@ -63,3 +63,42 @@ $(".selectall").click(function () {
     this.checked = checked;
   });
 });
+
+
+
+// function searchFunction() {
+//   var input, filter, ul, li, la, i, txtValue;
+//   input = document.getElementById("modal-search-Input");
+//   filter = input.value.toUpperCase(); 
+//   ul = document.getElementById("modal-ul");
+//   li = ul.getElementsByTagName("li");
+
+  
+  // for (i = 0; i < li.length; i++) {  
+  //   la = li[i].getElementsByTagName("label")[0]; 
+  //   txtValue = la.textContent || la.innerText;  
+  //   if (txtValue.toUpperCase().indexOf(filter) > -1) {  
+  //     li[i].style.display = "";
+  //   } else {
+  //     li[i].style.display = "none";
+  //   }
+  // }
+// }
+
+$("#modal-search-Input").keyup(function(){
+  var $input = $("#modal-search-Input");
+  filter = $input.val().toUpperCase();
+  console.log(filter);
+  var ul = $("#modal-ul");
+  var li = ul.find("li");
+
+  for (i = 0; i < li.length; i++) {  
+    la = li[i].getElementsByTagName("label")[0]; 
+    txtValue = la.textContent || la.innerText;  
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {  
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+});
