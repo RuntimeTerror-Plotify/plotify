@@ -153,11 +153,15 @@ app.get("/corr_matrix", function (req, res) {
 });
 
 app.post("/corr_matrix", function (req, res) {
+  var x = req.body;
+  var column = [];
+  column = column.concat(Object.values(x)[0]);
+
   var out = "";
   var py = spawn("python", ["corr_matrix.py"]),
     data = {
       filePath: filePath,
-      column: req.body.column,
+      column: column,
     };
 
   py.stdout.on("data", function (output) {
@@ -186,7 +190,6 @@ app.post("/data_transform", function (req, res) {
   var column = [];
   var type = Object.keys(x)[0];
   column = column.concat(Object.values(x)[0]);
-  console.log(column);
 
   var py = spawn("python", ["data_transform.py"]),
     data = {
