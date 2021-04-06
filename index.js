@@ -256,9 +256,7 @@ app.post("/fill_nan", function (req, res) {
   py.stdin.end();
 });
 
-app.get("/remove_outlier", function (req, res) {
-  res.render("outlier", { numerical: basic.numerical });
-});
+
 
 app.post("/remove_outlier", function (req, res) {
   let out = [];
