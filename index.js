@@ -88,9 +88,11 @@ app.post("/categorical_labelling", function (req, res) {
   // var columnName = req.body.column;
   // var type = req.body.type;
   var x = req.body;
+  var column = [];
   var type = Object.keys(x)[0];
-  var column = Object.values(x)[0];
+  column = column.concat(Object.values(x)[0]);
 
+  console.log(column);
   var py = spawn("python", ["labelling.py"]),
     data = {
       filePath: filePath,
@@ -107,12 +109,6 @@ app.post("/categorical_labelling", function (req, res) {
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
-
-  // res.redirect("/categorical_labeling", { categoricalData: basic.categorical });
-});
-
-app.get("/drop_columns", function (req, res) {
-  res.render("drop_columns", { list: basic });
 });
 
 app.post("/drop_columns", function (req, res) {
@@ -132,10 +128,6 @@ app.post("/drop_columns", function (req, res) {
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
-});
-
-app.get("/drop_rows", function (req, res) {
-  res.render("drop_rows", { list: basic });
 });
 
 app.post("/drop_rows", function (req, res) {
@@ -242,10 +234,6 @@ app.post("/pca", function (req, res) {
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
-});
-
-app.get("/fill_nan", function (req, res) {
-  res.render("fill_nan", { list: basic });
 });
 
 app.post("/fill_nan", function (req, res) {
