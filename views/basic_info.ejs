@@ -46,8 +46,17 @@
                         </li>
                     </ul>
                 </li>
-                <li><a href="#" role="button" data-toggle="modal" data-target="#categorical_labelling">Categorical
-                        Labelling</a></li>
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Categorical Labelling<span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu animated fadeInLeft" role="menu">
+                        <li><a href="#" role="button" data-toggle="modal" data-target="#Encoding_Label">Encoding
+                                Label</a></li>
+                        <li><a href="#" role="button" data-toggle="modal" data-target="#One_Hot_Encoding">One Hot
+                                Encoding</a></li>
+                        <li><a href="#" role="button" data-toggle="modal" data-target="#Binary_Encoding">Binary
+                                Encoding</a></li>
+                    </ul>
+                </li>
                 <li><a href="/data_transform">Data Tranformation</a></li>
                 <li><a href="/pca">Principal Component Analysis</a></li>
 
@@ -259,6 +268,8 @@
                     <input type="radio" name="mode" value="categorical" onclick="check_cat()"> categorical
                     <input type="radio" name="mode" value="numerical" onclick="check_num()"> Numerical
                     <div id="categorical">
+
+                        <% if(list.categorical != "empty") {%>
                         <form action="/fill_nan" method="POST">
                             <h3>Categorical Column</h3>
                             <select name="column" id="">
@@ -274,6 +285,7 @@
                             </select>
                             <button type="submit" name="col_type" value="cat">Submit</button>
                         </form>
+                        <% } %>
                     </div>
                     <div id="numerical">
                         <form action="/fill_nan" method="POST" id="form">
