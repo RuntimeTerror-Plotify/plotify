@@ -17,7 +17,7 @@ app.set("view engine", "ejs");
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./public/");
+    cb(null, "./csv/");
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -44,7 +44,7 @@ app.post("/file_upload", uploadDisk.single("file"), function (req, res) {
 
 app.get("/data_analysis", function (req, res) {
   basic = [];
-  var py = spawn("python", ["basic.py"]),
+  var py = spawn("python", ["pyScript/basic.py"]),
     data = filePath;
 
   py.stdout.on("data", function (output) {
@@ -56,7 +56,7 @@ app.get("/data_analysis", function (req, res) {
     try {
       basic = JSON.parse(basic[0]);
       if (basic.shape) {
-        res.render("basic_info", { list: basic });
+        res.render("basic_info", { list: basic, fileName: fileName });
       } else {
         res.send("No Data is Parsed , Your data may be Empty");
       }
@@ -68,16 +68,6 @@ app.get("/data_analysis", function (req, res) {
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
-});
-
-app.get("/plot_graph", function (req, res) {
-  res.render("plot_graph", {
-    columns: basic.columns,
-    numericalData: basic.numerical,
-    categoricalData: basic.categorical,
-    shape: basic.shape,
-    fileName: fileName,
-  });
 });
 
 app.get("/categorical_labelling", function (req, res) {
@@ -92,7 +82,6 @@ app.post("/categorical_labelling", function (req, res) {
   var type = Object.keys(x)[0];
   column = column.concat(Object.values(x)[0]);
 
-  console.log(column);
   var py = spawn("python", ["labelling.py"]),
     data = {
       filePath: filePath,
@@ -113,7 +102,7 @@ app.post("/categorical_labelling", function (req, res) {
 
 app.post("/drop_columns", function (req, res) {
   let out = [];
-  var py = spawn("python", ["drop_col.py"]),
+  var py = spawn("python", ["pyScript/drop_col.py"]),
     data = [req.body.drop_col, filePath];
 
   py.stdout.on("data", function (output) {
@@ -132,7 +121,7 @@ app.post("/drop_columns", function (req, res) {
 
 app.post("/drop_rows", function (req, res) {
   let out = [];
-  var py = spawn("python", ["drop_row.py"]),
+  var py = spawn("python", ["pyScript/drop_row.py"]),
     data = [filePath, req.body.mode, req.body.subset];
 
   py.stdout.on("data", function (output) {
@@ -154,11 +143,15 @@ app.get("/corr_matrix", function (req, res) {
 });
 
 app.post("/corr_matrix", function (req, res) {
+  var x = req.body;
+  var column = [];
+  column = column.concat(Object.values(x)[0]);
+
   var out = "";
-  var py = spawn("python", ["corr_matrix.py"]),
+  var py = spawn("python", ["pyScript/corr_matrix.py"]),
     data = {
       filePath: filePath,
-      column: req.body.column,
+      column: column,
     };
 
   py.stdout.on("data", function (output) {
@@ -183,19 +176,19 @@ app.get("/data_transform", function (req, res) {
 });
 
 app.post("/data_transform", function (req, res) {
-  var type = Object.keys(req.body)[0];
-  var column = Object.values(req.body)[0];
+  var x = req.body;
+  var column = [];
+  var type = Object.keys(x)[0];
+  column = column.concat(Object.values(x)[0]);
 
-  var py = spawn("python", ["data_transform.py"]),
+  var py = spawn("python", ["pyScript/data_transform.py"]),
     data = {
       filePath: filePath,
       type: type,
       column: column,
     };
 
-  py.stdout.on("data", function (output) {
-    // out += output.toString();
-  });
+  py.stdout.on("data", function (output) {});
 
   py.stdout.on("end", function () {
     // out = JSON.parse(out);
@@ -215,7 +208,7 @@ app.get("/pca", function (req, res) {
 
 app.post("/pca", function (req, res) {
   var out = "";
-  var py = spawn("python", ["pca.py"]),
+  var py = spawn("python", ["pyScript/pca.py"]),
     data = {
       filePath: filePath,
     };
@@ -239,7 +232,7 @@ app.post("/pca", function (req, res) {
 app.post("/fill_nan", function (req, res) {
   console.log(filePath);
   let out = [];
-  var py = spawn("python", ["fill_nan.py"]),
+  var py = spawn("python", ["pyScript/fill_nan.py"]),
     data = [filePath, req.body.col_type, req.body.column, req.body.method];
 
   py.stdout.on("data", function (output) {
@@ -256,13 +249,11 @@ app.post("/fill_nan", function (req, res) {
   py.stdin.end();
 });
 
-app.get("/remove_outlier", function (req, res) {
-  res.render("outlier", { numerical: basic.numerical });
-});
+
 
 app.post("/remove_outlier", function (req, res) {
   let out = [];
-  var py = spawn("python", ["remove_outlier.py"]),
+  var py = spawn("python", ["pyScript/remove_outlier.py"]),
     data = [filePath, req.body.thresh];
 
   py.stdout.on("data", function (output) {
@@ -281,7 +272,7 @@ app.post("/remove_outlier", function (req, res) {
 
 app.post("/clip_values", function (req, res) {
   let out = [];
-  var py = spawn("python", ["clip_values.py"]),
+  var py = spawn("python", ["pyScript/clip_values.py"]),
     data = [filePath, req.body.minthresh, req.body.maxthresh, req.body.col];
 
   py.stdout.on("data", function (output) {

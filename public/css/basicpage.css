@@ -21,7 +21,7 @@
   display: block;
 }
 
-.tabs input[type="radio"] {
+.tabs li > input[type="radio"] {
   position: absolute;
   top: 0;
   left: -9999px;

@@ -4,43 +4,47 @@ import csv
 
 
 def minmax(column, df, filePath):
-    minimum = df[column].min()
-    maximum = df[column].max()
-
-    df[column] = (df[column] - minimum) / (maximum - minimum)
+    for col in column:
+        minimum = df[col].min()
+        maximum = df[col].max()
+        df[col] = (df[col] - minimum) / (maximum - minimum)
 
     df.to_csv(filePath, index=False)
 
 
 def zScore(column, df, filePath):
-    average = df[column].mean()
-    std = df[column].std()
-
-    df[column] = (df[column] - average) / (std)
+    for col in column:
+        average = df[col].mean()
+        std = df[col].std()
+        df[col] = (df[col] - average) / (std)
 
     df.to_csv(filePath, index=False)
 
 
 def squareRoot(column, df, filePath):
-    df[column] = np.power((df[column]), 1 / 2)
+    for col in column:
+        df[col] = np.power((df[col]), 1 / 2)
 
     df.to_csv(filePath, index=False)
 
 
 def cubeRoot(column, df, filePath):
-    df[column] = np.power((df[column]), 1 / 3)
+    for col in column:
+        df[col] = np.power((df[col]), 1 / 3)
 
     df.to_csv(filePath, index=False)
 
 
 def log(column, df, filePath):
-    df[column] = np.log2((df[column]))
+    for col in column:
+        df[col] = np.log2((df[col]))
 
     df.to_csv(filePath, index=False)
 
 
 def square(column, df, filePath):
-    df[column] = np.power((df[column]), 2)
+    for col in column:
+        df[col] = np.power((df[col]), 2)
 
     df.to_csv(filePath, index=False)
 
