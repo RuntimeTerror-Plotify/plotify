@@ -45,6 +45,10 @@ app.post("/file_upload", uploadDisk.single("file"), function (req, res) {
   res.redirect("/data_analysis");
 });
 
+app.get("/download",function(req,res){
+  res.download(filePath);
+})
+
 app.get("/data_analysis", function (req, res) {
   basic = [];
   var py = spawn("python", ["pyScript/basic.py"]),
