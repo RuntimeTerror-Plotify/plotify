@@ -321,7 +321,7 @@
                     <label for="tab4" id="tabl4" role="tab" aria-selected="false" aria-controls="panel4"
                         tabindex="0">View Raw Data</label>
                     <div id="tab-content4" class="tab-content" role="tabpanel" aria-labelledby="specification"
-                        aria-hidden="true" >
+                        aria-hidden="true">
                         <div class="wrap-table100">
                             <div class="table100 border">
                                 <table>
@@ -335,11 +335,11 @@
                                     </thead>
                                     <tbody>
                                         <% data.forEach(function(row){ %>
-                                            <tr>
-                                                <% row.forEach(function(ele){ %>
-                                                    <td><%=ele%></td>
-                                                <% }) %>
-                                            </tr>
+                                        <tr>
+                                            <% row.forEach(function(ele){ %>
+                                            <td><%=ele%></td>
+                                            <% }) %>
+                                        </tr>
                                         <% }) %>
                                     </tbody>
                                 </table>
@@ -458,7 +458,8 @@
                         <input type="radio" name="mode" id="" value="all">All <br>
                         <input type="radio" name="mode" id="" value="specific">Specific <br>
                         <h2>Select specific columns of a row for which nan will be checked</h2>
-                        <input type="text" class="modal-search-Input bg-light form-control border small col-4" placeholder="Search for..." title="Type in a name">
+                        <input type="text" class="modal-search-Input bg-light form-control border small col-4"
+                            placeholder="Search for..." title="Type in a name">
                         <ul class="modal-ul">
                             <% list.columns.forEach(function (col,i) { %>
                             <li>
@@ -496,7 +497,8 @@
                     <h4>Tips:</h4>
                     <p>Drop columns with max nan values or high nan percent</p>
                     <form action="/drop_columns" method="POST">
-                        <input type="text" class="modal-search-Input bg-light form-control border small col-4" placeholder="Search for..." title="Type in a name">
+                        <input type="text" class="modal-search-Input bg-light form-control border small col-4"
+                            placeholder="Search for..." title="Type in a name">
                         <ul class="modal-ul">
                             <% list.columns.forEach(function(col,i){ %>
 
@@ -591,16 +593,17 @@
                     <form id="catLabels" method="POST" action="/categorical_labelling">
                         <h1>Encoding Labels</h1>
                         <%if(list.categorical != "empty"){%>
-                            <input type="text" class="modal-search-Input bg-light form-control border small col-4" placeholder="Search for..." title="Type in a name">
-                            <ul class="modal-ul">
-                                    <%list.categorical.forEach(function(column){%>
-                                        <li>
-                                            <label for="<%=column%>"><input type="checkbox" id='<%=column%>' name="encodingLabel"
-                                                value='<%=column%>'></input><%=column%></label>
-                                        </li>
-                                    
-                                    <%})%>
-                            </ul>
+                        <input type="text" class="modal-search-Input bg-light form-control border small col-4"
+                            placeholder="Search for..." title="Type in a name">
+                        <ul class="modal-ul">
+                            <%list.categorical.forEach(function(column){%>
+                            <li>
+                                <label for="<%=column%>"><input type="checkbox" id='<%=column%>' name="encodingLabel"
+                                        value='<%=column%>'></input><%=column%></label>
+                            </li>
+
+                            <%})%>
+                        </ul>
                         <% } %>
                         <br>
                         <input type="checkbox" class="selectall" onchange="selectall(this,'encodingLabel')">Select
@@ -632,17 +635,18 @@
                 <div class="modal-body">
                     <form id="catLabels" method="POST" action="/categorical_labelling">
                         <%if(list.categorical != "empty"){%>
-                            <h1>One Hot Encoding</h1>
-                            <input type="text" class="modal-search-Input bg-light form-control border small col-4" placeholder="Search for..." title="Type in a name">
-                            <ul class="modal-ul">
-                                <% list.categorical.forEach(function(column){%>
-                                    <li>
-                                        <label for="<%=column%>"><input type="checkbox" id='<%=column%>' name="oneHotEncoding"
-                                            value='<%=column%>'></input><%=column%></label>
-                                    </li>
-                                    
-                                <%})%>
-                            </ul>
+                        <h1>One Hot Encoding</h1>
+                        <input type="text" class="modal-search-Input bg-light form-control border small col-4"
+                            placeholder="Search for..." title="Type in a name">
+                        <ul class="modal-ul">
+                            <% list.categorical.forEach(function(column){%>
+                            <li>
+                                <label for="<%=column%>"><input type="checkbox" id='<%=column%>' name="oneHotEncoding"
+                                        value='<%=column%>'></input><%=column%></label>
+                            </li>
+
+                            <%})%>
+                        </ul>
                         <% } %>
 
                         <br>
@@ -675,15 +679,17 @@
                 <div class="modal-body">
                     <form id="catLabels" method="POST" action="/categorical_labelling">
                         <%if(list.categorical != "empty"){%>
-                            <h1>Binary Encoding</h1>
-                            <input type="text" class="modal-search-Input bg-light form-control border small col-4" placeholder="Search for..." title="Type in a name">
-                            <ul class="modal-ul">
-                                <% list.categorical.forEach(function(column){%>
-                                    <li>
-                                        <label for="<%=column%>"><input type="checkbox" name="binaryEncoding" value='<%=column%>' id="<%=column%>"></input><%=column%></label>
-                                    </li>
-                                <%})%>
-                            </ul>
+                        <h1>Binary Encoding</h1>
+                        <input type="text" class="modal-search-Input bg-light form-control border small col-4"
+                            placeholder="Search for..." title="Type in a name">
+                        <ul class="modal-ul">
+                            <% list.categorical.forEach(function(column){%>
+                            <li>
+                                <label for="<%=column%>"><input type="checkbox" name="binaryEncoding"
+                                        value='<%=column%>' id="<%=column%>"></input><%=column%></label>
+                            </li>
+                            <%})%>
+                        </ul>
                         <% } %>
                         <br>
                         <input type="checkbox" class="selectall" onchange="selectall(this,'min-max')">Select
@@ -886,7 +892,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="">Correlation Matrix Modal</h5>
+                    <h5 class="modal-title" id="">PCA</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
