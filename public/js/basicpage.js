@@ -65,32 +65,15 @@ $(".selectall").click(function () {
 });
 
 
-
-// function searchFunction() {
-//   var input, filter, ul, li, la, i, txtValue;
-//   input = document.getElementById("modal-search-Input");
-//   filter = input.value.toUpperCase(); 
-//   ul = document.getElementById("modal-ul");
-//   li = ul.getElementsByTagName("li");
-
-  
-  // for (i = 0; i < li.length; i++) {  
-  //   la = li[i].getElementsByTagName("label")[0]; 
-  //   txtValue = la.textContent || la.innerText;  
-  //   if (txtValue.toUpperCase().indexOf(filter) > -1) {  
-  //     li[i].style.display = "";
-  //   } else {
-  //     li[i].style.display = "none";
-  //   }
-  // }
-// }
-
-$("#modal-search-Input").keyup(function(){
-  var $input = $("#modal-search-Input");
+$(".modal-search-Input").keyup(function(){
+  var $input = $(this);
+  console.log($input);
   filter = $input.val().toUpperCase();
   console.log(filter);
-  var ul = $("#modal-ul");
+  var ul = $(this).next(".modal-ul");
   var li = ul.find("li");
+  console.log(ul);
+  console.log(li);
 
   for (i = 0; i < li.length; i++) {  
     la = li[i].getElementsByTagName("label")[0]; 
