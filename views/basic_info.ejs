@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600&family=Sacramento&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="/css/basicpage.css">
+    <link rel="stylesheet" href="/css/plotgraph.css">
 </head>
 
 <body>
@@ -276,7 +277,7 @@
                                      role="tabpanel" 
                                      aria-labelledby="specification" 
                                      aria-hidden="true">
-                                     <a href="/plot_graph" role="button">Plot Graph</a>
+                                     <%- include('plot_graph.ejs'); %>
                                 </div>
                             </li>
             
@@ -708,6 +709,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
 </script>
+<script>
+    let fileName = '<%-fileName%>';
+    let shape = '<%-list.shape%>';
+    let numericalData = '<%-list.numerical%>';
+    let categoricalData = '<%-list.categorical%>';
+</script>
+<script src="/plotGraph.js"></script>
 
 <script src="/js/basicpage.js">
 

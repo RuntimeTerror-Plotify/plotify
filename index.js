@@ -56,7 +56,7 @@ app.get("/data_analysis", function (req, res) {
     try {
       basic = JSON.parse(basic[0]);
       if (basic.shape) {
-        res.render("basic_info", { list: basic });
+        res.render("basic_info", { list: basic, fileName: fileName });
       } else {
         res.send("No Data is Parsed , Your data may be Empty");
       }
@@ -68,16 +68,6 @@ app.get("/data_analysis", function (req, res) {
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
-});
-
-app.get("/plot_graph", function (req, res) {
-  res.render("plot_graph", {
-    columns: basic.columns,
-    numericalData: basic.numerical,
-    categoricalData: basic.categorical,
-    shape: basic.shape,
-    fileName: fileName,
-  });
 });
 
 app.get("/categorical_labelling", function (req, res) {
