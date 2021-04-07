@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600&family=Sacramento&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="/css/basicpage.css">
+    <link rel="stylesheet" href="/css/plotgraph.css">
 </head>
 
 <body>
@@ -284,7 +285,7 @@
                         tabindex="0">Univariate Graph</label>
                     <div id="tab-content2" class="tab-content" role="tabpanel" aria-labelledby="specification"
                         aria-hidden="true">
-                        <a href="/plot_graph" role="button">Plot Graph</a>
+                        <%- include('plot_graph.ejs'); %>
                     </div>
                 </li>
 
@@ -326,6 +327,9 @@
                 </li>
             </ul>
         </div>
+
+
+    </div>
 
 
     </div>
@@ -431,18 +435,20 @@
                         <input type="radio" name="mode" id="" value="all">All <br>
                         <input type="radio" name="mode" id="" value="specific">Specific <br>
                         <h2>Select specific columns of a row for which nan will be checked</h2>
-                        <input type="text" id="modal-search-Input" onkeyup="searchFunction()" placeholder="Search for..." title="Type in a name">
+                        <input type="text" id="modal-search-Input" onkeyup="searchFunction()"
+                            placeholder="Search for..." title="Type in a name">
                         <ul id="modal-ul">
                             <% list.columns.forEach(function (col,i) { %>
-                                <li>
-                                    <label><input type="checkbox" name="subset" id="" value="<%=col%>"> <%=col%></label>
-                                    <p><span>Nan percent: <%=list.null_val[i]/(list.null_val[i]+list.count[i])*100%></span></p> 
-                                </li>
+                            <li>
+                                <label><input type="checkbox" name="subset" id="" value="<%=col%>"> <%=col%></label>
+                                <p><span>Nan percent: <%=list.null_val[i]/(list.null_val[i]+list.count[i])*100%></span>
+                                </p>
+                            </li>
                             <% }) %>
-                                
-                                
+
+
                         </ul>
-                        
+
                         <button type="submit">Submit</button>
                     </form>
                     <script>
@@ -467,16 +473,19 @@
                 <div class="modal-body">
                     <h4>Tips:</h4>
                     <p>Drop columns with max nan values or high nan percent</p>
-                    <input type="text" id="modal-search-Input" onkeyup="searchFunction()" placeholder="Search for..." title="Type in a name">
+                    <input type="text" id="modal-search-Input" onkeyup="searchFunction()" placeholder="Search for..."
+                        title="Type in a name">
                     <form action="/drop_columns" method="POST">
                         <ul id="modal-ul">
                             <% list.columns.forEach(function(col,i){ %>
-                                
-                                    <li>
-                                        <label for="<%=col%>"><input type="checkbox" name="drop_col" value="<%=col%>" id="<%=col%>"><%=col%></label>
-                                        <p><span>NAN percent : <%=list.null_val[i]/(list.null_val[i]+list.count[i])*100%></span></p>
-                                    </li>
-                                
+
+                            <li>
+                                <label for="<%=col%>"><input type="checkbox" name="drop_col" value="<%=col%>"
+                                        id="<%=col%>"><%=col%></label>
+                                <p><span>NAN percent : <%=list.null_val[i]/(list.null_val[i]+list.count[i])*100%></span>
+                                </p>
+                            </li>
+
                             <% }); %>
                         </ul>
                         <button type="submit"> drop_col </button>
@@ -561,16 +570,17 @@
                     <form id="catLabels" method="POST" action="/categorical_labelling">
                         <h1>Encoding Labels</h1>
                         <%if(list.categorical != "empty"){%>
-                            <input type="text" id="modal-search-Input" onkeyup="searchFunction()" placeholder="Search for..." title="Type in a name">
-                            <ul id="modal-ul">
-                                    <%list.categorical.forEach(function(column){%>
-                                        <li>
-                                            <label for="<%=column%>"><input type="checkbox" id='<%=column%>' name="encodingLabel"
-                                                value='<%=column%>'></input><%=column%></label>
-                                        </li>
-                                    
-                                    <%})%>
-                            </ul>
+                        <input type="text" id="modal-search-Input" onkeyup="searchFunction()"
+                            placeholder="Search for..." title="Type in a name">
+                        <ul id="modal-ul">
+                            <%list.categorical.forEach(function(column){%>
+                            <li>
+                                <label for="<%=column%>"><input type="checkbox" id='<%=column%>' name="encodingLabel"
+                                        value='<%=column%>'></input><%=column%></label>
+                            </li>
+
+                            <%})%>
+                        </ul>
                         <% } %>
                         <br>
                         <div class="modal-footer">
@@ -600,19 +610,20 @@
                 <div class="modal-body">
                     <form id="catLabels" method="POST" action="/categorical_labelling">
                         <%if(list.categorical != "empty"){%>
-                            <h1>One Hot Encoding</h1>
-                            <input type="text" id="modal-search-Input" onkeyup="searchFunction()" placeholder="Search for..." title="Type in a name">
-                            <ul id="modal-ul">
-                                <% list.categorical.forEach(function(column){%>
-                                    <li>
-                                        <label for="<%=column%>"><input type="checkbox" id='<%=column%>' name="oneHotEncoding"
-                                            value='<%=column%>'></input><%=column%></label>
-                                    </li>
-                                    
-                                <%})%>
-                            </ul>
-                        
-                        
+                        <h1>One Hot Encoding</h1>
+                        <input type="text" id="modal-search-Input" onkeyup="searchFunction()"
+                            placeholder="Search for..." title="Type in a name">
+                        <ul id="modal-ul">
+                            <% list.categorical.forEach(function(column){%>
+                            <li>
+                                <label for="<%=column%>"><input type="checkbox" id='<%=column%>' name="oneHotEncoding"
+                                        value='<%=column%>'></input><%=column%></label>
+                            </li>
+
+                            <%})%>
+                        </ul>
+
+
                         <% } %>
 
                         <br>
@@ -643,15 +654,17 @@
                 <div class="modal-body">
                     <form id="catLabels" method="POST" action="/categorical_labelling">
                         <%if(list.categorical != "empty"){%>
-                            <h1>Binary Encoding</h1>
-                            <input type="text" id="modal-search-Input" onkeyup="searchFunction()" placeholder="Search for..." title="Type in a name">
-                            <ul id="modal-ul">
-                                <% list.categorical.forEach(function(column){%>
-                                    <li>
-                                        <label for="<%=column%>"><input type="checkbox" name="binaryEncoding" value='<%=column%>' id="<%=column%>"></input><%=column%></label>
-                                    </li>
-                                <%})%>
-                            </ul>
+                        <h1>Binary Encoding</h1>
+                        <input type="text" id="modal-search-Input" onkeyup="searchFunction()"
+                            placeholder="Search for..." title="Type in a name">
+                        <ul id="modal-ul">
+                            <% list.categorical.forEach(function(column){%>
+                            <li>
+                                <label for="<%=column%>"><input type="checkbox" name="binaryEncoding"
+                                        value='<%=column%>' id="<%=column%>"></input><%=column%></label>
+                            </li>
+                            <%})%>
+                        </ul>
                         <% } %>
 
                         <div class="modal-footer">
@@ -948,6 +961,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
 </script>
+<script>
+    let fileName = '<%-fileName%>';
+    let shape = '<%-list.shape%>';
+    let numericalData = '<%-list.numerical%>';
+    let categoricalData = '<%-list.categorical%>';
+</script>
+<script src="/plotGraph.js"></script>
 
 <script src="/js/basicpage.js">
 
