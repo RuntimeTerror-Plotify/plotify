@@ -20,7 +20,7 @@ app.set("view engine", "ejs");
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./csv/");
+    cb(null, "./public/csv/");
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
