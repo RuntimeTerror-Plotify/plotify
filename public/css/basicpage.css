@@ -100,7 +100,8 @@ background: linear-gradient(to top, #26a0da, #496b80);
 
   body {
     position: relative;
-    overflow-x: hidden;
+    overflow-x: auto;
+    min-width: 1400px;
     background-color: #eee  ;
     font-family: 'Open Sans', sans-serif;
     padding-bottom: 100px;
@@ -550,3 +551,29 @@ tbody tr:nth-child(even):hover{
     padding-right: 15px;
   }
 }
+
+
+
+
+/* ----------------------------------------------------------------modal ----------------------------------------*/
+.modal ul {
+  list-style-type:none;
+}
+
+.modal label {
+  border:0px solid #ccc;
+ padding:10px;
+ width: 200px;
+ margin:0 0 10px;
+ display: inline-block; 
+}
+
+.modal label:hover {
+ background:#eee;
+ cursor:pointer;
+}
+
+.modal li p{
+  display: inline-block;
+} 
+

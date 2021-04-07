@@ -1,10 +1,13 @@
-y = new Array(40).fill(0).map((d, i) => Math.random()*15 + Math.random()*20);
+
+// rgba(245, 192, 192, 0.2) rgba(38, 160, 218, 0.5)
+
+y = new Array(40).fill(0).map((d, i) => Math.random()*10 + Math.random()*20);
 
       var trace = {
         y: y,
         line: {dash: '0px 5200px',
           width : 3,
-          color  : 'rgba(205, 212, 4,0.4)' 
+          color  : 'rgba(245, 192, 192, 0.5)' 
         },
       }
       
@@ -13,7 +16,7 @@ y = new Array(40).fill(0).map((d, i) => Math.random()*15 + Math.random()*20);
             y: y,
             type: 'bar',
             marker: {
-              color: 'rgba(245, 192, 192, 0.2)',
+              color: 'rgba(38, 160, 218, 0.5)',
             }
           }
 
@@ -37,8 +40,8 @@ y = new Array(40).fill(0).map((d, i) => Math.random()*15 + Math.random()*20);
           'zeroline': false, 
           'visible': false,  
         },
-        plot_bgcolor:"black",
-        paper_bgcolor:"#FFF3"
+        plot_bgcolor:"#0A0C5F",
+        paper_bgcolor:"#0A0C5F"
       }
 
       var data = [trace,trace2];
