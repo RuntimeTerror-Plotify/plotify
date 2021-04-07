@@ -32,6 +32,7 @@ function corrSub(event) {
   $("#corrMat input[type=checkbox]:checked").each(function (col) {
     column.push($(this).val());
   });
+  console.log(column);
   $.ajax({
     url: "/corr_matrix",
     type: "post",
@@ -53,13 +54,23 @@ function corrSub(event) {
   });
 }
 
-$(".selectall").click(function () {
-  var checked = this.checked;
-  var classname = "input[name=" + this.name + "]";
+// $(".selectall").click(function () {
+//   var checked = this.checked;
+//   var classname = "input[name=" + this.value + "]";
+//   $(classname).each(function () {
+//     this.checked = checked;
+//   });
+// });
+
+function selectall(input, name) {
+  var checked = input.checked;
+
+  var classname = "input[name=" + name + "]";
+
   $(classname).each(function () {
     this.checked = checked;
   });
-});
+}
 
 // function searchFunction() {
 //   var input, filter, ul, li, la, i, txtValue;

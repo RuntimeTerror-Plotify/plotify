@@ -300,13 +300,15 @@
                         <form id="corrMat" method="POST">
                             <h1>Correlation Matrix</h1>
                             <% list.numerical.forEach(function(column){%>
-                            <input type="checkbox" name="column" value='<%=column%>'><%=column%></input>
+                            <input type="checkbox" name="corrColumn" value='<%=column%>'><%=column%></input>
                             <%})%>
+                            <input type="checkbox" class="selectall" onchange="selectall(this,'corrColumn')">Select
+                            All</input>
                             <button type="submit" onclick="corrSub(event)">Submit</button>
                             <br>
+
                         </form>
-                        <input type="checkbox" name="column" class="selectall">Select
-                        All</input>
+
                         <div class="main">
                             <div id="corrGraph" style="width:800px;height:400px;"></div>
                         </div>
@@ -583,12 +585,14 @@
                         </ul>
                         <% } %>
                         <br>
+                        <input type="checkbox" class="selectall" onchange="selectall(this,'encodingLabel')">Select
+                        All</input>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
+
                     </form>
-                    <input type="checkbox" name="encodingLabel" value="" class="selectall">Select
-                    All</input>
+
                 </div>
 
             </div>
@@ -627,12 +631,14 @@
                         <% } %>
 
                         <br>
+                        <input type="checkbox" class="selectall" onchange="selectall(this,'oneHotEncoding')">Select
+                        All</input>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
+
                     </form>
-                    <input type="checkbox" name="oneHotEncoding" class="selectall">Select
-                    All</input>
+
                 </div>
 
             </div>
@@ -666,13 +672,15 @@
                             <%})%>
                         </ul>
                         <% } %>
+                        <input type="checkbox" class="selectall" onchange="selectall(this,'binaryEncoding')">Select
+                        All</input>
 
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
+
                     </form>
-                    <input type="checkbox" name="binaryEncoding" class="selectall">Select
-                    All</input>
+
                     <br>
                 </div>
 
@@ -704,14 +712,15 @@
                         <input type="checkbox" name="min-max" value='<%=column%>'><%=column%></input>
                         <%})%>
                         <% } %>
-
+                        <br>
+                        <input type="checkbox" class="selectall" onchange="selectall(this,'min-max')">Select
+                        All</input>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                         <br>
                     </form>
-                    <input type="checkbox" name="min-max" class="selectall">Select
-                    All</input>
+
                 </div>
 
             </div>
@@ -734,18 +743,19 @@
                         <%if(list.numerical != "empty"){%>
                         <h1>Z-Score</h1>
                         <% list.numerical.forEach(function(column){%>
-                        <input type="checkbox" name="min-max" value='<%=column%>'><%=column%></input>
+                        <input type="checkbox" name="z-score" value='<%=column%>'><%=column%></input>
                         <%})%>
                         <% } %>
-
+                        <br>
+                        <input type="checkbox" class="selectall" onchange="selectall(this,'z-score')">Select
+                        All</input>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
 
                         <br>
                     </form>
-                    <input type="checkbox" name="min-max" class="selectall">Select
-                    All</input>
+
                 </div>
 
             </div>
@@ -770,18 +780,19 @@
                         <%if(list.numerical != "empty"){%>
                         <h1>Square-Root</h1>
                         <% list.numerical.forEach(function(column){%>
-                        <input type="checkbox" name="min-max" value='<%=column%>'><%=column%></input>
+                        <input type="checkbox" name="square-root" value='<%=column%>'><%=column%></input>
                         <%})%>
                         <% } %>
-
+                        <br>
+                        <input type="checkbox" class="selectall" onchange="selectall(this,'square-root')">Select
+                        All</input>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
 
                         <br>
                     </form>
-                    <input type="checkbox" name="min-max" class="selectall">Select
-                    All</input>
+
                 </div>
 
             </div>
@@ -805,18 +816,19 @@
                         <%if(list.numerical != "empty"){%>
                         <h1>Cube-Root</h1>
                         <% list.numerical.forEach(function(column){%>
-                        <input type="checkbox" name="min-max" value='<%=column%>'><%=column%></input>
+                        <input type="checkbox" name="cube-root" value='<%=column%>'><%=column%></input>
                         <%})%>
                         <% } %>
-
+                        <br>
+                        <input type="checkbox" class="selectall" onchange="selectall(this,'cube-root')">Select
+                        All</input>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
 
                         <br>
                     </form>
-                    <input type="checkbox" name="min-max" class="selectall">Select
-                    All</input>
+
                 </div>
 
             </div>
@@ -839,18 +851,19 @@
                         <%if(list.numerical != "empty"){%>
                         <h1>Log</h1>
                         <% list.numerical.forEach(function(column){%>
-                        <input type="checkbox" name="min-max" value='<%=column%>'><%=column%></input>
+                        <input type="checkbox" name="log" value='<%=column%>'><%=column%></input>
                         <%})%>
                         <% } %>
-
+                        <br>
+                        <input type="checkbox" class="selectall" onchange="selectall(this,'log')">Select
+                        All</input>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
 
                         <br>
                     </form>
-                    <input type="checkbox" name="min-max" class="selectall">Select
-                    All</input>
+
                 </div>
 
             </div>
@@ -875,18 +888,19 @@
                         <%if(list.numerical != "empty"){%>
                         <h1>Square</h1>
                         <% list.numerical.forEach(function(column){%>
-                        <input type="checkbox" name="min-max" value='<%=column%>'><%=column%></input>
+                        <input type="checkbox" name="square" value='<%=column%>'><%=column%></input>
                         <%})%>
                         <% } %>
-
+                        <br>
+                        <input type="checkbox" class="selectall" onchange="selectall(this,'square')">Select
+                        All</input>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
 
                         <br>
                     </form>
-                    <input type="checkbox" name="min-max" class="selectall">Select
-                    All</input>
+
                 </div>
 
             </div>
@@ -931,13 +945,15 @@
                         <form id="pcaForm" action="/drop_columns" method="POST">
                             <h1>Columns To Remove</h1>
                             <% list.numerical.forEach(function(column,i){%>
-                            <input type="checkbox" id='PC<%=i+1%>' name="drop_col" value='PC<%=i+1%>'>PC<%=i+1%></input>
+                            <input type="checkbox" id='PC<%=i+1%>' name="pca" value='PC<%=i+1%>'>PC<%=i+1%></input>
                             <%})%>
+                            <br>
+                            <input type="checkbox" class="selectall" onchange="selectall(this,'pca')">Select
+                            All</input>
                             <br>
                             <button type="submit">Submit</button>
                         </form>
-                        <input type="checkbox" name="drop_col" class="selectall">Select
-                        All</input>
+
                     </div>
 
 
