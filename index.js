@@ -6,6 +6,9 @@ const csv = require("csv-parser");
 const fcsv = require("fast-csv");
 const spawn = require("child_process").spawn;
 const app = express();
+var $ = jQuery = require('jquery');
+$.csv = require('jquery-csv');
+
 app.use(
   bodyParser.urlencoded({
     extended: true,
@@ -56,7 +59,13 @@ app.get("/data_analysis", function (req, res) {
     try {
       basic = JSON.parse(basic[0]);
       if (basic.shape) {
-        res.render("basic_info", { list: basic, fileName: fileName });
+        var head;
+        fs.readFile(filePath, 'UTF-8', function(err, csv) {
+          $.csv.toArrays(csv, {}, function(err, data) {
+            head = data.shift();
+            res.render("basic_info", { list: basic, fileName: fileName,filePath: filePath,head: head, data:data.slice(0,20) });
+          });
+        });
       } else {
         res.send("No Data is Parsed , Your data may be Empty");
       }

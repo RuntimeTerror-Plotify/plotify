@@ -321,9 +321,30 @@
                     <label for="tab4" id="tabl4" role="tab" aria-selected="false" aria-controls="panel4"
                         tabindex="0">View Raw Data</label>
                     <div id="tab-content4" class="tab-content" role="tabpanel" aria-labelledby="specification"
-                        aria-hidden="true">
-
-                        <p>Your data</p>
+                        aria-hidden="true" >
+                        <div class="wrap-table100">
+                            <div class="table100 border">
+                                <table>
+                                    <thead>
+                                        <tr class="table100-head">
+                                            <th>columns</th>
+                                            <% head.forEach(function(col) { %>
+                                            <th><%= col %></th>
+                                            <% });  %>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% data.forEach(function(row){ %>
+                                            <tr>
+                                                <% row.forEach(function(ele){ %>
+                                                    <td><%=ele%></td>
+                                                <% }) %>
+                                            </tr>
+                                        <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
 
                     </div>
                 </li>
