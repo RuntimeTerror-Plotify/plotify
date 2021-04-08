@@ -27,6 +27,7 @@ def main():
         quant50 = "empty"
         quant75 = "empty"
         unique = "empty"
+        unique_val = "empty"
         top = "empty"
         freq = "empty"
 
@@ -121,8 +122,13 @@ def main():
             else:
                 cat = df.describe(include=[object]).values
                 unique = []
+                uniqueValues = []
+
                 for x in cat[1, :]:
                     unique.append(x)
+
+                for i in categorical:
+                    uniqueValues.append(df[i].unique().tolist())
 
                 top = []
                 for x in cat[2, :]:
@@ -158,6 +164,7 @@ def main():
                 "quant75": quant75,
                 "categorical": categorical,
                 "unique": unique,
+                "unique_val": uniqueValues,
                 "top": top,
                 "freq": freq,
             }
