@@ -32,7 +32,15 @@ def main():
 
     perVar = perVar.tolist()
 
-    output = {"columnNames": columnNames, "values": perVar}
+    keep = 0
+    summ = 0
+    for i in perVar:
+        summ += i
+        keep += 1
+        if summ > 90:
+            break
+
+    output = {"columnNames": columnNames, "values": perVar, "keep": keep}
     output = json.dumps(output)
 
     print(output)
