@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600&family=Sacramento&display=swap"
         rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="/css/basicpage.css">
     <link rel="stylesheet" href="/css/plotgraph.css">
 </head>
@@ -321,16 +322,12 @@
                     <label for="tab4" id="tabl4" role="tab" aria-selected="false" aria-controls="panel4"
                         tabindex="0">View Raw Data</label>
                     <div id="tab-content4" class="tab-content" role="tabpanel" aria-labelledby="specification"
-<<<<<<< HEAD
-                        aria-hidden="true">
-=======
                         aria-hidden="true" >
                         <div>
                             <form action="/download" method="GET">
                                 <button type="submit">Download</button>
                             </form>
                         </div>
->>>>>>> d33bc926691488649f2fafa3395f3971c9df4335
                         <div class="wrap-table100">
                             <div class="table100 border">
                                 <table>
@@ -367,575 +364,74 @@
 
 
 
-    <!--fill nan Modal -->
-    <div class="modal fade" id="fill_na" tabindex="-1" role="dialog" aria-labelledby="drop_col" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="">Fill nan values</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <input type="radio" name="mode" value="categorical" onclick="check_cat()"> categorical
-                    <input type="radio" name="mode" value="numerical" onclick="check_num()"> Numerical
-                    <div id="categorical">
-
-                        <% if(list.categorical != "empty") {%>
-                        <form action="/fill_nan" method="POST">
-                            <h3>Categorical Column</h3>
-                            <select name="column" id="">
-                                <option value="" selected>Select</option>
-                                <% list.categorical.forEach(function(cat){ %>
-                                <option value="<%=cat%>"><%=cat%></option>
-                                <% }) %>
-                            </select>
-                            <select name="method" id="">
-                                <option value="" selected>Select</option>
-                                <option value="top">Top Class</option>
-                                <option value="unk">Unknown Class</option>
-                            </select>
-                            <button type="submit" name="col_type" value="cat">Submit</button>
-                        </form>
-                        <% } %>
-                    </div>
-                    <div id="numerical">
-                        <form action="/fill_nan" method="POST" id="form">
-                            <h3>Numerical Column</h3>
-                            <select name="column" id="">
-                                <option value="" selected>Select</option>
-                                <% list.numerical.forEach(function(cat){ %>
-                                <option value="<%=cat%>"><%=cat%></option>
-                                <% }) %>
-                            </select>
-                            <select name="method" id="">
-                                <option value="" selected>Select</option>
-                                <option value="zero">Fill zeros</option>
-                                <option value="mean">Fill mean</option>
-                                <option value="median">Fill median</option>
-                                <option value="min">Fill minimum</option>
-                                <option value="max">Fill maximum</option>
-                                <option value="b_fill">Backward Fill</option>
-                                <option value="f_fill">Forward Fill</option>
-                            </select>
-                            <button type="submit" name="col_type" value="num">Submit</button>
-                        </form>
-                        <script>
-                            document.getElementById("categorical").style.visibility = "hidden";
-                            document.getElementById("numerical").style.visibility = "hidden";
-
-                            function check_cat() {
-                                document.getElementById("form").reset();
-                                document.getElementById("numerical").style.visibility = "hidden";
-                                document.getElementById("categorical").style.visibility = "visible";
-                            }
-
-                            function check_num() {
-                                document.getElementById("form").reset();
-                                document.getElementById("categorical").style.visibility = "hidden";
-                                document.getElementById("numerical").style.visibility = "visible";
-                            }
-                        </script>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
-    <!--drop rows Modal -->
-    <div class="modal fade" id="drop_row" tabindex="-1" role="dialog" aria-labelledby="drop_col" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="">Drop rows</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="/drop_rows" method="POST">
-                        <h1>Drop rows with NA values</h1>
-                        <h4>tips</h4>
-                        <p>First drop the columns with high percentage on na values else your dataframe would result
-                            with high loss of data.</p>
-                        <br>
-                        <label for="">Mode: </label>
-                        <input type="radio" name="mode" id="" value="all">All <br>
-                        <input type="radio" name="mode" id="" value="specific">Specific <br>
-                        <h2>Select specific columns of a row for which nan will be checked</h2>
-                        <input type="text" class="modal-search-Input bg-light form-control border small col-4"
-                            placeholder="Search for..." title="Type in a name">
-                        <ul class="modal-ul">
-                            <% list.columns.forEach(function (col,i) { %>
-                            <li>
-                                <label><input type="checkbox" name="subset" id="" value="<%=col%>"> <%=col%></label>
-                                <p><span>Nan percent: <%=list.null_val[i]/(list.null_val[i]+list.count[i])*100%></span>
-                                </p>
-                            </li>
-                            <% }) %>
-
-
-                        </ul>
-
-                        <button type="submit">Submit</button>
-                    </form>
-                    <script>
-
-                    </script>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
     <!--drop column Modal -->
-    <div class="modal fade" id="drop_col" tabindex="-1" role="dialog" aria-labelledby="drop_col" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="">Drop Columns</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h4>Tips:</h4>
-                    <p>Drop columns with max nan values or high nan percent</p>
-                    <form action="/drop_columns" method="POST">
-                        <input type="text" class="modal-search-Input bg-light form-control border small col-4"
-                            placeholder="Search for..." title="Type in a name">
-                        <ul class="modal-ul">
-                            <% list.columns.forEach(function(col,i){ %>
+    <%- include('modals/drop_column.ejs'); %>
 
-                            <li>
-                                <label for="<%=col%>"><input type="checkbox" name="drop_col" value="<%=col%>"
-                                        id="<%=col%>"><%=col%></label>
-                                <p><span>NAN percent : <%=list.null_val[i]/(list.null_val[i]+list.count[i])*100%></span>
-                                </p>
-                            </li>
 
-                            <% }); %>
-                        </ul>
-                        <button type="submit"> drop_col </button>
-                    </form>
-                </div>
+    <!-- handle null values -->
 
-            </div>
-        </div>
-    </div>
+    <!--fill nan Modal -->
+    <%- include('modals/fill_nan.ejs'); %>
+    
+    
+    <!--drop rows Modal -->
+    <%- include('modals/drop_row.ejs'); %>
+    
 
+    
+
+
+    <!-- remove outliers modal -->
 
     <!--clip_values Modal -->
-    <div class="modal fade" id="clip_values" tabindex="-1" role="dialog" aria-labelledby="drop_col" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="">Clip values</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="/clip_values" method="POST">
-                        <h1>Clip values</h1>
-                        <label for="">Min threshold</label>
-                        <input type="number" name="minthresh" id="">
-                        <label for="">Max threshold</label>
-                        <input type="number" name="maxthresh" id="">
-                        <select name="col" id="">
-                            <% list.numerical.forEach(function(num) { %>
-                            <option value="<%=num%>"><%=num%></option>
-                            <% }) %>
-                        </select>
-                        <br>
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
+    <%- include('modals/clip_values.ejs'); %>
+    
     <!--drop r outlier Modal -->
-    <div class="modal fade" id="drop_outliers" tabindex="-1" role="dialog" aria-labelledby="drop_col"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="">Drop outliers</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="/remove_outlier" method="POST">
-                        <label for="">Z threshold value: </label>
-                        <input type="number" name="thresh" id="">
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
+    <%- include('modals/drop_outliers.ejs'); %>
+    
 
 
 
     <!--Categorical Labelling Modal -->
 
     <!--Encoding Labels Modal -->
-    <div class="modal fade" id="Encoding_Label" tabindex="-1" role="dialog" aria-labelledby="labelling"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="">Categorical Labelling Modal</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="catLabels" method="POST" action="/categorical_labelling">
-                        <h1>Encoding Labels</h1>
-                        <%if(list.categorical != "empty"){%>
-                        <input type="text" class="modal-search-Input bg-light form-control border small col-4"
-                            placeholder="Search for..." title="Type in a name">
-                        <ul class="modal-ul">
-                            <%list.categorical.forEach(function(column){%>
-                            <li>
-                                <label for="<%=column%>"><input type="checkbox" id='<%=column%>' name="encodingLabel"
-                                        value='<%=column%>'></input><%=column%></label>
-                            </li>
-
-                            <%})%>
-                        </ul>
-                        <% } %>
-                        <br>
-                        <input type="checkbox" class="selectall" onchange="selectall(this,'encodingLabel')">Select
-                        All</input>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-
-                    </form>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-
+    <%- include('modals/encoding_label.ejs'); %>
+    
 
     <!--One Hot Encoding Modal -->
-    <div class="modal fade" id="One_Hot_Encoding" tabindex="-1" role="dialog" aria-labelledby="labelling"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="">Categorical Labelling Modal</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="catLabels" method="POST" action="/categorical_labelling">
-                        <%if(list.categorical != "empty"){%>
-                        <h1>One Hot Encoding</h1>
-                        <input type="text" class="modal-search-Input bg-light form-control border small col-4"
-                            placeholder="Search for..." title="Type in a name">
-                        <ul class="modal-ul">
-                            <% list.categorical.forEach(function(column){%>
-                            <li>
-                                <label for="<%=column%>"><input type="checkbox" id='<%=column%>' name="oneHotEncoding"
-                                        value='<%=column%>'></input><%=column%></label>
-                            </li>
-
-                            <%})%>
-                        </ul>
-                        <% } %>
-
-                        <br>
-                        <input type="checkbox" class="selectall" onchange="selectall(this,'oneHotEncoding')">Select
-                        All</input>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-
-                    </form>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-
+    <%- include('modals/one_hot_encoding.ejs'); %>
+    
 
     <!--Binary Encoding Modal -->
-    <div class="modal fade" id="Binary_Encoding" tabindex="-1" role="dialog" aria-labelledby="labelling"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="">Categorical Labelling Modal</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="catLabels" method="POST" action="/categorical_labelling">
-                        <%if(list.categorical != "empty"){%>
-                        <h1>Binary Encoding</h1>
-                        <input type="text" class="modal-search-Input bg-light form-control border small col-4"
-                            placeholder="Search for..." title="Type in a name">
-                        <ul class="modal-ul">
-                            <% list.categorical.forEach(function(column){%>
-                            <li>
-                                <label for="<%=column%>"><input type="checkbox" name="binaryEncoding"
-                                        value='<%=column%>' id="<%=column%>"></input><%=column%></label>
-                            </li>
-                            <%})%>
-                        </ul>
-                        <% } %>
-                        <br>
-                        <input type="checkbox" class="selectall" onchange="selectall(this,'min-max')">Select
-                        All</input>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                        <br>
-                    </form>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
+    <%- include('modals/binary_encoding.ejs'); %>
 
 
     <!--Z-Score Modal -->
-    <div class="modal fade" id="Z_Score" tabindex="-1" role="dialog" aria-labelledby="DataTransform" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Data Transform Modal</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="z-score" method="POST" action="/data_transform">
-                        <%if(list.numerical != "empty"){%>
-                        <h1>Z-Score</h1>
-                        <% list.numerical.forEach(function(column){%>
-                        <input type="checkbox" name="z-score" value='<%=column%>'><%=column%></input>
-                        <%})%>
-                        <% } %>
-                        <br>
-                        <input type="checkbox" class="selectall" onchange="selectall(this,'z-score')">Select
-                        All</input>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-
-                        <br>
-                    </form>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-
+    <%- include('modals/z_score.ejs'); %>
+    
 
 
     <!--Square-Root Modal -->
-    <div class="modal fade" id="Square_Root" tabindex="-1" role="dialog" aria-labelledby="DataTransform"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Data Transform Modal</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="square-root" method="POST" action="/data_transform">
-                        <%if(list.numerical != "empty"){%>
-                        <h1>Square-Root</h1>
-                        <% list.numerical.forEach(function(column){%>
-                        <input type="checkbox" name="square-root" value='<%=column%>'><%=column%></input>
-                        <%})%>
-                        <% } %>
-                        <br>
-                        <input type="checkbox" class="selectall" onchange="selectall(this,'square-root')">Select
-                        All</input>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-
-                        <br>
-                    </form>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-
+    <%- include('modals/square_root.ejs'); %>
+    
 
     <!--Cube-Root Modal -->
-    <div class="modal fade" id="Cube_Root" tabindex="-1" role="dialog" aria-labelledby="DataTransform"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Data Transform Modal</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="cube-root" method="POST" action="/data_transform">
-                        <%if(list.numerical != "empty"){%>
-                        <h1>Cube-Root</h1>
-                        <% list.numerical.forEach(function(column){%>
-                        <input type="checkbox" name="cube-root" value='<%=column%>'><%=column%></input>
-                        <%})%>
-                        <% } %>
-                        <br>
-                        <input type="checkbox" class="selectall" onchange="selectall(this,'cube-root')">Select
-                        All</input>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-
-                        <br>
-                    </form>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
+    <%- include('modals/cube_root.ejs'); %>
+    
     <!--Log Modal -->
-    <div class="modal fade" id="Log" tabindex="-1" role="dialog" aria-labelledby="DataTransform" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Data Transform Modal</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="log" method="POST" action="/data_transform">
-                        <%if(list.numerical != "empty"){%>
-                        <h1>Log</h1>
-                        <% list.numerical.forEach(function(column){%>
-                        <input type="checkbox" name="log" value='<%=column%>'><%=column%></input>
-                        <%})%>
-                        <% } %>
-                        <br>
-                        <input type="checkbox" class="selectall" onchange="selectall(this,'log')">Select
-                        All</input>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-
-                        <br>
-                    </form>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-
+    <%- include('modals/log.ejs'); %>
+    
 
 
 
     <!--Square Modal -->
-    <div class="modal fade" id="Square" tabindex="-1" role="dialog" aria-labelledby="DataTransform" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Data Transform Modal</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="square" method="POST" action="/data_transform">
-                        <%if(list.numerical != "empty"){%>
-                        <h1>Square</h1>
-                        <% list.numerical.forEach(function(column){%>
-                        <input type="checkbox" name="square" value='<%=column%>'><%=column%></input>
-                        <%})%>
-                        <% } %>
-                        <br>
-                        <input type="checkbox" class="selectall" onchange="selectall(this,'square')">Select
-                        All</input>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-
-                        <br>
-                    </form>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
+    <%- include('modals/square.ejs'); %>
+    
 
 
     <!--PCA Modal -->
-    <div class="modal fade" id="pca" tabindex="-1" role="dialog" aria-labelledby="pca" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="">PCA</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <button onclick="run()">Run</button>
-
-                    <P style="color: red;">*IF YOU RUN pca ALL YOUR CATEGORICAL COLUMN WILL BE DELETED IF THERE IS
-                        ANY*
-                    </P>
-
-                    <div class="main">
-                        <div id="pcaGraph" style="width:800px;height:300px;"></div>
-                    </div>
-                    <div id="pcaDiv" style="display: none;">
-                        <form id="pcaForm" action="/drop_columns" method="POST">
-                            <h1>Columns To Remove</h1>
-                            <% list.numerical.forEach(function(column,i){%>
-                            <input type="checkbox" id='PC<%=i+1%>' name="pca" value='PC<%=i+1%>'>PC<%=i+1%></input>
-                            <%})%>
-                            <br>
-                            <input type="checkbox" class="selectall" onchange="selectall(this,'pca')">Select
-                            All</input>
-                            <br>
-                            <button type="submit">Submit</button>
-                        </form>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-        </div>
-    </div>
+    <%- include('modals/pca.ejs'); %>
+    
 
 
 

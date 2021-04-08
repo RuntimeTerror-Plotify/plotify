@@ -1,0 +1,32 @@
+<div class="modal fade" id="Log" tabindex="-1" role="dialog" aria-labelledby="DataTransform" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Data Transform Modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="log" method="POST" action="/data_transform">
+                    <%if(list.numerical != "empty"){%>
+                    <h1>Log</h1>
+                    <% list.numerical.forEach(function(column){%>
+                    <input type="checkbox" name="log" value='<%=column%>'><%=column%></input>
+                    <%})%>
+                    <% } %>
+                    <br>
+                    <input type="checkbox" class="selectall" onchange="selectall(this,'log')">Select
+                    All</input>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+
+                    <br>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>

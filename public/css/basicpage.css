@@ -51,7 +51,7 @@
 
 .tabs label:hover{
   color: #fff !important;
-  background: #314755; 
+  background: #496b80; 
 background: -webkit-linear-gradient(to top, #26a0da, #496b80);  
 background: linear-gradient(to top, #26a0da, #496b80); 
 }
@@ -82,7 +82,7 @@ background: linear-gradient(to top, #26a0da, #496b80);
   padding-bottom: 15px;
   box-shadow: 0 1px 4px 0 rgb(0 0 0 / 20%);
   color: #fff !important;
-  background: #314755; 
+  background: #496b80; 
 background: -webkit-linear-gradient(to top, #26a0da, #496b80);  
 background: linear-gradient(to top, #26a0da, #496b80); 
 }
@@ -563,26 +563,89 @@ tbody tr:nth-child(even):hover{
 
 
 /* ----------------------------------------------------------------modal ----------------------------------------*/
+
+.modal .modal-header{
+  color: #fff !important;
+  background: #496b80; 
+  background: -webkit-linear-gradient(to top, #26a0da, #496b80);  
+  background: linear-gradient(to top, #26a0da, #496b80); 
+  font-family: 'Baloo 2', cursive;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 30px;
+}
+
+.modal .jumbotron .far.fa-hand-point-right {
+  color: green;
+}
+.modal .jumbotron{
+  padding: 1rem 1rem !important;
+  border: 2px solid green;
+}
+.modal .modal-body{
+  padding: 20px !important;
+}
+
+.modal .modal-body .tips h5{
+  font-weight: bold;
+  color: rgba(0,0,0,0.5);
+}
+
+.modal .modal-content {
+  font-family: 'Open Sans', sans-serif;
+  border: none !important;
+}
+
+
 .modal ul {
   list-style-type:none;
+  display: block;
+  max-height: 250px;
+  overflow-y: auto;
+  margin-top: 10px;
+  padding: 0;
 }
 
 .modal label {
   border:0px solid #ccc;
- padding:10px;
- width: 200px;
- margin:0 0 10px;
- display: inline-block; 
+  padding-left: 30px;
+  padding-top: 15px;
+  width: 200px;
+  display: inline-block;
+  font-size: 16px; 
+  line-height: 20px;
+
 }
 
-.modal label:hover {
+.modal li:hover {
  background:#eee;
  cursor:pointer;
 }
 
 .modal li p{
   display: inline-block;
+  font-size: 16px; 
+  line-height: 20px;
 } 
+
+.modal-footer .btn{
+	color: #fff;
+	background-color: rgba(38, 160, 218, 1);
+	font-size: 1rem;
+	font-weight: bold;
+    box-shadow: 0 0px 5px 0 rgb(0 0 0 / 40%);
+}
+
+.modal-footer .btn:hover {
+	background-color: #030303 !important;
+	color: rgba(38, 160, 218, 1) !important;
+	border: none;
+}
+
+.modal-footer .btn:focus {
+	outline: 1px dashed rgba(38, 160, 218, 1) !important;
+	outline-offset: 3px;
+}
 
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {
   input[type=checkbox]{

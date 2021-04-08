@@ -265,7 +265,7 @@
     display: block;
     content: "Browse";
     background: rgba(38, 160, 218, 1);
-    color: #000;
+    color: #fff;
     -webkit-box-shadow: -1px 2px 10px -1px rgb(38 160 218 / 40%);
     -moz-box-shadow: -1px 2px 10px -1px rgba(38, 160, 218, 0.4);
     -o-box-shadow: -1px 2px 10px -1px rgba(38, 160, 218, 0.4);
@@ -309,14 +309,11 @@ span.profileFile-custom:hover:before {
 }
 
 .modal-footer .btn{
-	color: rgba(38, 160, 218, 1);
-	background-color: #353535;
+	color: #fff;
+	background-color: rgba(38, 160, 218, 1);
 	font-size: 1rem;
 	font-weight: bold;
-	-webkit-box-shadow: -2px 5px 10px -1px rgb(0 0 0 / 40%);
-    -moz-box-shadow: -2px 5px 10px -1px rgba(0,0,0, 0.4);
-    -o-box-shadow: -2px 5px 10px -1px rgba(0,0,0, 0.4);
-    box-shadow: -2px 5px 10px -1px rgb(0 0 0 / 40%);
+    box-shadow: 0 0px 5px 0 rgb(0 0 0 / 40%);
 }
 
 .modal-footer .btn:hover {

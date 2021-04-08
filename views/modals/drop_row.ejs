@@ -1,0 +1,44 @@
+<div class="modal fade" id="drop_row" tabindex="-1" role="dialog" aria-labelledby="drop_col" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Drop rows</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/drop_rows" method="POST">
+                    <h1>Drop rows with NA values</h1>
+                    <h4>tips</h4>
+                    <p>First drop the columns with high percentage on na values else your dataframe would result
+                        with high loss of data.</p>
+                    <br>
+                    <label for="">Mode: </label>
+                    <input type="radio" name="mode" id="" value="all">All <br>
+                    <input type="radio" name="mode" id="" value="specific">Specific <br>
+                    <h2>Select specific columns of a row for which nan will be checked</h2>
+                    <input type="text" class="modal-search-Input bg-light form-control border small col-4"
+                        placeholder="Search for..." title="Type in a name">
+                    <ul class="modal-ul">
+                        <% list.columns.forEach(function (col,i) { %>
+                        <li>
+                            <label><input type="checkbox" name="subset" id="" value="<%=col%>"> <%=col%></label>
+                            <p><span>Nan percent: <%=list.null_val[i]/(list.null_val[i]+list.count[i])*100%></span>
+                            </p>
+                        </li>
+                        <% }) %>
+
+
+                    </ul>
+
+                    <button type="submit">Submit</button>
+                </form>
+                <script>
+
+                </script>
+            </div>
+
+        </div>
+    </div>
+</div>

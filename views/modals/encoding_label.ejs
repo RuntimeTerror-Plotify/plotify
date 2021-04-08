@@ -1,0 +1,40 @@
+<div class="modal fade" id="Encoding_Label" tabindex="-1" role="dialog" aria-labelledby="labelling"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="">Categorical Labelling Modal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="catLabels" method="POST" action="/categorical_labelling">
+                        <h1>Encoding Labels</h1>
+                        <%if(list.categorical != "empty"){%>
+                        <input type="text" class="modal-search-Input bg-light form-control border small col-4"
+                            placeholder="Search for..." title="Type in a name">
+                        <ul class="modal-ul">
+                            <%list.categorical.forEach(function(column){%>
+                            <li>
+                                <label for="<%=column%>"><input type="checkbox" id='<%=column%>' name="encodingLabel"
+                                        value='<%=column%>'></input><%=column%></label>
+                            </li>
+
+                            <%})%>
+                        </ul>
+                        <% } %>
+                        <br>
+                        <input type="checkbox" class="selectall" onchange="selectall(this,'encodingLabel')">Select
+                        All</input>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>

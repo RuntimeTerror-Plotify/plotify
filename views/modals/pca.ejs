@@ -1,0 +1,40 @@
+<div class="modal fade" id="pca" tabindex="-1" role="dialog" aria-labelledby="pca" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">PCA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <button onclick="run()">Run</button>
+
+                <P style="color: red;">*IF YOU RUN pca ALL YOUR CATEGORICAL COLUMN WILL BE DELETED IF THERE IS
+                    ANY*
+                </P>
+
+                <div class="main">
+                    <div id="pcaGraph" style="width:800px;height:300px;"></div>
+                </div>
+                <div id="pcaDiv" style="display: none;">
+                    <form id="pcaForm" action="/drop_columns" method="POST">
+                        <h1>Columns To Remove</h1>
+                        <% list.numerical.forEach(function(column,i){%>
+                        <input type="checkbox" id='PC<%=i+1%>' name="pca" value='PC<%=i+1%>'>PC<%=i+1%></input>
+                        <%})%>
+                        <br>
+                        <input type="checkbox" class="selectall" onchange="selectall(this,'pca')">Select
+                        All</input>
+                        <br>
+                        <button type="submit">Submit</button>
+                    </form>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
