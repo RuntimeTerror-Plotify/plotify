@@ -26,7 +26,9 @@ def main():
         quant25 = "empty"
         quant50 = "empty"
         quant75 = "empty"
+        skewness = "empty"
         unique = "empty"
+        uniqueValues = "empty"
         top = "empty"
         freq = "empty"
 
@@ -115,14 +117,22 @@ def main():
                         quant75.append(0.0)
                     else:
                         quant75.append(x)
+                skewness = []
+                for i in numerical:
+                    skewness.append(round(df[i].skew(), 3))
 
             if len(categorical) == 0:
                 categorical = "empty"
             else:
                 cat = df.describe(include=[object]).values
                 unique = []
+                uniqueValues = []
+
                 for x in cat[1, :]:
                     unique.append(x)
+
+                for i in categorical:
+                    uniqueValues.append(df[i].unique().tolist())
 
                 top = []
                 for x in cat[2, :]:
@@ -156,8 +166,10 @@ def main():
                 "quant25": quant25,
                 "quant50": quant50,
                 "quant75": quant75,
+                "skewness": skewness,
                 "categorical": categorical,
                 "unique": unique,
+                "unique_val": uniqueValues,
                 "top": top,
                 "freq": freq,
             }

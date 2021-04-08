@@ -1,4 +1,4 @@
-<div class="modal fade" id="Square_Root" tabindex="-1" role="dialog" aria-labelledby="DataTransform" aria-hidden="true">
+<div class="modal fade" id="Min_Max" tabindex="-1" role="dialog" aria-labelledby="DataTransform" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,15 +8,15 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="square-root" method="POST" action="/data_transform">
+                <form id="min-max" method="POST" action="/data_transform">
                     <%if(list.numerical != "empty"){%>
-                    <h1>Square-Root</h1>
+                    <h1>Min-Max</h1>
                     <h4>Tips:</h4>
-                    <p>Square Root transformation is used when when skewness in your data is Positive</p>
+                    <p>Normalisation using Min-Max is preferred when you want to neglect outlier's impact</p>
                     <h4>Recommendations:</h4>
 
                     <% var recommended = [] ; list.skewness.forEach(function(skew,i){%>
-                    <%  if(skew>=1) recommended.push(list.numerical[i]);%>
+                    <%  if(skew<1.5 && skew>-1.5) recommended.push(list.numerical[i]);%>
                     <%})%>
 
                     <p>Recommended For :
@@ -25,12 +25,13 @@
                     <% }else{ %>
                     none </p>
                     <% } %>
+
                     <% list.numerical.forEach(function(column){%>
-                    <input type="checkbox" name="square-root" value='<%=column%>'><%=column%></input>
+                    <input type="checkbox" name="min-max" value='<%=column%>'><%=column%></input>
                     <%})%>
                     <% } %>
                     <br>
-                    <input type="checkbox" class="selectall" onchange="selectall(this,'square-root')">Select
+                    <input type="checkbox" class="selectall" onchange="selectall(this,'min-max')">Select
                     All</input>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>

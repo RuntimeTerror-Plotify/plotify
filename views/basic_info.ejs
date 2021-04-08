@@ -11,7 +11,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600&family=Sacramento&display=swap"
         rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" />
     <link rel="stylesheet" href="/css/basicpage.css">
     <link rel="stylesheet" href="/css/plotgraph.css">
 </head>
@@ -60,12 +62,17 @@
                                 Encoding</a></li>
                     </ul>
                 </li>
-                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Tranformation<span
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Normalisation<span
                             class="caret"></span></a>
                     <ul class="dropdown-menu animated fadeInLeft" role="menu">
                         <li><a href="#" role="button" data-toggle="modal" data-target="#Min_Max">Min-Max</a></li>
                         <li><a href="#" role="button" data-toggle="modal" data-target="#Z_Score">Z_Score</a>
                         </li>
+                    </ul>
+                </li>
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Remove Skewness<span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu animated fadeInLeft" role="menu">
                         <li><a href="#" role="button" data-toggle="modal" data-target="#Square_Root">Square_Root</a>
                         </li>
                         <li><a href="#" role="button" data-toggle="modal" data-target="#Cube_Root">Cube_Root</a>
@@ -322,7 +329,7 @@
                     <label for="tab4" id="tabl4" role="tab" aria-selected="false" aria-controls="panel4"
                         tabindex="0">View Raw Data</label>
                     <div id="tab-content4" class="tab-content" role="tabpanel" aria-labelledby="specification"
-                        aria-hidden="true" >
+                        aria-hidden="true">
                         <div>
                             <form action="/download" method="GET">
                                 <button type="submit">Download</button>
@@ -372,23 +379,23 @@
 
     <!--fill nan Modal -->
     <%- include('modals/fill_nan.ejs'); %>
-    
-    
+
+
     <!--drop rows Modal -->
     <%- include('modals/drop_row.ejs'); %>
-    
 
-    
+
+
 
 
     <!-- remove outliers modal -->
 
     <!--clip_values Modal -->
     <%- include('modals/clip_values.ejs'); %>
-    
+
     <!--drop r outlier Modal -->
     <%- include('modals/drop_outliers.ejs'); %>
-    
+
 
 
 
@@ -396,42 +403,49 @@
 
     <!--Encoding Labels Modal -->
     <%- include('modals/encoding_label.ejs'); %>
-    
+
 
     <!--One Hot Encoding Modal -->
     <%- include('modals/one_hot_encoding.ejs'); %>
-    
+
 
     <!--Binary Encoding Modal -->
     <%- include('modals/binary_encoding.ejs'); %>
 
 
+
+    <!--Normalisation Modal -->
+
+    <!--Min-Max Modal -->
+    <%- include('modals/min_max.ejs'); %>
+
     <!--Z-Score Modal -->
     <%- include('modals/z_score.ejs'); %>
-    
 
+
+    <!--Skewness Removal Modal -->
 
     <!--Square-Root Modal -->
     <%- include('modals/square_root.ejs'); %>
-    
+
 
     <!--Cube-Root Modal -->
     <%- include('modals/cube_root.ejs'); %>
-    
+
     <!--Log Modal -->
     <%- include('modals/log.ejs'); %>
-    
+
 
 
 
     <!--Square Modal -->
     <%- include('modals/square.ejs'); %>
-    
+
 
 
     <!--PCA Modal -->
     <%- include('modals/pca.ejs'); %>
-    
+
 
 
 

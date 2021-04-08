@@ -13,6 +13,7 @@
                 <P style="color: red;">*IF YOU RUN pca ALL YOUR CATEGORICAL COLUMN WILL BE DELETED IF THERE IS
                     ANY*
                 </P>
+                <p class="pcaRec"></p>
 
                 <div class="main">
                     <div id="pcaGraph" style="width:800px;height:300px;"></div>
@@ -20,6 +21,11 @@
                 <div id="pcaDiv" style="display: none;">
                     <form id="pcaForm" action="/drop_columns" method="POST">
                         <h1>Columns To Remove</h1>
+                        <h4>Tips:</h4>
+                        <p>Keep only those columns which consist majority of your data</p>
+                        <h4>Recommendations: </h4>
+                        <p class="pcaRec"></p>
+
                         <% list.numerical.forEach(function(column,i){%>
                         <input type="checkbox" id='PC<%=i+1%>' name="pca" value='PC<%=i+1%>'>PC<%=i+1%></input>
                         <%})%>

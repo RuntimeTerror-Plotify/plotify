@@ -114,6 +114,10 @@ function run() {
 
       Plotly.newPlot("pcaGraph", data);
 
+      console.log(response.keep);
+
+      $(".pcaRec").html("Keep First " + response.keep + " Columns");
+
       $("#pcaDiv").css("display", "block");
     },
   });

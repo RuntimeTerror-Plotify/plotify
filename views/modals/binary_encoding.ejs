@@ -1,39 +1,43 @@
-<div class="modal fade" id="Binary_Encoding" tabindex="-1" role="dialog" aria-labelledby="labelling"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="">Categorical Labelling Modal</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="catLabels" method="POST" action="/categorical_labelling">
-                        <%if(list.categorical != "empty"){%>
-                        <h1>Binary Encoding</h1>
-                        <input type="text" class="modal-search-Input bg-light form-control border small col-4"
-                            placeholder="Search for..." title="Type in a name">
-                        <ul class="modal-ul">
-                            <% list.categorical.forEach(function(column){%>
-                            <li>
-                                <label for="<%=column%>"><input type="checkbox" name="binaryEncoding"
-                                        value='<%=column%>' id="<%=column%>"></input><%=column%></label>
-                            </li>
-                            <%})%>
-                        </ul>
-                        <% } %>
-                        <br>
-                        <input type="checkbox" class="selectall" onchange="selectall(this,'min-max')">Select
-                        All</input>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                        <br>
-                    </form>
-
-                </div>
+<div class="modal fade" id="Binary_Encoding" tabindex="-1" role="dialog" aria-labelledby="labelling" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Categorical Labelling Modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="catLabels" method="POST" action="/categorical_labelling">
+                    <%if(list.categorical != "empty"){%>
+                    <h1>Binary Encoding</h1>
+                    <h4>Tips:</h4>
+                    <p>Binary Encoding is preferred when your categorical data is Non - Ordinal or say the gap between
+                        every category is different and number of categories is high.</p>
+                    <input type="text" class="modal-search-Input bg-light form-control border small col-4"
+                        placeholder="Search for..." title="Type in a name">
+                    <ul class="modal-ul">
+                        <% list.categorical.forEach(function(column,i){%>
+                        <li>
+                            <label for="<%=column%>"><input type="checkbox" name="binaryEncoding" value='<%=column%>'
+                                    id="<%=column%>"></input><%=column%></label>
+                            <%= list.unique[i]  %>
+                            <%=list.unique_val[i]%>
+                        </li>
+                        <%})%>
+                    </ul>
+                    <% } %>
+                    <br>
+                    <input type="checkbox" class="selectall" onchange="selectall(this,'min-max')">Select
+                    All</input>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                    <br>
+                </form>
 
             </div>
+
         </div>
     </div>
+</div>
