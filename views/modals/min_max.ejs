@@ -11,6 +11,21 @@
                 <form id="min-max" method="POST" action="/data_transform">
                     <%if(list.numerical != "empty"){%>
                     <h1>Min-Max</h1>
+                    <h4>Tips:</h4>
+                    <p>Normalisation using Min-Max is preferred when you want to neglect outlier's impact</p>
+                    <h4>Recommendations:</h4>
+
+                    <% var recommended = [] ; list.skewness.forEach(function(skew,i){%>
+                    <%  if(skew<1.5 && skew>-1.5) recommended.push(list.numerical[i]);%>
+                    <%})%>
+
+                    <p>Recommended For :
+                        <%if(recommended.length){%>
+                        <%= recommended %> </p>
+                    <% }else{ %>
+                    none </p>
+                    <% } %>
+
                     <% list.numerical.forEach(function(column){%>
                     <input type="checkbox" name="min-max" value='<%=column%>'><%=column%></input>
                     <%})%>
