@@ -610,11 +610,11 @@ tbody tr:nth-child(even):hover{
   border:0px solid #ccc;
   padding-left: 30px;
   padding-top: 15px;
-  width: 200px;
+  width: 250px;
   display: inline-block;
   font-size: 16px; 
   line-height: 20px;
-
+  word-wrap: break-word;
 }
 
 .modal li:hover {
@@ -633,13 +633,12 @@ tbody tr:nth-child(even):hover{
 	background-color: rgba(38, 160, 218, 1);
 	font-size: 1rem;
 	font-weight: bold;
-    box-shadow: 0 0px 5px 0 rgb(0 0 0 / 40%);
+  box-shadow: 0 0px 5px 0 rgb(0 0 0 / 40%);
 }
 
 .modal-footer .btn:hover {
-	background-color: #030303 !important;
-	color: rgba(38, 160, 218, 1) !important;
-	border: none;
+	background-color: #496b80 !important;
+	color: #fff !important;
 }
 
 .modal-footer .btn:focus {
@@ -649,11 +648,11 @@ tbody tr:nth-child(even):hover{
 
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {
   input[type=checkbox]{
-    --active: #275EFE;
+    --active: #26a0da;
     --active-inner: #fff;
-    --focus: 2px rgba(39, 94, 254, .3);
+    --focus: 2px rgba(38, 160, 218, 0.3);
     --border: #BBC1E1;
-    --border-hover: #275EFE;
+    --border-hover: #26a0da;
     --background: #fff;
     --disabled: #F6F8FF;
     --disabled-inner: #E1E6F9;

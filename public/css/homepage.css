@@ -319,7 +319,6 @@ span.profileFile-custom:hover:before {
 .modal-footer .btn:hover {
 	background-color: #030303 !important;
 	color: rgba(38, 160, 218, 1) !important;
-	border: none;
 }
 
 .modal-footer .btn:focus {

@@ -24,6 +24,15 @@ $(document).ready(function () {
   $('[data-toggle="offcanvas"]').click(function () {
     $("#wrapper").toggleClass("toggled");
   });
+
+  $("#drop_row #modeofdroprow input[type=radio][name=mode]").change(function(){
+    if(this.value === "specific"){
+        $("#drop_row #specific").css("display","block");
+    }else if(this.value === "all"){
+        $("#drop_row #specific").css("display","none");
+    }
+  });
+  
 });
 
 function corrSub(event) {
@@ -109,3 +118,8 @@ function run() {
     },
   });
 }
+
+
+
+    
+    

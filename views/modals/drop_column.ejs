@@ -14,11 +14,11 @@
                         <p>Drop columns with maximum nan values or high nan percent.</p>
                     </div>
                 </div>
-                <form action="/drop_columns" method="POST"></form>
+                <form action="/drop_columns" method="POST">
                     <div class="select-checkbox">
                         <p class="text-left">Select the column you want to Drop :</p>
                             <input type="text" class="modal-search-Input bg-light form-control border small"
-                                placeholder="Search for..." title="Type in a name" style="width : 200px;margin: 3px;">
+                                placeholder="Search for..." title="Type in a name" style="margin: 3px auto;width: 85% ;">
                             
                             <ul class="modal-ul">
                                 <% list.columns.forEach(function(col,i){ %>
@@ -32,12 +32,12 @@
                                 <% }); %>
                             </ul>
                     </div>
-                <div class="modal-footer">
-                    <button class="btn" type="submit"> drop_col </button>
-                </div>
-            </form>
+                
             </div>
-
+            <div class="modal-footer">
+                <button class="btn btn-lg" type="submit"> &nbsp;&nbsp;Drop&nbsp;&nbsp; </button>
+            </div>
+            </form>
         </div>
     </div>
 </div>
