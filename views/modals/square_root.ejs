@@ -1,33 +1,46 @@
-<div class="modal fade" id="Square_Root" tabindex="-1" role="dialog" aria-labelledby="DataTransform"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Data Transform Modal</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="square-root" method="POST" action="/data_transform">
-                        <%if(list.numerical != "empty"){%>
-                        <h1>Square-Root</h1>
-                        <% list.numerical.forEach(function(column){%>
-                        <input type="checkbox" name="square-root" value='<%=column%>'><%=column%></input>
-                        <%})%>
-                        <% } %>
-                        <br>
-                        <input type="checkbox" class="selectall" onchange="selectall(this,'square-root')">Select
-                        All</input>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
+<div class="modal fade" id="Square_Root" tabindex="-1" role="dialog" aria-labelledby="DataTransform" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Data Transform Modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="square-root" method="POST" action="/data_transform">
+                    <%if(list.numerical != "empty"){%>
+                    <h1>Square-Root</h1>
+                    <h4>Tips:</h4>
+                    <p>Square Root transformation is used when when skewness in your data is Positive</p>
+                    <h4>Recommendations:</h4>
 
-                        <br>
-                    </form>
+                    <% var recommended = [] ; list.skewness.forEach(function(skew,i){%>
+                    <%  if(skew>=1) recommended.push(list.numerical[i]);%>
+                    <%})%>
 
-                </div>
+                    <p>Recommended For :
+                        <%if(recommended.length){%>
+                        <%= recommended %> </p>
+                    <% }else{ %>
+                    none </p>
+                    <% } %>
+                    <% list.numerical.forEach(function(column){%>
+                    <input type="checkbox" name="square-root" value='<%=column%>'><%=column%></input>
+                    <%})%>
+                    <% } %>
+                    <br>
+                    <input type="checkbox" class="selectall" onchange="selectall(this,'square-root')">Select
+                    All</input>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+
+                    <br>
+                </form>
 
             </div>
+
         </div>
     </div>
+</div>

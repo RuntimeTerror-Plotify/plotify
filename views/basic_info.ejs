@@ -62,12 +62,17 @@
                                 Encoding</a></li>
                     </ul>
                 </li>
-                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Tranformation<span
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Normalisation<span
                             class="caret"></span></a>
                     <ul class="dropdown-menu animated fadeInLeft" role="menu">
                         <li><a href="#" role="button" data-toggle="modal" data-target="#Min_Max">Min-Max</a></li>
                         <li><a href="#" role="button" data-toggle="modal" data-target="#Z_Score">Z_Score</a>
                         </li>
+                    </ul>
+                </li>
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Remove Skewness<span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu animated fadeInLeft" role="menu">
                         <li><a href="#" role="button" data-toggle="modal" data-target="#Square_Root">Square_Root</a>
                         </li>
                         <li><a href="#" role="button" data-toggle="modal" data-target="#Cube_Root">Cube_Root</a>
@@ -409,7 +414,7 @@
 
 
 
-    <!--Data Transformation Modal -->
+    <!--Normalisation Modal -->
 
     <!--Min-Max Modal -->
     <%- include('modals/min_max.ejs'); %>
@@ -418,6 +423,7 @@
     <%- include('modals/z_score.ejs'); %>
 
 
+    <!--Skewness Removal Modal -->
 
     <!--Square-Root Modal -->
     <%- include('modals/square_root.ejs'); %>

@@ -11,6 +11,20 @@
                 <form id="log" method="POST" action="/data_transform">
                     <%if(list.numerical != "empty"){%>
                     <h1>Log</h1>
+                    <h4>Tips:</h4>
+                    <p>Log transformation is used when when skewness in your data is Positive</p>
+                    <h4>Recommendations:</h4>
+
+                    <% var recommended = [] ; list.skewness.forEach(function(skew,i){%>
+                    <%  if(skew>=1) recommended.push(list.numerical[i]);%>
+                    <%})%>
+
+                    <p>Recommended For :
+                        <%if(recommended.length){%>
+                        <%= recommended %> </p>
+                    <% }else{ %>
+                    none </p>
+                    <% } %>
                     <% list.numerical.forEach(function(column){%>
                     <input type="checkbox" name="log" value='<%=column%>'><%=column%></input>
                     <%})%>
