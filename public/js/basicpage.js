@@ -29,7 +29,8 @@ $(document).ready(function () {
 function corrSub(event) {
   event.preventDefault();
   var column = [];
-  $("#corrMat input[type=checkbox]:checked").each(function (col) {
+
+  $("#corrMat input[name=corrColumn]:checked").each(function (col) {
     column.push($(this).val());
   });
   console.log(column);
@@ -72,8 +73,7 @@ function selectall(input, name) {
   });
 }
 
-
-$(".modal-search-Input").keyup(function(){
+$(".modal-search-Input").keyup(function () {
   var $input = $(this);
   filter = $input.val().toUpperCase();
   var ul = $(this).next(".modal-ul");

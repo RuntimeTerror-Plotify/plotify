@@ -14,7 +14,7 @@ let data;
 $(document).ready(function () {
   $.ajax({
     type: "GET",
-    url: fileName,
+    url: "csv/"+fileName,
     dataType: "text",
     success: function (data) {
       processData(data);

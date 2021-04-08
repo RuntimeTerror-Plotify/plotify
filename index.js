@@ -6,6 +6,9 @@ const csv = require("csv-parser");
 const fcsv = require("fast-csv");
 const spawn = require("child_process").spawn;
 const app = express();
+var $ = (jQuery = require("jquery"));
+$.csv = require("jquery-csv");
+
 app.use(
   bodyParser.urlencoded({
     extended: true,
@@ -17,7 +20,7 @@ app.set("view engine", "ejs");
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./csv/");
+    cb(null, "./public/csv/");
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -42,6 +45,10 @@ app.post("/file_upload", uploadDisk.single("file"), function (req, res) {
   res.redirect("/data_analysis");
 });
 
+app.get("/download",function(req,res){
+  res.download(filePath);
+})
+
 app.get("/data_analysis", function (req, res) {
   basic = [];
   var py = spawn("python", ["pyScript/basic.py"]),
@@ -56,7 +63,19 @@ app.get("/data_analysis", function (req, res) {
     try {
       basic = JSON.parse(basic[0]);
       if (basic.shape) {
-        res.render("basic_info", { list: basic, fileName: fileName });
+        var head;
+        fs.readFile(filePath, "UTF-8", function (err, csv) {
+          $.csv.toArrays(csv, {}, function (err, data) {
+            head = data.shift();
+            res.render("basic_info", {
+              list: basic,
+              fileName: fileName,
+              filePath: filePath,
+              head: head,
+              data: data.slice(0, 20),
+            });
+          });
+        });
       } else {
         res.send("No Data is Parsed , Your data may be Empty");
       }
@@ -68,10 +87,6 @@ app.get("/data_analysis", function (req, res) {
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
-});
-
-app.get("/categorical_labelling", function (req, res) {
-  res.render("cat_label", { categoricalData: basic.categorical });
 });
 
 app.post("/categorical_labelling", function (req, res) {
@@ -138,10 +153,6 @@ app.post("/drop_rows", function (req, res) {
   py.stdin.end();
 });
 
-app.get("/corr_matrix", function (req, res) {
-  res.render("corr_matrix", { numericalData: basic.numerical });
-});
-
 app.post("/corr_matrix", function (req, res) {
   var x = req.body;
   var column = [];
@@ -171,10 +182,6 @@ app.post("/corr_matrix", function (req, res) {
   py.stdin.end();
 });
 
-app.get("/data_transform", function (req, res) {
-  res.render("data_transformation", { numericalData: basic.numerical });
-});
-
 app.post("/data_transform", function (req, res) {
   var x = req.body;
   var column = [];
@@ -200,10 +207,6 @@ app.post("/data_transform", function (req, res) {
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
-});
-
-app.get("/pca", function (req, res) {
-  res.render("pca", { numericalData: basic.numerical });
 });
 
 app.post("/pca", function (req, res) {
@@ -248,8 +251,6 @@ app.post("/fill_nan", function (req, res) {
 
   py.stdin.end();
 });
-
-
 
 app.post("/remove_outlier", function (req, res) {
   let out = [];
