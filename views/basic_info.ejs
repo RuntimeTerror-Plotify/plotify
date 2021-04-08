@@ -97,7 +97,8 @@
                         <% if (list.columns == "empty"){ %>
                         <h2>Dataframe seems to be empty</h2>
                         <% } else{%>
-                        <div>
+                        <div class="row">
+                        <div class="col-10">
                             <p class="text-uppercase font-weight-bold" style="font-size: 20px;color: rgba(0,0,0,0.5);">
                                 Data Shape</p>
 
@@ -112,6 +113,12 @@
                                 <span class="text-uppercase" style="color: rgba(0,0,0,0.5);">COLUMNS</span>
                             </p>
                         </div>
+                        <div class="col-2">
+                            <form action="/undo" method="GET">
+                                <button type="submit">Revert changes</button>
+                            </form>
+                        </div>
+                    </div>
                         <br>
                         <div>
                             <p class="text-uppercase font-weight-bold" style="font-size: 20px;color: rgba(0,0,0,0.5);">
@@ -321,16 +328,12 @@
                     <label for="tab4" id="tabl4" role="tab" aria-selected="false" aria-controls="panel4"
                         tabindex="0">View Raw Data</label>
                     <div id="tab-content4" class="tab-content" role="tabpanel" aria-labelledby="specification"
-<<<<<<< HEAD
-                        aria-hidden="true">
-=======
                         aria-hidden="true" >
                         <div>
                             <form action="/download" method="GET">
                                 <button type="submit">Download</button>
                             </form>
                         </div>
->>>>>>> d33bc926691488649f2fafa3395f3971c9df4335
                         <div class="wrap-table100">
                             <div class="table100 border">
                                 <table>

@@ -32,16 +32,24 @@ var uploadDisk = multer({
 });
 
 let filePath = "";
+let fileExt = ""; 
 let fileName = "";
 let basic = [];
+let fileNo = 0;
 
 app.get("/", function (req, res) {
   res.render("home_page");
 });
 
 app.post("/file_upload", uploadDisk.single("file"), function (req, res) {
-  filePath = req.file.destination + req.file.originalname;
-  fileName = req.file.originalname;
+  fileNo = 0;
+  fileExt = req.file.originalname.split(".").pop();
+  fs.rename(req.file.destination + req.file.originalname, req.file.destination + "file" + fileNo + "." + fileExt,
+         function(err){
+           console.log(err);
+         });
+  filePath = req.file.destination + "file" + fileNo + "." + fileExt;
+  fileName = "file" + fileNo + "." + fileExt;
   res.redirect("/data_analysis");
 });
 
