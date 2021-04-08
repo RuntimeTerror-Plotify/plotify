@@ -30,9 +30,12 @@
                         <a href="#">plotify</a>
                     </div>
                 </div>
-                <li><a href="#" role="button" data-toggle="modal" data-target="#drop_col">Drop column</a></li>
+                <li>
+                    <a href="#" role="button" data-toggle="modal" data-target="#drop_col" style="width: 85%;">Drop column</a>
+                    <a href="https://www.google.com/" style="float: right;padding: 15px;"><i class="fas fa-info" data-toggle="tooltip" data-placement="right" title="Click the icon to learn what it does."></i></a>
+                </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Handle Null Values<span
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 85%;">Handle Null Values<span
                             class="caret"></span></a>
                     <ul class="dropdown-menu animated fadeInLeft" role="menu">
                         <li><a href="#" role="button" data-toggle="modal" data-target="#drop_row">Drop rows with null
@@ -40,9 +43,10 @@
                         <li><a href="#" role="button" data-toggle="modal" data-target="#fill_na">Fill null values</a>
                         </li>
                     </ul>
+                    <a href="https://www.google.com/" style="float: right;padding: 15px;"><i class="fas fa-info" data-toggle="tooltip" data-placement="right" title="Click the icon to learn what it does."></i></a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Remove Outliers<span
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 85%;">Remove Outliers<span
                             class="caret"></span></a>
                     <ul class="dropdown-menu animated fadeInLeft" role="menu">
                         <li><a href="#" role="button" data-toggle="modal" data-target="#clip_values">Clip values</a>
@@ -50,8 +54,9 @@
                         <li><a href="#" role="button" data-toggle="modal" data-target="#drop_outliers">Drop outliers</a>
                         </li>
                     </ul>
+                    <a href="https://www.google.com/" style="float: right;padding: 15px;"><i class="fas fa-info" data-toggle="tooltip" data-placement="right" title="Click the icon to learn what it does."></i></a>
                 </li>
-                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Categorical Labelling<span
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 85%;">Categorical Labelling<span
                             class="caret"></span></a>
                     <ul class="dropdown-menu animated fadeInLeft" role="menu">
                         <li><a href="#" role="button" data-toggle="modal" data-target="#Encoding_Label">Encoding
@@ -61,17 +66,19 @@
                         <li><a href="#" role="button" data-toggle="modal" data-target="#Binary_Encoding">Binary
                                 Encoding</a></li>
                     </ul>
+                    <a href="https://www.google.com/" style="float: right;padding: 15px;"><i class="fas fa-info" data-toggle="tooltip" data-placement="right" title="Click the icon to learn what it does."></i></a>
                 </li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Normalisation<span
-                            class="caret"></span></a>
+                            class="caret" style="width: 85%;"></span></a>
                     <ul class="dropdown-menu animated fadeInLeft" role="menu">
                         <li><a href="#" role="button" data-toggle="modal" data-target="#Min_Max">Min-Max</a></li>
                         <li><a href="#" role="button" data-toggle="modal" data-target="#Z_Score">Z_Score</a>
                         </li>
                     </ul>
+                    <a href="https://www.google.com/" style="float: right;padding: 15px;"><i class="fas fa-info" data-toggle="tooltip" data-placement="right" title="Click the icon to learn what it does."></i></a>
                 </li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Remove Skewness<span
-                            class="caret"></span></a>
+                            class="caret" style="width: 85%;"></span></a>
                     <ul class="dropdown-menu animated fadeInLeft" role="menu">
                         <li><a href="#" role="button" data-toggle="modal" data-target="#Square_Root">Square_Root</a>
                         </li>
@@ -80,9 +87,12 @@
                         <li><a href="#" role="button" data-toggle="modal" data-target="#Log">Log</a></li>
                         <li><a href="#" role="button" data-toggle="modal" data-target="#Square">Square</a></li>
                     </ul>
+                    <a href="https://www.google.com/" style="float: right;padding: 15px;"><i class="fas fa-info" data-toggle="tooltip" data-placement="right" title="Click the icon to learn what it does."></i></a>
                 </li>
-                <li><a href="/pca" role="button" data-toggle="modal" data-target="#pca">Principal Component
-                        Analysis</a></li>
+                <li><a href="/pca" role="button" data-toggle="modal" data-target="#pca" style="width: 85%;">Principal Component
+                        Analysis</a>
+                        <a href="https://www.google.com/" style="float: right;padding: 15px;"><i class="fas fa-info" data-toggle="tooltip" data-placement="right" title="Click the icon to learn what it does."></i></a>    
+                </li>
 
 
             </ul>
@@ -97,7 +107,7 @@
             <ul class="tabs" role="tablist">
                 <li>
                     <input type="radio" name="tabs" id="tab1" checked />
-                    <label for="tab1" id="tabl1" role="tab" aria-selected="true" aria-controls="panel1"
+                    <label for="tab1" role="tab" aria-selected="true" aria-controls="panel1"
                         tabindex="0">Descriptive Statistic</label>
                     <div id="tab-content1" class="tab-content" role="tabpanel" aria-labelledby="description"
                         aria-hidden="false">
@@ -332,7 +342,7 @@
                         aria-hidden="true">
                         <div>
                             <form action="/download" method="GET">
-                                <button type="submit">Download</button>
+                                <button type="submit" class="btn btn-lg">Download</button>
                             </form>
                         </div>
                         <div class="wrap-table100">
@@ -466,7 +476,9 @@
     let shape = '<%-list.shape%>';
     let numericalData = '<%-list.numerical%>';
     let categoricalData = '<%-list.categorical%>';
-    
+    $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
 </script>
 <script src="/plotGraph.js"></script>
 

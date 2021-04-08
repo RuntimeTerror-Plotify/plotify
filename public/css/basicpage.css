@@ -83,8 +83,8 @@ background: linear-gradient(to top, #26a0da, #496b80);
   box-shadow: 0 1px 4px 0 rgb(0 0 0 / 20%);
   color: #fff !important;
   background: #496b80; 
-background: -webkit-linear-gradient(to top, #26a0da, #496b80);  
-background: linear-gradient(to top, #26a0da, #496b80); 
+  background: -webkit-linear-gradient(to top, #26a0da, #496b80);  
+  background: linear-gradient(to top, #26a0da, #496b80); 
 }
 
 .tabs [id^="tab"]:checked ~ [id^="tab-content"] {
@@ -126,15 +126,15 @@ background: linear-gradient(to top, #26a0da, #496b80);
 }
 
 #wrapper.toggled {
-    padding-left: 250px;
+    padding-left: 300px;
 }
 
 #sidebar-wrapper {
     z-index: 1000;
-    left: 250px;
+    left: 300px;
     width: 0;
     height: 100%;
-    margin-left: -250px;
+    margin-left: -300px;
     overflow-y: none;
     overflow-x: hidden;
     background-color: transparent;
@@ -150,7 +150,7 @@ background: linear-gradient(to top, #26a0da, #496b80);
 }
 
 #wrapper.toggled #sidebar-wrapper {
-    width: 250px;
+    width: 300px;
 }
 
 #page-content-wrapper {
@@ -174,7 +174,7 @@ background: linear-gradient(to top, #26a0da, #496b80);
 .sidebar-nav {
     position: absolute;
     top: 0;
-    width: 250px;
+    width: 300px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -205,12 +205,13 @@ background: linear-gradient(to top, #26a0da, #496b80);
             transition: width .2s ease-in;
 
 }
+
 .sidebar-nav li:hover{
   color: #fff !important;
   background: rgb(255 255 255 / 25%) !important;
   border-radius: 10px;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 5px; 
+   margin-right: 5px;
 }
 .sidebar-nav li:hover:before,
 .sidebar-nav li.open:hover:before {
@@ -223,7 +224,7 @@ background: linear-gradient(to top, #26a0da, #496b80);
 }
 
 .sidebar-nav li a {
-    display: block;
+    display: inline-block;
     color: #ddd;
     text-decoration: none;
     padding: 15px 15px 15px 30px;    
