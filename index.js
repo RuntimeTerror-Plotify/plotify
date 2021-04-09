@@ -36,6 +36,7 @@ let fileExt = "";
 let fileName = "";
 let basic = [];
 let fileNo = 0;
+let folderPath = "./public/csv/"
 
 app.get("/", function (req, res) {
   res.render("home_page");
@@ -124,16 +125,21 @@ app.post("/categorical_labelling", function (req, res) {
 });
 
 app.post("/drop_columns", function (req, res) {
+  console.log(fileExt, fileNo, filePath, folderPath)
   let out = [];
   var py = spawn("python", ["pyScript/drop_col.py"]),
-    data = [req.body.drop_col, filePath];
+    data = [req.body.drop_col, filePath, fileNo, fileExt , folderPath,fileName];
 
   py.stdout.on("data", function (output) {
-    cons;
     out.push(output.toString());
   });
 
   py.stdout.on("end", function () {
+    out = JSON.parse(out[0]);
+    filePath = out.filePath;
+    fileName = out.fileName;
+    fileNo = parseInt(out.fileNo);
+    console.log(filePath,fileName,fileNo);
     res.redirect("/data_analysis");
   });
 
