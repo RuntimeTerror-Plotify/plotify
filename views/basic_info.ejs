@@ -114,8 +114,10 @@
                             </p>
                         </div>
                         <div class="col-2">
-                            <form action="/undo" method="GET">
-                                <button type="submit">Revert changes</button>
+                            <form action="/revert" method="GET">
+                                <% if(fileNo!=0) {%>
+                                    <button type="submit" class="revert_button">Revert changes</button>
+                                <% } %>
                             </form>
                         </div>
                     </div>

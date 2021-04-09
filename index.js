@@ -5,6 +5,7 @@ const fs = require("fs");
 const csv = require("csv-parser");
 const fcsv = require("fast-csv");
 const spawn = require("child_process").spawn;
+const { resolveSoa } = require("dns");
 const app = express();
 var $ = (jQuery = require("jquery"));
 $.csv = require("jquery-csv");
@@ -40,6 +41,19 @@ let folderPath = "./public/csv/"
 
 app.get("/", function (req, res) {
   res.render("home_page");
+});
+
+app.get("/revert", function(req,res){
+  if(fileNo > 0){
+    fs.unlink(filePath, (err) => {
+      console.log('File deleted ...');
+      fileNo -= 1;
+      fileName = "file"+fileNo+"."+fileExt;
+      filePath = folderPath + fileName;
+      res.redirect("/data_analysis");
+    });
+  }
+  res.redirect("/data_analysis");
 });
 
 app.post("/file_upload", uploadDisk.single("file"), function (req, res) {
@@ -80,6 +94,7 @@ app.get("/data_analysis", function (req, res) {
               list: basic,
               fileName: fileName,
               filePath: filePath,
+              fileNo:fileNo,
               head: head,
               data: data.slice(0, 20),
             });
