@@ -53,7 +53,9 @@ app.get("/revert", function(req,res){
       res.redirect("/data_analysis");
     });
   }
+  else{
   res.redirect("/data_analysis");
+}
 });
 
 app.post("/file_upload", uploadDisk.single("file"), function (req, res) {
@@ -116,21 +118,33 @@ app.get("/data_analysis", function (req, res) {
 app.post("/categorical_labelling", function (req, res) {
   // var columnName = req.body.column;
   // var type = req.body.type;
+  let out = []
   var x = req.body;
   var column = [];
   var type = Object.keys(x)[0];
   column = column.concat(Object.values(x)[0]);
 
-  var py = spawn("python", ["labelling.py"]),
+  var py = spawn("python", ["pyScript/labelling.py"]),
     data = {
       filePath: filePath,
       column: column,
       type: type,
+      fileName: fileName,
+      fileExt: fileExt,
+      fileNo: fileNo,
+      folderPath: folderPath,
     };
 
-  py.stdout.on("data", function (output) {});
+  py.stdout.on("data", function (output) {
+    out.push(output.toString());
+  });
 
   py.stdout.on("end", function () {
+    out = JSON.parse(out[0]);
+    filePath = out.filePath;
+    fileName = out.fileName;
+    fileNo = parseInt(out.fileNo);
+    // console.log(filePath,fileName,fileNo);
     res.redirect("/data_analysis");
   });
 
@@ -140,7 +154,7 @@ app.post("/categorical_labelling", function (req, res) {
 });
 
 app.post("/drop_columns", function (req, res) {
-  console.log(fileExt, fileNo, filePath, folderPath)
+  // console.log(fileExt, fileNo, filePath, folderPath)
   let out = [];
   var py = spawn("python", ["pyScript/drop_col.py"]),
     data = [req.body.drop_col, filePath, fileNo, fileExt , folderPath,fileName];
@@ -154,7 +168,7 @@ app.post("/drop_columns", function (req, res) {
     filePath = out.filePath;
     fileName = out.fileName;
     fileNo = parseInt(out.fileNo);
-    console.log(filePath,fileName,fileNo);
+    // console.log(filePath,fileName,fileNo);
     res.redirect("/data_analysis");
   });
 
@@ -166,7 +180,7 @@ app.post("/drop_columns", function (req, res) {
 app.post("/drop_rows", function (req, res) {
   let out = [];
   var py = spawn("python", ["pyScript/drop_row.py"]),
-    data = [filePath, req.body.mode, req.body.subset];
+    data = [filePath, req.body.mode, req.body.subset, fileNo, fileExt , folderPath,fileName];
 
   py.stdout.on("data", function (output) {
     out.push(output.toString());
@@ -174,6 +188,10 @@ app.post("/drop_rows", function (req, res) {
 
   py.stdout.on("end", function () {
     // console.log(out);
+    out = JSON.parse(out[0]);
+    filePath = out.filePath;
+    fileName = out.fileName;
+    fileNo = parseInt(out.fileNo);
     res.redirect("/data_analysis");
   });
 
@@ -212,6 +230,7 @@ app.post("/corr_matrix", function (req, res) {
 });
 
 app.post("/data_transform", function (req, res) {
+  let out = []
   var x = req.body;
   var column = [];
   var type = Object.keys(x)[0];
@@ -222,11 +241,21 @@ app.post("/data_transform", function (req, res) {
       filePath: filePath,
       type: type,
       column: column,
+      fileName: fileName,
+      fileExt: fileExt,
+      fileNo: fileNo,
+      folderPath: folderPath,
     };
 
-  py.stdout.on("data", function (output) {});
+  py.stdout.on("data", function (output) {
+    out.push(output.toString());
+  });
 
   py.stdout.on("end", function () {
+    out = JSON.parse(out[0]);
+    filePath = out.filePath;
+    fileName = out.fileName;
+    fileNo = parseInt(out.fileNo);
     // out = JSON.parse(out);
     // console.log(out);
     // res.send(out);
