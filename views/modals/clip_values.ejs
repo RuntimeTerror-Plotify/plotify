@@ -8,6 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
+                <% if(list.numerical != "empty") {%>
                 <form action="/clip_values" method="POST">
                     <h1>Clip values</h1>
                     <label for="">Min threshold</label>
@@ -22,6 +23,7 @@
                     <br>
                     <button type="submit">Submit</button>
                 </form>
+                <% } %>
             </div>
 
         </div>

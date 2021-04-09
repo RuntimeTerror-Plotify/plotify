@@ -31,6 +31,7 @@
                     <% } %>
                 </div>
                 <div id="numerical">
+                    <% if(list.numerical != "empty") {%>
                     <form action="/fill_nan" method="POST" id="form">
                         <h3>Numerical Column</h3>
                         <select name="column" id="">
@@ -51,6 +52,7 @@
                         </select>
                         <button type="submit" name="col_type" value="num">Submit</button>
                     </form>
+                    <% } %>
                     <script>
                         document.getElementById("categorical").style.visibility = "hidden";
                         document.getElementById("numerical").style.visibility = "hidden";
