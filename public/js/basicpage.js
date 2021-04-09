@@ -32,8 +32,55 @@ $(document).ready(function () {
         $("#drop_row #specific").css("display","none");
     }
   });
+
+  $(".modal#fill_na #categorical").css("display","none");
+  $(".modal#fill_na #numerical").css("display","none");
+
+  $("#fill_na .modal-body input[type=radio][name=mode]").change(function(){
+    console.log(this);
+    if(this.value === "categorical"){
+      console.log("1");
+      $(".modal#fill_na #catform")[0].reset();
+      $(".modal#fill_na #numerical").css("display","none");
+      $(".modal#fill_na #categorical").css("display","block");
+    }else if(this.value === "numerical"){
+      console.log("2");
+      $(".modal#fill_na #numform")[0].reset();
+      $(".modal#fill_na #categorical").css("display","none");
+      $(".modal#fill_na #numerical").css("display","block");
+    }
+  });
+
+  $(".modal-search-Input").keyup(function () {
+    var $input = $(this);
+    filter = $input.val().toUpperCase();
+    var ul = $(this).next(".modal-ul");
+    var li = ul.find("li");
+  
+    for (i = 0; i < li.length; i++) {
+      la = li[i].getElementsByTagName("label")[0];
+      txtValue = la.textContent || la.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        li[i].style.display = "";
+      } else {
+        li[i].style.display = "none";
+      }
+    }
+  });
   
 });
+
+
+
+
+function check_cat() {
+    
+}
+
+function check_num() {
+   
+}                      
+
 
 function corrSub(event) {
   event.preventDefault();
@@ -64,13 +111,7 @@ function corrSub(event) {
   });
 }
 
-// $(".selectall").click(function () {
-//   var checked = this.checked;
-//   var classname = "input[name=" + this.value + "]";
-//   $(classname).each(function () {
-//     this.checked = checked;
-//   });
-// });
+
 
 function selectall(input, name) {
   var checked = input.checked;
@@ -82,22 +123,7 @@ function selectall(input, name) {
   });
 }
 
-$(".modal-search-Input").keyup(function () {
-  var $input = $(this);
-  filter = $input.val().toUpperCase();
-  var ul = $(this).next(".modal-ul");
-  var li = ul.find("li");
 
-  for (i = 0; i < li.length; i++) {
-    la = li[i].getElementsByTagName("label")[0];
-    txtValue = la.textContent || la.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-  }
-});
 
 function run() {
   $.ajax({

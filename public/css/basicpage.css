@@ -585,6 +585,12 @@ tbody tr:nth-child(even):hover{
 }
 .modal .modal-body{
   padding: 20px !important;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.modal .modal-body h5{
+  font-weight: bold;
+  color: rgba(0,0,0,0.5);
 }
 
 .modal .modal-body .tips h5{
