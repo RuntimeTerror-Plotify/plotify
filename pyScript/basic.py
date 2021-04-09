@@ -8,36 +8,36 @@ def main():
     lines = sys.stdin.readlines()
     lines = json.loads(lines[0])
 
+    shape = "empty"
+    null_val = "empty"
+    colName = "empty"
+    dtypes = "empty"
+    count = "empty"
+    categorical = "empty"
+    numerical = "empty"
+    mean = "empty"
+    median = "empty"
+    minimum = "empty"
+    maximum = "empty"
+    std = "empty"
+    quant25 = "empty"
+    quant50 = "empty"
+    quant75 = "empty"
+    skewness = "empty"
+    unique = "empty"
+    uniqueValues = "empty"
+    top = "empty"
+    freq = "empty"
+
     try:
-        df = pd.read_csv(lines)
-        df = df.dropna(how="all", axis="columns")
-        df.to_csv(lines, index=False)
+        try:
+            df = pd.read_csv(lines)
+            df = df.dropna(how="all", axis="columns")
+            df.to_csv(lines, index=False)
 
-        colName = "empty"
-        dtypes = "empty"
-        count = "empty"
-        categorical = "empty"
-        numerical = "empty"
-        mean = "empty"
-        median = "empty"
-        minimum = "empty"
-        maximum = "empty"
-        std = "empty"
-        quant25 = "empty"
-        quant50 = "empty"
-        quant75 = "empty"
-        skewness = "empty"
-        unique = "empty"
-        uniqueValues = "empty"
-        top = "empty"
-        freq = "empty"
-
-        if df.empty:
-            output = {"error": "No Data Parsed"}
-
-        else:
             colName = []
             dtypes = []
+            shape = df.shape
 
             for x in df.dtypes.iteritems():
                 colName.append(x[0])
@@ -158,28 +158,31 @@ def main():
             if len(null_val) == 0:
                 null_val = "empty"
 
-            output = {
-                "shape": df.shape,
-                "columns": colName,
-                "dtype": dtypes,
-                "count": count,
-                "null_val": null_val,
-                "numerical": numerical,
-                "mean": mean,
-                "median": median,
-                "minimum": minimum,
-                "maximum": maximum,
-                "std": std,
-                "quant25": quant25,
-                "quant50": quant50,
-                "quant75": quant75,
-                "skewness": skewness,
-                "categorical": categorical,
-                "unique": unique,
-                "unique_val": uniqueValues,
-                "top": top,
-                "freq": freq,
-            }
+        except:
+            x = 1
+
+        output = {
+            "shape": shape,
+            "columns": colName,
+            "dtype": dtypes,
+            "count": count,
+            "null_val": null_val,
+            "numerical": numerical,
+            "mean": mean,
+            "median": median,
+            "minimum": minimum,
+            "maximum": maximum,
+            "std": std,
+            "quant25": quant25,
+            "quant50": quant50,
+            "quant75": quant75,
+            "skewness": skewness,
+            "categorical": categorical,
+            "unique": unique,
+            "unique_val": uniqueValues,
+            "top": top,
+            "freq": freq,
+        }
 
     except:
         output = {"error": "No Data Parsed"}

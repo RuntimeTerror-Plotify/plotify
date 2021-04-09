@@ -7,15 +7,16 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <%if(list.columns != "empty"){%>
             <div class="modal-body">
                 <form action="/fill_nan" method="POST" id="form">
-                <input type="radio" name="col_type" value="cat" id="modecat"/> 
-                <label for="modecat">Categorical</label> 
-                <input type="radio" name="col_type" value="num" id="modenum" /> 
-                <label for="modenum">Numerical</label> 
-                <div id="categorical" style="padding-top:20px ;">
-                    <% if(list.categorical != "empty") {%>
-                    
+                    <input type="radio" name="col_type" value="cat" id="modecat" />
+                    <label for="modecat">Categorical</label>
+                    <input type="radio" name="col_type" value="num" id="modenum" />
+                    <label for="modenum">Numerical</label>
+                    <div id="categorical" style="padding-top:20px ;">
+                        <% if(list.categorical != "empty") {%>
+
                         <h5>Categorical Column</h5>
                         <div class="input-group mb-3">
                             <select name="column" class="custom-select">
@@ -32,10 +33,15 @@
                                 <option value="unk">Unknown Class</option>
                             </select>
                         </div>
-                    <% } %>
-                </div>
-<<<<<<< HEAD
-                <div id="numerical" style="padding-top: 20px;">
+                        <% }else{ %>
+                        <div class="jumbotron">
+                            <h1 class="display-4">Opps!!!</h1>
+                            <p class="lead">You don't have any Categorical columns</p>
+                        </div>
+                        <% } %>
+                    </div>
+                    <div id="numerical" style="padding-top: 20px;">
+                        <% if(list.categorical != "empty") {%>
                         <h5>Numerical Column</h5>
                         <div class="input-group mb-3">
                             <select name="column" class="custom-select">
@@ -45,7 +51,7 @@
                                 <% }) %>
                             </select>
                         </div>
-                        
+
                         <div class="input-group mb-3">
                             <select name="method" class="custom-select">
                                 <option value="" selected>Select</option>
@@ -58,55 +64,26 @@
                                 <option value="f_fill">Forward Fill</option>
                             </select>
                         </div>
-                        
-=======
-                <div id="numerical">
-                    <% if(list.numerical != "empty") {%>
-                    <form action="/fill_nan" method="POST" id="form">
-                        <h3>Numerical Column</h3>
-                        <select name="column" id="">
-                            <option value="" selected>Select</option>
-                            <% list.numerical.forEach(function(cat){ %>
-                            <option value="<%=cat%>"><%=cat%></option>
-                            <% }) %>
-                        </select>
-                        <select name="method" id="">
-                            <option value="" selected>Select</option>
-                            <option value="zero">Fill zeros</option>
-                            <option value="mean">Fill mean</option>
-                            <option value="median">Fill median</option>
-                            <option value="min">Fill minimum</option>
-                            <option value="max">Fill maximum</option>
-                            <option value="b_fill">Backward Fill</option>
-                            <option value="f_fill">Forward Fill</option>
-                        </select>
-                        <button type="submit" name="col_type" value="num">Submit</button>
-                    </form>
-                    <% } %>
-                    <script>
-                        document.getElementById("categorical").style.visibility = "hidden";
-                        document.getElementById("numerical").style.visibility = "hidden";
+                        <% }else{ %>
+                        <div class="jumbotron">
+                            <h1 class="display-4">Opps!!!</h1>
+                            <p class="lead">You don't have any Numerical columns</p>
+                        </div>
+                        <% } %>
 
-                        function check_cat() {
-                            document.getElementById("form").reset();
-                            document.getElementById("numerical").style.visibility = "hidden";
-                            document.getElementById("categorical").style.visibility = "visible";
-                        }
-
-                        function check_num() {
-                            document.getElementById("form").reset();
-                            document.getElementById("categorical").style.visibility = "hidden";
-                            document.getElementById("numerical").style.visibility = "visible";
-                        }
-                    </script>
->>>>>>> xxx
-                </div>
+                    </div>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-lg">Submit</button>
             </div>
-            
+
             </form>
+            <% }else{ %>
+            <div class="jumbotron">
+                <h1 class="display-4">Opps!!!</h1>
+                <p class="lead">You don't have any columns</p>
+            </div>
+            <% } %>
 
         </div>
     </div>

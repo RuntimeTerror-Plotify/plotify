@@ -8,6 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
+                <%if(list.numerical != "empty"){%>
                 <button onclick="run()">Run</button>
 
                 <P style="color: red;">*IF YOU RUN pca ALL YOUR CATEGORICAL COLUMN WILL BE DELETED IF THERE IS
@@ -38,7 +39,12 @@
 
                 </div>
 
-
+                <% }else{ %>
+                <div class="jumbotron">
+                    <h1 class="display-4">Opps!!!</h1>
+                    <p class="lead">You don't have any Numerical columns</p>
+                </div>
+                <% } %>
             </div>
 
         </div>

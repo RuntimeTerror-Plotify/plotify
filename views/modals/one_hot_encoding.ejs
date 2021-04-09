@@ -8,6 +8,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <%if(list.categorical != "empty"){%>
             <div class="modal-body">
                 <div class="tips">
                     <div class="jumbotron">
@@ -18,37 +19,42 @@
                 </div>
                 <form id="catLabels" method="POST" action="/categorical_labelling">
                     <div class="select-checkbox">
-                        <%if(list.categorical != "empty"){%>
-                            <p class="text-left">Select the column you want label:</p>
-                            <input type="text" class="modal-search-Input bg-light form-control border small"
-                                placeholder="Search for..." title="Type in a name" style="margin: 3px auto;width: 85% ;">
+
+                        <p class="text-left">Select the column you want label:</p>
+                        <input type="text" class="modal-search-Input bg-light form-control border small"
+                            placeholder="Search for..." title="Type in a name" style="margin: 3px auto;width: 85% ;">
                         <ul class="modal-ul">
                             <% list.categorical.forEach(function(column,i){%>
-                                <li>
-                                    <label for="<%=column%>"><input type="checkbox" name="oneHotEncoding" value='<%=column%>'
-                                        id="<%=column%>" /><span style="padding-left: 10px;"><%=column%></span></label>
-                                        <p>
-                                            <span><%= list.unique[i]  %> unique values &nbsp; &nbsp;
-                                            <div class="dropdown" style="display: inline-block;">
-                                                <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <span class="sr-only">Toggle Dropdown</span>
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <% list.unique_val[i].forEach(function(val){%>
-                                                        <a class="dropdown-item" href="#"><%=val%></a>
-                                                    <% }) %> 
-                                                </div>
-                                              </div>
-                                            </span>
-                                            
-                                        </p>
-                                    
-                                </li>    
+                            <li>
+                                <label for="<%=column%>"><input type="checkbox" name="oneHotEncoding"
+                                        value='<%=column%>' id="<%=column%>" /><span
+                                        style="padding-left: 10px;"><%=column%></span></label>
+                                <p>
+                                    <span><%= list.unique[i]  %> unique values &nbsp; &nbsp;
+                                        <div class="dropdown" style="display: inline-block;">
+                                            <button type="button"
+                                                class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <% list.unique_val[i].forEach(function(val){%>
+                                                <a class="dropdown-item" href="#"><%=val%></a>
+                                                <% }) %>
+                                            </div>
+                                        </div>
+                                    </span>
+
+                                </p>
+
+                            </li>
                             <%})%>
                         </ul>
-                        <label><input type="checkbox" class="selectall" onchange="selectall(this,'oneHotEncoding')" /><span style="padding-left: 10px;">Select All</span></label> 
+                        <label><input type="checkbox" class="selectall"
+                                onchange="selectall(this,'oneHotEncoding')" /><span style="padding-left: 10px;">Select
+                                All</span></label>
 
-                        <% } %>
+
                     </div>
 
             </div>
@@ -56,7 +62,13 @@
                 <button type="submit" class="btn btn-lg">Submit</button>
             </div>
 
-        </form>
+            </form>
+            <% }else{ %>
+            <div class="jumbotron">
+                <h1 class="display-4">Opps!!!</h1>
+                <p class="lead">You don't have any Numerical columns</p>
+            </div>
+            <% } %>
 
         </div>
     </div>
