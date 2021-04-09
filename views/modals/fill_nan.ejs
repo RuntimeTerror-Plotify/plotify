@@ -34,6 +34,7 @@
                         </div>
                     <% } %>
                 </div>
+<<<<<<< HEAD
                 <div id="numerical" style="padding-top: 20px;">
                         <h5>Numerical Column</h5>
                         <div class="input-group mb-3">
@@ -58,6 +59,47 @@
                             </select>
                         </div>
                         
+=======
+                <div id="numerical">
+                    <% if(list.numerical != "empty") {%>
+                    <form action="/fill_nan" method="POST" id="form">
+                        <h3>Numerical Column</h3>
+                        <select name="column" id="">
+                            <option value="" selected>Select</option>
+                            <% list.numerical.forEach(function(cat){ %>
+                            <option value="<%=cat%>"><%=cat%></option>
+                            <% }) %>
+                        </select>
+                        <select name="method" id="">
+                            <option value="" selected>Select</option>
+                            <option value="zero">Fill zeros</option>
+                            <option value="mean">Fill mean</option>
+                            <option value="median">Fill median</option>
+                            <option value="min">Fill minimum</option>
+                            <option value="max">Fill maximum</option>
+                            <option value="b_fill">Backward Fill</option>
+                            <option value="f_fill">Forward Fill</option>
+                        </select>
+                        <button type="submit" name="col_type" value="num">Submit</button>
+                    </form>
+                    <% } %>
+                    <script>
+                        document.getElementById("categorical").style.visibility = "hidden";
+                        document.getElementById("numerical").style.visibility = "hidden";
+
+                        function check_cat() {
+                            document.getElementById("form").reset();
+                            document.getElementById("numerical").style.visibility = "hidden";
+                            document.getElementById("categorical").style.visibility = "visible";
+                        }
+
+                        function check_num() {
+                            document.getElementById("form").reset();
+                            document.getElementById("categorical").style.visibility = "hidden";
+                            document.getElementById("numerical").style.visibility = "visible";
+                        }
+                    </script>
+>>>>>>> xxx
                 </div>
             </div>
             <div class="modal-footer">
