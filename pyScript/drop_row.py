@@ -1,6 +1,7 @@
 import pandas as pd
 import sys, json, numpy as np
 import csv
+import os
 
 
 def main():
@@ -28,13 +29,6 @@ def main():
 
     df.to_csv(lines[0],index=False)
 
-    # output = {
-    #     "file" : (lines[2] == "all"),
-    #     "status" : lines[2],
-    # }
-    # output = json.dumps(output)
-
-    # print(output)
     
 
 # start process
