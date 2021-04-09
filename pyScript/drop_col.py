@@ -12,29 +12,8 @@ def main():
 
     df = df.drop(columns=cols)
 
-    if lines[2]<3:
-        fileNo = str(lines[2]+1)
-        fileName =  "file" + fileNo + "." + lines[3]
-        filePath = lines[4] + fileName
-    else: 
-        fileNo = str(lines[2])
-        fileName =  "file" + fileNo + "." + lines[3]
-        filePath = lines[4] + fileName
-        os.remove(lines[4] + "file0" + "." + lines[3])
-        os.rename(lines[4] + "file1" + "." + lines[3],lines[4] + "file0" + "." + lines[3])
-        os.rename(lines[4] + "file2" + "." + lines[3],lines[4] + "file1" + "." + lines[3])
-        os.rename(lines[4] + "file3" + "." + lines[3],lines[4] + "file2" + "." + lines[3])
-    df.to_csv(filePath, index=False)
+    df.to_csv(lines[1], index=False)
 
-
-    output = {
-        "filePath": filePath,
-        "fileName": fileName,
-        "fileNo": fileNo,
-    }
-    output = json.dumps(output)
-
-    print(output)
 
 
 # start process

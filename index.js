@@ -154,20 +154,48 @@ app.post("/categorical_labelling", function (req, res) {
 });
 
 app.post("/drop_columns", function (req, res) {
+  if(fileNo<3){
+    let oldPath = filePath;
+    fileNo+=1;
+    fileName = "file"+fileNo+"."+fileExt;
+    filePath = folderPath + fileName;
+    fs.copyFile(oldPath, filePath, function(err){
+      if(err){
+        console.log(err);
+      }
+    })
+  }
+  else{
+    fs.copyFile(folderPath+"file1."+fileExt, folderPath+"file0."+fileExt, function(err){
+      if(err){
+        console.log(err);
+      }
+      fs.copyFile(folderPath+"file2."+fileExt, folderPath+"file1."+fileExt, function(err){
+        if(err){
+          console.log(err);
+        }
+        fs.copyFile(folderPath+"file3."+fileExt, folderPath+"file2."+fileExt, function(err){
+          if(err){
+            console.log(err);
+          }
+        })
+      })
+    })
+  }
   // console.log(fileExt, fileNo, filePath, folderPath)
   let out = [];
   var py = spawn("python", ["pyScript/drop_col.py"]),
-    data = [req.body.drop_col, filePath, fileNo, fileExt , folderPath,fileName];
+    data = [req.body.drop_col, filePath];
 
   py.stdout.on("data", function (output) {
-    out.push(output.toString());
+    // out.push(output.toString());
   });
 
   py.stdout.on("end", function () {
-    out = JSON.parse(out[0]);
-    filePath = out.filePath;
-    fileName = out.fileName;
-    fileNo = parseInt(out.fileNo);
+    // out = JSON.parse(out[0]);
+    // filePath = out.filePath;
+    // fileName = out.fileName;
+    // fileNo = parseInt(out.fileNo);
     // console.log(filePath,fileName,fileNo);
     res.redirect("/data_analysis");
   });
