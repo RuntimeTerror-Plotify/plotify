@@ -52,8 +52,8 @@
 .tabs label:hover{
   color: #fff !important;
   background: #496b80; 
-background: -webkit-linear-gradient(to top, #26a0da, #496b80);  
-background: linear-gradient(to top, #26a0da, #496b80); 
+  background: -webkit-linear-gradient(to top, #26a0da, #496b80);  
+  background: linear-gradient(to top, #26a0da, #496b80); 
 }
 
 .tabs .tab-content {
@@ -187,7 +187,7 @@ background: linear-gradient(to top, #26a0da, #496b80);
     display: inline-block;
     width: 100%;
     font-family: 'Baloo 2', cursive;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .sidebar-nav li:before {
@@ -210,8 +210,6 @@ background: linear-gradient(to top, #26a0da, #496b80);
   color: #fff !important;
   background: rgb(255 255 255 / 25%) !important;
   border-radius: 10px;
-  margin-left: 5px; 
-   margin-right: 5px;
 }
 .sidebar-nav li:hover:before,
 .sidebar-nav li.open:hover:before {
@@ -283,6 +281,9 @@ background: linear-gradient(to top, #26a0da, #496b80);
 .sidebar-nav .dropdown-menu li:hover{
   margin-left: 0 !important;
   margin-right: 0 !important;
+}
+.sidebar-nav .dropdown-menu li a{
+  display: block;
 }
 .dropdown-menu.show {
     top: 0;
@@ -629,6 +630,8 @@ tbody tr:nth-child(even):hover{
  cursor:pointer;
 }
 
+
+
 .modal li p{
   display: inline-block;
   font-size: 16px; 
@@ -651,6 +654,47 @@ tbody tr:nth-child(even):hover{
 .modal-footer .btn:focus {
 	outline: 1px dashed rgba(38, 160, 218, 1) !important;
 	outline-offset: 3px;
+}
+
+
+.modal#fill_na label{
+  display: inline-block;
+  width: fit-content !important;
+  margin: 1px 4px;
+  padding: 5px 10px;
+  border-radius: 2px;
+  font-family: 'Baloo 2', cursive;
+  background-color: #26a0da;
+  box-shadow: 0 1px 4px 0 rgb(0, 0, 0, 14%);
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+  top: 4px;
+  color: #fff;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.modal#fill_na input[type=radio]{
+  position: absolute;
+  top: 0;
+  left: -9999px;
+}
+
+.modal#fill_na label:hover{
+  color: #fff !important;
+  background-color: #496b80 !important; 
+}
+
+.modal#fill_na [id^="mode"]:checked + label {
+  color: #fff !important;
+  background-color: #496b80 !important; 
 }
 
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {

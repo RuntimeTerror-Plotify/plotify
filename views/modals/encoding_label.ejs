@@ -2,42 +2,61 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="">Categorical Labelling Modal</h5>
+                <h5 class="modal-title">Encoding Label</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
+                <div class="tips">
+                    <div class="jumbotron">
+                        <h5 class="text-uppercase"><i class="far fa-hand-point-right"></i> TIPS</h5>
+                        <p>Label Encoding is preferred when your categorical data is Ordinal or say the gap between every
+                            category is similar</p>
+                    </div>
+                </div>
                 <form id="catLabels" method="POST" action="/categorical_labelling">
-                    <h1>Encoding Labels</h1>
-                    <h4>Tips:</h4>
-                    <p>Label Encoding is preferred when your categorical data is Ordinal or say the gap between every
-                        category is similar</p>
-                    <%if(list.categorical != "empty"){%>
-                    <input type="text" class="modal-search-Input bg-light form-control border small col-4"
-                        placeholder="Search for..." title="Type in a name">
-                    <ul class="modal-ul">
-                        <%list.categorical.forEach(function(column,i){%>
-                        <li>
-                            <label for="<%=column%>"><input type="checkbox" id='<%=column%>' name="encodingLabel"
-                                    value='<%=column%>'></input><%=column%></label>
-                            <%= list.unique[i]  %>
-                            <%=list.unique_val[i]%>
-                        </li>
+                    <div class="select-checkbox">
+                        <%if(list.categorical != "empty"){%>
+                            <p class="text-left">Select the column you want label:</p>
+                            <input type="text" class="modal-search-Input bg-light form-control border small"
+                                placeholder="Search for..." title="Type in a name" style="margin: 3px auto;width: 85% ;">
+                            <ul class="modal-ul">
+                                <%list.categorical.forEach(function(column,i){%>
+                                <li>
+                                    <label for="<%=column%>"><input type="checkbox" name="encodingLabel" value='<%=column%>'
+                                        id="<%=column%>" /><span style="padding-left: 10px;"><%=column%></span></label>
+                                        <p>
+                                            <span><%= list.unique[i]  %> unique values &nbsp; &nbsp;
+                                            <div class="dropdown" style="display: inline-block;">
+                                                <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <% list.unique_val[i].forEach(function(val){%>
+                                                        <a class="dropdown-item" href="#"><%=val%></a>
+                                                    <% }) %> 
+                                                </div>
+                                              </div>
+                                            </span>
+                                            
+                                        </p>
+                                    
+                                </li>
+        
+                                <%})%>
+                            </ul>
+                            <label><input type="checkbox" class="selectall" onchange="selectall(this,'encodingLabel')" /><span style="padding-left: 10px;">Select All</span></label> 
 
-                        <%})%>
-                    </ul>
-                    <% } %>
-                    <br>
-                    <input type="checkbox" class="selectall" onchange="selectall(this,'encodingLabel')">Select
-                    All</input>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <% } %>
                     </div>
 
-                </form>
-
             </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+
+        </form>
 
         </div>
     </div>

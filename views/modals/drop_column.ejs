@@ -24,13 +24,14 @@
                                 <% list.columns.forEach(function(col,i){ %>
                                 <li>
                                     <label for="<%=col%>"><input type="checkbox" name="drop_col" value="<%=col%>"
-                                            id="<%=col%>"><span style="padding-left: 10px;"><%=col%></span></label>
+                                            id="<%=col%>" /><span style="padding-left: 10px;"><%=col%></span></label>
                                     <p><span>NAN percent : <%=list.null_val[i]/(list.null_val[i]+list.count[i])*100%></span>
                                     </p>
                                 </li>
         
                                 <% }); %>
                             </ul>
+                            <label><input type="checkbox" class="selectall" onchange="selectall(this,'drop_col')" /><span style="padding-left: 10px;">Select All</span></label> 
                     </div>
                 
             </div>

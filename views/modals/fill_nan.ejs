@@ -2,17 +2,20 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="">Fill nan values</h5>
+                <h5 class="modal-title" id="">Fill Null Values</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <input type="radio" name="mode" value="categorical" id="modecat"/> <label for="modecat">Categorical</label> 
-                <input type="radio" name="mode" value="numerical" id="modenum" /> <label for="modenum">Numerical</label> 
+                <form action="/fill_nan" method="POST" id="form">
+                <input type="radio" name="col_type" value="cat" id="modecat"/> 
+                <label for="modecat">Categorical</label> 
+                <input type="radio" name="col_type" value="num" id="modenum" /> 
+                <label for="modenum">Numerical</label> 
                 <div id="categorical" style="padding-top:20px ;">
                     <% if(list.categorical != "empty") {%>
-                    <form action="/fill_nan" method="POST" id="catform">
+                    
                         <h5>Categorical Column</h5>
                         <div class="input-group mb-3">
                             <select name="column" class="custom-select">
@@ -29,12 +32,9 @@
                                 <option value="unk">Unknown Class</option>
                             </select>
                         </div>
-                        <button type="submit" name="col_type" value="cat">Submit</button>
-                    </form>
                     <% } %>
                 </div>
                 <div id="numerical" style="padding-top: 20px;">
-                    <form action="/fill_nan" method="POST" id="numform">
                         <h5>Numerical Column</h5>
                         <div class="input-group mb-3">
                             <select name="column" class="custom-select">
@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" name="col_type" value="num">Submit</button>
+                <button type="submit" class="btn btn-lg">Submit</button>
             </div>
             
             </form>

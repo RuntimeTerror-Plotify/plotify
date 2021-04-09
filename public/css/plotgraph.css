@@ -5,9 +5,7 @@
     font-size: 20px;
 }
 
-.plot_graph .toppanel label,
-.modal#drop_row #modeofdroprow label,
-.modal#fill_na label{
+.plot_graph .toppanel label{
   display: inline-block;
   margin: 1px 10px;
   padding: 14px 21px;
@@ -32,9 +30,7 @@
 
 .plot_graph .toppanel input[type=radio],
 .plot_graph .rightpanel input[type=radio],
-.plot_graph .leftpanel input[type=radio],
-.modal#drop_row #modeofdroprow input[type=radio], 
-.modal#fill_na input[type=radio]{
+.plot_graph .leftpanel input[type=radio]{
   position: absolute;
   top: 0;
   left: -9999px;
