@@ -39,6 +39,37 @@ let basic = [];
 let fileNo = 0;
 let folderPath = "./public/csv/"
 
+function handleFiles(){
+  if(fileNo<3){
+    let oldPath = filePath;
+    fileNo+=1;
+    fileName = "file"+fileNo+"."+fileExt;
+    filePath = folderPath + fileName;
+    fs.copyFile(oldPath, filePath, function(err){
+      if(err){
+        console.log(err);
+      }
+    })
+  }
+  else{
+    fs.copyFile(folderPath+"file1."+fileExt, folderPath+"file0."+fileExt, function(err){
+      if(err){
+        console.log(err);
+      }
+      fs.copyFile(folderPath+"file2."+fileExt, folderPath+"file1."+fileExt, function(err){
+        if(err){
+          console.log(err);
+        }
+        fs.copyFile(folderPath+"file3."+fileExt, folderPath+"file2."+fileExt, function(err){
+          if(err){
+            console.log(err);
+          }
+        })
+      })
+    })
+  }
+}
+
 app.get("/", function (req, res) {
   res.render("home_page");
 });
@@ -116,9 +147,7 @@ app.get("/data_analysis", function (req, res) {
 });
 
 app.post("/categorical_labelling", function (req, res) {
-  // var columnName = req.body.column;
-  // var type = req.body.type;
-  let out = []
+  handleFiles();
   var x = req.body;
   var column = [];
   var type = Object.keys(x)[0];
@@ -129,22 +158,11 @@ app.post("/categorical_labelling", function (req, res) {
       filePath: filePath,
       column: column,
       type: type,
-      fileName: fileName,
-      fileExt: fileExt,
-      fileNo: fileNo,
-      folderPath: folderPath,
     };
 
-  py.stdout.on("data", function (output) {
-    out.push(output.toString());
-  });
+  py.stdout.on("data", function (output) {});
 
   py.stdout.on("end", function () {
-    out = JSON.parse(out[0]);
-    filePath = out.filePath;
-    fileName = out.fileName;
-    fileNo = parseInt(out.fileNo);
-    // console.log(filePath,fileName,fileNo);
     res.redirect("/data_analysis");
   });
 
@@ -154,49 +172,15 @@ app.post("/categorical_labelling", function (req, res) {
 });
 
 app.post("/drop_columns", function (req, res) {
-  if(fileNo<3){
-    let oldPath = filePath;
-    fileNo+=1;
-    fileName = "file"+fileNo+"."+fileExt;
-    filePath = folderPath + fileName;
-    fs.copyFile(oldPath, filePath, function(err){
-      if(err){
-        console.log(err);
-      }
-    })
-  }
-  else{
-    fs.copyFile(folderPath+"file1."+fileExt, folderPath+"file0."+fileExt, function(err){
-      if(err){
-        console.log(err);
-      }
-      fs.copyFile(folderPath+"file2."+fileExt, folderPath+"file1."+fileExt, function(err){
-        if(err){
-          console.log(err);
-        }
-        fs.copyFile(folderPath+"file3."+fileExt, folderPath+"file2."+fileExt, function(err){
-          if(err){
-            console.log(err);
-          }
-        })
-      })
-    })
-  }
-  // console.log(fileExt, fileNo, filePath, folderPath)
+  handleFiles();
   let out = [];
   var py = spawn("python", ["pyScript/drop_col.py"]),
     data = [req.body.drop_col, filePath];
 
   py.stdout.on("data", function (output) {
-    // out.push(output.toString());
   });
 
   py.stdout.on("end", function () {
-    // out = JSON.parse(out[0]);
-    // filePath = out.filePath;
-    // fileName = out.fileName;
-    // fileNo = parseInt(out.fileNo);
-    // console.log(filePath,fileName,fileNo);
     res.redirect("/data_analysis");
   });
 
@@ -206,20 +190,13 @@ app.post("/drop_columns", function (req, res) {
 });
 
 app.post("/drop_rows", function (req, res) {
-  let out = [];
+  handleFiles()
   var py = spawn("python", ["pyScript/drop_row.py"]),
     data = [filePath, req.body.mode, req.body.subset, fileNo, fileExt , folderPath,fileName];
 
-  py.stdout.on("data", function (output) {
-    out.push(output.toString());
-  });
+  py.stdout.on("data", function (output) {});
 
   py.stdout.on("end", function () {
-    // console.log(out);
-    out = JSON.parse(out[0]);
-    filePath = out.filePath;
-    fileName = out.fileName;
-    fileNo = parseInt(out.fileNo);
     res.redirect("/data_analysis");
   });
 
@@ -258,7 +235,7 @@ app.post("/corr_matrix", function (req, res) {
 });
 
 app.post("/data_transform", function (req, res) {
-  let out = []
+  handleFiles()
   var x = req.body;
   var column = [];
   var type = Object.keys(x)[0];
@@ -269,24 +246,11 @@ app.post("/data_transform", function (req, res) {
       filePath: filePath,
       type: type,
       column: column,
-      fileName: fileName,
-      fileExt: fileExt,
-      fileNo: fileNo,
-      folderPath: folderPath,
     };
 
-  py.stdout.on("data", function (output) {
-    out.push(output.toString());
-  });
+  py.stdout.on("data", function (output) {});
 
   py.stdout.on("end", function () {
-    out = JSON.parse(out[0]);
-    filePath = out.filePath;
-    fileName = out.fileName;
-    fileNo = parseInt(out.fileNo);
-    // out = JSON.parse(out);
-    // console.log(out);
-    // res.send(out);
     res.redirect("/data_analysis");
   });
 
@@ -295,7 +259,9 @@ app.post("/data_transform", function (req, res) {
   py.stdin.end();
 });
 
+
 app.post("/pca", function (req, res) {
+  handleFiles()
   var out = "";
   var py = spawn("python", ["pyScript/pca.py"]),
     data = {
@@ -319,6 +285,7 @@ app.post("/pca", function (req, res) {
 });
 
 app.post("/fill_nan", function (req, res) {
+  handleFiles()
   console.log(filePath);
   let out = [];
   var py = spawn("python", ["pyScript/fill_nan.py"]),
@@ -339,6 +306,7 @@ app.post("/fill_nan", function (req, res) {
 });
 
 app.post("/remove_outlier", function (req, res) {
+  handleFiles()
   let out = [];
   var py = spawn("python", ["pyScript/remove_outlier.py"]),
     data = [filePath, req.body.thresh];
@@ -358,6 +326,7 @@ app.post("/remove_outlier", function (req, res) {
 });
 
 app.post("/clip_values", function (req, res) {
+  handleFiles()
   let out = [];
   var py = spawn("python", ["pyScript/clip_values.py"]),
     data = [filePath, req.body.minthresh, req.body.maxthresh, req.body.col];

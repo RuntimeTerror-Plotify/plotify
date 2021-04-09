@@ -62,21 +62,6 @@ def main():
     column = lines["column"]
     df = pd.read_csv(filePath)
 
-    if lines["fileNo"]<3:
-        fileNo = str(lines["fileNo"]+1)
-        fileName =  "file" + fileNo + "." + lines["fileExt"]
-        filePath = lines["folderPath"] + fileName
-
-    else: 
-        fileNo = str(lines["fileNo"])
-        fileName =  "file" + fileNo + "." + lines["fileExt"]
-        filePath = lines["folderPath"] + fileName
-        os.remove(lines["folderPath"] + "file0" + "." + lines["fileExt"])
-        os.rename(lines["folderPath"] + "file1" + "." + lines["fileExt"],lines["folderPath"] + "file0" + "." + lines["fileExt"])
-        os.rename(lines["folderPath"] + "file2" + "." + lines["fileExt"],lines["folderPath"] + "file1" + "." + lines["fileExt"])
-        os.rename(lines["folderPath"] + "file3" + "." + lines["fileExt"],lines["folderPath"] + "file2" + "." + lines["fileExt"])
-    
-
     if typeof == "min-max":
         minmax(column, df, filePath)
     elif typeof == "z-score":

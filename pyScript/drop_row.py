@@ -27,29 +27,8 @@ def main():
         # print(sub)
         df = df.dropna(axis = 0, how = 'any',subset = sub)
 
-    if lines[3]<3:
-        fileNo = str(lines[3]+1)
-        fileName =  "file" + fileNo + "." + lines[4]
-        filePath = lines[5] + fileName
-    else: 
-        fileNo = str(lines[3])
-        fileName =  "file" + fileNo + "." + lines[4]
-        filePath = lines[5] + fileName
-        os.remove(lines[5] + "file0" + "." + lines[4])
-        os.rename(lines[5] + "file1" + "." + lines[4],lines[5] + "file0" + "." + lines[4])
-        os.rename(lines[5] + "file2" + "." + lines[4],lines[5] + "file1" + "." + lines[4])
-        os.rename(lines[5] + "file3" + "." + lines[4],lines[5] + "file2" + "." + lines[4])
+    df.to_csv(lines[0],index=False)
 
-    df.to_csv(filePath,index=False)
-
-    output = {
-        "filePath": filePath,
-        "fileName": fileName,
-        "fileNo": fileNo,
-    }
-    output = json.dumps(output)
-
-    print(output)
     
 
 # start process
