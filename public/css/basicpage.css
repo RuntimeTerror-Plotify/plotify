@@ -594,7 +594,8 @@ tbody tr:nth-child(even):hover{
   color: rgba(0,0,0,0.5);
 }
 
-.modal .modal-body .tips h5{
+.modal .modal-body .tips h5,
+.modal .modal-body .recommendation h5{
   font-weight: bold;
   color: rgba(0,0,0,0.5);
 }

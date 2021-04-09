@@ -2,45 +2,55 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Data Transform Modal</h5>
+                <h5 class="modal-title">Min-Max Normalisation</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
+                <div class="tips">
+                    <div class="jumbotron">
+                        <h5 class="text-uppercase"><i class="far fa-hand-point-right"></i> TIPS</h5>
+                        <p>Normalisation using Min-Max is preferred when you want to neglect outlier's impact</p>
+                    </div>
+                </div>
                 <form id="min-max" method="POST" action="/data_transform">
-                    <%if(list.numerical != "empty"){%>
-                    <h1>Min-Max</h1>
-                    <h4>Tips:</h4>
-                    <p>Normalisation using Min-Max is preferred when you want to neglect outlier's impact</p>
-                    <h4>Recommendations:</h4>
-
+                    <div class="select-checkbox">
+                        <%if(list.numerical != "empty"){%>
+                            <p class="text-left">Select the column you want label:</p>
+                            <input type="text" class="modal-search-Input bg-light form-control border small"
+                                placeholder="Search for..." title="Type in a name" style="margin: 3px auto;width: 85% ;">
+                            <ul class="modal-ul">
+                                <%list.numerical.forEach(function(column,i){%>
+                                <li>
+                                    <label for="<%=column%>"><input type="checkbox" name="min-max" value='<%=column%>'
+                                        id="<%=column%>" /><span style="padding-left: 10px;"><%=column%></span></label>
+                                </li>
+        
+                                <%})%>
+                            </ul>
+                            <label><input type="checkbox" class="selectall" onchange="selectall(this,'min-max')" /><span style="padding-left: 10px;">Select All</span></label> 
+                        <% } %>
+                    </div>
                     <% var recommended = [] ; list.skewness.forEach(function(skew,i){%>
                     <%  if(skew<1.5 && skew>-1.5) recommended.push(list.numerical[i]);%>
                     <%})%>
-
-                    <p>Recommended For :
-                        <%if(recommended.length){%>
-                        <%= recommended %> </p>
-                    <% }else{ %>
-                    none </p>
-                    <% } %>
-
-                    <% list.numerical.forEach(function(column){%>
-                    <input type="checkbox" name="min-max" value='<%=column%>'><%=column%></input>
-                    <%})%>
-                    <% } %>
-                    <br>
-                    <input type="checkbox" class="selectall" onchange="selectall(this,'min-max')">Select
-                    All</input>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-
-                    <br>
-                </form>
-
+                    <%if(recommended.length){%>
+                        <div class="recommendation">
+                            <div class="jumbotron">
+                                <h5 class="text-uppercase"><i class="far fa-hand-point-right"></i> Recommended </h5>
+                                <p>We recommend you the following columns:</p>
+                                <% recommended.forEach(function(val){ %> 
+                                <span class="border bg-light py-1 px-2 m-1 border-dark rounded" style="display: inline-block;"> <%= val %> </span>
+                                <% }) %>
+                            </div>
+                        </div>
+                    <% } %> 
             </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-lg">Submit</button>
+            </div>
+        </form>
 
         </div>
     </div>
