@@ -132,7 +132,14 @@ def main():
                     unique.append(x)
 
                 for i in categorical:
-                    uniqueValues.append(df[i].unique().tolist())
+                    unlist = []
+                    for j in df[i].unique().tolist():
+                        if pd.isna(j):
+                            unlist.append("NAN")
+                        else:
+                            unlist.append(j)
+
+                    uniqueValues.append(unlist)
 
                 top = []
                 for x in cat[2, :]:
