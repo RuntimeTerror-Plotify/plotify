@@ -1,4 +1,8 @@
 $(document).ready(function () {
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+
   var trigger = $(".hamburger"),
     overlay = $(".overlay"),
     isClosed = false;
@@ -25,34 +29,36 @@ $(document).ready(function () {
     $("#wrapper").toggleClass("toggled");
   });
 
-  $(".modal#fill_na #categorical").css("display","none");
-  $(".modal#fill_na #numerical").css("display","none");
+  $(".modal#fill_na #categorical").css("display", "none");
+  $(".modal#fill_na #numerical").css("display", "none");
 
-  $("#fill_na .modal-body input[type=radio][name=col_type]").change(function(){
-    console.log(this);
-    if(this.value === "cat"){
-      console.log("1");
-      $(".modal#fill_na #form")[0].reset();
-      $(this).prop("checked", true);
-      $(".modal#fill_na #modenum").prop("checked", false);
-      $(".modal#fill_na #numerical").css("display","none");
-      $(".modal#fill_na #categorical").css("display","block");
-    }else if(this.value === "num"){
-      console.log("2");
-      $(".modal#fill_na #form")[0].reset();
-      $(this).prop("checked", true);
-      $(".modal#fill_na #modecat").prop("checked", false);
-      $(".modal#fill_na #categorical").css("display","none");
-      $(".modal#fill_na #numerical").css("display","block");
+  $("#fill_na .modal-body input[type=radio][name=col_type]").change(
+    function () {
+      console.log(this);
+      if (this.value === "cat") {
+        console.log("1");
+        $(".modal#fill_na #form")[0].reset();
+        $(this).prop("checked", true);
+        $(".modal#fill_na #modenum").prop("checked", false);
+        $(".modal#fill_na #numerical").css("display", "none");
+        $(".modal#fill_na #categorical").css("display", "block");
+      } else if (this.value === "num") {
+        console.log("2");
+        $(".modal#fill_na #form")[0].reset();
+        $(this).prop("checked", true);
+        $(".modal#fill_na #modecat").prop("checked", false);
+        $(".modal#fill_na #categorical").css("display", "none");
+        $(".modal#fill_na #numerical").css("display", "block");
+      }
     }
-  });
+  );
 
   $(".modal-search-Input").keyup(function () {
     var $input = $(this);
     filter = $input.val().toUpperCase();
     var ul = $(this).next(".modal-ul");
     var li = ul.find("li");
-  
+
     for (i = 0; i < li.length; i++) {
       la = li[i].getElementsByTagName("label")[0];
       txtValue = la.textContent || la.innerText;
@@ -63,12 +69,7 @@ $(document).ready(function () {
       }
     }
   });
-  
 });
-
-
-                   
-
 
 function corrSub(event) {
   event.preventDefault();
@@ -99,8 +100,6 @@ function corrSub(event) {
   });
 }
 
-
-
 function selectall(input, name) {
   var checked = input.checked;
 
@@ -110,8 +109,6 @@ function selectall(input, name) {
     this.checked = checked;
   });
 }
-
-
 
 function run() {
   $.ajax({
@@ -128,16 +125,12 @@ function run() {
 
       Plotly.newPlot("pcaGraph", data);
 
-      console.log(response.keep);
-
       $(".pcaRec").html("Keep First " + response.keep + " Columns");
 
       $("#pcaDiv").css("display", "block");
+      $("#pca").on("hidden.bs.modal", function () {
+        location.reload();
+      });
     },
   });
 }
-
-
-
-    
-    

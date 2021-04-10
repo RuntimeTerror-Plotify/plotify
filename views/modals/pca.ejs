@@ -7,6 +7,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <%if(list.numerical != "empty"){%>
             <div class="modal-body">
                 <button onclick="run()">Run</button>
 
@@ -27,19 +28,25 @@
                         <p class="pcaRec"></p>
 
                         <% list.numerical.forEach(function(column,i){%>
-                        <input type="checkbox" id='PC<%=i+1%>' name="pca" value='PC<%=i+1%>'>PC<%=i+1%></input>
+                        <input type="checkbox" id='PC<%=i+1%>' name="drop_col" value='PC<%=i+1%>'>PC<%=i+1%></input>
                         <%})%>
                         <br>
-                        <input type="checkbox" class="selectall" onchange="selectall(this,'pca')">Select
+                        <input type="checkbox" class="selectall" onchange="selectall(this,'drop_col')">Select
                         All</input>
                         <br>
                         <button type="submit">Submit</button>
                     </form>
 
                 </div>
-
-
             </div>
+            <% }else{ %>
+            <div class="modal-body">
+                <div class="jumbotron">
+                    <h1 class="display-4">Opps!!!</h1>
+                    <p class="lead">You don't have any Numerical columns</p>
+                </div>
+            </div>
+            <% } %>
 
         </div>
     </div>

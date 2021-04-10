@@ -580,7 +580,8 @@ tbody tr:nth-child(even):hover{
 .modal .jumbotron .far.fa-hand-point-right {
   color: green;
 }
-.modal .jumbotron{
+.modal .tips .jumbotron , 
+.modal .recommendation .jumbotron{
   padding: 1rem 1rem !important;
   border: 2px solid green;
 }

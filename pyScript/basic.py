@@ -8,36 +8,36 @@ def main():
     lines = sys.stdin.readlines()
     lines = json.loads(lines[0])
 
+    shape = "empty"
+    null_val = "empty"
+    colName = "empty"
+    dtypes = "empty"
+    count = "empty"
+    categorical = "empty"
+    numerical = "empty"
+    mean = "empty"
+    median = "empty"
+    minimum = "empty"
+    maximum = "empty"
+    std = "empty"
+    quant25 = "empty"
+    quant50 = "empty"
+    quant75 = "empty"
+    skewness = "empty"
+    unique = "empty"
+    uniqueValues = "empty"
+    top = "empty"
+    freq = "empty"
+
     try:
-        df = pd.read_csv(lines)
-        df = df.dropna(how="all", axis="columns")
-        df.to_csv(lines, index=False)
+        try:
+            df = pd.read_csv(lines)
+            df = df.dropna(how="all", axis="columns")
+            df.to_csv(lines, index=False)
 
-        colName = "empty"
-        dtypes = "empty"
-        count = "empty"
-        categorical = "empty"
-        numerical = "empty"
-        mean = "empty"
-        median = "empty"
-        minimum = "empty"
-        maximum = "empty"
-        std = "empty"
-        quant25 = "empty"
-        quant50 = "empty"
-        quant75 = "empty"
-        skewness = "empty"
-        unique = "empty"
-        uniqueValues = "empty"
-        top = "empty"
-        freq = "empty"
-
-        if df.empty:
-            output = {"error": "No Data Parsed"}
-
-        else:
             colName = []
             dtypes = []
+            shape = df.shape
 
             for x in df.dtypes.iteritems():
                 colName.append(x[0])
@@ -64,14 +64,14 @@ def main():
                     if math.isnan(x):
                         mean.append(0.0)
                     else:
-                        mean.append(x)
+                        mean.append(round(x, 4))
 
                 median = []
                 for x in df.median():
                     if math.isnan(x):
                         median.append(0.0)
                     else:
-                        median.append(x)
+                        median.append(round(x, 4))
 
                 # minimum = df[numerical].min().tolist()
                 minimum = []
@@ -79,7 +79,7 @@ def main():
                     if math.isnan(x):
                         minimum.append(0.0)
                     else:
-                        minimum.append(x)
+                        minimum.append(round(x, 4))
 
                 # maximum = df[numerical].max().tolist()
                 maximum = []
@@ -87,14 +87,14 @@ def main():
                     if math.isnan(x):
                         maximum.append(0.0)
                     else:
-                        maximum.append(x)
+                        maximum.append(round(x, 4))
 
                 std = []
                 for x in df.std():
                     if math.isnan(x):
                         std.append(0.0)
                     else:
-                        std.append(x)
+                        std.append(round(x, 4))
 
                 df.quantile(q=0.25)
                 quant25 = []
@@ -102,21 +102,21 @@ def main():
                     if math.isnan(x):
                         quant25.append(0.0)
                     else:
-                        quant25.append(x)
+                        quant25.append(round(x, 4))
 
                 quant50 = []
                 for x in df.quantile(q=0.5):
                     if math.isnan(x):
                         quant50.append(0.0)
                     else:
-                        quant50.append(x)
+                        quant50.append(round(x, 4))
 
                 quant75 = []
                 for x in df.quantile(q=0.75):
                     if math.isnan(x):
                         quant75.append(0.0)
                     else:
-                        quant75.append(x)
+                        quant75.append(round(x, 4))
                 skewness = []
                 for i in numerical:
                     skewness.append(round(df[i].skew(), 3))
@@ -158,28 +158,31 @@ def main():
             if len(null_val) == 0:
                 null_val = "empty"
 
-            output = {
-                "shape": df.shape,
-                "columns": colName,
-                "dtype": dtypes,
-                "count": count,
-                "null_val": null_val,
-                "numerical": numerical,
-                "mean": mean,
-                "median": median,
-                "minimum": minimum,
-                "maximum": maximum,
-                "std": std,
-                "quant25": quant25,
-                "quant50": quant50,
-                "quant75": quant75,
-                "skewness": skewness,
-                "categorical": categorical,
-                "unique": unique,
-                "unique_val": uniqueValues,
-                "top": top,
-                "freq": freq,
-            }
+        except:
+            x = 1
+
+        output = {
+            "shape": shape,
+            "columns": colName,
+            "dtype": dtypes,
+            "count": count,
+            "null_val": null_val,
+            "numerical": numerical,
+            "mean": mean,
+            "median": median,
+            "minimum": minimum,
+            "maximum": maximum,
+            "std": std,
+            "quant25": quant25,
+            "quant50": quant50,
+            "quant75": quant75,
+            "skewness": skewness,
+            "categorical": categorical,
+            "unique": unique,
+            "unique_val": uniqueValues,
+            "top": top,
+            "freq": freq,
+        }
 
     except:
         output = {"error": "No Data Parsed"}

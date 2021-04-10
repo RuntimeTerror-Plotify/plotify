@@ -7,6 +7,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <%if(list.numerical != "empty"){%>
             <div class="modal-body">
                 <div class="tips">
                     <div class="jumbotron">
@@ -14,9 +15,9 @@
                         <p>Normalisation using Min-Max is preferred when you want to neglect outlier's impact</p>
                     </div>
                 </div>
+
                 <form id="min-max" method="POST" action="/data_transform">
                     <div class="select-checkbox">
-                        <%if(list.numerical != "empty"){%>
                             <p class="text-left">Select the column you want Normalise:</p>
                             <input type="text" class="modal-search-Input bg-light form-control border small"
                                 placeholder="Search for..." title="Type in a name" style="margin: 3px auto;width: 85% ;">
@@ -25,32 +26,43 @@
                                 <li>
                                     <label for="<%=column%>"><input type="checkbox" name="min-max" value='<%=column%>'
                                         id="<%=column%>" /><span style="padding-left: 10px;"><%=column%></span></label>
-                                </li>
-        
-                                <%})%>
-                            </ul>
-                            <label><input type="checkbox" class="selectall" onchange="selectall(this,'min-max')" /><span style="padding-left: 10px;">Select All</span></label> 
-                        <% } %>
+                            </li>
+
+                            <%})%>
+                        </ul>
+                        <label><input type="checkbox" class="selectall" onchange="selectall(this,'min-max')" /><span
+                                style="padding-left: 10px;">Select All</span></label>
                     </div>
+
                     <% var recommended = [] ; list.skewness.forEach(function(skew,i){%>
                     <%  if(skew<1.5 && skew>-1.5) recommended.push(list.numerical[i]);%>
                     <%})%>
                     <%if(recommended.length){%>
-                        <div class="recommendation">
-                            <div class="jumbotron">
-                                <h5 class="text-uppercase"><i class="far fa-hand-point-right"></i> Recommended </h5>
-                                <p>We recommend you the following columns:</p>
-                                <% recommended.forEach(function(val){ %> 
-                                <span class="border bg-light py-1 px-2 m-1 border-dark rounded" style="display: inline-block;"> <%= val %> </span>
-                                <% }) %>
-                            </div>
+                    <div class="recommendation">
+                        <div class="jumbotron">
+                            <h5 class="text-uppercase"><i class="far fa-hand-point-right"></i> Recommended </h5>
+                            <p>We recommend you the following columns:</p>
+                            <% recommended.forEach(function(val){ %>
+                            <span class="border bg-light py-1 px-2 m-1 border-dark rounded"
+                                style="display: inline-block;"> <%= val %> </span>
+                            <% }) %>
                         </div>
-                    <% } %> 
+                    </div>
+                    <% } %>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-lg">Submit</button>
             </div>
-        </form>
+            </form>
+            <% }else{ %>
+            <div class="modal-body">
+                <div class="jumbotron">
+                    <h1 class="display-4">Opps!!!</h1>
+                    <p class="lead">You don't have any Numerical columns</p>
+                </div>
+            </div>
+
+            <% } %>
 
         </div>
     </div>

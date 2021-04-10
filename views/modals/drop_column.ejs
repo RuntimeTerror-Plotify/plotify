@@ -2,11 +2,12 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="">Drop Columns</h5>
+                <h5 class="modal-title">Drop Columns</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <%if(list.columns != "empty"){%>
             <div class="modal-body">
                 <div class="tips">
                     <div class="jumbotron">
@@ -17,28 +18,38 @@
                 <form action="/drop_columns" method="POST">
                     <div class="select-checkbox">
                         <p class="text-left">Select the column you want to Drop :</p>
-                            <input type="text" class="modal-search-Input bg-light form-control border small"
-                                placeholder="Search for..." title="Type in a name" style="margin: 3px auto;width: 85% ;">
-                            
-                            <ul class="modal-ul">
-                                <% list.columns.forEach(function(col,i){ %>
-                                <li>
-                                    <label for="<%=col%>"><input type="checkbox" name="drop_col" value="<%=col%>"
-                                            id="<%=col%>" /><span style="padding-left: 10px;"><%=col%></span></label>
-                                    <p><span>NAN percent : <%=list.null_val[i]/(list.null_val[i]+list.count[i])*100%></span>
-                                    </p>
-                                </li>
-        
-                                <% }); %>
-                            </ul>
-                            <label><input type="checkbox" class="selectall" onchange="selectall(this,'drop_col')" /><span style="padding-left: 10px;">Select All</span></label> 
+                        <input type="text" class="modal-search-Input bg-light form-control border small"
+                            placeholder="Search for..." title="Type in a name" style="margin: 3px auto;width: 85% ;">
+
+                        <ul class="modal-ul">
+                            <% list.columns.forEach(function(col,i){ %>
+                            <li>
+                                <label for="<%=col%>"><input type="checkbox" name="drop_col" value="<%=col%>"
+                                        id="<%=col%>" /><span style="padding-left: 10px;"><%=col%></span></label>
+                                <p><span>NAN percent : <%=list.null_val[i]/(list.null_val[i]+list.count[i])*100%></span>
+                                </p>
+                            </li>
+
+                            <% }); %>
+                        </ul>
+                        <label><input type="checkbox" class="selectall" onchange="selectall(this,'drop_col')" /><span
+                                style="padding-left: 10px;">Select All</span></label>
                     </div>
-                
+
             </div>
             <div class="modal-footer">
                 <button class="btn btn-lg" type="submit"> &nbsp;&nbsp;Drop&nbsp;&nbsp; </button>
             </div>
             </form>
+            <% }else{ %>
+            <div class="modal-body">
+                <div class="jumbotron">
+                    <h1 class="display-4">Opps!!!</h1>
+                    <p class="lead">You don't have any columns</p>
+                </div>
+            </div>
+
+            <% } %>
         </div>
     </div>
 </div>

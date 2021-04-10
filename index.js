@@ -33,40 +33,51 @@ var uploadDisk = multer({
 });
 
 let filePath = "";
-let fileExt = ""; 
+let fileExt = "";
 let fileName = "";
 let basic = [];
 let fileNo = 0;
-let folderPath = "./public/csv/"
+let folderPath = "./public/csv/";
 
-function handleFiles(){
-  if(fileNo<3){
+function handleFiles() {
+  if (fileNo < 3) {
     let oldPath = filePath;
-    fileNo+=1;
-    fileName = "file"+fileNo+"."+fileExt;
+    fileNo += 1;
+    fileName = "file" + fileNo + "." + fileExt;
     filePath = folderPath + fileName;
-    fs.copyFile(oldPath, filePath, function(err){
-      if(err){
+    fs.copyFile(oldPath, filePath, function (err) {
+      if (err) {
         console.log(err);
       }
-    })
-  }
-  else{
-    fs.copyFile(folderPath+"file1."+fileExt, folderPath+"file0."+fileExt, function(err){
-      if(err){
-        console.log(err);
-      }
-      fs.copyFile(folderPath+"file2."+fileExt, folderPath+"file1."+fileExt, function(err){
-        if(err){
+    });
+  } else {
+    fs.copyFile(
+      folderPath + "file1." + fileExt,
+      folderPath + "file0." + fileExt,
+      function (err) {
+        if (err) {
           console.log(err);
         }
-        fs.copyFile(folderPath+"file3."+fileExt, folderPath+"file2."+fileExt, function(err){
-          if(err){
-            console.log(err);
+        fs.copyFile(
+          folderPath + "file2." + fileExt,
+          folderPath + "file1." + fileExt,
+          function (err) {
+            if (err) {
+              console.log(err);
+            }
+            fs.copyFile(
+              folderPath + "file3." + fileExt,
+              folderPath + "file2." + fileExt,
+              function (err) {
+                if (err) {
+                  console.log(err);
+                }
+              }
+            );
           }
-        })
-      })
-    })
+        );
+      }
+    );
   }
 }
 
@@ -74,36 +85,38 @@ app.get("/", function (req, res) {
   res.render("home_page");
 });
 
-app.get("/revert", function(req,res){
-  if(fileNo > 0){
+app.get("/revert", function (req, res) {
+  if (fileNo > 0) {
     fs.unlink(filePath, (err) => {
-      console.log('File deleted ...');
+      console.log("File deleted ...");
       fileNo -= 1;
-      fileName = "file"+fileNo+"."+fileExt;
+      fileName = "file" + fileNo + "." + fileExt;
       filePath = folderPath + fileName;
       res.redirect("/data_analysis");
     });
+  } else {
+    res.redirect("/data_analysis");
   }
-  else{
-  res.redirect("/data_analysis");
-}
 });
 
 app.post("/file_upload", uploadDisk.single("file"), function (req, res) {
   fileNo = 0;
   fileExt = req.file.originalname.split(".").pop();
-  fs.rename(req.file.destination + req.file.originalname, req.file.destination + "file" + fileNo + "." + fileExt,
-         function(err){
-           console.log(err);
-         });
+  fs.rename(
+    req.file.destination + req.file.originalname,
+    req.file.destination + "file" + fileNo + "." + fileExt,
+    function (err) {
+      console.log(err);
+    }
+  );
   filePath = req.file.destination + "file" + fileNo + "." + fileExt;
   fileName = "file" + fileNo + "." + fileExt;
   res.redirect("/data_analysis");
 });
 
-app.get("/download",function(req,res){
+app.get("/download", function (req, res) {
   res.download(filePath);
-})
+});
 
 app.get("/data_analysis", function (req, res) {
   basic = [];
@@ -118,7 +131,7 @@ app.get("/data_analysis", function (req, res) {
   py.stdout.on("end", function () {
     try {
       basic = JSON.parse(basic[0]);
-      if (basic.shape) {
+      if (!(basic.error === "No Data Parsed")) {
         var head;
         fs.readFile(filePath, "UTF-8", function (err, csv) {
           $.csv.toArrays(csv, {}, function (err, data) {
@@ -127,14 +140,14 @@ app.get("/data_analysis", function (req, res) {
               list: basic,
               fileName: fileName,
               filePath: filePath,
-              fileNo:fileNo,
+              fileNo: fileNo,
               head: head,
               data: data.slice(0, 20),
             });
           });
         });
       } else {
-        res.send("No Data is Parsed , Your data may be Empty");
+        res.render("error404");
       }
     } catch (err) {
       res.send("Can't Parse to JSON");
@@ -177,8 +190,7 @@ app.post("/drop_columns", function (req, res) {
   var py = spawn("python", ["pyScript/drop_col.py"]),
     data = [req.body.drop_col, filePath];
 
-  py.stdout.on("data", function (output) {
-  });
+  py.stdout.on("data", function (output) {});
 
   py.stdout.on("end", function () {
     res.redirect("/data_analysis");
@@ -190,9 +202,17 @@ app.post("/drop_columns", function (req, res) {
 });
 
 app.post("/drop_rows", function (req, res) {
-  handleFiles()
+  handleFiles();
   var py = spawn("python", ["pyScript/drop_row.py"]),
-    data = [filePath, req.body.mode, req.body.subset, fileNo, fileExt , folderPath,fileName];
+    data = [
+      filePath,
+      req.body.mode,
+      req.body.subset,
+      fileNo,
+      fileExt,
+      folderPath,
+      fileName,
+    ];
 
   py.stdout.on("data", function (output) {});
 
@@ -235,7 +255,7 @@ app.post("/corr_matrix", function (req, res) {
 });
 
 app.post("/data_transform", function (req, res) {
-  handleFiles()
+  handleFiles();
   var x = req.body;
   var column = [];
   var type = Object.keys(x)[0];
@@ -259,9 +279,8 @@ app.post("/data_transform", function (req, res) {
   py.stdin.end();
 });
 
-
 app.post("/pca", function (req, res) {
-  handleFiles()
+  handleFiles();
   var out = "";
   var py = spawn("python", ["pyScript/pca.py"]),
     data = {
@@ -285,7 +304,7 @@ app.post("/pca", function (req, res) {
 });
 
 app.post("/fill_nan", function (req, res) {
-  handleFiles()
+  handleFiles();
   console.log(filePath);
   let out = [];
   var py = spawn("python", ["pyScript/fill_nan.py"]),
@@ -306,7 +325,7 @@ app.post("/fill_nan", function (req, res) {
 });
 
 app.post("/remove_outlier", function (req, res) {
-  handleFiles()
+  handleFiles();
   let out = [];
   var py = spawn("python", ["pyScript/remove_outlier.py"]),
     data = [filePath, req.body.thresh];
@@ -326,7 +345,7 @@ app.post("/remove_outlier", function (req, res) {
 });
 
 app.post("/clip_values", function (req, res) {
-  handleFiles()
+  handleFiles();
   let out = [];
   var py = spawn("python", ["pyScript/clip_values.py"]),
     data = [filePath, req.body.minthresh, req.body.maxthresh, req.body.col];

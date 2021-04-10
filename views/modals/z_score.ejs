@@ -7,6 +7,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <%if(list.numerical != "empty"){%>
             <div class="modal-body">
                 <div class="tips">
                     <div class="jumbotron">
@@ -16,7 +17,6 @@
                 </div>
                 <form id="z-score" method="POST" action="/data_transform">
                     <div class="select-checkbox">
-                        <%if(list.numerical != "empty"){%>
                             <p class="text-left">Select the column you want to Normalise:</p>
                             <input type="text" class="modal-search-Input bg-light form-control border small"
                                 placeholder="Search for..." title="Type in a name" style="margin: 3px auto;width: 85% ;">
@@ -30,7 +30,6 @@
                                 <%})%>
                             </ul>
                             <label><input type="checkbox" class="selectall" onchange="selectall(this,'z-score')" /><span style="padding-left: 10px;">Select All</span></label> 
-                        <% } %>
                     </div>
 
                     <% var recommended = [] ; list.skewness.forEach(function(skew,i){%>
@@ -56,6 +55,15 @@
                 <button type="submit" class="btn btn-lg">Submit</button>
             </div>
         </form>
+
+            <% }else{ %>
+            <div class="modal-body">
+                <div class="jumbotron">
+                    <h1 class="display-4">Opps!!!</h1>
+                    <p class="lead">You don't have any Numerical columns</p>
+                </div>
+            </div>
+            <% } %>
 
         </div>
     </div>
