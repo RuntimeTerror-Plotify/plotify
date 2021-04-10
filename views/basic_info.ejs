@@ -245,7 +245,10 @@
                             <p class="text-uppercase font-weight-bold" style="font-size: 20px;color: rgba(0,0,0,0.5);">
                                 statistical description for numerical data</p>
                             <% if (list.numerical == "empty"){ %>
-                            <h6>Numerical Dataframe seems to be empty</h6>
+                            <div class="jumbotron">
+                                <h1 class="display-4">Opps!!!</h1>
+                                <p class="lead">You don't have any Numerical data</p>
+                            </div>
                             <% } else{%>
                             <div class="wrap-table100">
                                 <div class="table100 border">
@@ -318,7 +321,10 @@
                                             <div>
                                                 <p class="text-uppercase font-weight-bold" style="font-size: 20px;color: rgba(0,0,0,0.5);">statistical description for categorical data</p>
                                                 <% if (list.categorical == "empty"){ %>
-                            <h6>Categorical Dataframe seems to be empty</h6>
+                            <div class="jumbotron">
+                                <h1 class="display-4">Opps!!!</h1>
+                                <p class="lead">You don't have any Categorical data</p>
+                            </div>
                             <% } else{%>
                             <div class="wrap-table100">
                                 <div class="table100 border">
@@ -405,7 +411,10 @@
                             <br>
                             <br>
                             <% if (list.numerical == "empty"){ %>
-                            <h6>Numerical Dataframe seems to be empty</h6>
+                            <div class="jumbotron">
+                                <h1 class="display-4">Opps!!!</h1>
+                                <p class="lead">You don't have any Numerical data</p>
+                            </div>
                             <% }else{ %>
                             <% list.numerical.forEach(function(column){%>
                             <input type="checkbox" name="corrColumn" value='<%=column%>'><%=column%></input>
@@ -436,6 +445,7 @@
                                 ">Download</button>
                             </form>
                         </div>
+                        <% if(list.columns != "empty"){ %>
                         <div class="wrap-table100">
                             <div class="table100 border">
                                 <table>
@@ -458,6 +468,12 @@
                                 </table>
                             </div>
                         </div>
+                        <% }else{ %>
+                        <div class="jumbotron">
+                            <h1 class="display-4">Opps!!!</h1>
+                            <p class="lead">You don't have any Categorical data</p>
+                        </div>
+                        <% } %>
 
                     </div>
                 </li>

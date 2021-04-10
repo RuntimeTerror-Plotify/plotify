@@ -7,9 +7,10 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <%if(list.numerical != "empty"){%>
             <div class="modal-body">
                 <form id="cube-root" method="POST" action="/data_transform">
-                    <%if(list.numerical != "empty"){%>
+
                     <h1>Cube-Root</h1>
                     <h4>Tips:</h4>
                     <p>Cube Root transformation is used when when skewness in your data is Positive</p>
@@ -28,7 +29,7 @@
                     <% list.numerical.forEach(function(column){%>
                     <input type="checkbox" name="cube-root" value='<%=column%>'><%=column%></input>
                     <%})%>
-                    <% } %>
+
                     <br>
                     <input type="checkbox" class="selectall" onchange="selectall(this,'cube-root')">Select
                     All</input>
@@ -40,6 +41,14 @@
                 </form>
 
             </div>
+            <% }else{ %>
+            <div class="modal-body">
+                <div class="jumbotron">
+                    <h1 class="display-4">Opps!!!</h1>
+                    <p class="lead">You don't have any Numerical columns</p>
+                </div>
+            </div>
+            <% } %>
 
         </div>
     </div>

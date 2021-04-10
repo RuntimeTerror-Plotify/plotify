@@ -64,14 +64,14 @@ def main():
                     if math.isnan(x):
                         mean.append(0.0)
                     else:
-                        mean.append(x)
+                        mean.append(round(x, 4))
 
                 median = []
                 for x in df.median():
                     if math.isnan(x):
                         median.append(0.0)
                     else:
-                        median.append(x)
+                        median.append(round(x, 4))
 
                 # minimum = df[numerical].min().tolist()
                 minimum = []
@@ -79,7 +79,7 @@ def main():
                     if math.isnan(x):
                         minimum.append(0.0)
                     else:
-                        minimum.append(x)
+                        minimum.append(round(x, 4))
 
                 # maximum = df[numerical].max().tolist()
                 maximum = []
@@ -87,14 +87,14 @@ def main():
                     if math.isnan(x):
                         maximum.append(0.0)
                     else:
-                        maximum.append(x)
+                        maximum.append(round(x, 4))
 
                 std = []
                 for x in df.std():
                     if math.isnan(x):
                         std.append(0.0)
                     else:
-                        std.append(x)
+                        std.append(round(x, 4))
 
                 df.quantile(q=0.25)
                 quant25 = []
@@ -102,21 +102,21 @@ def main():
                     if math.isnan(x):
                         quant25.append(0.0)
                     else:
-                        quant25.append(x)
+                        quant25.append(round(x, 4))
 
                 quant50 = []
                 for x in df.quantile(q=0.5):
                     if math.isnan(x):
                         quant50.append(0.0)
                     else:
-                        quant50.append(x)
+                        quant50.append(round(x, 4))
 
                 quant75 = []
                 for x in df.quantile(q=0.75):
                     if math.isnan(x):
                         quant75.append(0.0)
                     else:
-                        quant75.append(x)
+                        quant75.append(round(x, 4))
                 skewness = []
                 for i in numerical:
                     skewness.append(round(df[i].skew(), 3))
