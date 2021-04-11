@@ -2,6 +2,7 @@ let graphType;
 let columnName;
 let typeOfData;
 let info;
+var layout;
 
 fileName = fileName;
 shape = shape.split(",").map((value) => {
@@ -99,7 +100,10 @@ function gettrace(trace) {
         x: info,
         type: graphType,
         name: columnName,
+        marker: { color: "red" },
       };
+      layout.yaxis.title = "Frequency";
+      layout.xaxis.title = columnName.toUpperCase();
       break;
 
     case "box":
@@ -107,7 +111,10 @@ function gettrace(trace) {
         x: info,
         type: graphType,
         name: columnName,
+        marker: { color: "red" },
       };
+      layout.yaxis.title = "";
+      layout.xaxis.title = columnName.toUpperCase();
       break;
 
     case "line":
@@ -115,15 +122,18 @@ function gettrace(trace) {
         y: info,
         type: "scatter",
         name: columnName,
+        line: { color: "red" },
       };
+      layout.yaxis.title = columnName.toUpperCase();
       break;
 
     case "scatter":
       trace = {
-        y: info,
+        x: info,
         type: "scatter",
         mode: "markers",
         name: columnName,
+        marker: { color: "red" },
       };
       break;
 
@@ -133,7 +143,10 @@ function gettrace(trace) {
         y: Object.values(info),
         type: graphType,
         name: columnName,
+        marker: { color: "red" },
       };
+      layout.yaxis.title = "Frequency";
+      layout.xaxis.title = "Categories";
       break;
 
     case "pie":
@@ -162,6 +175,45 @@ function makeGraph() {
   var trace;
   info = data[index];
 
+  layout = {
+    title: {
+      text: columnName.toUpperCase() + " GRAPH",
+      font: {
+        size: 22,
+      },
+    },
+    showlegend: true,
+    xaxis: {
+      titlefont: {
+        family: "Arial, sans-serif",
+        size: 18,
+        color: "lightgrey",
+      },
+      showticklabels: true,
+      tickfont: {
+        size: 15,
+        color: "black",
+      },
+      showexponent: "all",
+    },
+    yaxis: {
+      titlefont: {
+        family: "Arial, sans-serif",
+        size: 18,
+        color: "lightgrey",
+      },
+      showticklabels: true,
+      tickfont: {
+        size: 15,
+        color: "black",
+      },
+      showexponent: "all",
+    },
+    legend: {
+      bgcolor: "#ededed",
+    },
+  };
+
   if (typeOfData == "Numerical") {
     trace = gettrace(trace);
   } else if (typeOfData == "Categorical") {
@@ -172,15 +224,10 @@ function makeGraph() {
   var config = {
     scrollZoom: true,
     displayModBar: true,
-    modBarButtonsToAdd: [],
     displaylogo: false,
-  };
-
-  var layout = {
-    showlegend: true,
   };
 
   var temp = [trace];
 
-  Plotly.newPlot("myDiv", temp, layout);
+  Plotly.newPlot("myDiv", temp, layout, config);
 }
