@@ -81,9 +81,43 @@ function handleFiles() {
   }
 }
 
+const removeDir = function(path) {
+  if (fs.existsSync(path)) {
+    const files = fs.readdirSync(path)
+
+    if (files.length > 0) {
+      files.forEach(function(filename) {
+        if (fs.statSync(path + "/" + filename).isDirectory()) {
+          removeDir(path + "/" + filename)
+        } else {
+          fs.unlinkSync(path + "/" + filename)
+        }
+      })
+      fs.rmdirSync(path)
+    } else {
+      fs.rmdirSync(path)
+    }
+  } else {
+    console.log("Directory path not found.")
+  }
+}
+
 app.get("/", function (req, res) {
+  console.log(fs.existsSync(folderPath))
+  if (fs.existsSync(folderPath)) {
+    removeDir(folderPath);   
+  }
+  fs.mkdirSync(folderPath,function(err){
+    if(err){
+      console.log(err);
+    }
+  })
   res.render("home_page");
 });
+
+app.get("/tutorial",function(req,res){
+  res.render("tutorial-main",{currentPage:0});
+})
 
 app.get("/revert", function (req, res) {
   if (fileNo > 0) {
