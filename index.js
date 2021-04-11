@@ -85,6 +85,10 @@ app.get("/", function (req, res) {
   res.render("home_page");
 });
 
+app.get("/tutorial",function(req,res){
+  res.render("tutorial-main",{currentPage:0});
+})
+
 app.get("/revert", function (req, res) {
   if (fileNo > 0) {
     fs.unlink(filePath, (err) => {
