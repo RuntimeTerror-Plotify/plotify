@@ -57,7 +57,6 @@
         <form>
             <div id="numGraphForm">
                 <% if (list.numerical != "empty"){ %>
-
                 <p><input type="radio" value='histogram' name="type" id="histogram" onclick="typeClick(this.value)"
                         checked></input>
                     <label for="histogram">Histogram</label>
@@ -65,6 +64,16 @@
 
                 <p><input type="radio" value='box' name="type" id="boxplot" onclick="typeClick(this.value)"></input>
                     <label for="boxplot">Box Plot</label>
+                </p>
+
+                <p><input type="radio" value='line' name="type" id="line" onclick="typeClick(this.value)"
+                        checked></input>
+                    <label for="line">Line</label>
+                </p>
+
+                <p><input type="radio" value='scatter' name="type" id="scatter" onclick="typeClick(this.value)"
+                        checked></input>
+                    <label for="scatter">Scatter</label>
                 </p>
 
                 <% } %>
