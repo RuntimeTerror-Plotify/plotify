@@ -1,8 +1,9 @@
-<div class="modal fade dataprocessing" id="drop_row" tabindex="-1" role="dialog" aria-labelledby="drop_col" aria-hidden="true">
+<div class="modal fade dataprocessing" id="drop_row" tabindex="-1" role="dialog" aria-labelledby="drop_row"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Drop Columns</h5>
+                <h5 class="modal-title" id="">Drop rows with null values</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,33 +13,34 @@
                 <div class="tips">
                     <div class="jumbotron">
                         <h5 class="text-uppercase"><i class="far fa-hand-point-right"></i> TIPS</h5>
-                        <p>Drop columns with maximum nan values or high nan percent.</p>
+                        <p>First drop the columns with high percentage of nan values else your dataframe would result
+                            with high loss of data.</p>
                     </div>
                 </div>
-                <form action="/drop_columns" method="POST">
-                    <div class="select-checkbox">
-                        <p class="text-left">Select the column you want to Drop :</p>
+                <form action="/drop_rows" method="POST">
+                    <input type="radio" name="mode" id="mode2" value="specific" hidden />
+                    <div class="select-checkbox" id="specific">
+                        <p class="text-left">Select specific columns of a row for which nan will be checked</p>
                         <input type="text" class="modal-search-Input bg-light form-control border small"
                             placeholder="Search for..." title="Type in a name" style="margin: 3px auto;width: 85% ;">
-
                         <ul class="modal-ul">
-                            <% list.columns.forEach(function(col,i){ %>
+                            <% list.columns.forEach(function (col,i) { %>
                             <li>
-                                <label for="<%=col%>"><input type="checkbox" name="drop_col" value="<%=col%>"
-                                        id="<%=col%>" /><span style="padding-left: 10px;"><%=col%></span></label>
-                                <p><span>NAN percent : <%=list.null_val[i]/(list.null_val[i]+list.count[i])*100%></span>
+                                <label><input type="checkbox" name="subset" id="" value="<%=col%>"><span
+                                        style="padding-left: 10px;"><%=col%></span></label>
+                                <p><span>Nan percent:
+                                        <%=(list.null_val[i]/(list.null_val[i]+list.count[i])*100).toFixed(4)%></span>
                                 </p>
                             </li>
-
-                            <% }); %>
+                            <% }) %>
                         </ul>
-                        <label><input type="checkbox" class="selectall" onchange="selectall(this,'drop_col')" /><span
+                        <label><input type="checkbox" class="selectall" onchange="selectall(this,'subset')" /><span
                                 style="padding-left: 10px;">Select All</span></label>
                     </div>
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-lg" type="submit"> &nbsp;&nbsp;Drop&nbsp;&nbsp; </button>
+                <button type="submit" class="btn btn-lg">Submit</button>
             </div>
             </form>
             <% }else{ %>
@@ -48,8 +50,8 @@
                     <p class="lead">You don't have any Data</p>
                 </div>
             </div>
-
             <% } %>
+
         </div>
     </div>
 </div>

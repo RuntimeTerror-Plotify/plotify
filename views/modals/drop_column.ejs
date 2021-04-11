@@ -26,7 +26,8 @@
                             <li>
                                 <label for="<%=col%>"><input type="checkbox" name="drop_col" value="<%=col%>"
                                         id="<%=col%>" /><span style="padding-left: 10px;"><%=col%></span></label>
-                                <p><span>NAN percent : <%=list.null_val[i]/(list.null_val[i]+list.count[i])*100%></span>
+                                <p><span>NAN percent :
+                                        <%=(list.null_val[i]/(list.null_val[i]+list.count[i])*100).toFixed(4)%></span>
                                 </p>
                             </li>
 

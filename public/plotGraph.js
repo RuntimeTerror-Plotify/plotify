@@ -1,6 +1,8 @@
 let graphType;
 let columnName;
 let typeOfData;
+let info;
+var layout;
 
 fileName = fileName;
 shape = shape.split(",").map((value) => {
@@ -14,7 +16,7 @@ let data;
 $(document).ready(function () {
   $.ajax({
     type: "GET",
-    url: "csv/"+fileName,
+    url: "csv/" + fileName,
     dataType: "text",
     success: function (data) {
       processData(data);
@@ -91,6 +93,75 @@ function getMap(arr) {
   return map;
 }
 
+function gettrace(trace) {
+  switch (graphType) {
+    case "histogram":
+      trace = {
+        x: info,
+        type: graphType,
+        name: columnName,
+        marker: { color: "red" },
+      };
+      layout.yaxis.title = "Frequency";
+      layout.xaxis.title = columnName.toUpperCase();
+      break;
+
+    case "box":
+      trace = {
+        x: info,
+        type: graphType,
+        name: columnName,
+        marker: { color: "red" },
+      };
+      layout.yaxis.title = "";
+      layout.xaxis.title = columnName.toUpperCase();
+      break;
+
+    case "line":
+      trace = {
+        y: info,
+        type: "scatter",
+        name: columnName,
+        line: { color: "red" },
+      };
+      layout.yaxis.title = columnName.toUpperCase();
+      break;
+
+    case "scatter":
+      trace = {
+        x: info,
+        type: "scatter",
+        mode: "markers",
+        name: columnName,
+        marker: { color: "red" },
+      };
+      break;
+
+    case "bar":
+      var trace = {
+        x: Object.keys(info),
+        y: Object.values(info),
+        type: graphType,
+        name: columnName,
+        marker: { color: "red" },
+      };
+      layout.yaxis.title = "Frequency";
+      layout.xaxis.title = "Categories";
+      break;
+
+    case "pie":
+      var trace = {
+        labels: Object.keys(info),
+        values: Object.values(info),
+        type: graphType,
+        name: columnName,
+      };
+      break;
+  }
+
+  return trace;
+}
+
 function makeGraph() {
   //Make Graph
   // console.log($("#rightPanel input"));
@@ -99,52 +170,89 @@ function makeGraph() {
   typeOfData = $("#topPanel input:checked").val();
 
   console.log(columnName + " " + graphType);
+
   var index = columns.indexOf(columnName);
-  // console.log(index);
-  var x = data[index];
-  // console.log(x);
+  var trace;
+  info = data[index];
+  console.log(info);
+
+  layout = {
+    title: {
+      text: columnName.toUpperCase() + " GRAPH",
+      font: {
+        size: 22,
+      },
+    },
+    showlegend: true,
+    xaxis: {
+      titlefont: {
+        family: "Arial, sans-serif",
+        size: 18,
+        color: "lightgrey",
+      },
+      showticklabels: true,
+      tickfont: {
+        size: 15,
+        color: "black",
+      },
+      showexponent: "all",
+    },
+    yaxis: {
+      titlefont: {
+        family: "Arial, sans-serif",
+        size: 18,
+        color: "lightgrey",
+      },
+      showticklabels: true,
+      tickfont: {
+        size: 15,
+        color: "black",
+      },
+      showexponent: "all",
+    },
+    legend: {
+      bgcolor: "#ededed",
+    },
+  };
+
   if (typeOfData == "Numerical") {
-    var trace = {
-      x: x,
-      type: graphType,
-      name: columnName,
-    };
+    trace = gettrace(trace);
   } else if (typeOfData == "Categorical") {
-    x = getMap(x);
-    switch (graphType) {
-      case "bar": {
-        var trace = {
-          x: Object.keys(x),
-          y: Object.values(x),
-          type: graphType,
-          name: columnName,
-        };
-        break;
-      }
-      case "pie": {
-        var trace = {
-          labels: Object.keys(x),
-          values: Object.values(x),
-          type: graphType,
-          name: columnName,
-        };
-        break;
-      }
-    }
+    info = getMap(info);
+    trace = gettrace(trace);
   }
 
   var config = {
     scrollZoom: true,
     displayModBar: true,
-    modBarButtonsToAdd: [],
     displaylogo: false,
-  };
-
-  var layout = {
-    showlegend: true,
+    modeBarButtonsToRemove: [
+      "lasso2d",
+      "zoomIn2d",
+      "zoomOut2d",
+      "pan3d",
+      "select2d",
+      "orbitRotation",
+      " tableRotation",
+      "handleDrag3d",
+      "resetCameraDefault3d",
+      "resetCameraLastSave3d",
+      "hoverClosest3d",
+      "zoomInGeo",
+      "zoomOutGeo",
+      "resetGeo",
+      "hoverClosestGeo",
+      "sendDataToCloud",
+      "toggleSpikelines",
+      "resetViewMapbox",
+      "hoverClosestGl2d",
+      "hoverClosestPie",
+      "toggleHover",
+      "resetViews",
+    ],
   };
 
   var temp = [trace];
 
-  Plotly.newPlot("myDiv", temp, layout);
+  Plotly.newPlot("myDiv", temp, layout, config);
 }

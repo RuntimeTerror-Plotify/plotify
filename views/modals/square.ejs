@@ -18,19 +18,20 @@
 
                 <form id="square" method="POST" action="/data_transform">
                     <div class="select-checkbox">
-                            <p class="text-left">Select the column you want apply square root:</p>
-                            <input type="text" class="modal-search-Input bg-light form-control border small"
-                                placeholder="Search for..." title="Type in a name" style="margin: 3px auto;width: 85% ;">
-                            <ul class="modal-ul">
-                                <%list.numerical.forEach(function(column,i){%>
-                                <li>
-                                    <label for="<%=column%>"><input type="checkbox" nname="square" value='<%=column%>'
+                        <p class="text-left">Select the column you want apply square root:</p>
+                        <input type="text" class="modal-search-Input bg-light form-control border small"
+                            placeholder="Search for..." title="Type in a name" style="margin: 3px auto;width: 85% ;">
+                        <ul class="modal-ul">
+                            <%list.numerical.forEach(function(column,i){%>
+                            <li>
+                                <label for="<%=column%>"><input type="checkbox" name="square" value='<%=column%>'
                                         id="<%=column%>" /><span style="padding-left: 10px;"><%=column%></span></label>
-                                </li>
-        
-                                <%})%>
-                            </ul>
-                            <label><input type="checkbox" class="selectall" onchange="selectall(this,'square')" /><span style="padding-left: 10px;">Select All</span></label> 
+                            </li>
+
+                            <%})%>
+                        </ul>
+                        <label><input type="checkbox" class="selectall" onchange="selectall(this,'square')" /><span
+                                style="padding-left: 10px;">Select All</span></label>
                     </div>
 
 
@@ -39,19 +40,17 @@
                     <%})%>
 
                     <%if(recommended.length){%>
-                        <div class="recommendation">
-                            <div class="jumbotron">
-                                <h5 class="text-uppercase"><i class="far fa-hand-point-right"></i> Recommended </h5>
-                                <p>We recommend you the following columns:</p>
-                                <% recommended.forEach(function(val){ %> 
-                                <span class="border bg-light py-1 px-2 m-1 border-dark rounded" style="display: inline-block;"> <%= val %> </span>
-                                <% }) %>
-                            </div>
+                    <div class="recommendation">
+                        <div class="jumbotron">
+                            <h5 class="text-uppercase"><i class="far fa-hand-point-right"></i> Recommended </h5>
+                            <p>We recommend you the following columns:</p>
+                            <% recommended.forEach(function(val){ %>
+                            <span class="border bg-light py-1 px-2 m-1 border-dark rounded"
+                                style="display: inline-block;"> <%= val %> </span>
+                            <% }) %>
                         </div>
+                    </div>
                     <% } %>
-                    
-                    
-
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-lg">Submit</button>
