@@ -8,13 +8,29 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <% if(list.numerical != "empty") {%>
                 <div class="modal-body">
                     <form action="/remove_outlier" method="POST">
-                        <label for="">Z threshold value: </label>
-                        <input type="number" name="thresh" id="">
-                        <button type="submit">Submit</button>
-                    </form>
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label" for="thresh">Z threshold value:</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" type="number" name="thresh" id="thresh" />
+                            </div>
+                        </div>
+                        
                 </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-lg">Submit</button>
+                    </div>
+                </form>
+                <% }else{ %>
+                    <div class="modal-body">
+                        <div class="jumbotron">
+                            <h1 class="display-4">Opps!!!</h1>
+                            <p class="lead">You don't have any columns</p>
+                        </div>
+                    </div>
+                    <% } %>
 
             </div>
         </div>

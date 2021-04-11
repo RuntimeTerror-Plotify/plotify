@@ -134,3 +134,10 @@ function run() {
     },
   });
 }
+
+
+function getFileContent()
+    {
+        var x = document.getElementById('file');
+        document.getElementById('contentName').innerHTML = x.value.split('\\').pop();
+    }
