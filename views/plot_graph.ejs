@@ -34,15 +34,13 @@
                 <% } %>
             </div>
 
-
-
             <div id="catColumnForm" style="display: none;">
                 <% if (list.categorical != "empty"){ %>
 
                 <%list.categorical.forEach(function(item){%>
                 <p>
                     <input type="radio" value='<%=item%>' id="<%=item%>" name="column" class="column"
-                        onclick="columnClick(this.value)"><%=item%></input>
+                        onclick="columnClick(this.value)"></input>
                     <label for="<%=item%>"><%=item%></label>
                 </p>
 

@@ -5,13 +5,16 @@
     font-size: 20px;
 }
 
-.plot_graph .toppanel label{
-  display: inline-block;
-  margin: 1px 10px;
-  padding: 14px 21px;
-  border-radius: 10px 10px 10px 10px;
+.plot_graph .toppanel label,
+.plot_graph .leftpanel label,
+.plot_graph .rightpanel label{
+  display: inline-block !important;
+  margin: 1px 2px !important;
+  padding: 5px 20px !important;
+  border-radius: 3px !important;
+  border: 1px solid #f05945;
   font-family: 'Baloo 2', cursive;
-  background-color: rgba(250,250,250);
+  background-color: #fff;
   box-shadow: 0 1px 4px 0 rgb(0, 0, 0, 14%);
   font-size: 20px;
   font-weight: bold;
@@ -21,7 +24,7 @@
   position: relative;
   z-index: 10;
   top: 4px;
-  color: #26a0da;
+  color: #f05945;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   -webkit-transition: all 0.2s ease-in-out;
@@ -36,10 +39,19 @@
   left: -9999px;
 }
 
+.plot_graph .toppanel label:hover,
+.plot_graph .leftpanel label:hover,
+.plot_graph .rightpanel label:hover{
+  color: #fff !important;
+  background: #f05945 !important;
+}
+
 .plot_graph .leftpanel { 
     position: relative; 
     float: left;
-    overflow-x: hidden; 
+    overflow-y: auto; 
+    overflow-x: hidden;
+    max-height: 400px;
     padding-top: 20px;
   }
 
@@ -58,6 +70,6 @@
   }
 
 .plot_graph .leftpanel p{
-    width: 180px;
+    width: min-content;
     word-wrap: break-word;
   }

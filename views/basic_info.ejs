@@ -154,7 +154,7 @@
                         aria-hidden="false">
 
                         <div class="row">
-                            <div class="col-10">
+                            <div class="col-9">
                                 <p class="text-uppercase font-weight-bold"
                                     style="font-size: 20px;color: rgba(0,0,0,0.5);">
                                     Data Shape</p>
@@ -173,10 +173,10 @@
                                     <span class="text-uppercase" style="color: rgba(0,0,0,0.5);">COLUMNS</span>
                                 </p>
                             </div>
-                            <div class="col-2">
+                            <div class="col-3">
                                 <form action="/revert" method="GET">
                                     <% if(fileNo!=0) {%>
-                                    <button type="submit" class="revert_button">Revert changes</button>
+                                    <button type="submit" class="revert_button btn btn-lg text-uppercase font-weight-bold"><i class="fas fa-undo"></i>&nbsp;Undo Changes</button>
                                     <% } %>
                                 </form>
                             </div>
@@ -380,51 +380,65 @@
                         aria-hidden="true">
 
 
-                        <form id="corrMat" method="POST">
-                            <h1>Correlation Matrix</h1>
-                            <h4>Tips:</h4>
-                            <p>Sign Indication</p>
-                            <ul>
-                                <li>Positive coefficients indicate that when the value of one variable increases, the
-                                    value of the other variable also tends to increase.</li><br>
-                                <li>Negative coefficients represent cases when the value of one variable increases, the
-                                    value of the other variable tends to decrease.</li>
-                            </ul>
-                            <br>
-                            <br>
-                            <p>Magnitude Indication</p>
-
-                            <ul>
-                                <li>The extreme values of -1 and 1 indicate a perfectly linear relationship where a
-                                    change in one variable is accompanied by a perfectly consistent change in the other.
-                                </li><br>
-                                <li>A coefficient of zero represents no linear relationship. As one variable increases,
-                                    there is no tendency in the other variable to either increase or decrease.</li><br>
-                                <li>When the value is in-between 0 and +1/-1, there is a relationship, but the points
-                                    don’t all fall on a line. As r approaches -1 or 1, the strength of the relationship
-                                    increases and the data points tend to fall closer to a line.</li>
-                            </ul>
-                            <br>
-                            <br>
+                        <form id="corrMat">
+                            <p class="text-uppercase font-weight-bold" style="font-size: 20px;color: rgba(0,0,0,0.5);">Correlation Matrix</p>
+                            <div class="tips">
+                                <div class="jumbotron">
+                                    <h5 class="text-uppercase"><i class="far fa-hand-point-right"></i> TIPS</h5>
+                                    <p>Sign Indication</p>
+                                    <ul>
+                                        <li>Positive coefficients indicate that when the value of one variable increases, the
+                                            value of the other variable also tends to increase.</li><br>
+                                        <li>Negative coefficients represent cases when the value of one variable increases, the
+                                            value of the other variable tends to decrease.</li>
+                                    </ul>
+                                    <br>
+                                    <br>
+                                    <p>Magnitude Indication</p>
+                                    <ul>
+                                        <li>The extreme values of -1 and 1 indicate a perfectly linear relationship where a
+                                            change in one variable is accompanied by a perfectly consistent change in the other.
+                                        </li><br>
+                                        <li>A coefficient of zero represents no linear relationship. As one variable increases,
+                                            there is no tendency in the other variable to either increase or decrease.</li><br>
+                                        <li>When the value is in-between 0 and +1/-1, there is a relationship, but the points
+                                            don’t all fall on a line. As r approaches -1 or 1, the strength of the relationship
+                                            increases and the data points tend to fall closer to a line.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                
                             <% if (list.numerical == "empty"){ %>
                             <div class="jumbotron">
                                 <h1 class="display-4">Opps!!!</h1>
                                 <p class="lead">You don't have any Numerical data</p>
                             </div>
                             <% }else{ %>
-                            <% list.numerical.forEach(function(column){%>
-                            <input type="checkbox" name="corrColumn" value='<%=column%>'><%=column%></input>
-                            <%})%>
-                            <input type="checkbox" class="selectall" onchange="selectall(this,'corrColumn')">Select
-                            All</input>
-                            <button type="submit" onclick="corrSub(event)">Submit</button>
-                            <br>
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="select-checkbox">
+                                        <p class="text-left">Select the column you want to include in correlation matrix:</p>
+                                        <input type="text" class="modal-search-Input bg-light form-control border small"
+                                            placeholder="Search for..." title="Type in a name" style="margin: 3px 0;width: 80% !important;">
+                                            <ul class="modal-ul border">
+                                                <% list.numerical.forEach(function(col,i){ %>
+                                                    <li>
+                                                        <label for="<%=col%>"><input type="checkbox" name="corrColumn" value="<%=col%>"
+                                                                id="<%=col%>" /><span style="padding-left: 10px;"><%=col%></span></label>
+                                                    </li>
+                                                <% }); %>
+                                            </ul>
+                                            <label><input type="checkbox" class="selectall" onchange="selectall(this,'corrColumn')" /><span
+                                                style="padding-left: 10px;">Select All</span></label>
+                                                <button class="btn btn-lg" type="submit" onclick="corrSub(event)">Submit</button>
+                                    </div>
+                                </div>
+                                <div class="col-9 border border-secondary">
+                                    <div id="corrGraph" style="width:100%;height:100%;padding: auto;"><div style="text-align: center;vertical-align: middle; height: 100%; width: 100%;"><p style="margin-top: 23%"><i class="far fa-chart-bar fa-6x" style="color: rgba(0,0,0,0.3) !important;"></i></p></div></div>
+                                </div>
+                            </div>
                             <% } %>
                         </form>
-
-                        <div class="main">
-                            <div id="corrGraph" style="width:800px;height:400px;"></div>
-                        </div>
 
 
                     </div>
