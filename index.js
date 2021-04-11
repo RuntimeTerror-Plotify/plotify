@@ -82,7 +82,20 @@ function handleFiles() {
 }
 
 app.get("/", function (req, res) {
-  res.render("home_page");
+  console.log(fs.existsSync(folderPath))
+  if (!fs.existsSync(folderPath)) {
+    console.log("no")
+    fs.mkdirSync(folderPath,function(err){
+      if(err){
+        console.log(err);
+      }
+    })
+    res.render("home_page");
+  }
+  else{
+    res.render("home_page");
+  }
+  
 });
 
 app.get("/tutorial",function(req,res){
