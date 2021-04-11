@@ -313,12 +313,12 @@ span.profileFile-custom:hover:before {
 	background-color: rgba(38, 160, 218, 1);
 	font-size: 1rem;
 	font-weight: bold;
-    box-shadow: 0 0px 5px 0 rgb(0 0 0 / 40%);
+  box-shadow: 0 0px 5px 0 rgb(0 0 0 / 40%);
 }
 
 .modal-footer .btn:hover {
-	background-color: #030303 !important;
-	color: rgba(38, 160, 218, 1) !important;
+	background-color: #496b80 !important;
+	color: #fff !important;
 }
 
 .modal-footer .btn:focus {

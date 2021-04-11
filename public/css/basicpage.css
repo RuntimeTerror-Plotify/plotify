@@ -579,7 +579,7 @@ tbody tr:nth-child(even):hover{
 
 /* ----------------------------------------------------------------modal ----------------------------------------*/
 
-.modal .modal-header{
+.modal.dataprocessing .modal-header{
   color: #fff !important;
   background: #496b80; 
   background: -webkit-linear-gradient(to top, #26a0da, #496b80);  
@@ -590,74 +590,75 @@ tbody tr:nth-child(even):hover{
   line-height: 30px;
 }
 
-.modal .jumbotron .far.fa-hand-point-right,
+.modal.dataprocessing .jumbotron .far.fa-hand-point-right,
 #tab-content3 .tips .jumbotron .far.fa-hand-point-right {
   color: green;
 }
-.modal .tips .jumbotron , 
-.modal .recommendation .jumbotron,
+.modal.dataprocessing .tips .jumbotron , 
+.modal.dataprocessing .recommendation .jumbotron,
 #tab-content3 .tips .jumbotron{
   padding: 1rem 1rem !important;
   border: 2px solid green;
 }
-.modal .modal-body{
+.modal.dataprocessing .modal-body{
   padding: 20px !important;
   font-family: 'Open Sans', sans-serif;
 }
 
-.modal .modal-body h5{
+.modal.dataprocessing .modal-body h5{
   font-weight: bold;
   color: rgba(0,0,0,0.5);
 }
 
-.modal .modal-body .tips h5,
-.modal .modal-body .recommendation h5,
+.modal.dataprocessing .modal-body .tips h5,
+.modal.dataprocessing .modal-body .recommendation h5,
 #tab-content3 .tips h5 {
   font-weight: bold;
   color: rgba(0,0,0,0.5);
 }
 
-.modal .modal-content {
+.modal.dataprocessing .modal-content {
   font-family: 'Open Sans', sans-serif;
   border: none !important;
 }
 
 
-.modal ul{
-  list-style-type:none !important;
-  display: block !important;
-  max-height: 250px !important;
-  overflow-y: auto !important;
-  margin-top: 10px !important;
-  padding: 0 !important;
+.modal.dataprocessing ul{
+  list-style-type:none;
+  display: block;
+  max-height: 250px;
+  overflow-y: auto;
+  margin-top: 10px;
+  padding: 0;
 }
 
-.modal label{
-  border:0px solid #ccc !important;
-  padding-left: 30px !important;
-  padding-top: 15px !important;
-  width: 250px !important;
-  display: inline-block !important;
-  font-size: 16px !important; 
-  line-height: 20px !important;
-  word-wrap: break-word !important;
+.modal.dataprocessing label{
+  border:0px solid #ccc;
+  padding-left: 30px;
+  padding-top: 15px;
+  width: 250px;
+  display: inline-block;
+  font-size: 16px; 
+  line-height: 20px;
+  word-wrap: break-word;
 }
 
-.modal li:hover{
- background:#eee !important;
- cursor:pointer !important;
+.modal.dataprocessing li:hover{
+ background:#eee;
+ cursor:pointer;
 }
 
 
 
-.modal li p{
+.modal.dataprocessing li p{
   display: inline-block;
   font-size: 16px; 
   line-height: 20px;
 } 
 
 .modal-footer .btn,
-#tab-content3 .select-checkbox .btn{
+#tab-content3 .select-checkbox .btn,
+#tab-content4 .download.btn{
 	color: #fff;
 	background-color: rgba(38, 160, 218, 1);
 	font-size: 1rem;
@@ -666,13 +667,15 @@ tbody tr:nth-child(even):hover{
 }
 
 .modal-footer .btn:hover,
-#tab-content3 .select-checkbox .btn:hover{
+#tab-content3 .select-checkbox .btn:hover,
+#tab-content4 .download.btn:hover{
 	background-color: #496b80 !important;
 	color: #fff !important;
 }
 
 .modal-footer .btn:focus,
-#tab-content3 .select-checkbox .btn:focus{
+#tab-content3 .select-checkbox .btn:focus,
+#tab-content4 .download.btn:focus{
 	outline: 1px dashed rgba(38, 160, 218, 1) !important;
 	outline-offset: 3px;
 }
@@ -716,6 +719,107 @@ tbody tr:nth-child(even):hover{
 .modal#fill_na [id^="mode"]:checked + label {
   color: #fff !important;
   background-color: #496b80 !important; 
+}
+
+.fileName::before {
+  content: 'File Name:';
+  color: black;
+  font-weight: 500;
+  margin-right: 4px;
+}
+.fileName {
+  position: relative;
+  top: 40px;
+  margin: auto;
+}
+.nofile{
+  line-height: 1.5;
+  font-size: 16px;
+  color: #848484;
+  font-weight: 400;
+}
+
+.profile-file {
+  position: relative;
+  top: 20px;
+  margin: auto;
+  display: inline-block;
+  cursor: pointer;
+  border: 3px dashed grey;
+  width: 80%;
+  height: 110px;
+}
+.profile-file input {
+  min-width: 14rem;
+  margin: 0;
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+.profileFile-custom {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 5;
+  height: 2.5rem;
+  padding: .5rem 1rem;
+  line-height: 1.5;
+  color: #555;
+  
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.profileFile-custom:before {
+  position: absolute;
+  top: 30px;
+  right: 59px;
+  z-index: 6;
+  display: block;
+  content: "Browse";
+  background: rgba(38, 160, 218, 1);
+  color: #fff;
+  -webkit-box-shadow: -1px 2px 10px -1px rgb(38 160 218 / 40%);
+  -moz-box-shadow: -1px 2px 10px -1px rgba(38, 160, 218, 0.4);
+  -o-box-shadow: -1px 2px 10px -1px rgba(38, 160, 218, 0.4);
+  box-shadow: -1px 2px 10px -1px rgb(38 160 218 / 40%);
+
+  font-weight: 500;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  font-size: 1rem;
+  line-height: 2.9;
+  padding-right: 20px;
+  padding-left: 20px;
+  height: 50px;
+  border-radius: 0.35rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+span.profileFile-custom:hover:before {
+  box-shadow: none;
+}
+.profileFile-custom:after {
+  content: "Drag your files here or";
+  background-image: url(/images/upload.png);
+  background-repeat: no-repeat;
+  background-size: 22px 21px;
+  background-position:10px 200px;
+  background-position: 75px 0px;
+  display: block;
+  font-size: 16px;
+  color: #848484;
+  font-weight: 500;
+  position: relative;
+  top: 35px;
+  right: 80px;
+}
+.content:after{
+  padding-left: 110px;
 }
 
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {

@@ -1,4 +1,4 @@
-<div class="modal fade" id="clip_values" tabindex="-1" role="dialog" aria-labelledby="drop_col" aria-hidden="true">
+<div class="modal fade dataprocessing" id="clip_values" tabindex="-1" role="dialog" aria-labelledby="drop_col" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -10,20 +10,33 @@
             <% if(list.numerical != "empty") {%>
             <div class="modal-body">
                 <form action="/clip_values" method="POST">
-                    <h1>Clip values</h1>
-                    <label for="">Min threshold</label>
-                    <input type="number" name="minthresh" id="">
-                    <label for="">Max threshold</label>
-                    <input type="number" name="maxthresh" id="">
-                    <select name="col" id="">
-                        <% list.numerical.forEach(function(num) { %>
-                        <option value="<%=num%>"><%=num%></option>
-                        <% }) %>
-                    </select>
-                    <br>
-            </div>
-            <button type="submit">Submit</button>
-            </form>
+                    <div class="form-group">
+                        <label for="col">Select the column:</label>
+                            <select name="col" class="custom-select form-control" id="col">
+                                <% list.numerical.forEach(function(num) { %>
+                                <option value="<%=num%>"><%=num%></option>
+                                <% }) %>
+                            </select>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-6 col-form-label" for="minthresh">Minimum threshold</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" type="number" name="minthresh" id="minthresh" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label class="col-sm-6 col-form-label" for="minthresh">Maximum threshold</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" type="number" name="maxthresh" id="minthresh" />
+                        </div>
+                    </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-lg">Submit</button>
+        </div>
+            
+        </form>
             <% }else{ %>
             <div class="modal-body">
                 <div class="jumbotron">

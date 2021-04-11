@@ -27,7 +27,7 @@
             <ul class="nav sidebar-nav">
                 <div class="sidebar-header">
                     <div class="sidebar-brand">
-                        <a href="#">plotify</a>
+                        <a href="/">plotify</a>
                     </div>
                 </div>
                 <li class="align-middle">
@@ -134,8 +134,17 @@
                                 title="Click the icon to learn what it does."></i>
                         </span></a>
                 </li>
-
-
+                <li><a href="#" role="button" data-toggle="modal" data-target="#uploadFile" style="width: 80%;">Upload New Data</a>
+            
+                    <a href="#" style="padding: 12px 2px;float: right;"><span
+                        class="fa-stack fa-1x" style="font-size: 1rem;">
+                        <i class="far fa-circle fa-stack-2x"></i>
+                        <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
+                            title="Your current data file on which you are working will be deleted."></i>
+                    </span></a>
+                </li>
+                <li><a href="#" role="button" data-toggle="modal" data-target="#pca" style="width: 100%;">Tutorials</a>
+                </li>
             </ul>
         </nav>
 
@@ -451,8 +460,7 @@
                         aria-hidden="true">
                         <div>
                             <form action="/download" method="GET">
-                                <button type="submit" class="btn btn-lg
-                                ">Download</button>
+                                <button type="submit" class="download btn btn-lg" style="margin: 10px;">Download</button>
                             </form>
                         </div>
                         <% if(list.columns != "empty"){ %>
@@ -495,6 +503,7 @@
 
 
     </div>
+
 
 
 
@@ -572,6 +581,9 @@
 
     <!--PCA Modal -->
     <%- include('modals/pca.ejs'); %>
+
+     <!-- Upload File modal  -->
+     <%- include('modals/upload_file.ejs'); %>
 
 
 

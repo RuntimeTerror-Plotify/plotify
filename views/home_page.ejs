@@ -58,35 +58,7 @@
 
 
   <!-- Modal -->
-  <div class="modal fade" id="uploadFile" tabindex="-1" aria-labelledby="uploadFileTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="uploadFileTitle">Upload file</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form action="/file_upload" method="POST" enctype="multipart/form-data">
-        <div class="modal-body" style="height: 200px;">
-          <div class="form-group row">
-            <label class="profile-file">
-              <input type="file" name="file" ref="upload" id="file" aria-label="File Input" onchange="getFileContent()" required>
-              <span class="profileFile-custom content"></span>
-            </label>
-            <h6 class="fileName" id="contentName" style="text-align:left;"><span class="nofile" >No files Selected</span></h6>
-          </div>
-        </div>
-          
-          <div class="modal-footer">
-            <button type="button" class="btn" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn">Upload File</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+  <%- include('modals/upload_file.ejs'); %>
 
   
 
