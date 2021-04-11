@@ -174,6 +174,7 @@ function makeGraph() {
   var index = columns.indexOf(columnName);
   var trace;
   info = data[index];
+  console.log(info);
 
   layout = {
     title: {
@@ -225,6 +226,30 @@ function makeGraph() {
     scrollZoom: true,
     displayModBar: true,
     displaylogo: false,
+    modeBarButtonsToRemove: [
+      "lasso2d",
+      "zoomIn2d",
+      "zoomOut2d",
+      "pan3d",
+      "select2d",
+      "orbitRotation",
+      " tableRotation",
+      "handleDrag3d",
+      "resetCameraDefault3d",
+      "resetCameraLastSave3d",
+      "hoverClosest3d",
+      "zoomInGeo",
+      "zoomOutGeo",
+      "resetGeo",
+      "hoverClosestGeo",
+      "sendDataToCloud",
+      "toggleSpikelines",
+      "resetViewMapbox",
+      "hoverClosestGl2d",
+      "hoverClosestPie",
+      "toggleHover",
+      "resetViews",
+    ],
   };
 
   var temp = [trace];

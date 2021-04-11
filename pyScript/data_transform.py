@@ -32,12 +32,14 @@ def squareRoot(column, df, filePath):
     df.to_csv(filePath, index=False)
     return df
 
+
 def cubeRoot(column, df, filePath):
     for col in column:
         df[col] = np.power((df[col]), 1 / 3)
 
     df.to_csv(filePath, index=False)
     return df
+
 
 def log(column, df, filePath):
     for col in column:
@@ -46,12 +48,14 @@ def log(column, df, filePath):
     df.to_csv(filePath, index=False)
     return df
 
+
 def square(column, df, filePath):
     for col in column:
         df[col] = np.power((df[col]), 2)
 
     df.to_csv(filePath, index=False)
     return df
+
 
 def main():
     lines = sys.stdin.readlines()
@@ -75,15 +79,16 @@ def main():
     elif typeof == "square":
         square(column, df, filePath)
 
-    output = {
-        "filePath": filePath,
-        "fileName": fileName,
-        "fileNo": fileNo,
-    }
+    # output = {
+    #     "filePath": filePath,
+    #     "fileName": fileName,
+    #     "fileNo": fileNo,
+    # }
 
-    output = json.dumps(output)
+    # output = json.dumps(output)
 
-    print(output)
+    # print(output)
+
 
 # start process
 if __name__ == "__main__":

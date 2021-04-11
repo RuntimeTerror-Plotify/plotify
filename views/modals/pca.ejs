@@ -9,6 +9,13 @@
             </div>
             <%if(list.numerical != "empty"){%>
             <div class="modal-body">
+                <% var flag = true %>
+                <% list.null_val.forEach(function(value){ %>
+                <% if(value!=0) {%>
+                <%flag = false; %>
+                <% return} %>
+                <% }) %>
+                <% if(flag){ %>
                 <button onclick="run()">Run</button>
 
                 <P style="color: red;">*IF YOU RUN pca ALL YOUR CATEGORICAL COLUMN WILL BE DELETED IF THERE IS
@@ -38,6 +45,14 @@
                     </form>
 
                 </div>
+                <% }else{ %>
+                <div class="modal-body">
+                    <div class="jumbotron">
+                        <h1 class="display-4">Opps!!!</h1>
+                        <p class="lead">Your Numerical Columns have NULL VALUES. First Handle them.</p>
+                    </div>
+                </div>
+                <% } %>
             </div>
             <% }else{ %>
             <div class="modal-body">
