@@ -185,6 +185,7 @@
                                         style="font-size: 40px;color: rgba(0,0,0,0.7);"><%= list.shape[1]=='m' ? "0" : list.shape[1] %></span>
                                     <span class="text-uppercase" style="color: rgba(0,0,0,0.5);">COLUMNS</span>
                                 </p>
+                                
                             </div>
                             <div class="col-3">
                                 <form action="/revert" method="GET">
@@ -251,8 +252,14 @@
                         <br>
                         <br>
                         <div>
-                            <p class="text-uppercase font-weight-bold" style="font-size: 20px;color: rgba(0,0,0,0.5);">
+                            <p class="text-uppercase font-weight-bold" style="font-size: 20px;color: rgba(0,0,0,0.5);display: inline-block;">
                                 statistical description for numerical data</p>
+                            <p style="display:inline-block;background-color: #eee;"
+                                class="border rounded p-1 ml-3 pt-2 mr-3">
+                                <span
+                                    style="font-size: 25px;color: rgba(0,0,0,0.7);"><%= list.numerical[0]=='e' ? "0" : list.numerical.length %></span>
+                                <span class="text-uppercase" style="color: rgba(0,0,0,0.5);">NUMERICAL COLUMNS</span>
+                            </p>
                             <% if (list.numerical == "empty"){ %>
                             <div class="jumbotron">
                                 <h1 class="display-4">Opps!!!</h1>
@@ -328,48 +335,54 @@
                                             <br>
                                             <br>
                                             <div>
-                                                <p class="text-uppercase font-weight-bold" style="font-size: 20px;color: rgba(0,0,0,0.5);">statistical description for categorical data</p>
+                                                <p class="text-uppercase font-weight-bold" style="font-size: 20px;color: rgba(0,0,0,0.5);display: inline-block;">statistical description for categorical data</p>
+                                                <p style="display:inline-block;background-color: #eee;"
+                                                    class="border rounded p-1 ml-3 pt-2 mr-3">
+                                                    <span
+                                                        style="font-size: 25px;color: rgba(0,0,0,0.7);"><%= list.categorical[0]=='e' ? "0" : list.categorical.length %></span>
+                                                    <span class="text-uppercase" style="color: rgba(0,0,0,0.5);">CATEGORICAL COLUMNS</span>
+                                                </p>
                                                 <% if (list.categorical == "empty"){ %>
-                            <div class="jumbotron">
-                                <h1 class="display-4">Opps!!!</h1>
-                                <p class="lead">You don't have any Categorical data</p>
-                            </div>
-                            <% } else{%>
-                            <div class="wrap-table100">
-                                <div class="table100 border">
-                                    <table>
-                                        <thead>
-                                            <tr class="table100-head">
-                                                <th>columns</th>
-                                                <% list.categorical.forEach(function(col) { %>
-                                                <th><%= col %></th>
-                                                <% });  %>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th>unique</th>
-                                                <% list.unique.forEach(function (dt) { %>
-                                                <td><%= dt %> </td>
-                                                <% }); %>
-                                            </tr>
-                                            <tr>
-                                                <th>top</th>
-                                                <% list.top.forEach(function (dt) { %>
-                                                <td><%= dt %> </td>
-                                                <% }); %>
-                                            </tr>
-                                            <tr>
-                                                <th>frequency</th>
-                                                <% list.freq.forEach(function (dt) { %>
-                                                <td><%= dt %> </td>
-                                                <% }); %>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <%}%>        
+                                            <div class="jumbotron">
+                                                <h1 class="display-4">Opps!!!</h1>
+                                                <p class="lead">You don't have any Categorical data</p>
+                                            </div>
+                                            <% } else{%>
+                                            <div class="wrap-table100">
+                                                <div class="table100 border">
+                                                    <table>
+                                                        <thead>
+                                                            <tr class="table100-head">
+                                                                <th>columns</th>
+                                                                <% list.categorical.forEach(function(col) { %>
+                                                                <th><%= col %></th>
+                                                                <% });  %>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th>unique</th>
+                                                                <% list.unique.forEach(function (dt) { %>
+                                                                <td><%= dt %> </td>
+                                                                <% }); %>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>top</th>
+                                                                <% list.top.forEach(function (dt) { %>
+                                                                <td><%= dt %> </td>
+                                                                <% }); %>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>frequency</th>
+                                                                <% list.freq.forEach(function (dt) { %>
+                                                                <td><%= dt %> </td>
+                                                                <% }); %>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <%}%>        
                                             </div>                                           
                                         
                         </div>
@@ -447,7 +460,7 @@
                                     </div>
                                 </div>
                                 <div class="col-9 border border-secondary">
-                                    <div id="corrGraph" style="width:100%;height:100%;padding: auto;"><div style="text-align: center;vertical-align: middle; height: 100%; width: 100%;"><p style="margin-top: 23%"><i class="far fa-chart-bar fa-6x" style="color: rgba(0,0,0,0.3) !important;"></i></p></div></div>
+                                    <div id="corrGraph" style="width:100%;height:100%;padding: auto;"><div id="corrIcon" style="text-align: center;vertical-align: middle; height: 100%; width: 100%;"><p style="margin-top: 23%"><i class="far fa-chart-bar fa-6x" style="color: rgba(0,0,0,0.3) !important;"></i></p></div></div>
                                 </div>
                             </div>
                             <% } %>

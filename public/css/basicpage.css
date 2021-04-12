@@ -475,12 +475,29 @@ table td, table th {
   padding-left: 8px;
   min-width: 100px;
 }
+
+table thead th:first-child{
+  position: sticky;
+  z-index: 2;
+  left: 0;
+  background-color: #2088b8;
+  color: #fff;
+}
+table tbody th{
+  position: sticky;
+  z-index: 2;
+  left: 0;
+  color: #808080;
+  background-color: #f5f5f5;
+}
 table thead tr {
   height: 60px;
   background-color: #2088b8;
 }
 table tbody tr {
   height: 50px;
+  position: relative;
+  z-index: 1;
 }
 table tbody tr:last-child {
   border: 0;

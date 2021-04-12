@@ -86,6 +86,50 @@ function corrSub(event) {
       column: column,
     },
     success: function (response) {
+
+      var layout = {
+        title: {
+          text: "CORRELATION GRAPH",
+          font: {
+            size: 22,
+          },
+        },
+        showlegend: true,
+        legend: {
+          bgcolor: "#ededed",
+        },
+      };
+
+      var config = {
+        scrollZoom: true,
+        displayModBar: true,
+        displaylogo: false,
+        modeBarButtonsToRemove: [
+          "lasso2d",
+          "zoomIn2d",
+          "zoomOut2d",
+          "pan3d",
+          "select2d",
+          "orbitRotation",
+          " tableRotation",
+          "handleDrag3d",
+          "resetCameraDefault3d",
+          "resetCameraLastSave3d",
+          "hoverClosest3d",
+          "zoomInGeo",
+          "zoomOutGeo",
+          "resetGeo",
+          "hoverClosestGeo",
+          "sendDataToCloud",
+          "toggleSpikelines",
+          "resetViewMapbox",
+          "hoverClosestGl2d",
+          "hoverClosestPie",
+          "toggleHover",
+          "resetViews",
+        ],
+      };
+
       var data = [
         {
           z: response.reverse(),
@@ -94,8 +138,9 @@ function corrSub(event) {
           type: "heatmap",
         },
       ];
+      $("#corrIcon").css("display","none");
 
-      Plotly.newPlot("corrGraph", data);
+      Plotly.newPlot("corrGraph", data, layout, config);
     },
   });
 }
