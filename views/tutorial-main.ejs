@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tutorial</title>
 </head>
+
 <body>
     <div style="visibility: hidden; position: absolute;" class="0">
         <%- include('tutorials/tutorial0.ejs'); %>
-        <button  onclick="location.href='/'">Home</button>
+        <button onclick="location.href='/'">Home</button>
         <button class="page-forward" id="0">Get Started</button>
     </div>
 
@@ -18,19 +20,20 @@
         <button class="page-backward" id="1">Previous</button>
         <button class="page-forward" id="1">Next</button>
     </div>
-    
+
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     let currentPage = '<%-currentPage%>';
-    $("."+String(currentPage)).css("visibility","visible");
-    $('.page-forward').click(function(){
-        $("."+String(parseInt(this.id))).css("visibility","hidden");
-        $("."+String(parseInt(this.id)+1)).css("visibility","visible");
+    $("." + String(currentPage)).css("visibility", "visible");
+    $('.page-forward').click(function () {
+        $("." + String(parseInt(this.id))).css("visibility", "hidden");
+        $("." + String(parseInt(this.id) + 1)).css("visibility", "visible");
     });
-    $('.page-backward').click(function(){
-        $("."+String(parseInt(this.id))).css("visibility","hidden");
-        $("."+String(parseInt(this.id)-1)).css("visibility","visible");
+    $('.page-backward').click(function () {
+        $("." + String(parseInt(this.id))).css("visibility", "hidden");
+        $("." + String(parseInt(this.id) - 1)).css("visibility", "visible");
     });
 </script>
+
 </html>
