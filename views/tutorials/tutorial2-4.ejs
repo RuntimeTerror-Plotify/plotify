@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial 2</title>
+</head>
+
+<body>
+    <h4>Labelling Categorical Data</h4>
+
+    <h3>One-Hot-Encoding</h3>
+
+    <p>
+        Binary encoding can be thought of as a upgradation of one-hot encoders. Binary creates fewer
+        features than one-hot, while preserving some uniqueness of values in the column. It can work well with higher
+        dimensionality ordinal data.
+        <br>
+
+        <h5>How It Works</h5>
+        <ul>
+            <li>The categories are encoded by Ordinal Encoder (Label Encoder) if they aren’t already in numeric form.
+            </li>
+            <li>Then those integers are converted into binary code, so for example 5 becomes 101 and 10 becomes 1010
+            </li>
+            <li>Then the digits from that binary string are split into separate columns. So if there are 4–7 values in
+                an ordinal column then 3 new columns are created: one for the first bit, one for the second, and one for
+                the third.
+            </li>
+            <li>Each observation is encoded across the columns in its binary form.</li>
+        </ul>
+        <br>
+        <h5>Example</h5>
+        <img src="public\images\BinaryEncoding-1.png" alt="">
+        <br>
+
+        <p>Generally this type of Labelling should be used with Ordinal Data containing large number of categories</p>
+        <br>
+        <ul>
+            <li>Advantages:</li>
+            <p>Binary encoding creates fewer columns than one-hot encoding. It is more memory efficient.</p>
+            <p>It also reduces the chances of dimensionality problems with higher cardinality.</p>
+            <br>
+        </ul>
+    </p>
+
+</body>
+
+</html>
