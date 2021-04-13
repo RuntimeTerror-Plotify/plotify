@@ -37,6 +37,53 @@
             </li>
             <li>
                 <b>Numerical data</b><br>
+                Various methods to fill null values in case of Numerical data are:
+                <ol>
+                    <li>
+                        <b>Fill with zeros:</b> 
+                        In this method we replace all NAN/null values with '0'. <em>This method
+                        is not preffered as it may produce some skewness in data.</em>
+                    </li>
+                    <li>
+                        <b>Fill with minimum:</b>
+                        In this method we replace the NAN/null values with the minimum of that 
+                        column. <em>This method
+                        is not preffered as it may produce some skewness in data.</em>
+                    </li>
+                    <li>
+                        <b>Fill with maximum:</b>
+                        In this method we replace the NAN/null values with the maximum of that 
+                        column. <em>This method
+                        is not preffered as it may produce some skewness in data.</em>
+                    </li>
+                    <li>
+                        <b>Fill with mean</b>
+                        In this method we replace the NAN/null values with the mean of that 
+                        particular column. The mean is a good option as it does not generate 
+                        any undesirable effect like skewness in most of the cases and is better
+                        than former options as it generally lies in the middle rather than being
+                        the extreme values like minimum, maximum, zero etc.
+                    </li>
+                    <li>
+                        <b>Fill with median:</b>
+                        In this method we replace the NAN/null values with the median of that
+                        particular column. It is even better option than mean for
+                        normalised or standardised as it lies in the center of the data and incresing
+                        the datapoints at the median does not introduces skewness in the data.
+                    </li>
+                    <li>
+                        <b>Forward fill:</b>
+                        In this method we replace the NAN/null values with the last seen value as we traverse
+                        from top to bottom through the columm.
+                        <em>Not recommended if the first value in column is NAN/null.</em>
+                    </li>
+                    <li>
+                        <b>Backward fill:</b>
+                        In this method we replace the NAN/null values with the last seen value as we traverse
+                        from bottom to top through the columm.
+                        <em>Not recommended if the last value in column is NAN/null.</em>
+                    </li>
+                </ol>
             </li>
         </ul> 
     </p>
