@@ -339,10 +339,17 @@ app.post("/pca", function (req, res) {
 
 app.post("/fill_nan", function (req, res) {
   handleFiles();
-  console.log(filePath);
+  dataArr =[];
+  if(req.body.col_type == "num"){
+    dataArr = [filePath, req.body.col_type, req.body.column[1], req.body.method[1]]
+  }
+  else{
+    dataArr = [filePath, req.body.col_type, req.body.column[0], req.body.method[0]]
+
+  }
   let out = [];
   var py = spawn("python", ["pyScript/fill_nan.py"]),
-    data = [filePath, req.body.col_type, req.body.column, req.body.method];
+    data = dataArr;
 
   py.stdout.on("data", function (output) {
     out.push(output.toString());

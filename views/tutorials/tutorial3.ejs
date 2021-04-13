@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial 3</title>
+</head>
+<body>
+    <h1>Data cleaning: Filling in Null values</h1>
+    <p>
+        As stated earlier dropping rows with null values should be avoided.
+        So, now lets have a look on the methods of filling null values.
+        <br>
+        <ul>
+            <li>
+                <b>Categorical data</b><br>
+                There are two major methods to fill null values in case of Categorical data:
+                <ol>
+                    <li>
+                        <b>Fill with the top class:</b>
+                        In this method we replace the null/NAN values with the class
+                        that appears most frequent in that particular column.
+                        This works most of the times but may produce udesired output in 
+                        some cases due to the fact that the data in the column now
+                        would be biased towards to top class mare than that was previously.
+                        <em>Thus, the next method is preffered over this method</em>
+                    </li>
+                    <li>
+                        <b>Fill with the Null class:</b>
+                        In this method NAN values are replaced with the special class
+                         i.e. Null class. Thus, we have an extra class in the column now, but 
+                         the data is as it was before and not biased towards any class.
+                         <em>This is recommended method to fill in the null values.</em>
+                    </li>
+                </ol>
+            </li>
+            <li>
+                <b>Numerical data</b><br>
+            </li>
+        </ul> 
+    </p>
+</body>
+</html>
