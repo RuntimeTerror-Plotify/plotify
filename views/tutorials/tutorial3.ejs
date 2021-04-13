@@ -26,6 +26,7 @@
                         would be biased towards to top class mare than that was previously.
                         <em>Thus, the next method is preffered over this method</em>
                     </li>
+                    <br>
                     <li>
                         <b>Fill with the Null class:</b>
                         In this method NAN values are replaced with the special class
@@ -35,6 +36,8 @@
                     </li>
                 </ol>
             </li>
+            <br>
+            <br>
             <li>
                 <b>Numerical data</b><br>
                 Various methods to fill null values in case of Numerical data are:
@@ -44,18 +47,21 @@
                         In this method we replace all NAN/null values with '0'. <em>This method
                         is not preffered as it may produce some skewness in data.</em>
                     </li>
+                    <br>
                     <li>
                         <b>Fill with minimum:</b>
                         In this method we replace the NAN/null values with the minimum of that 
                         column. <em>This method
                         is not preffered as it may produce some skewness in data.</em>
                     </li>
+                    <br>
                     <li>
                         <b>Fill with maximum:</b>
                         In this method we replace the NAN/null values with the maximum of that 
                         column. <em>This method
                         is not preffered as it may produce some skewness in data.</em>
                     </li>
+                    <br>
                     <li>
                         <b>Fill with mean</b>
                         In this method we replace the NAN/null values with the mean of that 
@@ -64,6 +70,7 @@
                         than former options as it generally lies in the middle rather than being
                         the extreme values like minimum, maximum, zero etc.
                     </li>
+                    <br>
                     <li>
                         <b>Fill with median:</b>
                         In this method we replace the NAN/null values with the median of that
@@ -71,12 +78,14 @@
                         normalised or standardised as it lies in the center of the data and incresing
                         the datapoints at the median does not introduces skewness in the data.
                     </li>
+                    <br>
                     <li>
                         <b>Forward fill:</b>
                         In this method we replace the NAN/null values with the last seen value as we traverse
                         from top to bottom through the columm.
                         <em>Not recommended if the first value in column is NAN/null.</em>
                     </li>
+                    <br>
                     <li>
                         <b>Backward fill:</b>
                         In this method we replace the NAN/null values with the last seen value as we traverse
