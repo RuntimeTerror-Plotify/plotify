@@ -68,8 +68,8 @@ function dataClick() {
     $("#catColumnForm").css("display", "block");
     // graphType = "bar";
     // columnName = $("#catColumnForm input").first()[0].value;
-    $("#colColumn").val($("#colColumn option:first").val());
-    $("#colGraph").val($("#colGraph option:first").val());
+    $("#catColumn").val($("#catColumn option:first").val());
+    $("#catGraph").val($("#catGraph option:first").val());
     makeGraph();
   }
 }
@@ -168,10 +168,14 @@ function gettrace(trace) {
 function makeGraph() {
   //Make Graph
   // console.log($("#rightPanel input"));
-  graphType = $("#graphForm select").val();
-  columnName = $("#columnForm select").val();
   typeOfData = $("#dataForm input:checked").val();
-
+  if (typeOfData == "Numerical") {
+    graphType = $("#numGraphForm option:selected").val();
+    columnName = $("#numColumnForm option:selected").val();
+  } else if (typeOfData == "Categorical") {
+    graphType = $("#catGraphForm option:selected").val();
+    columnName = $("#catColumnForm option:selected").val();
+  }
   console.log(columnName + " " + graphType);
 
   var index = columns.indexOf(columnName);
