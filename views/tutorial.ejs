@@ -13,8 +13,175 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" />
+    <link rel="stylesheet" href="/css/basicpage.css">
+    <link rel="stylesheet" href="/css/plotgraph.css">
 </head>
 <body>
+        <div id="wrapper">
+            <div class="overlay"></div>
+            <nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
+                <ul class="nav sidebar-nav">
+                    <div class="sidebar-header">
+                        <div class="sidebar-brand">
+                            <a href="/">plotify</a>
+                        </div>
+                    </div>
+                    <li class="align-middle">
+                        <a href="#" role="button" data-toggle="modal" data-target="#drop_col" style="width: 80%;">Drop
+                            column</a>
+                        <a href="https://www.google.com/" style="padding: 12px 2px;float: right;">
+                            <span class="fa-stack fa-1x" style="font-size: 1rem;">
+                                <i class="far fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
+                                    title="Click the icon to learn what it does."></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 80%;">Handle Null
+                            Values<span class="caret"></span></a>
+                        <a href="https://www.google.com/" style="padding: 12px 2px;float: right;">
+                            <span class="fa-stack fa-1x" style="font-size: 1rem;">
+                                <i class="far fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
+                                    title="Click the icon to learn what it does."></i>
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu animated fadeInLeft" role="menu">
+                            <li><a href="#" role="button" data-toggle="modal" data-target="#drop_row">Drop rows with null
+                                    values</a></li>
+                            <li><a href="#" role="button" data-toggle="modal" data-target="#fill_na">Fill null values</a>
+                            </li>
+                        </ul>
+    
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 80%;">Remove Outliers<span
+                                class="caret"></span></a>
+                        <a href="https://www.google.com/" style="padding: 12px 2px;float: right;"><span
+                                class="fa-stack fa-1x" style="font-size: 1rem;">
+                                <i class="far fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
+                                    title="Click the icon to learn what it does."></i>
+                            </span></a>
+                        <ul class="dropdown-menu animated fadeInLeft" role="menu">
+                            <li><a href="#" role="button" data-toggle="modal" data-target="#clip_values">Clip values</a>
+                            </li>
+                            <li><a href="#" role="button" data-toggle="modal" data-target="#drop_outliers">Drop outliers</a>
+                            </li>
+                        </ul>
+    
+                    </li>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 80%;">Categorical
+                            Labelling<span class="caret"></span></a>
+                        <a href="https://www.google.com/" style="padding: 12px 2px;float: right;"><span
+                                class="fa-stack fa-1x" style="font-size: 1rem;">
+                                <i class="far fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
+                                    title="Click the icon to learn what it does."></i>
+                            </span></a>
+                        <ul class="dropdown-menu animated fadeInLeft" role="menu">
+                            <li><a href="#" role="button" data-toggle="modal" data-target="#Encoding_Label">Encoding
+                                    Label</a></li>
+                            <li><a href="#" role="button" data-toggle="modal" data-target="#One_Hot_Encoding">One Hot
+                                    Encoding</a></li>
+                            <li><a href="#" role="button" data-toggle="modal" data-target="#Binary_Encoding">Binary
+                                    Encoding</a></li>
+                        </ul>
+    
+                    </li>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 80%;">Normalisation<span
+                                class="caret"></span></a>
+    
+                        <a href="https://www.google.com/" style="padding: 12px 2px;float: right;"><span
+                                class="fa-stack fa-1x" style="font-size: 1rem;">
+                                <i class="far fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
+                                    title="Click the icon to learn what it does."></i>
+                            </span></a>
+                        <ul class="dropdown-menu animated fadeInLeft" role="menu">
+                            <li><a href="#" role="button" data-toggle="modal" data-target="#Min_Max">Min-Max</a></li>
+                            <li><a href="#" role="button" data-toggle="modal" data-target="#Z_Score">Z_Score</a>
+                            </li>
+                        </ul>
+    
+                    </li>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 80%;">Remove Skewness<span
+                                class="caret"></span></a>
+                        <a href="https://www.google.com/" style="padding: 12px 2px;float: right;"><span
+                                class="fa-stack fa-1x" style="font-size: 1rem;">
+                                <i class="far fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
+                                    title="Click the icon to learn what it does."></i>
+                            </span></a>
+                        <ul class="dropdown-menu animated fadeInLeft" role="menu">
+                            <li><a href="#" role="button" data-toggle="modal" data-target="#Square_Root">Square_Root</a>
+                            </li>
+                            <li><a href="#" role="button" data-toggle="modal" data-target="#Cube_Root">Cube_Root</a>
+                            </li>
+                            <li><a href="#" role="button" data-toggle="modal" data-target="#Log">Log</a></li>
+                            <li><a href="#" role="button" data-toggle="modal" data-target="#Square">Square</a></li>
+                        </ul>
+    
+                    </li>
+                    <li><a href="/pca" role="button" data-toggle="modal" data-target="#pca" style="width: 80%;">Principal
+                            Component
+                            Analysis</a>
+                        <a href="https://www.google.com/" style="padding: 12px 2px;float: right;"><span
+                                class="fa-stack fa-1x" style="font-size: 1rem;">
+                                <i class="far fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
+                                    title="Click the icon to learn what it does."></i>
+                            </span></a>
+                    </li>
+                    <li><a href="#" role="button" data-toggle="modal" data-target="#uploadFile" style="width: 80%;">Upload New Data</a>
+                
+                        <a href="#" style="padding: 12px 2px;float: right;"><span
+                            class="fa-stack fa-1x" style="font-size: 1rem;">
+                            <i class="far fa-circle fa-stack-2x"></i>
+                            <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
+                                title="Your current data file on which you are working will be deleted."></i>
+                        </span></a>
+                    </li>
+                    <li><a href="#" role="button" data-toggle="modal" data-target="#pca" style="width: 100%;">Tutorials</a>
+                    </li>
+                </ul>
+            </nav>
+            <div id="page-content-wrapper">
+                <button type="button" class="hamburger animated fadeInLeft is-closed" data-toggle="offcanvas">
+                    <span class="hamb-top"></span>
+                    <span class="hamb-middle"></span>
+                    <span class="hamb-bottom"></span>
+                </button>
+                <ul class="tabs" role="tablist">
+                    <li>
+                        <input type="radio" name="tabs" id="tab5" checked />
+                        <label for="tab5" role="tab" aria-selected="true" aria-controls="panel5" tabindex="0">Tutorials</label>
+                            <%- include('tabs/tutorial_main.ejs'); %>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
     
 </body>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js"
+    integrity="sha512-Y8iWYJDo6HiTo5xtml1g4QqHtl/PO1w+dmUpQfQSOTqKNsMhExfyPN2ncNAe9JuJUSKzwK/b6oaNPop4MXzkwg=="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>
+<script>
+    let currentPage = '<%-currentPage%>';
+</script>
+
+<script src="/plotGraph.js"></script>
+<script src="/js/basicpage.js"></script>
+<script src="/js/tutorial.js"></script>
+
 </html>

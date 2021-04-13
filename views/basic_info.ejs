@@ -33,8 +33,8 @@
 </head>
 
 <body>
-    <div id="wrapper">
-        <div class="overlay"></div>
+<div id="wrapper">
+    <div class="overlay"> </div>
 
         <!-- Sidebar -->
         <nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
@@ -177,354 +177,28 @@
                     <input type="radio" name="tabs" id="tab1" checked />
                     <label for="tab1" role="tab" aria-selected="true" aria-controls="panel1" tabindex="0">Descriptive
                         Statistic</label>
-                    <div id="tab-content1" class="tab-content" role="tabpanel" aria-labelledby="description"
-                        aria-hidden="false">
-
-                        <div class="row">
-                            <div class="col-9">
-                                <p class="text-uppercase font-weight-bold"
-                                    style="font-size: 20px;color: rgba(0,0,0,0.5);">
-                                    Data Shape</p>
-
-                                <p style="display:inline-block;background-color: #eee;"
-                                    class="border rounded p-3 ml-4 pt-4 mr-4">
-                                    <span
-                                        style="font-size: 40px;color: rgba(0,0,0,0.7);"><%= list.shape[0]=='e' ? "0" : list.shape[0]%>
-                                    </span>
-                                    <span class="text-uppercase" style="color: rgba(0,0,0,0.5);">ROWS</span>
-                                </p>
-                                <p style="display:inline-block;background-color: #eee;"
-                                    class="border rounded p-3 ml-4 pt-4 mr-4">
-                                    <span
-                                        style="font-size: 40px;color: rgba(0,0,0,0.7);"><%= list.shape[1]=='m' ? "0" : list.shape[1] %></span>
-                                    <span class="text-uppercase" style="color: rgba(0,0,0,0.5);">COLUMNS</span>
-                                </p>
-                                
-                            </div>
-                            <div class="col-3">
-                                <form action="/revert" method="GET">
-                                    <% if(fileNo!=0) {%>
-                                    <button type="submit" class="revert_button btn btn-lg text-uppercase font-weight-bold"><i class="fas fa-undo"></i>&nbsp;Undo Changes</button>
-                                    <% } %>
-                                </form>
-                            </div>
-                        </div>
-                        <br>
-                        <div>
-                            <p class="text-uppercase font-weight-bold" style="font-size: 20px;color: rgba(0,0,0,0.5);">
-                                General Information about data</p>
-
-                            <% if(!(list.columns==="empty")){ %>
-                            <div class="wrap-table100">
-                                <div class="table100 border">
-                                    <table>
-                                        <thead>
-                                            <tr class="table100-head">
-                                                <th>columns</th>
-                                                <% list.columns.forEach(function(col) { %>
-                                                <th><%= col %></th>
-                                                <% });  %>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th>dtype</th>
-                                                <% list.dtype.forEach(function (dt) { %>
-                                                <td><%= dt %> </td>
-                                                <% }); %>
-                                            </tr>
-                                            <tr>
-                                                <th>count</th>
-                                                <% list.count.forEach(function (ct) { %>
-                                                <td><%= ct %> </td>
-                                                <% }); %>
-                                            </tr>
-                                            <tr>
-                                                <th>Null values</th>
-                                                <% list.null_val.forEach(function (nu) { %>
-                                                <td><%= nu %> </td>
-                                                <% }); %>
-                                            </tr>
-                                            <tr>
-                                                <th>Null percent</th>
-                                                <% list.null_val.forEach(function (nu,i) { %>
-                                                <td><%= ((nu/(nu+list.count[i]))*100).toFixed(4) %> </td>
-                                                <% }); %>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <% }else{ %>
-                            <div class="jumbotron">
-                                <h1 class="display-4">Opps!!!</h1>
-                                <p class="lead">You don't have any columns</p>
-                            </div>
-                            <% } %>
-                        </div>
-
-                        <br>
-                        <br>
-                        <div>
-                            <p class="text-uppercase font-weight-bold" style="font-size: 20px;color: rgba(0,0,0,0.5);display: inline-block;">
-                                statistical description for numerical data</p>
-                            <p style="display:inline-block;background-color: #eee;"
-                                class="border rounded p-1 ml-3 pt-2 mr-3">
-                                <span
-                                    style="font-size: 25px;color: rgba(0,0,0,0.7);"><%= list.numerical[0]=='e' ? "0" : list.numerical.length %></span>
-                                <span class="text-uppercase" style="color: rgba(0,0,0,0.5);">NUMERICAL COLUMNS</span>
-                            </p>
-                            <% if (list.numerical == "empty"){ %>
-                            <div class="jumbotron">
-                                <h1 class="display-4">Opps!!!</h1>
-                                <p class="lead">You don't have any Numerical data</p>
-                            </div>
-                            <% } else{%>
-                            <div class="wrap-table100">
-                                <div class="table100 border">
-                                    <table>
-                                        <thead>
-                                            <tr class="table100-head">
-                                                <th>columns</th>
-                                                <% list.numerical.forEach(function(col) { %>
-                                                <th><%= col %></th>
-                                                <% });  %>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th>mean</th>
-                                                <% list.mean.forEach(function (mn) { %>
-                                                <td><%= mn %></td>
-                                                <% }); %>
-                                            </tr>
-                                            <tr>
-                                                <th>median</th>
-                                                <% list.median.forEach(function (md) { %>
-                                                <td><%= md %> </td>
-                                                <% }); %>
-                                            </tr>
-                                            <tr>
-                                                <th>min</th>
-                                                <% list.minimum.forEach(function (mn) { %>
-                                                <td><%= mn %></td>
-                                                <% }); %>
-                                            </tr>
-                                            <tr>
-                                                <th>max</th>
-                                                <% list.maximum.forEach(function (mx) { %>
-                                                <td><%= mx %> </td>
-                                                <% }); %>
-                                            </tr>
-                                            <tr>
-                                                <th>standard deviation</th>
-                                                <% list.std.forEach(function (st) { %>
-                                                <td><%= st %> </td>
-                                                <% }); %>
-                                            </tr>
-                                            <tr>
-                                                <th>25%</th>
-                                                <% list.quant25.forEach(function (dt) { %>
-                                                <td><%= dt %> </td>
-                                                <% }); %>
-                                            </tr>
-                                            <tr>
-                                                <th>50%</th>
-                                                <% list.quant50.forEach(function (dt) { %>
-                                                <td><%= dt %> </td>
-                                                <% }); %>
-                                            </tr>
-                                            <tr>
-                                                <th>75%</th>
-                                                <% list.quant75.forEach(function (dt) { %>
-                                                <td><%= dt %> </td>
-                                                <% }); %>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <%}%>
-                                            </div>
-                                            <br>
-                                            <br>
-                                            <div>
-                                                <p class="text-uppercase font-weight-bold" style="font-size: 20px;color: rgba(0,0,0,0.5);display: inline-block;">statistical description for categorical data</p>
-                                                <p style="display:inline-block;background-color: #eee;"
-                                                    class="border rounded p-1 ml-3 pt-2 mr-3">
-                                                    <span
-                                                        style="font-size: 25px;color: rgba(0,0,0,0.7);"><%= list.categorical[0]=='e' ? "0" : list.categorical.length %></span>
-                                                    <span class="text-uppercase" style="color: rgba(0,0,0,0.5);">CATEGORICAL COLUMNS</span>
-                                                </p>
-                                                <% if (list.categorical == "empty"){ %>
-                                            <div class="jumbotron">
-                                                <h1 class="display-4">Opps!!!</h1>
-                                                <p class="lead">You don't have any Categorical data</p>
-                                            </div>
-                                            <% } else{%>
-                                            <div class="wrap-table100">
-                                                <div class="table100 border">
-                                                    <table>
-                                                        <thead>
-                                                            <tr class="table100-head">
-                                                                <th>columns</th>
-                                                                <% list.categorical.forEach(function(col) { %>
-                                                                <th><%= col %></th>
-                                                                <% });  %>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <th>unique</th>
-                                                                <% list.unique.forEach(function (dt) { %>
-                                                                <td><%= dt %> </td>
-                                                                <% }); %>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>top</th>
-                                                                <% list.top.forEach(function (dt) { %>
-                                                                <td><%= dt %> </td>
-                                                                <% }); %>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>frequency</th>
-                                                                <% list.freq.forEach(function (dt) { %>
-                                                                <td><%= dt %> </td>
-                                                                <% }); %>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <%}%>        
-                                            </div>                                           
-                                        
-                        </div>
+                        <%- include('tabs/descriptive_statistic.ejs'); %>
                 </li>
 
                 <li>
                     <input type="radio" name="tabs" id="tab2" />
                     <label for="tab2" id="tabl2" role="tab" aria-selected="false" aria-controls="panel2"
                         tabindex="0">Univariate Graph</label>
-                    <div id="tab-content2" class="tab-content" role="tabpanel" aria-labelledby="specification"
-                        aria-hidden="true">
-                        <%- include('plot_graph.ejs'); %>
-                        </div>
+                        <%- include('tabs/plot_graph.ejs'); %>
                 </li>
 
                 <li>
                     <input type="radio" name="tabs" id="tab3" />
                     <label for="tab3" id="tabl3" role="tab" aria-selected="false" aria-controls="panel3"
                         tabindex="0">Multivariate Graph</label>
-                    <div id="tab-content3" class="tab-content" role="tabpanel" aria-labelledby="specification"
-                        aria-hidden="true">
-
-
-                        <form id="corrMat">
-                            <p class="text-uppercase font-weight-bold" style="font-size: 20px;color: rgba(0,0,0,0.5);">Correlation Matrix</p>
-                            <div class="tips">
-                                <div class="jumbotron">
-                                    <h5 class="text-uppercase"><i class="far fa-hand-point-right"></i> TIPS</h5>
-                                    <p>Sign Indication</p>
-                                    <ul>
-                                        <li>Positive coefficients indicate that when the value of one variable increases, the
-                                            value of the other variable also tends to increase.</li><br>
-                                        <li>Negative coefficients represent cases when the value of one variable increases, the
-                                            value of the other variable tends to decrease.</li>
-                                    </ul>
-                                    <br>
-                                    <br>
-                                    <p>Magnitude Indication</p>
-                                    <ul>
-                                        <li>The extreme values of -1 and 1 indicate a perfectly linear relationship where a
-                                            change in one variable is accompanied by a perfectly consistent change in the other.
-                                        </li><br>
-                                        <li>A coefficient of zero represents no linear relationship. As one variable increases,
-                                            there is no tendency in the other variable to either increase or decrease.</li><br>
-                                        <li>When the value is in-between 0 and +1/-1, there is a relationship, but the points
-                                            don’t all fall on a line. As r approaches -1 or 1, the strength of the relationship
-                                            increases and the data points tend to fall closer to a line.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                
-                            <% if (list.numerical == "empty"){ %>
-                            <div class="jumbotron">
-                                <h1 class="display-4">Opps!!!</h1>
-                                <p class="lead">You don't have any Numerical data</p>
-                            </div>
-                            <% }else{ %>
-                            <div class="row">
-                                <div class="col-3">
-                                    <div class="select-checkbox">
-                                        <p class="text-left">Select the column you want to include in correlation matrix:</p>
-                                        <input type="text" class="modal-search-Input bg-light form-control border small"
-                                            placeholder="Search for..." title="Type in a name" style="margin: 3px 0;width: 80% !important;">
-                                            <ul class="modal-ul border">
-                                                <% list.numerical.forEach(function(col,i){ %>
-                                                    <li>
-                                                        <label for="<%=col%>"><input type="checkbox" name="corrColumn" value="<%=col%>"
-                                                                id="<%=col%>" /><span style="padding-left: 10px;"><%=col%></span></label>
-                                                    </li>
-                                                <% }); %>
-                                            </ul>
-                                            <label><input type="checkbox" class="selectall" onchange="selectall(this,'corrColumn')" /><span
-                                                style="padding-left: 10px;">Select All</span></label>
-                                                <button class="btn btn-lg" type="submit" onclick="corrSub(event)">Submit</button>
-                                    </div>
-                                </div>
-                                <div class="col-9 border border-secondary">
-                                    <div id="corrGraph" style="width:100%;height:100%;padding: auto;"><div id="corrIcon" style="text-align: center;vertical-align: middle; height: 100%; width: 100%;"><p style="margin-top: 23%"><i class="far fa-chart-bar fa-6x" style="color: rgba(0,0,0,0.3) !important;"></i></p></div></div>
-                                </div>
-                            </div>
-                            <% } %>
-                        </form>
-
-
-                    </div>
+                        <%- include('tabs/correlation_matrix.ejs'); %>
                 </li>
+
                 <li>
                     <input type="radio" name="tabs" id="tab4" />
                     <label for="tab4" id="tabl4" role="tab" aria-selected="false" aria-controls="panel4"
                         tabindex="0">View Raw Data</label>
-                    <div id="tab-content4" class="tab-content" role="tabpanel" aria-labelledby="specification"
-                        aria-hidden="true">
-                        <div>
-                            <form action="/download" method="GET">
-                                <button type="submit" class="download btn btn-lg" style="margin: 10px;">Download</button>
-                            </form>
-                        </div>
-                        <% if(list.columns != "empty"){ %>
-                        <div class="wrap-table100">
-                            <div class="table100 border">
-                                <table>
-                                    <thead>
-                                        <tr class="table100-head">
-                                            <% head.forEach(function(col) { %>
-                                            <th><%= col %></th>
-                                            <% });  %>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <% data.forEach(function(row){ %>
-                                        <tr>
-                                            <% row.forEach(function(ele){ %>
-                                            <td><%=ele%></td>
-                                            <% }) %>
-                                        </tr>
-                                        <% }) %>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <% }else{ %>
-                        <div class="jumbotron">
-                            <h1 class="display-4">Opps!!!</h1>
-                            <p class="lead">You don't have any Categorical data</p>
-                        </div>
-                        <% } %>
-
-                    </div>
+                        <%- include('tabs/rawdata.ejs'); %>
                 </li>
             </ul>
         </div>
@@ -533,25 +207,20 @@
     </div>
 
 
-    </div>
+
 
 
 
 
     <!--drop column Modal -->
     <%- include('modals/drop_column.ejs'); %>
-    <br>
 
     <!-- handle null values -->
 
     <!--fill nan Modal -->
     <%- include('modals/fill_nan.ejs'); %>
-
-    <br>
     <!--drop rows Modal -->
     <%- include('modals/drop_row.ejs'); %>
-
-    <br>
 
 
 

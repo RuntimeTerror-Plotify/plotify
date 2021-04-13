@@ -1,0 +1,38 @@
+<div id="tab-content4" class="tab-content" role="tabpanel" aria-labelledby="specification"
+                        aria-hidden="true">
+                        <div>
+                            <form action="/download" method="GET">
+                                <button type="submit" class="download btn btn-lg" style="margin: 10px;">Download</button>
+                            </form>
+                        </div>
+                        <% if(list.columns != "empty"){ %>
+                        <div class="wrap-table100">
+                            <div class="table100 border">
+                                <table>
+                                    <thead>
+                                        <tr class="table100-head">
+                                            <% head.forEach(function(col) { %>
+                                            <th><%= col %></th>
+                                            <% });  %>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% data.forEach(function(row){ %>
+                                        <tr>
+                                            <% row.forEach(function(ele){ %>
+                                            <td><%=ele%></td>
+                                            <% }) %>
+                                        </tr>
+                                        <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <% }else{ %>
+                        <div class="jumbotron">
+                            <h1 class="display-4">Opps!!!</h1>
+                            <p class="lead">You don't have any data</p>
+                        </div>
+                        <% } %>
+
+                    </div>

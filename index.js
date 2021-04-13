@@ -116,7 +116,7 @@ app.get("/", function (req, res) {
 });
 
 app.get("/tutorial",function(req,res){
-  res.render("tutorial-main",{currentPage:0});
+  res.render("tutorial",{currentPage:0});
 })
 
 app.get("/revert", function (req, res) {
