@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial 2</title>
+</head>
+<body>
+    <h1>Data cleaning: Drop Rows</h1>
+    As we now have columns with high percent of null values dropped, we have taken
+    care of almost all null values. To handle the rest of the values we have further
+    two options:
+    <ul>
+        <li>Drop rows with null values</li>
+        <li>Fill Null Values(discussed on next page) </li>
+    </ul>
+    <br>
+    To drop rows with null vaules we have further two options:
+    <ol>
+        <li>
+            <b>Drop row with NAN value present in any column:</b>
+            In this approach drop a row with null values in any of the columns. This 
+            results in a dataset with no NAN values but in reduced form. You may loose
+            some important information present in other columns of the row which was dropped.
+            <em>Thus, It is suggest to this method as much as possible.</em> 
+        </li>
+        <br>
+        <li>
+            <b>Drop row with NAN value present in any column:</b>
+            This method is similar to the previous one except for one difference that is
+            in former you looked for null values in any of the columns whereas in this method 
+            you have to specify the columns such that if there is a null value in a row 
+            corresponding to a specific columns it is then the row would be dropped.
+            This method would also reduce as previous but in smaller amount. Moreover output 
+            of this method may still have null values which need to be filled.
+        </li>
+    </ol>
+</body>
+</html>

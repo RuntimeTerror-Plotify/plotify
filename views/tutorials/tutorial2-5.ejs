@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial 2</title>
+</head>
+
+<body>
+    <h4>Feature Scaling</h4>
+
+
+
+    <div>
+        <p>
+            <h3>Introduction</h3>
+            Feature scaling is one of the most important data preprocessing step in machine learning.It means to bring
+            all features into same range.
+            <br>
+            Variables that are measured at different scales do not contribute equally to
+            the analysis and might end up creating a bais.For example, A variable that ranges between 0 and 1000 will
+            outweigh a variable that ranges between 0 and 1. Using these variables without standardization will give the
+            variable with the larger range weight of 1000 in the analysis. Transforming the data to comparable scales
+            can prevent this problem.
+            <br>
+            Normalisation and Standardisation are the two most popular feature scaling techniques and at the same time,
+            the most confusing ones.
+            <br>
+            Let’s resolve that confusion.
+        </p>
+        <br>
+        <br>
+        <h3>Normalization</h3>
+        <p>
+            “Normalizing” a vector most often means dividing by a norm of the vector. It also often refers to rescaling
+            by the minimum and range of the vector, to make all the elements lie between 0 and 1 thus bringing all the
+            values of numeric columns in the dataset to a common scale.
+            <br>
+            The goal of normalization is to change the values of numeric columns in the dataset to a common
+            scale, without distorting differences in the ranges of values. For machine learning, every dataset does not
+            require normalization. It is required only when features have different ranges.
+            <br>
+            <h3>When Should You Use Normalization</h3>
+            Normalization is a good technique to use when you do not know the distribution of your data or when you know
+            the distribution is not Gaussian (a bell curve). Normalization is useful when your data has varying scales
+            and the algorithm you are using does not make assumptions about the distribution of your data, such as
+            k-nearest neighbors and artificial neural networks.
+            <br>
+            For example, consider a data set containing two features, age, and income(x2). Where age ranges from 0–100,
+            while income ranges from 0–100,000 and higher. Income is about 1,000 times larger than age. So, these two
+            features are in very different ranges.
+            <br>
+            Here is the formula
+            <img src="/images/Normalization-1.png" alt="">
+            <br>
+
+        </p>
+
+        <h3>Standardisation</h3>
+        <p>“Standardizing” a vector most often means subtracting a measure of location and dividing by a measure of
+            scale. For example, if the vector contains random values with a Gaussian distribution, you might subtract
+            the mean and divide by the standard deviation, thereby obtaining a “standard normal” random variable with
+            mean 0 and standard deviation 1.
+            <br>
+            Standardizing the features around the center or 0 with a standard deviation of 1 is important when we
+            compare measurements that have different units.Typical data standardization procedures equalize the range
+            and/or data variability.Min- Max tries to get the values closer to mean. But when there are outliers in the
+            data which are important and we don’t want to loose their impact ,we go with Z score normalization.
+            <br>
+            <h3>When Should You Use Standardisation</h3>
+            Standardization assumes that your data has a Gaussian (bell curve) distribution. This does not strictly have
+            to be true, but the technique is more effective if your attribute distribution is Gaussian. Standardization
+            is useful when your data has varying scales and the algorithm you are using does make assumptions about your
+            data having a Gaussian distribution, such as linear regression, logistic regression, and linear discriminant
+            analysis.
+            <br>
+            Here is the formula
+            <img src="/images/Standardisation-1.png" alt="">
+            <br>
+
+        </p>
+        <br>
+        <br>
+    </div>
+
+
+</body>
+
+</html>

@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tutorial</title>
 </head>
+
 <body>
     <div style="visibility: hidden; position: absolute;" class="0">
         <%- include('tutorials/tutorial0.ejs'); %>
-        <button  onclick="location.href='/'">Home</button>
+        <button onclick="location.href='/'">Home</button>
         <button class="page-forward" id="0">Get Started</button>
     </div>
 
@@ -18,19 +20,79 @@
         <button class="page-backward" id="1">Previous</button>
         <button class="page-forward" id="1">Next</button>
     </div>
-    
+
+    <div style="visibility: hidden; position: absolute;" class="2">
+        <%- include('tutorials/tutorial2.ejs'); %>
+        <button class="page-backward" id="2">Previous</button>
+        <button class="page-forward" id="2">Next</button>
+    </div>
+
+    <div style="visibility: hidden; position: absolute;" class="3">
+        <%- include('tutorials/tutorial3.ejs'); %>
+        <button class="page-backward" id="3">Previous</button>
+        <button class="page-forward" id="3">Next</button>
+    </div>
+
+    <div style="visibility: hidden; position: absolute;" class="4">
+        <%- include('tutorials/tutorial4.ejs'); %>
+        <button class="page-backward" id="4">Previous</button>
+        <button class="page-forward" id="4">Next</button>
+    </div>
+
+    <div style="visibility: hidden; position: absolute;" class="5">
+        <%- include('tutorials/tutorial2-0.ejs'); %>
+        <button class="page-backward" id="5">Previous</button>
+        <button class="page-forward" id="5">Next</button>
+    </div>
+
+    <div style="visibility: hidden; position: absolute;" class="6">
+        <%- include('tutorials/tutorial2-1.ejs'); %>
+        <button class="page-backward" id="6">Previous</button>
+        <button class="page-forward" id="6">Next</button>
+    </div>
+
+    <div style="visibility: hidden; position: absolute;" class="7">
+        <%- include('tutorials/tutorial2-2.ejs'); %>
+        <button class="page-backward" id="7">Previous</button>
+        <button class="page-forward" id="7">Next</button>
+    </div>
+
+    <div style="visibility: hidden; position: absolute;" class="8">
+        <%- include('tutorials/tutorial2-3.ejs'); %>
+        <button class="page-backward" id="8">Previous</button>
+        <button class="page-forward" id="8">Next</button>
+    </div>
+
+    <div style="visibility: hidden; position: absolute;" class="9">
+        <%- include('tutorials/tutorial2-4.ejs'); %>
+        <button class="page-backward" id="9">Previous</button>
+        <button class="page-forward" id="9">Next</button>
+    </div>
+
+    <div style="visibility: hidden; position: absolute;" class="10">
+        <%- include('tutorials/tutorial2-5.ejs'); %>
+        <button class="page-backward" id="10">Previous</button>
+        <button class="page-forward" id="10">Next</button>
+    </div>
+
+    <div style="visibility: hidden; position: absolute;" class="11">
+        <%- include('tutorials/tutorial2-6.ejs'); %>
+        <button class="page-backward" id="11">Previous</button>
+    </div>
+
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     let currentPage = '<%-currentPage%>';
-    $("."+String(currentPage)).css("visibility","visible");
-    $('.page-forward').click(function(){
-        $("."+String(parseInt(this.id))).css("visibility","hidden");
-        $("."+String(parseInt(this.id)+1)).css("visibility","visible");
+    $("." + String(currentPage)).css("visibility", "visible");
+    $('.page-forward').click(function () {
+        $("." + String(parseInt(this.id))).css("visibility", "hidden");
+        $("." + String(parseInt(this.id) + 1)).css("visibility", "visible");
     });
-    $('.page-backward').click(function(){
-        $("."+String(parseInt(this.id))).css("visibility","hidden");
-        $("."+String(parseInt(this.id)-1)).css("visibility","visible");
+    $('.page-backward').click(function () {
+        $("." + String(parseInt(this.id))).css("visibility", "hidden");
+        $("." + String(parseInt(this.id) - 1)).css("visibility", "visible");
     });
 </script>
+
 </html>
