@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  
   $(function () {
     $('[data-toggle="tooltip"]').tooltip();
   });
@@ -186,3 +187,10 @@ function getFileContent()
         var x = document.getElementById('file');
         document.getElementById('contentName').innerHTML = x.value.split('\\').pop();
     }
+
+
+   
+
+
+    
+
