@@ -6,70 +6,69 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Begin!!</title>
-  <style>
-    #load{
-    width:100%;
-    height:100%;
-    position:fixed;
-    z-index:9999;
-    background: url(https://smallenvelop.com/wp-content/uploads/2014/08/Preloader_11.gif) center no-repeat #fff;
-  }
-  </style>
-  <script type = "text/javascript" >  
-    function preventBack() { window.history.forward(); }  
-    setTimeout("preventBack()", 0);  
-    window.onunload = function () { null };  
-  </script> 
-  
+  <script type="text/javascript">
+    function preventBack() {
+      window.history.forward();
+    }
+    setTimeout("preventBack()", 0);
+    window.onunload = function () {
+      null
+    };
+  </script>
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600&family=Sacramento&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/homepage.css">
-  </head>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600&family=Sacramento&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/css/homepage.css">
+</head>
 
 <body>
-  <div id="load"></div>
+  <div id="load" class="loader"></div>
   <div id="contents" style="height: auto;width: 100%;">
-  <div id="graph" style="position: absolute; z-index: -1;width: 100%;height: 100vh"></div>
+    <div id="graph" style="position: absolute; z-index: -1;width: 100%;height: 100vh"></div>
 
-  <div style="font-weight: 400;font-size: 200px;color: white;padding-top: 30px;text-align: center;font-family: 'Sacramento', cursive;">
-    <p>plotify</p>
-  </div>
-  <div style="font-size: 30px;color: white;text-align: center;font-weight: 400;font-family: 'Baloo 2', cursive;">
-    <p>Easy-to-go data manipulation platform.</p>
-  </div>
+    <div
+      style="font-weight: 400;font-size: 200px;color: white;padding-top: 30px;text-align: center;font-family: 'Sacramento', cursive;">
+      <p>plotify</p>
+    </div>
+    <div style="font-size: 30px;color: white;text-align: center;font-weight: 400;font-family: 'Baloo 2', cursive;">
+      <p>Easy-to-go data manipulation platform.</p>
+    </div>
 
-  
-  <div class="row" style="margin: 400px 0 0 0;padding: 2rem;width: 100%;">
-    <main class="page-content">
-      <div class="animation-element bounce-up cf">
-        <div class="card visual">
-          <div class="content">
+
+    <div class="row" style="margin: 400px 0 0 0;padding: 2rem;width: 100%;">
+      <main class="page-content">
+        <div class="animation-element bounce-up cf">
+          <div class="card visual">
+            <div class="content">
               <h2 class="title">Experiment</h2>
-              <p class="copy">Plotify provides you a easy-to-use platform to manipulate data. Manipulate and visualize data without worrying about code.Upload csv and get started now. </p>
+              <p class="copy">Plotify provides you a easy-to-use platform to manipulate data. Manipulate and visualize
+                data without worrying about code.Upload csv and get started now. </p>
               <button class="btn btn-dark" type="button" data-toggle="modal" data-target="#uploadFile">Upload</button>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="animation-element bounce-up cf">
-        <div class="card learn">
-          <div class="content">
+        <div class="animation-element bounce-up cf">
+          <div class="card learn">
+            <div class="content">
               <h2 class="title">Learn</h2>
-              <p class="copy">For those who are new to Data Science, Plotify provides step-by-step tutorials. Learn thorugh tutorials and Experiment on your data.</p>
+              <p class="copy">For those who are new to Data Science, Plotify provides step-by-step tutorials. Learn
+                thorugh tutorials and Experiment on your data.</p>
               <button class="btn btn-dark" onclick="location.href='/tutorial'">Tutorials</button>
+            </div>
           </div>
         </div>
+      </main>
+    </div>
+
+    <div class="bg-dark py-4" style="width: 100%;margin-top: 100px;">
+      <div class="container text-center">
+        <p class="text-muted mb-0 py-2">© 2021 Plotify All rights reserved.</p>
       </div>
-    </main>
-  </div>
-  
-  <div class="bg-dark py-4" style="width: 100%;margin-top: 100px;">
-    <div class="container text-center">
-      <p class="text-muted mb-0 py-2">© 2021 Plotify All rights reserved.</p>
     </div>
   </div>
-</div>
 
 
   <!-- Modal -->
@@ -90,25 +89,24 @@
   </script>
   <script src="/js/homepage.js"></script>
   <script type='text/javascript'>
-    function getFileContent()
-    {
-        var x = document.getElementById('file');
-        document.getElementById('contentName').innerHTML = x.value.split('\\').pop();
+    function getFileContent() {
+      var x = document.getElementById('file');
+      document.getElementById('contentName').innerHTML = x.value.split('\\').pop();
     }
     document.onreadystatechange = function () {
-    var state = document.readyState
-    if (state == 'interactive') {
-       document.getElementById('contents').style.display="none";
-    } else if (state == 'complete') {
-      setTimeout(function(){
-         document.getElementById('interactive');
-         document.getElementById('load').style.display="none";
-         document.getElementById('contents').style.display="block";
-      },1000);
+      var state = document.readyState
+      if (state == 'interactive') {
+        document.getElementById('contents').style.display = "none";
+      } else if (state == 'complete') {
+        setTimeout(function () {
+          document.getElementById('interactive');
+          document.getElementById('load').style.display = "none";
+          document.getElementById('contents').style.display = "block";
+        }, 1000);
+      }
     }
-  }
-</script>
-  
+  </script>
+
 </body>
 
 </html>
