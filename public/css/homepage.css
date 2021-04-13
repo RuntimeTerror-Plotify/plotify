@@ -325,3 +325,16 @@ span.profileFile-custom:hover:before {
 	outline: 1px dashed rgba(38, 160, 218, 1) !important;
 	outline-offset: 3px;
 }
+
+
+/* ----------------------------------------------Loader-------------------------------------------------------- */
+
+
+
+.loader {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 9999;
+	background: url(https://smallenvelop.com/wp-content/uploads/2014/08/Preloader_11.gif) center no-repeat #fff;
+  }

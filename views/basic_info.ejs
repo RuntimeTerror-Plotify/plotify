@@ -7,19 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Begin!!</title>
     <style>
-        #load{
-        width:100%;
-        height:100%;
-        position:fixed;
-        z-index:9999;
-        background: url(https://smallenvelop.com/wp-content/uploads/2014/08/Preloader_11.gif) center no-repeat #fff;
-      }
-      </style>
-    <script type = "text/javascript" >  
-        function preventBack() { window.history.forward(); }  
-        setTimeout("preventBack()", 0);  
-        window.onunload = function () { null };  
-    </script> 
+        #load {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 9999;
+            background: url(https://smallenvelop.com/wp-content/uploads/2014/08/Preloader_11.gif) center no-repeat #fff;
+        }
+    </style>
+    <script type="text/javascript">
+        function preventBack() {
+            window.history.forward();
+        }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () {
+            null
+        };
+    </script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -152,14 +156,15 @@
                                 title="Click the icon to learn what it does."></i>
                         </span></a>
                 </li>
-                <li><a href="#" role="button" data-toggle="modal" data-target="#uploadFile" style="width: 80%;">Upload New Data</a>
-            
-                    <a href="#" style="padding: 12px 2px;float: right;"><span
-                        class="fa-stack fa-1x" style="font-size: 1rem;">
-                        <i class="far fa-circle fa-stack-2x"></i>
-                        <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
-                            title="Your current data file on which you are working will be deleted."></i>
-                    </span></a>
+                <li><a href="#" role="button" data-toggle="modal" data-target="#uploadFile" style="width: 80%;">Upload
+                        New Data</a>
+
+                    <a href="#" style="padding: 12px 2px;float: right;"><span class="fa-stack fa-1x"
+                            style="font-size: 1rem;">
+                            <i class="far fa-circle fa-stack-2x"></i>
+                            <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
+                                title="Your current data file on which you are working will be deleted."></i>
+                        </span></a>
                 </li>
                 <li><a href="#" role="button" data-toggle="modal" data-target="#pca" style="width: 100%;">Tutorials</a>
                 </li>
@@ -282,8 +287,8 @@
     <!--PCA Modal -->
     <%- include('modals/pca.ejs'); %>
 
-     <!-- Upload File modal  -->
-     <%- include('modals/upload_file.ejs'); %>
+    <!-- Upload File modal  -->
+    <%- include('modals/upload_file.ejs'); %>
 
 
 
@@ -306,18 +311,17 @@
     let numericalData = '<%-list.numerical%>';
     let categoricalData = '<%-list.categorical%>';
     document.onreadystatechange = function () {
-  var state = document.readyState
-  if (state == 'interactive') {
-       document.getElementById('contents').style.display="none";
-  } else if (state == 'complete') {
-      setTimeout(function(){
-         document.getElementById('interactive');
-         document.getElementById('load').style.display="none";
-         document.getElementById('contents').style.display="block";
-      },1000);
-  }
-}
-    
+        var state = document.readyState
+        if (state == 'interactive') {
+            document.getElementById('contents').style.display = "none";
+        } else if (state == 'complete') {
+            setTimeout(function () {
+                document.getElementById('interactive');
+                document.getElementById('load').style.display = "none";
+                document.getElementById('contents').style.display = "block";
+            }, 1000);
+        }
+    }
 </script>
 
 <script src="/plotGraph.js"></script>

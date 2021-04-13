@@ -1,5 +1,4 @@
 $(document).ready(function () {
-  
   $(function () {
     $('[data-toggle="tooltip"]').tooltip();
   });
@@ -73,6 +72,7 @@ $(document).ready(function () {
 });
 
 function corrSub(event) {
+  $("#loaderCorr").css("display", "block");
   event.preventDefault();
   var column = [];
 
@@ -87,7 +87,6 @@ function corrSub(event) {
       column: column,
     },
     success: function (response) {
-
       var layout = {
         title: {
           text: "CORRELATION GRAPH",
@@ -139,9 +138,10 @@ function corrSub(event) {
           type: "heatmap",
         },
       ];
-      $("#corrIcon").css("display","none");
+      $("#corrIcon").css("display", "none");
 
       Plotly.newPlot("corrGraph", data, layout, config);
+      $("#loaderCorr").css("display", "none");
     },
   });
 }
@@ -157,6 +157,9 @@ function selectall(input, name) {
 }
 
 function run() {
+  $("#iconPca").css("display", "none");
+  $("#loaderPca").css("display", "block");
+
   $.ajax({
     url: "/pca",
     type: "post",
@@ -170,10 +173,12 @@ function run() {
       ];
 
       Plotly.newPlot("pcaGraph", data);
-
       $(".pcaRec").html("Keep First " + response.keep + " Columns");
-
       $("#pcaDiv").css("display", "block");
+      $("#pcaGraph").css("display", "block");
+
+      $("#loaderPca").css("display", "none");
+
       $("#pca").on("hidden.bs.modal", function () {
         location.reload();
       });
@@ -181,16 +186,7 @@ function run() {
   });
 }
 
-
-function getFileContent()
-    {
-        var x = document.getElementById('file');
-        document.getElementById('contentName').innerHTML = x.value.split('\\').pop();
-    }
-
-
-   
-
-
-    
-
+function getFileContent() {
+  var x = document.getElementById("file");
+  document.getElementById("contentName").innerHTML = x.value.split("\\").pop();
+}

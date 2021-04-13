@@ -112,12 +112,24 @@
 
 
   body {
+    animation: fadeInAnimation ease 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
     position: relative;
     overflow-x: auto;
     min-width: 1400px;
     background-color: #eee  ;
     font-family: 'Open Sans', sans-serif;
     padding-bottom: 100px;
+  }
+
+  @keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
   }
 
   body,
@@ -987,5 +999,16 @@ span.profileFile-custom:hover:before {
  }
  
  
+
+ /* ----------------------------------------------Loader-------------------------------------------------------- */
+
+
+
+.loader {
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(https://smallenvelop.com/wp-content/uploads/2014/08/Preloader_11.gif) center no-repeat #fff;
+  }
  
  
