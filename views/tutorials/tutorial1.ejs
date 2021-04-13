@@ -7,6 +7,40 @@
     <title>Tutorial 1</title>
 </head>
 <body>
-    <h1>Tutorial 1</h1>
+    <h1>Data Cleaning: Drop Columns</h1>
+    <p>
+        The first thing in Data cleaning is handling NAN/null values. To do this there are various
+        stratergies. The first one we will see is dropping columns.
+        <br>
+        <br>
+        There are various reasons behind dropping a column:
+        <ul>
+            <li>Column with high NAN values</li>
+            <li>Column with high correlation with others</li>
+        </ul>
+        Let's understand the reason behind them:
+        <ol>
+            <li>
+                <b>Column with high NAN values: </b> 
+                We can handle NAN values in two ways either drop them or fill them. Here we will
+                talk only about dropping columns due to high percentage of NAN values. NAN values
+                and may make the data biased. Moreover, few models does not support NAN values. 
+                Thus we need to properly take care of NAN values. If a column has NAN values more 
+                that <em>50%</em>, it is suggested that you drop the column as it would be no use 
+                for the model or analysis.  
+            </li>
+            <br>
+            <li>
+                <b>Column with high correlation: </b>
+                If two columns have high correlation then it is expected that data they report are 
+                highly matching and they depict almost same information to model and analysis. If a
+                column has high correlation say above 0.9 or below -0.9. Then it is suggested that
+                you drop the column as both the columns would depict same things. <br>
+                Ps: <em>It is suggested 
+                to think twice before dropping a column as two different columns might high correlation
+                but both columns are equally important according to the use case. </em> 
+            </li>
+        </ol>
+    </p>
 </body>
 </html>
