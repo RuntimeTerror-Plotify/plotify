@@ -27,123 +27,41 @@
                         </div>
                     </div>
                     <li class="align-middle">
-                        <a href="#" role="button" data-toggle="modal" data-target="#drop_col" style="width: 80%;">Drop
-                            column</a>
-                        <a href="https://www.google.com/" style="padding: 12px 2px;float: right;">
-                            <span class="fa-stack fa-1x" style="font-size: 1rem;">
-                                <i class="far fa-circle fa-stack-2x"></i>
-                                <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
-                                    title="Click the icon to learn what it does."></i>
-                            </span>
-                        </a>
+                        <a href="#" style="width: 100%;">Data Preprocessing</a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 80%;">Handle Null
-                            Values<span class="caret"></span></a>
-                        <a href="https://www.google.com/" style="padding: 12px 2px;float: right;">
-                            <span class="fa-stack fa-1x" style="font-size: 1rem;">
-                                <i class="far fa-circle fa-stack-2x"></i>
-                                <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
-                                    title="Click the icon to learn what it does."></i>
-                            </span>
-                        </a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 100%;">Data Cleaning<span class="caret"></span></a>
                         <ul class="dropdown-menu animated fadeInLeft" role="menu">
-                            <li><a href="#" role="button" data-toggle="modal" data-target="#drop_row">Drop rows with null
-                                    values</a></li>
-                            <li><a href="#" role="button" data-toggle="modal" data-target="#fill_na">Fill null values</a>
-                            </li>
+                            <li><a href="#" >Drop Column</a></li>
+                            <li><a href="#" >Drop Row</a></li>
+                            <li><a href="#" >Fill Null Values</a></li>
+                            <li><a href="#" >Removing Outliers</a></li>
+                            
                         </ul>
     
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 80%;">Remove Outliers<span
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 100%;">Data Transformation<span
                                 class="caret"></span></a>
-                        <a href="https://www.google.com/" style="padding: 12px 2px;float: right;"><span
-                                class="fa-stack fa-1x" style="font-size: 1rem;">
-                                <i class="far fa-circle fa-stack-2x"></i>
-                                <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
-                                    title="Click the icon to learn what it does."></i>
-                            </span></a>
                         <ul class="dropdown-menu animated fadeInLeft" role="menu">
-                            <li><a href="#" role="button" data-toggle="modal" data-target="#clip_values">Clip values</a>
+                            <li><a href="#">Introduction</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categorical Labelling<span
+                                    class="caret"></span></a>
+                                    <ul class="dropdown-menu animated fadeInLeft" role="menu">
+                                        <li><a href="#">Introduction</a></li>
+                                        <li><a href="#">Encoding Label</a></li>
+                                        <li><a href="#">One Hot Encoding</a></li>
+                                        <li><a href="#">Binary Encoding</a></li>
+                                    </ul>
                             </li>
-                            <li><a href="#" role="button" data-toggle="modal" data-target="#drop_outliers">Drop outliers</a>
+                            <li><a href="#">Feature Scaling</a></li>
+                            <li><a href="#">Skewness</a>
                             </li>
                         </ul>
-    
                     </li>
-                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 80%;">Categorical
-                            Labelling<span class="caret"></span></a>
-                        <a href="https://www.google.com/" style="padding: 12px 2px;float: right;"><span
-                                class="fa-stack fa-1x" style="font-size: 1rem;">
-                                <i class="far fa-circle fa-stack-2x"></i>
-                                <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
-                                    title="Click the icon to learn what it does."></i>
-                            </span></a>
-                        <ul class="dropdown-menu animated fadeInLeft" role="menu">
-                            <li><a href="#" role="button" data-toggle="modal" data-target="#Encoding_Label">Encoding
-                                    Label</a></li>
-                            <li><a href="#" role="button" data-toggle="modal" data-target="#One_Hot_Encoding">One Hot
-                                    Encoding</a></li>
-                            <li><a href="#" role="button" data-toggle="modal" data-target="#Binary_Encoding">Binary
-                                    Encoding</a></li>
-                        </ul>
-    
-                    </li>
-                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 80%;">Normalisation<span
-                                class="caret"></span></a>
-    
-                        <a href="https://www.google.com/" style="padding: 12px 2px;float: right;"><span
-                                class="fa-stack fa-1x" style="font-size: 1rem;">
-                                <i class="far fa-circle fa-stack-2x"></i>
-                                <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
-                                    title="Click the icon to learn what it does."></i>
-                            </span></a>
-                        <ul class="dropdown-menu animated fadeInLeft" role="menu">
-                            <li><a href="#" role="button" data-toggle="modal" data-target="#Min_Max">Min-Max</a></li>
-                            <li><a href="#" role="button" data-toggle="modal" data-target="#Z_Score">Z_Score</a>
-                            </li>
-                        </ul>
-    
-                    </li>
-                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 80%;">Remove Skewness<span
-                                class="caret"></span></a>
-                        <a href="https://www.google.com/" style="padding: 12px 2px;float: right;"><span
-                                class="fa-stack fa-1x" style="font-size: 1rem;">
-                                <i class="far fa-circle fa-stack-2x"></i>
-                                <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
-                                    title="Click the icon to learn what it does."></i>
-                            </span></a>
-                        <ul class="dropdown-menu animated fadeInLeft" role="menu">
-                            <li><a href="#" role="button" data-toggle="modal" data-target="#Square_Root">Square_Root</a>
-                            </li>
-                            <li><a href="#" role="button" data-toggle="modal" data-target="#Cube_Root">Cube_Root</a>
-                            </li>
-                            <li><a href="#" role="button" data-toggle="modal" data-target="#Log">Log</a></li>
-                            <li><a href="#" role="button" data-toggle="modal" data-target="#Square">Square</a></li>
-                        </ul>
-    
-                    </li>
-                    <li><a href="/pca" role="button" data-toggle="modal" data-target="#pca" style="width: 80%;">Principal
-                            Component
-                            Analysis</a>
-                        <a href="https://www.google.com/" style="padding: 12px 2px;float: right;"><span
-                                class="fa-stack fa-1x" style="font-size: 1rem;">
-                                <i class="far fa-circle fa-stack-2x"></i>
-                                <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
-                                    title="Click the icon to learn what it does."></i>
-                            </span></a>
-                    </li>
-                    <li><a href="#" role="button" data-toggle="modal" data-target="#uploadFile" style="width: 80%;">Upload New Data</a>
-                
-                        <a href="#" style="padding: 12px 2px;float: right;"><span
-                            class="fa-stack fa-1x" style="font-size: 1rem;">
-                            <i class="far fa-circle fa-stack-2x"></i>
-                            <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
-                                title="Your current data file on which you are working will be deleted."></i>
-                        </span></a>
-                    </li>
-                    <li><a href="#" role="button" data-toggle="modal" data-target="#pca" style="width: 100%;">Tutorials</a>
+                    <li class="align-middle">
+                        <a href="#" style="width: 100%;">Principal Component Analysis</a>
                     </li>
                 </ul>
             </nav>
