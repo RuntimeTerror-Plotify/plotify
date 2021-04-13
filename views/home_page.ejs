@@ -96,17 +96,17 @@
         document.getElementById('contentName').innerHTML = x.value.split('\\').pop();
     }
     document.onreadystatechange = function () {
-  var state = document.readyState
-  if (state == 'interactive') {
+    var state = document.readyState
+    if (state == 'interactive') {
        document.getElementById('contents').style.display="none";
-  } else if (state == 'complete') {
+    } else if (state == 'complete') {
       setTimeout(function(){
          document.getElementById('interactive');
          document.getElementById('load').style.display="none";
          document.getElementById('contents').style.display="block";
       },1000);
+    }
   }
-}
 </script>
   
 </body>
