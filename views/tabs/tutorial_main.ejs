@@ -41,6 +41,10 @@
         <%- include('../tutorials/tutorial4.ejs'); %>
         <button class="page-backward" id="4">Previous</button>
         <button class="page-forward" id="4">Next</button>
+        <%if(tutorialFile == true){ %>
+            <a href="#" role="button" data-toggle="modal" data-target="#clip_values">Clip values</a>
+            <a href="#" role="button" data-toggle="modal" data-target="#drop_outliers">Drop outliers</a>
+        <% } %>
     </div>
 
     <div style="display: none;" class="5">
@@ -59,34 +63,57 @@
         <%- include('../tutorials/tutorial2-2.ejs'); %>
         <button class="page-backward" id="7">Previous</button>
         <button class="page-forward" id="7">Next</button>
+        <%if(tutorialFile == true){ %>
+            <a href="#" role="button" data-toggle="modal" data-target="#Encoding_Label">EncodingLabel</a>
+        <% } %>
     </div>
 
     <div style="display: none;" class="8">
         <%- include('../tutorials/tutorial2-3.ejs'); %>
         <button class="page-backward" id="8">Previous</button>
         <button class="page-forward" id="8">Next</button>
+        <%if(tutorialFile == true){ %>
+            <a href="#" role="button" data-toggle="modal" data-target="#One_Hot_Encoding">One Hot Encoding</a>
+        <% } %>
     </div>
 
     <div style="display: none;" class="9">
         <%- include('../tutorials/tutorial2-4.ejs'); %>
         <button class="page-backward" id="9">Previous</button>
         <button class="page-forward" id="9">Next</button>
+        <%if(tutorialFile == true){ %>
+            <a href="#" role="button" data-toggle="modal" data-target="#Binary_Encoding">Binary Encoding</a>
+        <% } %>
     </div>
 
     <div style="display: none;" class="10">
         <%- include('../tutorials/tutorial2-5.ejs'); %>
         <button class="page-backward" id="10">Previous</button>
         <button class="page-forward" id="10">Next</button>
+        <%if(tutorialFile == true){ %>
+            <a href="#" role="button" data-toggle="modal" data-target="#Min_Max">Min-Max</a>
+            <a href="#" role="button" data-toggle="modal" data-target="#Z_Score">Z_Score</a>
+        <% } %>
     </div>
 
     <div style="display: none;" class="11">
         <%- include('../tutorials/tutorial2-6.ejs'); %>
         <button class="page-backward" id="11">Previous</button>
         <button class="page-forward" id="11">Next</button>
+        <%if(tutorialFile == true){ %>
+            <a href="#" role="button" data-toggle="modal" data-target="#Square_Root">Square_Root</a>
+            <a href="#" role="button" data-toggle="modal" data-target="#Cube_Root">Cube_Root</a>
+            <a href="#" role="button" data-toggle="modal" data-target="#Log">Log</a>
+            <a href="#" role="button" data-toggle="modal" data-target="#Square">Square</a>
+        <% } %>
     </div>
     <div style="display: none;" class="12">
         <%- include('../tutorials/tutorial2-7.ejs'); %>
         <button class="page-backward" id="12">Previous</button>
+        <%if(tutorialFile == true){ %>
+            <a href="/pca" role="button" data-toggle="modal" data-target="#pca" style="width: 80%;">Principal
+                Component Analysis</a>
+        <% } %>
     </div>
 </div>
 

@@ -119,8 +119,13 @@ app.get("/", function (req, res) {
 });
 
 app.get("/tutorial",function(req,res){
-  section = "tutorial";
-  res.render("tutorial",{currentPage:currentPage, section: section, tutorialFile: tutorialFile});
+  if(section=="home"){
+    section = "tutorial";
+    res.render("tutorial",{currentPage:currentPage, section: section, tutorialFile: tutorialFile});
+  }
+  else{
+    res.redirect("/data_analysis");
+  }
 })
 
 app.get("/revert", function (req, res) {
@@ -220,6 +225,9 @@ app.get("/data_analysis", function (req, res) {
 });
 
 app.post("/categorical_labelling", function (req, res) {
+  if(section == "tutorial"){
+    currentPage = 7;
+  }
   handleFiles();
   var x = req.body;
   var column = [];
@@ -265,7 +273,6 @@ app.post("/drop_columns", function (req, res) {
 });
 
 app.post("/drop_rows", function (req, res) {
-  console.log(req.body);
   if(section == "tutorial"){
     currentPage = 2;
   }
@@ -317,6 +324,9 @@ app.post("/corr_matrix", function (req, res) {
 });
 
 app.post("/data_transform", function (req, res) {
+  if(section == "tutorial"){
+    currentPage = 10;
+  }
   handleFiles();
   var x = req.body;
   var column = [];
@@ -342,6 +352,9 @@ app.post("/data_transform", function (req, res) {
 });
 
 app.post("/pca", function (req, res) {
+  if(section == "tutorial"){
+    currentPage = 12;
+  }
   handleFiles();
   var out = "";
   var py = spawn("python", ["pyScript/pca.py"]),
@@ -397,6 +410,9 @@ app.post("/fill_nan", function (req, res) {
 });
 
 app.post("/remove_outlier", function (req, res) {
+  if(section == "tutorial"){
+    currentPage = 4;
+  }
   handleFiles();
   let out = [];
   var py = spawn("python", ["pyScript/remove_outlier.py"]),
@@ -417,6 +433,9 @@ app.post("/remove_outlier", function (req, res) {
 });
 
 app.post("/clip_values", function (req, res) {
+  if(section == "tutorial"){
+    currentPage = 4;
+  }
   handleFiles();
   let out = [];
   var py = spawn("python", ["pyScript/clip_values.py"]),
