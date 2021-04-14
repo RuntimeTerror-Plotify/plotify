@@ -1,37 +1,52 @@
 <div class="modal fade dataprocessing" id="drop_outliers" tabindex="-1" role="dialog" aria-labelledby="drop_col"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="">Drop outliers</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <% if(list.numerical != "empty") {%>
-                <div class="modal-body">
-                    <form action="/remove_outlier" method="POST">
-                        <div class="form-group row">
-                            <label class="col-sm-6 col-form-label" for="thresh">Z threshold value:</label>
-                            <div class="col-sm-6">
-                                <input class="form-control" type="number" name="thresh" id="thresh" />
-                            </div>
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Drop outliers</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <% if(list.numerical != "empty") {%>
+            <div class="modal-body">
+                <% var flag = true %>
+                <% list.null_val.forEach(function(value){ %>
+                <% if(value!=0) {%>
+                <%flag = false; %>
+                <% return} %>
+                <% }) %>
+                <% if(flag){ %>
+                <form action="/remove_outlier" method="POST">
+                    <div class="form-group row">
+                        <label class="col-sm-6 col-form-label" for="thresh">Z threshold value:</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" type="number" name="thresh" id="thresh" />
                         </div>
-                        
-                </div>
+                    </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-lg">Submit</button>
                     </div>
                 </form>
                 <% }else{ %>
-                    <div class="modal-body">
-                        <div class="jumbotron">
-                            <h1 class="display-4">Opps!!!</h1>
-                            <p class="lead">You don't have any columns</p>
-                        </div>
+                <div class="modal-body">
+                    <div class="jumbotron">
+                        <h1 class="display-4">Opps!!!</h1>
+                        <p class="lead">Your Numerical Columns have NULL VALUES. First Handle them.</p>
                     </div>
-                    <% } %>
-
+                </div>
+                <% } %>
             </div>
+
+            <% }else{ %>
+            <div class="modal-body">
+                <div class="jumbotron">
+                    <h1 class="display-4">Opps!!!</h1>
+                    <p class="lead">You don't have any columns</p>
+                </div>
+            </div>
+            <% } %>
+
         </div>
     </div>
+</div>
