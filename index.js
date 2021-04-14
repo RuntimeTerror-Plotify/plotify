@@ -265,6 +265,7 @@ app.post("/drop_columns", function (req, res) {
 });
 
 app.post("/drop_rows", function (req, res) {
+  console.log(req.body);
   if(section == "tutorial"){
     currentPage = 2;
   }
@@ -272,12 +273,7 @@ app.post("/drop_rows", function (req, res) {
   var py = spawn("python", ["pyScript/drop_row.py"]),
     data = [
       filePath,
-      req.body.mode,
       req.body.subset,
-      fileNo,
-      fileExt,
-      folderPath,
-      fileName,
     ];
 
   py.stdout.on("data", function (output) {});
