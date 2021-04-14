@@ -34,6 +34,7 @@ def main():
             df = pd.read_csv(lines)
             df = df.dropna(how="all", axis="columns")
             df.to_csv(lines, index=False)
+            df = pd.read_csv(lines)
 
             colName = []
             dtypes = []
