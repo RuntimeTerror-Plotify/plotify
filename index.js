@@ -38,6 +38,9 @@ let fileName = "";
 let basic = [];
 let fileNo = 0;
 let folderPath = "./public/csv/";
+let section = "home";
+let currentPage = 0;
+let tutorialFile = false;
 
 function handleFiles() {
   if (fileNo < 3) {
@@ -112,11 +115,12 @@ app.get("/", function (req, res) {
       console.log(err);
     }
   })
-  res.render("home_page");
+  res.render("home_page",{section: "home"});
 });
 
 app.get("/tutorial",function(req,res){
-  res.render("tutorial",{currentPage:0});
+  section = "tutorial";
+  res.render("tutorial",{currentPage:currentPage, section: section, tutorialFile: tutorialFile});
 })
 
 app.get("/revert", function (req, res) {
@@ -135,6 +139,7 @@ app.get("/revert", function (req, res) {
 
 app.post("/file_upload", uploadDisk.single("file"), function (req, res) {
   fileNo = 0;
+  section = req.body.section;
   fileExt = req.file.originalname.split(".").pop();
   fs.rename(
     req.file.destination + req.file.originalname,
@@ -145,7 +150,12 @@ app.post("/file_upload", uploadDisk.single("file"), function (req, res) {
   );
   filePath = req.file.destination + "file" + fileNo + "." + fileExt;
   fileName = "file" + fileNo + "." + fileExt;
+  if(section == "tutorial"){
+    currentPage = 1;
+    tutorialFile = true;
+  }
   res.redirect("/data_analysis");
+  
 });
 
 app.get("/download", function (req, res) {
@@ -170,14 +180,30 @@ app.get("/data_analysis", function (req, res) {
         fs.readFile(filePath, "UTF-8", function (err, csv) {
           $.csv.toArrays(csv, {}, function (err, data) {
             head = data.shift();
-            res.render("basic_info", {
-              list: basic,
-              fileName: fileName,
-              filePath: filePath,
-              fileNo: fileNo,
-              head: head,
-              data: data.slice(0, 20),
-            });
+            if(section == "home"){
+              res.render("basic_info", {
+                list: basic,
+                fileName: fileName,
+                filePath: filePath,
+                fileNo: fileNo,
+                head: head,
+                data: data.slice(0, 20),
+                section: section,
+              });  
+            }
+            else{
+              res.render("tutorial",{
+                currentPage:currentPage, 
+                section: section,
+                list: basic,
+                fileName: fileName,
+                filePath: filePath,
+                fileNo: fileNo,
+                head: head,
+                data: data.slice(0, 20),
+                tutorialFile: tutorialFile,
+              });
+            }
           });
         });
       } else {
@@ -219,6 +245,9 @@ app.post("/categorical_labelling", function (req, res) {
 });
 
 app.post("/drop_columns", function (req, res) {
+  if(section == "tutorial"){
+    currentPage = 1;
+  }
   handleFiles();
   let out = [];
   var py = spawn("python", ["pyScript/drop_col.py"]),
@@ -236,6 +265,9 @@ app.post("/drop_columns", function (req, res) {
 });
 
 app.post("/drop_rows", function (req, res) {
+  if(section == "tutorial"){
+    currentPage = 2;
+  }
   handleFiles();
   var py = spawn("python", ["pyScript/drop_row.py"]),
     data = [
@@ -338,6 +370,9 @@ app.post("/pca", function (req, res) {
 });
 
 app.post("/fill_nan", function (req, res) {
+  if(section == "tutorial"){
+    currentPage = 3;
+  }
   handleFiles();
   dataArr =[];
   if(req.body.col_type == "num"){

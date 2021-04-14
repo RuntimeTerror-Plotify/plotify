@@ -2,26 +2,39 @@
 <div id="tab-content5" class="tab-content" role="tabpanel" aria-labelledby="description" aria-hidden="false">
     <div style="display: none;" class="0">
         <%- include('../tutorials/tutorial0.ejs'); %>
-        <button onclick="location.href='/'" class="btn btn-lg">Home</button>
         <button class="page-forward" id="0">Get Started</button>
+        <form action="/file_upload" method="POST">
+            <button class="btn btn-dark" type="button" data-toggle="modal" data-target="#uploadFile">Upload</button>
+        </form>
     </div>
 
     <div style="display: none;" class="1">
         <%- include('../tutorials/tutorial1.ejs'); %>
         <button class="page-backward" id="1">Previous</button>
         <button class="page-forward" id="1">Next</button>
+        <%if(tutorialFile == true){ %>
+            <a href="#" role="button" data-toggle="modal" data-target="#drop_col" style="width: 80%;">Drop
+                column</a>
+        <% } %>
     </div>
 
     <div style="display: none;" class="2">
         <%- include('../tutorials/tutorial2.ejs'); %>
         <button class="page-backward" id="2">Previous</button>
         <button class="page-forward" id="2">Next</button>
+        <%if(tutorialFile == true){ %>
+            <a href="#" role="button" data-toggle="modal" data-target="#drop_row">Drop rows with null
+                values</a>
+        <% } %>
     </div>
 
     <div style="display: none;" class="3">
         <%- include('../tutorials/tutorial3.ejs'); %>
         <button class="page-backward" id="3">Previous</button>
         <button class="page-forward" id="3">Next</button>
+        <%if(tutorialFile == true){ %>
+            <a href="#" role="button" data-toggle="modal" data-target="#fill_na">Fill null values</a>
+        <% } %>
     </div>
 
     <div style="display: none;" class="4">
@@ -69,6 +82,11 @@
     <div style="display: none;" class="11">
         <%- include('../tutorials/tutorial2-6.ejs'); %>
         <button class="page-backward" id="11">Previous</button>
+        <button class="page-forward" id="11">Next</button>
+    </div>
+    <div style="display: none;" class="12">
+        <%- include('../tutorials/tutorial2-7.ejs'); %>
+        <button class="page-backward" id="12">Previous</button>
     </div>
 </div>
 
