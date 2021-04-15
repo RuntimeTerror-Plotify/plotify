@@ -27,6 +27,9 @@
                         </div>
                     </div>
                     <li class="align-middle">
+                        <a href="/" style="width: 100%;">Home</a>
+                    </li>
+                    <li class="align-middle">
                         <a href="#" style="width: 100%;">Data Preprocessing</a>
                     </li>
                     <li class="dropdown">
@@ -77,10 +80,95 @@
                         <label for="tab5" role="tab" aria-selected="true" aria-controls="panel5" tabindex="0">Tutorials</label>
                             <%- include('tabs/tutorial_main.ejs'); %>
                     </li>
+                    <% if(tutorialFile == true){ %>
+                        <li>
+                            <input type="radio" name="tabs" id="tab1" />
+                            <label for="tab1" role="tab" aria-selected="true" aria-controls="panel1" tabindex="0">Descriptive
+                                Statistic</label>
+                                <%- include('tabs/descriptive_statistic.ejs'); %>
+                        </li>
+        
+                        <li>
+                            <input type="radio" name="tabs" id="tab2" />
+                            <label for="tab2" id="tabl2" role="tab" aria-selected="false" aria-controls="panel2"
+                                tabindex="0">Univariate Graph</label>
+                                <%- include('tabs/plot_graph.ejs'); %>
+                        </li>
+        
+                        <li>
+                            <input type="radio" name="tabs" id="tab3" />
+                            <label for="tab3" id="tabl3" role="tab" aria-selected="false" aria-controls="panel3"
+                                tabindex="0">Multivariate Graph</label>
+                                <%- include('tabs/correlation_matrix.ejs'); %>
+                        </li>
+        
+                        <li>
+                            <input type="radio" name="tabs" id="tab4" />
+                            <label for="tab4" id="tabl4" role="tab" aria-selected="false" aria-controls="panel4"
+                                tabindex="0">View Raw Data</label>
+                                <%- include('tabs/rawdata.ejs'); %>
+                        </li>
+                    <% } %>
                 </ul>
             </div>
 
         </div>
+        <!-- Modal -->
+        <%- include('modals/upload_file.ejs'); %>
+
+        <% if(tutorialFile == true){ %>
+            <!--drop column Modal -->
+            <%- include('modals/drop_column.ejs'); %>
+            
+            <!--drop rows Modal -->
+            <%- include('modals/drop_row.ejs'); %>
+            
+            <!--fill nan Modal -->
+            <%- include('modals/fill_nan.ejs'); %>
+            
+            <!--clip_values Modal -->
+            <%- include('modals/clip_values.ejs'); %>
+            
+            <!--drop r outlier Modal -->
+            <%- include('modals/drop_outliers.ejs'); %>
+            
+            <!--Encoding Labels Modal -->
+            <%- include('modals/encoding_label.ejs'); %>
+            
+            <!--One Hot Encoding Modal -->
+            <%- include('modals/one_hot_encoding.ejs'); %>
+            
+            <!--Binary Encoding Modal -->
+            <%- include('modals/binary_encoding.ejs'); %>
+            
+            <!--Normalisation Modal -->
+            
+            <!--Min-Max Modal -->
+
+            <%- include('modals/min_max.ejs'); %>           
+            
+            <!--Z-Score Modal -->
+            <%- include('modals/z_score.ejs'); %>
+
+
+            <!--Skewness Removal Modal -->
+
+            <!--Square-Root Modal -->
+            <%- include('modals/square_root.ejs'); %>
+
+            <!--Cube-Root Modal -->
+            <%- include('modals/cube_root.ejs'); %>
+
+            <!--Log Modal -->
+            <%- include('modals/log.ejs'); %>
+
+            <!--Square Modal -->
+            <%- include('modals/square.ejs'); %>
+
+            <!--PCA Modal -->
+            <%- include('modals/pca.ejs'); %>
+        <%}%>
+        
     
 </body>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -94,8 +182,30 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
 </script>
+<% if(tutorialFile == true) { %> 
+    <script>
+        let fileName = '<%-fileName%>';
+        let shape = '<%-list.shape%>';
+        let numericalData = '<%-list.numerical%>';
+        let categoricalData = '<%-list.categorical%>';
+        document.onreadystatechange = function () {
+            var state = document.readyState
+            if (state == 'interactive') {
+                document.getElementById('contents').style.display = "none";
+            } else if (state == 'complete') {
+                setTimeout(function () {
+                    document.getElementById('interactive');
+                    document.getElementById('load').style.display = "none";
+                    document.getElementById('contents').style.display = "block";
+                }, 1000);
+            }
+        }
+    </script>
+<% }%>
+
 <script>
     let currentPage = '<%-currentPage%>';
+    let section = '<%-section%>;'
 </script>
 
 <script src="/plotGraph.js"></script>
