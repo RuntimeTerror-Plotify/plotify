@@ -1,39 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutorial 4</title>
-</head>
-<body>
-    <h1>Data cleaning: Removing Outliers</h1>
+
+    <h2>Removing Outliers</h2>
     <p>
         Handling outliers is a crucial part in data cleaning as these 
         may produce some skewness or biasedness in the data.
-        Before understanding how outliers are handle lets first understand what outliers actually are.
-        <br>
-        Outliers are the datapoints which lies farr from the extremes and baises the analysis and model.
+        Before understanding how outliers are handle lets first understand what outliers actually are.</p>
+
+        <p>Outliers are the datapoints which lies farr from the extremes and baises the analysis and model.
         For example, if we take dataset containing income in Mumbai then income of Mukesh Ambani is an 
         outlier in our dataset. It is such huge and far from extremes that it misguides the analysis by 
         having significant impact on mean and other analysis metrics. The data does not depict the true 
-        information it should depict.
-        <br>
-        There are two major ways to handle outliers:
+        information it should depict.</p>
+        
+        <h5>There are two major ways to handle outliers:</h5>
         <ol>
             <li>
-                <b>Dropping outliers</b>
-                We can simply drop the rows which are acting as outliers in any of the columns.
-                But this practice is not recommended as it may reduce some useful information
-                that we might require in analysis.
+                <h6>Dropping outliers</h6>
+                <p>We can simply drop the rows which are acting as outliers in any of the columns.
+                    But this practice is not recommended as it may reduce some useful information
+                    that we might require in analysis.</p>
             </li>
             <li>
-                <b>Clipping the values:</b>
-                We can clip the extreme values to some significant value so that the values that were outliers
-                 contributes in the significant extremes set as the clipping but does not acts as an outlier.
-                 This is preffered choice as the data is not reduced and we get outliers clipped.
+                <h6>Clipping the values:</h6>
+                <p>We can clip the extreme values to some significant value so that the values that were outliers
+                    contributes in the significant extremes set as the clipping but does not acts as an outlier.
+                    This is preffered choice as the data is not reduced and we get outliers clipped.</p>
             </li>
         </ol>
-    </p>
-</body>
-</html>
+        <br>
+        <p class="text-center">
+            <%if(tutorialFile == true){ %>
+                <a href="#" role="button" class="btn btn-lg tutorialbtn" data-toggle="modal" data-target="#clip_values">Clip values</a>
+                <a href="#" role="button" class="btn btn-lg tutorialbtn" data-toggle="modal" data-target="#drop_outliers">Drop outliers</a>
+            <% } %>
+        </p>
+        <hr>

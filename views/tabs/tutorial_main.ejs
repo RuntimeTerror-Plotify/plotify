@@ -16,26 +16,18 @@
         <%- include('../tutorials/tutorial2.ejs'); %>
         <button class="page-backward" id="2"><i class="fas fa-angle-double-left"></i>Previous</button>
         <button class="page-forward" id="2">Next<i class="fas fa-angle-double-right"></i></button>
-        
     </div>
 
     <div style="display: none;" class="3 tutorials">
         <%- include('../tutorials/tutorial3.ejs'); %>
         <button class="page-backward" id="3"><i class="fas fa-angle-double-left"></i>Previous</button>
         <button class="page-forward" id="3">Next<i class="fas fa-angle-double-right"></i></button>
-        <%if(tutorialFile == true){ %>
-            <a href="#" role="button" data-toggle="modal" data-target="#fill_na">Fill null values</a>
-        <% } %>
     </div>
 
     <div style="display: none;" class="4 tutorials">
         <%- include('../tutorials/tutorial4.ejs'); %>
         <button class="page-backward" id="4"><i class="fas fa-angle-double-left"></i>Previous</button>
         <button class="page-forward" id="4">Next<i class="fas fa-angle-double-right"></i></button>
-        <%if(tutorialFile == true){ %>
-            <a href="#" role="button" data-toggle="modal" data-target="#clip_values">Clip values</a>
-            <a href="#" role="button" data-toggle="modal" data-target="#drop_outliers">Drop outliers</a>
-        <% } %>
     </div>
 
     <div style="display: none;" class="5 tutorials">
