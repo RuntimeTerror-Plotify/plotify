@@ -2,7 +2,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="">PCA</h5>
+                <h5 class="modal-title" id="">Principal Component Analysis</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -16,36 +16,56 @@
                 <% return} %>
                 <% }) %>
                 <% if(flag){ %>
-                <button onclick="run()">Run</button>
+                <p class="text-center">Click to run PCA: <br> <button onclick="run()" class="btn btn-lg btnrun">Run</button></p>
+                
 
-                <P style="color: red;">*IF YOU RUN pca ALL YOUR CATEGORICAL COLUMN WILL BE DELETED IF THERE IS
+                <P style="color: red;font-size: 14px;">*IF YOU RUN pca ALL YOUR CATEGORICAL COLUMN WILL BE DELETED IF THERE IS
                     ANY*
                 </P>
-                <p class="pcaRec"></p>
 
                 <div class="main">
                     <div id="iconPca"
                         style="text-align: center;vertical-align: middle; width:100%;height:100%;padding: 50px;">
                         <p><i class="far fa-chart-bar fa-6x" style="color: rgba(0,0,0,0.3) !important;"></i></p>
                     </div>
-                    <div id="loaderPca" class="loader" style="display:none;height: 460px;"></div>
-                    <div id="pcaGraph" style="display:none;width:800px;height:300px;"></div>
+                    <div id="loaderPca" class="loader" style="display:none;height: 300px;"></div>
+                    <div id="pcaGraph" style="display:none;width:600px;height:300px;"></div>
                     <div id="pcaDiv" style="display: none;">
                         <form id="pcaForm" action="/drop_columns" method="POST">
-                            <h1>Columns To Remove</h1>
-                            <h4>Tips:</h4>
-                            <p>Keep only those columns which consist majority of your data</p>
-                            <h4>Recommendations: </h4>
-                            <p class="pcaRec"></p>
+                            <h5>Columns To Remove</h5>
+                            <div class="tips">
+                                <div class="jumbotron">
+                                    <h5 class="text-uppercase"><i class="far fa-hand-point-right"></i> TIPS</h5>
+                                    <p>Keep only those columns which consist majority of your data.</p>
+                                </div>
+                            </div>
+                            <div class="select-checkbox">
+                                <p class="text-left">Select the column you want to Drop :</p>
+                                <input type="text" class="modal-search-Input bg-light form-control border small"
+                                    placeholder="Search for..." title="Type in a name" style="margin: 3px auto;width: 85% ;">
 
-                            <% list.numerical.forEach(function(column,i){%>
-                            <input type="checkbox" id='PC<%=i+1%>' name="drop_col" value='PC<%=i+1%>'>PC<%=i+1%></input>
-                            <%})%>
-                            <br>
-                            <input type="checkbox" class="selectall" onchange="selectall(this,'drop_col')">Select
-                            All</input>
-                            <br>
-                            <button type="submit">Submit</button>
+                                <ul class="modal-ul">
+                                    <% list.columns.forEach(function(column,i){ %>
+                                    <li>
+                                        <label for="<%=column%>"><input type="checkbox" name="drop_col" value="PC<%=i+1%>"
+                                                id="<%=column%>" /><span style="padding-left: 10px;">PC<%=i+1%></span></label>
+                                    </li>
+
+                                    <% }); %>
+                                </ul>
+                                <label><input type="checkbox" class="selectall" onchange="selectall(this,'drop_col')" /><span
+                                        style="padding-left: 10px;">Select All</span></label>
+                            </div>
+                            <div class="recommendation">
+                                <div class="jumbotron">
+                                    <h5 class="text-uppercase"><i class="far fa-hand-point-right"></i> Recommended </h5>
+                                    <p class="pcaRec"></p>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-lg" >Submit</button>
+                            </div>
                         </form>
 
                     </div>

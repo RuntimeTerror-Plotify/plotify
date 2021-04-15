@@ -196,7 +196,7 @@
   background: linear-gradient(to top, #26a0da, #314755); 
 }
 
-.sidebar-nav {
+.sidebar-nav.basic {
     position: absolute;
     top: 0;
     width: 300px;
@@ -206,7 +206,7 @@
     /* box-shadow: 0 10px 30px -12px rgb(0 0 0 / 42%), 0 4px 25px 0px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%); */
 }
 
-.sidebar-nav li {
+.sidebar-nav.basic li {
     position: relative; 
     line-height: 22px;
     display: inline-block;
@@ -215,7 +215,7 @@
     font-size: 18px;
 }
 
-.sidebar-nav li:before {
+.sidebar-nav.basic li:before {
     content: '';
     position: absolute;
     top: 0;
@@ -231,13 +231,13 @@
 
 }
 
-.sidebar-nav li:hover{
+.sidebar-nav.basic li:hover{
   color: #fff !important;
   background: rgb(255 255 255 / 25%) !important;
   border-radius: 10px;
 }
-.sidebar-nav li:hover:before,
-.sidebar-nav li.open:hover:before {
+.sidebar-nav.basic li:hover:before,
+.sidebar-nav.basic li.open:hover:before {
     width: 100%;
     /* -webkit-transition: width .2s ease-in;
       -moz-transition:  width .2s ease-in;
@@ -246,19 +246,19 @@
 
 }
 
-.sidebar-nav li a {
+.sidebar-nav.basic li a {
     display: inline-block;
     color: #ddd;
     text-decoration: none;
     padding: 15px 15px 15px 30px;    
 }
 
-.sidebar-nav li a:hover,
-.sidebar-nav li a:active,
-.sidebar-nav li a:focus,
-.sidebar-nav li.open a:hover,
-.sidebar-nav li.open a:active,
-.sidebar-nav li.open a:focus{
+.sidebar-nav.basic li a:hover,
+.sidebar-nav.basic li a:active,
+.sidebar-nav.basic li a:focus,
+.sidebar-nav.basic li.open a:hover,
+.sidebar-nav.basic li.open a:active,
+.sidebar-nav.basic li.open a:focus{
     color: #fff;
     text-decoration: none;
     background-color: transparent;
@@ -290,7 +290,7 @@
     text-decoration: none;
 }
 
-.sidebar-nav .dropdown-menu {
+.sidebar-nav.basic .dropdown-menu {
     position: relative;
     width: 100%;
     padding: 0;
@@ -303,22 +303,52 @@
     box-shadow: none;
 }
 
-.sidebar-nav > .dropdown > ul > li a{
+.sidebar-nav.basic > .dropdown > ul > li a{
     font-size: 16px;
     padding: 10px 15px 10px 35px;
 }
 
-.sidebar-nav .dropdown-menu li:hover{
+.sidebar-nav.basic .dropdown-menu li:hover{
   margin-left: 0 !important;
   margin-right: 0 !important;
 }
-.sidebar-nav .dropdown-menu li a{
+.sidebar-nav.basic .dropdown-menu li a,
+.sidebar-nav.basic .dropdown-menu li a ul{
   display: block;
 }
 .dropdown-menu.show {
     top: 0;
 }
 
+.sidebar-nav.basic .dropdown-menu .sub-menu > ul > li{
+  left: 0 !important;
+  position: relative !important;
+  top: 0 !important;
+  display: none !important;
+  margin-top: -1px !important;
+}
+
+.sidebar-nav.basic .dropdown-menu .sub-menu:hover > ul > li{
+  display: block !important;
+}
+
+/* .navbar .sub-menu:before {
+  border-bottom: 7px solid transparent;
+  border-left: none;
+  border-right: 7px solid rgba(0, 0, 0, 0.2);
+  border-top: 7px solid transparent;
+  left: -7px;
+  top: 10px;
+}
+.navbar .sub-menu:after {
+  border-top: 6px solid transparent;
+  border-left: none;
+  border-right: 6px solid #fff;
+  border-bottom: 6px solid transparent;
+  left: 10px;
+  top: 11px;
+  left: -6px;
+} */
 
 /*-------------------------------*/
 /*       Hamburger-Cross         */
@@ -692,24 +722,30 @@ tbody tr:nth-child(even):hover{
 
 .modal-footer .btn,
 #tab-content3 .select-checkbox .btn,
-#tab-content4 .download.btn{
+#tab-content4 .download.btn,
+.modal-body .btnrun,
+.tutorials .tutorialbtn{
 	color: #fff;
 	background-color: rgba(38, 160, 218, 1);
 	font-size: 1rem;
 	font-weight: bold;
-  box-shadow: 0 0px 5px 0 rgb(0 0 0 / 40%);
+  box-shadow: 0 0px 5px 0 rgb(38 160 218 / 40%);
 }
 
 .modal-footer .btn:hover,
 #tab-content3 .select-checkbox .btn:hover,
-#tab-content4 .download.btn:hover{
+#tab-content4 .download.btn:hover,
+.modal-body .btnrun:hover,
+.tutorials .tutorialbtn:hover{
 	background-color: #496b80 !important;
 	color: #fff !important;
 }
 
 .modal-footer .btn:focus,
 #tab-content3 .select-checkbox .btn:focus,
-#tab-content4 .download.btn:focus{
+#tab-content4 .download.btn:focus,
+.modal-body .btnrun:focus,
+.tutorials .tutorialbtn:focus{
 	outline: 1px dashed rgba(38, 160, 218, 1) !important;
 	outline-offset: 3px;
 }

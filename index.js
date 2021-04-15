@@ -119,11 +119,12 @@ app.get("/", function (req, res) {
 });
 
 app.get("/tutorial",function(req,res){
-  if(section=="home"){
+  if(tutorialFile == false){
     section = "tutorial";
     res.render("tutorial",{currentPage:currentPage, section: section, tutorialFile: tutorialFile});
   }
   else{
+    section = tutorial;
     res.redirect("/data_analysis");
   }
 })

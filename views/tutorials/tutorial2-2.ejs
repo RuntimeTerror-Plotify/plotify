@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutorial 2</title>
-</head>
 
-<body>
-    <h4>Labelling Categorical Data</h4>
-
-    <h3>Encoding Label</h3>
-
-    <div>
+    <h2>Encoding Label</h2>
+    <hr>
         <p>
             Label Encoding refers to converting the labels into numeric form so as to convert it into the
             machine-readable
@@ -21,24 +9,24 @@
             is an
             important pre-processing step for the structured dataset in supervised learning.
         </p>
-        <br>
-        Example For Such Conversions:
+        <p>Example For Such Conversions:</p>
         <img src="/images/LabelEncoding-2.png" alt="" />
 
         <p>Generally this type of Labelling should be used with Nominal Data</p>
-        <br>
         <ul>
-            <li>Advantages:</li>
+            <li><h6>Advantages:</h6>
             <p>It converts a particular column into one column only, hence total number of columns remian same</p>
-            <br>
-            <li>Disadvantages</li>
+            </li>
+            <li><h6>Disadvantages:</h6>
             <p>Label encoding convert the data in machine readable form, but it assigns a unique number(starting from 0)
                 to each class of data. This may lead to the generation of priority issue in training of data sets. A
                 label with high value may be considered to have high priority than a label having lower value.</p>
+            </li>
         </ul>
-    </div>
-
-
-</body>
-
-</html>
+        <br>
+        <p class="text-center">
+            <%if(tutorialFile == true){ %>
+                <a href="#" role="button" data-toggle="modal" data-target="#Encoding_Label">EncodingLabel</a>
+            <% } %>
+        </p>
+<hr>

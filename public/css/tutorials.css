@@ -1,0 +1,80 @@
+
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.tutorials{
+    margin-right: 20px;
+}
+.tutorials h2{
+    font-weight: bold;
+    color: rgba(33,33,33,0.7);
+    margin-bottom: 20px;
+}
+.tutorials p{
+    color: rgba(33,33,33,0.75);
+}
+.tutorials h5{
+    font-weight: bold;
+    color: rgba(0,0,0,0.6);
+}
+.tutorials li{
+    color: rgba(33,33,33,0.75);
+}
+.tutorials h6{
+    font-weight: bold;
+    color: rgba(33,33,33,0.7);
+}
+.page-forward{
+    padding: 10px 20px;
+    border: none;
+    font-weight: 600;
+    font-size: 25px;
+    background-color: transparent;
+    text-decoration: underline;
+    float: right;
+    margin-top: 40px;
+    margin-right: 100px;
+    color: green;
+}
+
+.page-backward{
+    padding: 10px 20px;
+    border: none;
+    font-weight: 600;
+    font-size: 25px;
+    background-color: transparent;
+    text-decoration: underline;
+    float: left;
+    margin-top: 40px;
+    margin-left: 100px;
+    color: green;
+}
+
+.fa-angle-double-right{
+    transition: 0.5s;
+    transform: translateX(15px);
+}
+.fa-angle-double-left{
+    transition: 0.5s;
+    transform: translateX(-15px);
+}
+
+.page-forward:hover .fa-angle-double-right{ 
+    transform: translateX(35px) scale(1.2);
+}
+
+
+.page-backward:hover .fa-angle-double-left{ 
+    transform: translateX(-35px) scale(1.2);
+}
+
+
+.page-forward:hover {
+    color: darkgreen;
+}
+
+
+.page-backward:hover {
+    color: darkgreen;
+}

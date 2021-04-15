@@ -1,27 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutorial 1</title>
-</head>
-<body>
-    <h1>Data Cleaning: Drop Columns</h1>
+
+    <h2>Data Cleaning: Drop Columns</h2>
+    <hr>
     <p>
         The first thing in Data cleaning is handling NAN/null values. To do this there are various
-        stratergies. The first one we will see is dropping columns.
-        <br>
-        <br>
-        There are various reasons behind dropping a column:
+        stratergies. The first one we will see is dropping columns.</p>
+        
+        <h5><i class="far fa-hand-point-right"></i> &nbsp;There are various reasons behind dropping a column:</h5>
         <ul>
             <li>Column with high NAN values</li>
             <li>Column with high correlation with others</li>
         </ul>
-        Let's understand the reason behind them:
+        <br>
+        <h5>Let's understand the reason behind them:</h5>
         <ol>
             <li>
-                <b>Column with high NAN values: </b> 
+                <h6>Column with high NAN values: </h6> 
                 We can handle NAN values in two ways either drop them or fill them. Here we will
                 talk only about dropping columns due to high percentage of NAN values. NAN values
                 and may make the data biased. Moreover, few models does not support NAN values. 
@@ -36,11 +29,14 @@
                 highly matching and they depict almost same information to model and analysis. If a
                 column has high correlation say above 0.9 or below -0.9. Then it is suggested that
                 you drop the column as both the columns would depict same things. <br>
-                Ps: <em>It is suggested 
+                <b>*Ps:</b> <em>It is suggested 
                 to think twice before dropping a column as two different columns might high correlation
                 but both columns are equally important according to the use case. </em> 
             </li>
         </ol>
-    </p>
-</body>
-</html>
+        <br>
+        <p class="text-center"><%if(tutorialFile == true){ %>
+            <a href="#" role="button" class="btn btn-lg tutorialbtn" data-toggle="modal" data-target="#drop_col">Drop
+                column</a>
+        <% } %></p>   
+        <hr>
