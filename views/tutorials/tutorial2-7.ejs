@@ -1,20 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutorial 2</title>
-</head>
-
-<body>
-    <h4>Principal Component Analysis</h4>
-
-
-
-    <div>
-        <h3>Introduction</h3>
+    <h2>Principal Component Analysis</h2>
+    <hr>
         <p>
             Large datasets are increasingly widespread in many disciplines. In order to interpret such datasets, methods
             are required to drastically reduce their dimensionality in an interpretable way, such that most of the
@@ -23,40 +9,41 @@
             dimensionality of a dataset, while preserving as much ‘variability’ (i.e. statistical information) as
             possible.
         </p>
-        <br>
-        <br>
 
-        <h3>What Does PCA do ?</h3>
-        PCA finds a new set of dimensions (or a set of basis of views) such that all the dimensions are orthogonal
+
+        <h5>What Does PCA do?</h5>
+        <p>PCA finds a new set of dimensions (or a set of basis of views) such that all the dimensions are orthogonal
         (and hence linearly independent) and ranked according to the variance of data along them. It means more
         important principle axis occurs first. (more important = more variance/more spread out data) .
-        <br>
-        Always normalize your data before doing PCA because if we use data(features here) of different scales, we
-        get misleading components. We can also simply use correlation matrix instead of using covariance matrix if
-        features are of different scales.
+        </p>
+        <p>Always normalize your data before doing PCA because if we use data(features here) of different scales, we
+            get misleading components. We can also simply use correlation matrix instead of using covariance matrix if
+            features are of different scales.</p>
+        
         <br>
 
-        <h3>This defines the goal of PCA -</h3>
+        <h5>This defines the goal of PCA:</h5>
         <ul>
             <li>Find linearly independent dimensions (or basis of views) which can losslessly represent the data points.
             </li>
             <li>Those newly found dimensions should allow us to predict/reconstruct the original dimensions. The
                 reconstruction/projection error should be minimized.</li>
         </ul>
-
-        <h3>Output</h3>
-        Plotify would give you the output in form of newly built same number of columns. Alongside you would be provided
+        <br>
+        <h5>Output</h5>
+        <p>Plotify would give you the output in form of newly built same number of columns. Alongside you would be provided
         with which column consisit of how much percentage of data, hence that would help you to delete the required
         columns.
         </p>
 
+        <p class="text-center">
+            <%if(tutorialFile == true){ %>
+                <a href="/pca" role="button" data-toggle="modal" data-target="#pca" style="width: 80%;">Principal
+                    Component Analysis</a>
+            <% } %>
+        </p>
+
+        <hr>
 
 
-        <br>
-        <br>
-    </div>
 
-
-</body>
-
-</html>

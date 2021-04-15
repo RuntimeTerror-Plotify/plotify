@@ -15,6 +15,10 @@ body{
     font-weight: bold;
     color: rgba(33,33,33,0.7);
 }
+.tutorials h4{
+    font-weight: bold;
+    color: rgba(33,33,33,0.7);
+}
 .tutorials p{
     color: rgba(33,33,33,0.75);
 }
