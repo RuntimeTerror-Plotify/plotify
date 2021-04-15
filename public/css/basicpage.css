@@ -303,6 +303,11 @@
     box-shadow: none;
 }
 
+.sidebar-nav > .dropdown > ul > li a{
+    font-size: 16px;
+    padding: 10px 15px 10px 35px;
+}
+
 .sidebar-nav .dropdown-menu li:hover{
   margin-left: 0 !important;
   margin-right: 0 !important;

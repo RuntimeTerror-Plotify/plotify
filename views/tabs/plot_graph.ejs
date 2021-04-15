@@ -9,19 +9,23 @@
         <div class="row">
             <div class="col-3">
                 <form id="dataForm">
+                    <p>Select which type data you want to plot: </p>
                     <% if (list.numerical != "empty"){ %>
                     <input type="radio" value='Numerical' id="numerical" name="dataType" onclick="dataClick()" />
                     <label for="numerical">Numerical</label>
                     <% } %>
+                    <br>
                     <% if (list.categorical != "empty"){ %>
                     <input type="radio" value='Categorical' id="categorical" name="dataType" onclick="dataClick()" />
-                    <label for="categorical">categorical</label>
+                    <label for="categorical">Categorical</label>
                     <% } %>
                 </form>
+                <br>
                 <form id="columnForm">
+                    <p>Select the Column:</p>
                     <div id="numColumnForm">
                         <% if (list.numerical != "empty"){ %>
-                        <select name="numcolumn" id="numColumn" onchange="columnClick(this.value)">
+                        <select name="numcolumn" id="numColumn" class="custom-select" onchange="columnClick(this.value)">
                             <%list.numerical.forEach(function(item){%>
                             <p>
                                 <option value="<%=item%>"><%=item%></option>
@@ -30,10 +34,9 @@
                         </select>
                         <% } %>
                     </div>
-
                     <div id="catColumnForm" style="display: none;">
                         <% if (list.categorical != "empty"){ %>
-                        <select name="catcolumn" id="catColumn" onclick="columnClick(this.value)">
+                        <select name="catcolumn" id="catColumn" class="custom-select" onclick="columnClick(this.value)">
                             <%list.categorical.forEach(function(item){%>
                             <p>
                                 <option value="<%=item%>"><%=item%></option>
@@ -44,10 +47,12 @@
                         <% } %>
                     </div>
                 </form>
+                <br>
                 <form id="graphForm">
+                    <p>Select the type of graph:</p>
                     <div id="numGraphForm">
                         <% if (list.numerical != "empty"){ %>
-                        <select name="numtype" id="numGraph" onchange="typeClick(this.value)">
+                        <select name="numtype" class="custom-select" id="numGraph" onchange="typeClick(this.value)">
                             <option value="histogram">Histogram</option>
                             <option value="box">Box Plot</option>
                             <option value="line">Line</option>
@@ -59,7 +64,7 @@
 
                     <div id="catGraphForm" style="display: none;">
                         <% if (list.categorical != "empty"){ %>
-                        <select name="cattype" id="catGraph" onchange="typeClick(this.value)">
+                        <select name="cattype" id="catGraph" class="custom-select" onchange="typeClick(this.value)">
                             <option value="bar">Bar</option>
                             <option value="pie">Pie Chart</option>
                         </select>
@@ -68,117 +73,10 @@
                     </div>
                 </form>
             </div>
-            <div class="col-9">
-                <div id="myDiv"></div>
+            <div class="col-9 border border-secondary" style="height: 600px;text-align: center">
+                <div id="unigraph" style="width: 900px; height:590px;"></div>
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-    <!-- <div id="topPanel" class="toppanel">
-            <% if(list.columns === "empty"){ %>
-            <div class="jumbotron">
-                <h1 class="display-4">Opps!!!</h1>
-                <p class="lead">You don't have any data</p>
-            </div>
-            <% } %>
-            <form id="dataForm">
-                <% if (list.numerical != "empty"){ %>
-                <input type="radio" value='Numerical' id="numerical" name="dataType" onclick="dataClick()" />
-                <label for="numerical">Numerical</label>
-                <% } %>
-                <% if (list.categorical != "empty"){ %>
-                <input type="radio" value='Categorical' id="categorical" name="dataType" onclick="dataClick()" />
-                <label for="categorical">categorical</label>
-                <% } %>
-            </form>
-        </div>
-    
-        <div id="leftPanel" class="leftpanel">
-            <form>
-                <div id="numColumnForm">
-                    <% if (list.numerical != "empty"){ %>
-    
-                    <%list.numerical.forEach(function(item){%>
-                    <p>
-                        <input type="radio" value='<%=item%>' id="<%=item%>" name="column" class="column"
-                            onclick="columnClick(this.value)"></input>
-                        <label for="<%=item%>"><%=item%></label>
-                    </p>
-                    <%})%>
-    
-                    <% } %>
-                </div>
-    
-                <div id="catColumnForm" style="display: none;">
-                    <% if (list.categorical != "empty"){ %>
-    
-                    <%list.categorical.forEach(function(item){%>
-                    <p>
-                        <input type="radio" value='<%=item%>' id="<%=item%>" name="column" class="column"
-                            onclick="columnClick(this.value)"></input>
-                        <label for="<%=item%>"><%=item%></label>
-                    </p>
-    
-                    <%})%>
-                    <% } %>
-                </div>
-            </form>
-        </div>
-    
-        <br><br>
-        <div id="rightPanel" class="rightpanel">
-            <form>
-                <div id="numGraphForm">
-                    <% if (list.numerical != "empty"){ %>
-                    <p><input type="radio" value='histogram' name="type" id="histogram" onclick="typeClick(this.value)"
-                            checked></input>
-                        <label for="histogram">Histogram</label>
-                    </p>
-    
-                    <p><input type="radio" value='box' name="type" id="boxplot" onclick="typeClick(this.value)"></input>
-                        <label for="boxplot">Box Plot</label>
-                    </p>
-    
-                    <p><input type="radio" value='line' name="type" id="line" onclick="typeClick(this.value)"
-                            checked></input>
-                        <label for="line">Line</label>
-                    </p>
-    
-                    <p><input type="radio" value='scatter' name="type" id="scatter" onclick="typeClick(this.value)"
-                            checked></input>
-                        <label for="scatter">Scatter</label>
-                    </p>
-    
-                    <% } %>
-                </div>
-    
-                <div id="catGraphForm" style="display: none;">
-                    <% if (list.categorical != "empty"){ %>
-    
-                    <p><input type="radio" value='bar' name="type" id="bar" onclick="typeClick(this.value)" checked></input>
-                        <label for="bar">Bar</label>
-                    </p>
-                    <p><input type="radio" value='pie' name="type" id="pie" onclick="typeClick(this.value)"></input>
-                        <label for="pie">Pie Chart</label>
-                    </p>
-    
-                    <% } %>
-                </div>
-            </form>
-        </div>
-    
-        <div class="main">
-            <div id="myDiv" style="width:800px;height:500px;"></div>
-        </div>
-    
-    </div>               -->
 
 </div>

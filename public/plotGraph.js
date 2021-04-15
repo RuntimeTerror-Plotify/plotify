@@ -184,6 +184,7 @@ function makeGraph() {
   console.log(info);
 
   layout = {
+    autosize: true,
     title: {
       text: columnName.toUpperCase() + " GRAPH",
       font: {
@@ -233,6 +234,7 @@ function makeGraph() {
     scrollZoom: true,
     displayModBar: true,
     displaylogo: false,
+    responsive: true,
     modeBarButtonsToRemove: [
       "lasso2d",
       "zoomIn2d",
@@ -240,7 +242,7 @@ function makeGraph() {
       "pan3d",
       "select2d",
       "orbitRotation",
-      " tableRotation",
+      "tableRotation",
       "handleDrag3d",
       "resetCameraDefault3d",
       "resetCameraLastSave3d",
@@ -261,5 +263,5 @@ function makeGraph() {
 
   var temp = [trace];
 
-  Plotly.newPlot("myDiv", temp, layout, config);
+  Plotly.newPlot("unigraph", temp, layout, config);
 }
