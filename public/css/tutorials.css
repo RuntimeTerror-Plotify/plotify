@@ -11,6 +11,10 @@ body{
     color: rgba(33,33,33,0.7);
     margin-bottom: 20px;
 }
+.tutorials h3{
+    font-weight: bold;
+    color: rgba(33,33,33,0.7);
+}
 .tutorials p{
     color: rgba(33,33,33,0.75);
 }

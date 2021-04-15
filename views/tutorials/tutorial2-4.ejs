@@ -1,25 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutorial 2</title>
-</head>
-
-<body>
-    <h4>Labelling Categorical Data</h4>
-
-    <h3>Binary Encoding</h3>
-
-    <p>
+    <h2>Binary Encoding</h2>
+    <hr>
+        <p>
         Binary encoding can be thought of as a upgradation of one-hot encoders. Binary creates fewer
         features than one-hot, while preserving some uniqueness of values in the column. It can work well with higher
-        dimensionality ordinal data.
-        <br>
+        dimensionality ordinal data.</p>
 
-        <h5>How It Works</h5>
+
+        <h5><i class="far fa-hand-point-right"></i> &nbsp;How It Works</h5>
         <ul>
             <li>The categories are encoded by Ordinal Encoder (Label Encoder) if they aren’t already in numeric form.
             </li>
@@ -39,13 +27,13 @@
         <p>Generally this type of Labelling should be used with Ordinal Data containing large number of categories</p>
         <br>
         <ul>
-            <li>Advantages:</li>
+            <li><h6>Advantages:</h6>
             <p>Binary encoding creates fewer columns than one-hot encoding. It is more memory efficient.</p>
             <p>It also reduces the chances of dimensionality problems with higher cardinality.</p>
-            <br>
+            </li>
         </ul>
+    <p class="text-center">
+        <%if(tutorialFile == true){ %>
+            <a href="#" role="button" data-toggle="modal" data-target="#Binary_Encoding">Binary Encoding</a>
+        <% } %>
     </p>
-
-</body>
-
-</html>
