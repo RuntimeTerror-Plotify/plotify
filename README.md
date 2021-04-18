@@ -1,8 +1,9 @@
-# RunTime-Terror : PLOTIFY
+# RunTime-Terror : PLOTIFY 
+<img src="./public/images/plotify.png" width="100" height="100">
 
 ##### Easy-to-use data manipulation and Visualisation platform.
 
-![logo not found]()
+
 
 ## Table of Contents
 
@@ -17,7 +18,7 @@
 
 ## Introduction
 
-**Plotify**, as the name suggests, will let you to play with your data. It is a web app that helps to analyze data and perform different statistical methods without having to write code. It is deliberately developed for machine learning and data science nerds. You can upload your data, play with it using some of the methods, and thereafter download the results. Yes, you heard that right; it is that simple, and there is no need to worry about typing code and fixing it. And don't worry if you're a beginner who's not confident what to do with data and whatnot; we've got you covered with step-by-step tutorials, and you can even try your hands on data while learning.
+**Plotify**, as the name suggests, will let you to play with your data. It is a web app that helps to analyze data and perform different statistical methods without having to write code. It is deliberately developed for machine learning and data science enthusiats. You can upload your data, play with it using some of the methods, and thereafter download the results. Yes, you heard that right; it is that simple, and there is no need to worry about typing code and fixing it. And don't worry if you're a beginner who's not confident what to do with data and whatnot; we've got you covered with step-by-step tutorials, and you can even try your hands on data while learning.
 
 ## Purpose
 
@@ -84,7 +85,10 @@ To get a copy of the website running on your local system follow these steps :
 - <a href="https://getbootstrap.com/">Bootstrap</a> - Bootstrap, the world’s most popular front-end open source toolkit
 
 ### Contributors
-
-- <a href="https://github.com/RutvijDv">Rutvij Vamja</a>
-- <a href="https://github.com/shrushti22">Shrushti Vasaniya</a>
-- <a href="https://github.com/vrutikrabadia">Vrutik Rabadia</a>
+<table>
+    <tr>
+        <td align="center"><a href="https://github.com/shrushti22"><img src="https://avatars.githubusercontent.com/shrushti22" width="100px;" alt=""/><br /><sub><b>Shrushti Vasaniya</b></sub></a><br /></td>
+        <td align="center"><a href="https://github.com/RutvijDv"><img src="https://avatars.githubusercontent.com/RutvijDv" width="100px;" alt=""/><br /><sub><b>Rutvij Vamja</b></sub></a><br /></td>
+        <td align="center"><a href="https://github.com/vrutikrabadia"><img src="https://avatars.githubusercontent.com/vrutikrabadia" width="100px;" alt=""/><br /><sub><b>Vrutik Rabadia</b></sub></a><br /></td>
+    </tr>
+</table>    
