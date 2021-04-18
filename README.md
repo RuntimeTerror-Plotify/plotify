@@ -84,7 +84,10 @@ To get a copy of the website running on your local system follow these steps :
 - <a href="https://getbootstrap.com/">Bootstrap</a> - Bootstrap, the world’s most popular front-end open source toolkit
 
 ### Contributors
-
-- <a href="https://github.com/RutvijDv">Rutvij Vamja</a>
-- <a href="https://github.com/shrushti22">Shrushti Vasaniya</a>
-- <a href="https://github.com/vrutikrabadia">Vrutik Rabadia</a>
+<table>
+    <tr>
+        <td align="center"><a href="https://github.com/shrushti22"><img src="https://avatars.githubusercontent.com/shrushti22" width="100px;" alt=""/><br /><sub><b>Shrushti Vasaniya</b></sub></a><br /></td>
+        <td align="center"><a href="https://github.com/RutvijDv"><img src="https://avatars.githubusercontent.com/RutvijDv" width="100px;" alt=""/><br /><sub><b>Rutvij Vamja</b></sub></a><br /></td>
+        <td align="center"><a href="https://github.com/vrutikrabadia"><img src="https://avatars.githubusercontent.com/vrutikrabadia" width="100px;" alt=""/><br /><sub><b>Vrutik Rabadia</b></sub></a><br /></td>
+    </tr>
+</table>    
