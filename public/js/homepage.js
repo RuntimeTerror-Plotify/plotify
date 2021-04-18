@@ -3,7 +3,7 @@
 y1 = new Array(10)
   .fill(0)
   .map((d, i) => Math.random() * 10 + Math.random() * 20 + 5);
-y2 = new Array(20).fill(0).map((d, i) => Math.random() * 15);
+y2 = new Array(20).fill(0).map((d, i) => Math.random() * 20);
 
 var y = y1.concat(y2);
 y = y.concat(y1);
