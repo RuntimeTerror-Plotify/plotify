@@ -115,7 +115,7 @@
                     </ul>
 
                 </li>
-                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 80%;">Normalisation<span
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 80%;">Feature Scaling<span
                             class="caret"></span></a>
 
                     <a role="button" data-toggle="modal" data-target="#itab5"
@@ -125,8 +125,8 @@
                                 title="Click the icon to learn what it does."></i>
                         </span></a>
                     <ul class="dropdown-menu animated fadeInLeft" role="menu">
-                        <li><a href="#" role="button" data-toggle="modal" data-target="#Min_Max">Min-Max</a></li>
-                        <li><a href="#" role="button" data-toggle="modal" data-target="#Z_Score">Z_Score</a></li>
+                        <li><a href="#" role="button" data-toggle="modal" data-target="#Min_Max">Normalization</a></li>
+                        <li><a href="#" role="button" data-toggle="modal" data-target="#Z_Score">Standardization</a></li>
                     </ul>
 
                 </li>
@@ -183,14 +183,14 @@
                 <li>
                     <input type="radio" name="tabs" id="tab2" />
                     <label for="tab2" id="tabl2" role="tab" aria-selected="false" aria-controls="panel2"
-                        tabindex="0">Univariate Graph</label>
+                        tabindex="0">Plot Graph</label>
                     <%- include('tabs/plot_graph.ejs'); %>
                 </li>
 
                 <li>
                     <input type="radio" name="tabs" id="tab3" />
                     <label for="tab3" id="tabl3" role="tab" aria-selected="false" aria-controls="panel3"
-                        tabindex="0">Multivariate Graph</label>
+                        tabindex="0">Correlation Matrix</label>
                     <%- include('tabs/correlation_matrix.ejs'); %>
                 </li>
 
