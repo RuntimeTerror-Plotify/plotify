@@ -34,16 +34,13 @@ $(document).ready(function () {
 
   $("#fill_na .modal-body input[type=radio][name=col_type]").change(
     function () {
-      console.log(this);
       if (this.value === "cat") {
-        console.log("1");
         $(".modal#fill_na #form")[0].reset();
         $(this).prop("checked", true);
         $(".modal#fill_na #modenum").prop("checked", false);
         $(".modal#fill_na #numerical").css("display", "none");
         $(".modal#fill_na #categorical").css("display", "block");
       } else if (this.value === "num") {
-        console.log("2");
         $(".modal#fill_na #form")[0].reset();
         $(this).prop("checked", true);
         $(".modal#fill_na #modecat").prop("checked", false);
@@ -79,7 +76,6 @@ function corrSub(event) {
   $("#corrMat input[name=corrColumn]:checked").each(function (col) {
     column.push($(this).val());
   });
-  console.log(column);
   $.ajax({
     url: "/corr_matrix",
     type: "post",

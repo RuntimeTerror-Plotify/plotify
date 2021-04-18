@@ -26,7 +26,6 @@ $(document).ready(function () {
   function processData(allText) {
     var allTextLines = allText.split(/\r\n|\n/);
     columns = allTextLines[0].split(",");
-    console.log(columns);
     data = [];
     let i = 0;
     for (var j = 1; j <= no_of_rows; j++) {
@@ -48,9 +47,7 @@ $(document).ready(function () {
 
 function dataClick() {
   typeOfData = $("#dataForm input:checked").val();
-  console.log(typeOfData);
 
-  // console.log(typeOfData);
   if (typeOfData == "Numerical") {
     $("#numGraphForm").css("display", "block");
     $("#numColumnForm").css("display", "block");
@@ -75,12 +72,10 @@ function dataClick() {
 }
 
 function columnClick(value) {
-  console.log(1);
   makeGraph();
 }
 
 function typeClick(value) {
-  console.log(2);
   makeGraph();
 }
 
@@ -166,8 +161,6 @@ function gettrace(trace) {
 }
 
 function makeGraph() {
-  //Make Graph
-  // console.log($("#rightPanel input"));
   typeOfData = $("#dataForm input:checked").val();
   if (typeOfData == "Numerical") {
     graphType = $("#numGraphForm option:selected").val();
@@ -176,12 +169,10 @@ function makeGraph() {
     graphType = $("#catGraphForm option:selected").val();
     columnName = $("#catColumnForm option:selected").val();
   }
-  console.log(columnName + " " + graphType);
 
   var index = columns.indexOf(columnName);
   var trace;
   info = data[index];
-  console.log(info);
 
   layout = {
     autosize: true,

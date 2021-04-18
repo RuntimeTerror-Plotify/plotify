@@ -106,7 +106,6 @@ const removeDir = function (path) {
 };
 
 app.get("/", function (req, res) {
-  console.log(fs.existsSync(folderPath));
   if (fs.existsSync(folderPath)) {
     removeDir(folderPath);
   }
@@ -135,7 +134,6 @@ app.get("/tutorial", function (req, res) {
 app.get("/revert", function (req, res) {
   if (fileNo > 0) {
     fs.unlink(filePath, (err) => {
-      console.log("File deleted ...");
       fileNo -= 1;
       fileName = "file" + fileNo + "." + fileExt;
       filePath = folderPath + fileName;
@@ -176,7 +174,6 @@ app.get("/data_analysis", function (req, res) {
     data = filePath;
 
   py.stdout.on("data", function (output) {
-    // console.log(output.toString());
     basic.push(output.toString());
   });
 
@@ -307,13 +304,11 @@ app.post("/corr_matrix", function (req, res) {
     };
 
   py.stdout.on("data", function (output) {
-    // console.log(output.toString());
     out += output.toString();
   });
 
   py.stdout.on("end", function () {
     out = JSON.parse(out);
-    // console.log(out);
     res.send(out);
     // res.redirect("/data_analysis");
   });
@@ -368,7 +363,6 @@ app.post("/pca", function (req, res) {
 
   py.stdout.on("end", function () {
     out = JSON.parse(out);
-    // console.log(out);
     res.send(out);
     // res.redirect("/data_analysis");
   });
@@ -408,7 +402,6 @@ app.post("/fill_nan", function (req, res) {
   });
 
   py.stdout.on("end", function () {
-    console.log(out);
     res.redirect("/data_analysis");
   });
 
@@ -431,7 +424,6 @@ app.post("/remove_outlier", function (req, res) {
   });
 
   py.stdout.on("end", function () {
-    console.log(out);
     res.redirect("/data_analysis");
   });
 
@@ -454,7 +446,6 @@ app.post("/clip_values", function (req, res) {
   });
 
   py.stdout.on("end", function () {
-    console.log(out);
     res.redirect("/data_analysis");
   });
 
