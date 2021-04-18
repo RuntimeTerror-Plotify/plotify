@@ -206,7 +206,7 @@ app.get("/data_analysis", function (req, res) {
                 fileNo: fileNo,
                 head: head,
                 data: data.slice(0, 20),
-                tutorialFile: false,
+                tutorialFile: tutorialFile,
               });
             }
           });
