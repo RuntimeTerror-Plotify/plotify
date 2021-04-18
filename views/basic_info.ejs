@@ -37,8 +37,8 @@
 </head>
 
 <body>
-<div id="wrapper">
-    <div class="overlay"> </div>
+    <div id="wrapper">
+        <div class="overlay"> </div>
 
         <!-- Sidebar -->
         <nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
@@ -51,7 +51,7 @@
                 <li class="align-middle">
                     <a href="#" role="button" data-toggle="modal" data-target="#drop_col" style="width: 80%;">Drop
                         column</a>
-                    <a href="https://www.google.com/" style="padding: 12px 2px;float: right;">
+                    <a role="button" data-toggle="modal" data-target="#itab1" style="padding: 12px 2px;float: right;">
                         <span class="fa-stack fa-1x" style="font-size: 1rem;">
                             <i class="far fa-circle fa-stack-2x"></i>
                             <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
@@ -62,7 +62,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 80%;">Handle Null
                         Values<span class="caret"></span></a>
-                    <a href="https://www.google.com/" style="padding: 12px 2px;float: right;">
+                    <a role="button" data-toggle="modal" data-target="#itab2" style="padding: 12px 2px;float: right;">
                         <span class="fa-stack fa-1x" style="font-size: 1rem;">
                             <i class="far fa-circle fa-stack-2x"></i>
                             <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
@@ -80,8 +80,8 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 80%;">Remove Outliers<span
                             class="caret"></span></a>
-                    <a href="https://www.google.com/" style="padding: 12px 2px;float: right;"><span
-                            class="fa-stack fa-1x" style="font-size: 1rem;">
+                    <a role="button" data-toggle="modal" data-target="#itab3"
+                        style="padding: 12px 2px;float: right;"><span class="fa-stack fa-1x" style="font-size: 1rem;">
                             <i class="far fa-circle fa-stack-2x"></i>
                             <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
                                 title="Click the icon to learn what it does."></i>
@@ -96,8 +96,8 @@
                 </li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 80%;">Categorical
                         Labelling<span class="caret"></span></a>
-                    <a href="https://www.google.com/" style="padding: 12px 2px;float: right;"><span
-                            class="fa-stack fa-1x" style="font-size: 1rem;">
+                    <a role="button" data-toggle="modal" data-target="#itab4"
+                        style="padding: 12px 2px;float: right;"><span class="fa-stack fa-1x" style="font-size: 1rem;">
                             <i class="far fa-circle fa-stack-2x"></i>
                             <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
                                 title="Click the icon to learn what it does."></i>
@@ -115,8 +115,8 @@
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 80%;">Normalisation<span
                             class="caret"></span></a>
 
-                    <a href="https://www.google.com/" style="padding: 12px 2px;float: right;"><span
-                            class="fa-stack fa-1x" style="font-size: 1rem;">
+                    <a role="button" data-toggle="modal" data-target="#itab5"
+                        style="padding: 12px 2px;float: right;"><span class="fa-stack fa-1x" style="font-size: 1rem;">
                             <i class="far fa-circle fa-stack-2x"></i>
                             <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
                                 title="Click the icon to learn what it does."></i>
@@ -129,8 +129,8 @@
                 </li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 80%;">Remove Skewness<span
                             class="caret"></span></a>
-                    <a href="https://www.google.com/" style="padding: 12px 2px;float: right;"><span
-                            class="fa-stack fa-1x" style="font-size: 1rem;">
+                    <a role="button" data-toggle="modal" data-target="#itab6"
+                        style="padding: 12px 2px;float: right;"><span class="fa-stack fa-1x" style="font-size: 1rem;">
                             <i class="far fa-circle fa-stack-2x"></i>
                             <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
                                 title="Click the icon to learn what it does."></i>
@@ -148,8 +148,8 @@
                 <li><a href="/pca" role="button" data-toggle="modal" data-target="#pca" style="width: 80%;">Principal
                         Component
                         Analysis</a>
-                    <a href="https://www.google.com/" style="padding: 12px 2px;float: right;"><span
-                            class="fa-stack fa-1x" style="font-size: 1rem;">
+                    <a role="button" data-toggle="modal" data-target="#itab7"
+                        style="padding: 12px 2px;float: right;"><span class="fa-stack fa-1x" style="font-size: 1rem;">
                             <i class="far fa-circle fa-stack-2x"></i>
                             <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
                                 title="Click the icon to learn what it does."></i>
@@ -157,13 +157,6 @@
                 </li>
                 <li><a href="#" role="button" data-toggle="modal" data-target="#uploadFile" style="width: 80%;">Upload
                         New Data</a>
-
-                    <a href="#" style="padding: 12px 2px;float: right;"><span class="fa-stack fa-1x"
-                            style="font-size: 1rem;">
-                            <i class="far fa-circle fa-stack-2x"></i>
-                            <i class="fas fa-info fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="right"
-                                title="Your current data file on which you are working will be deleted."></i>
-                        </span></a>
                 </li>
                 <li><a href="#" role="button" data-toggle="modal" data-target="#pca" style="width: 100%;">Tutorials</a>
                 </li>
@@ -181,28 +174,28 @@
                     <input type="radio" name="tabs" id="tab1" checked />
                     <label for="tab1" role="tab" aria-selected="true" aria-controls="panel1" tabindex="0">Descriptive
                         Statistic</label>
-                        <%- include('tabs/descriptive_statistic.ejs'); %>
+                    <%- include('tabs/descriptive_statistic.ejs'); %>
                 </li>
 
                 <li>
                     <input type="radio" name="tabs" id="tab2" />
                     <label for="tab2" id="tabl2" role="tab" aria-selected="false" aria-controls="panel2"
                         tabindex="0">Univariate Graph</label>
-                        <%- include('tabs/plot_graph.ejs'); %>
+                    <%- include('tabs/plot_graph.ejs'); %>
                 </li>
 
                 <li>
                     <input type="radio" name="tabs" id="tab3" />
                     <label for="tab3" id="tabl3" role="tab" aria-selected="false" aria-controls="panel3"
                         tabindex="0">Multivariate Graph</label>
-                        <%- include('tabs/correlation_matrix.ejs'); %>
+                    <%- include('tabs/correlation_matrix.ejs'); %>
                 </li>
 
                 <li>
                     <input type="radio" name="tabs" id="tab4" />
                     <label for="tab4" id="tabl4" role="tab" aria-selected="false" aria-controls="panel4"
                         tabindex="0">View Raw Data</label>
-                        <%- include('tabs/rawdata.ejs'); %>
+                    <%- include('tabs/rawdata.ejs'); %>
                 </li>
             </ul>
         </div>
@@ -212,7 +205,7 @@
 
 
 
-
+    <%- include('Itab.ejs'); %>
 
 
 

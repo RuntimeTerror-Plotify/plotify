@@ -84,50 +84,53 @@ function handleFiles() {
   }
 }
 
-const removeDir = function(path) {
+const removeDir = function (path) {
   if (fs.existsSync(path)) {
-    const files = fs.readdirSync(path)
+    const files = fs.readdirSync(path);
 
     if (files.length > 0) {
-      files.forEach(function(filename) {
+      files.forEach(function (filename) {
         if (fs.statSync(path + "/" + filename).isDirectory()) {
-          removeDir(path + "/" + filename)
+          removeDir(path + "/" + filename);
         } else {
-          fs.unlinkSync(path + "/" + filename)
+          fs.unlinkSync(path + "/" + filename);
         }
-      })
-      fs.rmdirSync(path)
+      });
+      fs.rmdirSync(path);
     } else {
-      fs.rmdirSync(path)
+      fs.rmdirSync(path);
     }
   } else {
-    console.log("Directory path not found.")
+    console.log("Directory path not found.");
   }
-}
+};
 
 app.get("/", function (req, res) {
-  console.log(fs.existsSync(folderPath))
+  console.log(fs.existsSync(folderPath));
   if (fs.existsSync(folderPath)) {
-    removeDir(folderPath);   
+    removeDir(folderPath);
   }
-  fs.mkdirSync(folderPath,function(err){
-    if(err){
+  fs.mkdirSync(folderPath, function (err) {
+    if (err) {
       console.log(err);
     }
-  })
-  res.render("home_page",{section: "home"});
+  });
+  res.render("home_page", { section: "home" });
 });
 
-app.get("/tutorial",function(req,res){
-  if(tutorialFile == false){
+app.get("/tutorial", function (req, res) {
+  if (tutorialFile == false) {
     section = "tutorial";
-    res.render("tutorial",{currentPage:currentPage, section: section, tutorialFile: tutorialFile});
-  }
-  else{
+    res.render("tutorial", {
+      currentPage: currentPage,
+      section: section,
+      tutorialFile: tutorialFile,
+    });
+  } else {
     section = tutorial;
     res.redirect("/data_analysis");
   }
-})
+});
 
 app.get("/revert", function (req, res) {
   if (fileNo > 0) {
@@ -156,12 +159,11 @@ app.post("/file_upload", uploadDisk.single("file"), function (req, res) {
   );
   filePath = req.file.destination + "file" + fileNo + "." + fileExt;
   fileName = "file" + fileNo + "." + fileExt;
-  if(section == "tutorial"){
+  if (section == "tutorial") {
     currentPage = 1;
     tutorialFile = true;
   }
   res.redirect("/data_analysis");
-  
 });
 
 app.get("/download", function (req, res) {
@@ -186,7 +188,7 @@ app.get("/data_analysis", function (req, res) {
         fs.readFile(filePath, "UTF-8", function (err, csv) {
           $.csv.toArrays(csv, {}, function (err, data) {
             head = data.shift();
-            if(section == "home"){
+            if (section == "home") {
               res.render("basic_info", {
                 list: basic,
                 fileName: fileName,
@@ -195,11 +197,11 @@ app.get("/data_analysis", function (req, res) {
                 head: head,
                 data: data.slice(0, 20),
                 section: section,
-              });  
-            }
-            else{
-              res.render("tutorial",{
-                currentPage:currentPage, 
+                tutorialFile: false,
+              });
+            } else {
+              res.render("tutorial", {
+                currentPage: currentPage,
                 section: section,
                 list: basic,
                 fileName: fileName,
@@ -207,7 +209,7 @@ app.get("/data_analysis", function (req, res) {
                 fileNo: fileNo,
                 head: head,
                 data: data.slice(0, 20),
-                tutorialFile: tutorialFile,
+                tutorialFile: false,
               });
             }
           });
@@ -226,7 +228,7 @@ app.get("/data_analysis", function (req, res) {
 });
 
 app.post("/categorical_labelling", function (req, res) {
-  if(section == "tutorial"){
+  if (section == "tutorial") {
     currentPage = 7;
   }
   handleFiles();
@@ -254,7 +256,7 @@ app.post("/categorical_labelling", function (req, res) {
 });
 
 app.post("/drop_columns", function (req, res) {
-  if(section == "tutorial"){
+  if (section == "tutorial") {
     currentPage = 1;
   }
   handleFiles();
@@ -274,15 +276,12 @@ app.post("/drop_columns", function (req, res) {
 });
 
 app.post("/drop_rows", function (req, res) {
-  if(section == "tutorial"){
+  if (section == "tutorial") {
     currentPage = 2;
   }
   handleFiles();
   var py = spawn("python", ["pyScript/drop_row.py"]),
-    data = [
-      filePath,
-      req.body.subset,
-    ];
+    data = [filePath, req.body.subset];
 
   py.stdout.on("data", function (output) {});
 
@@ -325,7 +324,7 @@ app.post("/corr_matrix", function (req, res) {
 });
 
 app.post("/data_transform", function (req, res) {
-  if(section == "tutorial"){
+  if (section == "tutorial") {
     currentPage = 10;
   }
   handleFiles();
@@ -353,7 +352,7 @@ app.post("/data_transform", function (req, res) {
 });
 
 app.post("/pca", function (req, res) {
-  if(section == "tutorial"){
+  if (section == "tutorial") {
     currentPage = 12;
   }
   handleFiles();
@@ -380,17 +379,25 @@ app.post("/pca", function (req, res) {
 });
 
 app.post("/fill_nan", function (req, res) {
-  if(section == "tutorial"){
+  if (section == "tutorial") {
     currentPage = 3;
   }
   handleFiles();
-  dataArr =[];
-  if(req.body.col_type == "num"){
-    dataArr = [filePath, req.body.col_type, req.body.column[1], req.body.method[1]]
-  }
-  else{
-    dataArr = [filePath, req.body.col_type, req.body.column[0], req.body.method[0]]
-
+  dataArr = [];
+  if (req.body.col_type == "num") {
+    dataArr = [
+      filePath,
+      req.body.col_type,
+      req.body.column[1],
+      req.body.method[1],
+    ];
+  } else {
+    dataArr = [
+      filePath,
+      req.body.col_type,
+      req.body.column[0],
+      req.body.method[0],
+    ];
   }
   let out = [];
   var py = spawn("python", ["pyScript/fill_nan.py"]),
@@ -411,7 +418,7 @@ app.post("/fill_nan", function (req, res) {
 });
 
 app.post("/remove_outlier", function (req, res) {
-  if(section == "tutorial"){
+  if (section == "tutorial") {
     currentPage = 4;
   }
   handleFiles();
@@ -434,7 +441,7 @@ app.post("/remove_outlier", function (req, res) {
 });
 
 app.post("/clip_values", function (req, res) {
-  if(section == "tutorial"){
+  if (section == "tutorial") {
     currentPage = 4;
   }
   handleFiles();
