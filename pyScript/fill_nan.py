@@ -2,12 +2,17 @@ import pandas as pd
 import sys, json, numpy as np
 import csv
 
+#Method to fill in the null values
 
 def main():
+    #input buffer 
     lines = sys.stdin.readlines()
     lines = json.loads(lines[0])
 
+    #dataframe input
     df = pd.read_csv(lines[0])
+
+    #replace blank cell of NAN with np.nan
     df = df.replace(r'^\s*$', np.NaN, regex=True)
     df = df.replace(r'NA', np.NaN, regex=True)
 
@@ -53,16 +58,8 @@ def main():
         elif lines[3] == "f_fill":
             df[[lines[2]]] = df[[lines[2]]].fillna(method = "ffill")
 
+    #output dataframe to csv
     df.to_csv(lines[0],index=False)
 
-    output = {
-        # "file" : file,
-        "status" : done,
-    }
-    output = json.dumps(output)
-
-    print(output)
-
-# start process
 if __name__ == "__main__":
     main()

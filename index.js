@@ -397,9 +397,7 @@ app.post("/fill_nan", function (req, res) {
   var py = spawn("python", ["pyScript/fill_nan.py"]),
     data = dataArr;
 
-  py.stdout.on("data", function (output) {
-    out.push(output.toString());
-  });
+  py.stdout.on("data", function (output) { });
 
   py.stdout.on("end", function () {
     res.redirect("/data_analysis");

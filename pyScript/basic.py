@@ -74,7 +74,6 @@ def main():
                     else:
                         median.append(round(x, 4))
 
-                # minimum = df[numerical].min().tolist()
                 minimum = []
                 for x in df[numerical].min():
                     if math.isnan(x):
@@ -82,7 +81,6 @@ def main():
                     else:
                         minimum.append(round(x, 4))
 
-                # maximum = df[numerical].max().tolist()
                 maximum = []
                 for x in df[numerical].max():
                     if math.isnan(x):
@@ -191,7 +189,5 @@ def main():
     output = json.dumps(output)
     print(output)
 
-
-# start process
 if __name__ == "__main__":
     main()

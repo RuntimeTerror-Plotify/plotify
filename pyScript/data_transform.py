@@ -3,6 +3,7 @@ import sys, json, numpy as np
 import csv
 import os
 
+#Methods to normalize and remove skewness from data
 
 def minmax(column, df, filePath):
     for col in column:
@@ -58,12 +59,15 @@ def square(column, df, filePath):
 
 
 def main():
+    #buffer input
     lines = sys.stdin.readlines()
     lines = json.loads(lines[0])
 
     filePath = lines["filePath"]
     typeof = lines["type"]
     column = lines["column"]
+
+    #input dataframe
     df = pd.read_csv(filePath)
 
     if typeof == "min-max":
@@ -79,17 +83,6 @@ def main():
     elif typeof == "square":
         square(column, df, filePath)
 
-    # output = {
-    #     "filePath": filePath,
-    #     "fileName": fileName,
-    #     "fileNo": fileNo,
-    # }
-
-    # output = json.dumps(output)
-
-    # print(output)
-
-
-# start process
+#start process
 if __name__ == "__main__":
     main()
