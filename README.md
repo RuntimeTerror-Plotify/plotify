@@ -69,11 +69,14 @@ To get a copy of the website running on your local system follow these steps :
 **Have a look at the** <a href="https://google.com/">Video Demonstration</a>. 
 
 - Landing Page
-<img src="" alt="not found">
+<img src="./public/images/landing1.png" alt="not found">
+<img src="./public/images/landing2.png" alt="not found">
+
 - Dashboard
-<img src="" alt="not found">
+<img src="./public/images/dashboard.png" alt="not found">
+
 - Tutorials
-<img src="" alt="not found">
+<img src="./public/images/tutorial.png" alt="not found">
 
 ## Tools-Used
 
