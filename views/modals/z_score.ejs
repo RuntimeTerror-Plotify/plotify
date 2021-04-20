@@ -2,7 +2,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Z-Score Normalisation</h5>
+                <h5 class="modal-title">Z-Score</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,12 +12,12 @@
                 <div class="tips">
                     <div class="jumbotron">
                         <h5 class="text-uppercase"><i class="far fa-hand-point-right"></i> TIPS</h5>
-                        <p>Normalisation using Z-Score is preferred when you want outlier's impact</p>
+                        <p>Standardization using Z-Score is preferred when you want outlier's impact</p>
                     </div>
                 </div>
                 <form id="z-score" method="POST" action="/data_transform">
                     <div class="select-checkbox">
-                            <p class="text-left">Select the column you want to Normalise:</p>
+                            <p class="text-left">Select the column you want to Standardize:</p>
                             <input type="text" class="modal-search-Input bg-light form-control border small"
                                 placeholder="Search for..." title="Type in a name" style="margin: 3px auto;width: 85% ;">
                             <ul class="modal-ul">

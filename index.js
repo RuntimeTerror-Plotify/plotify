@@ -443,9 +443,7 @@ app.post("/fill_nan", function (req, res) {
     data = dataArr;
 
   // Python output
-  py.stdout.on("data", function (output) {
-    out.push(output.toString());
-  });
+  py.stdout.on("data", function (output) {});
 
   // Python Output display
   py.stdout.on("end", function () {

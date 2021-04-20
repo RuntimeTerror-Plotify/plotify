@@ -18,7 +18,9 @@
                         <% if(list.categorical != "empty") {%>
 
                         <h5>Categorical Column</h5>
+                        <h5>Select Column</h5>
                         <div class="input-group mb-3">
+                            
                             <select name="column" class="custom-select">
                                 <option value="" selected>Select</option>
                                 <% list.categorical.forEach(function(cat){ %>
@@ -26,7 +28,9 @@
                                 <% }) %>
                             </select>
                         </div>
+                        <h5>Method</h5>
                         <div class="input-group mb-3">
+
                             <select name="method" class="custom-select">
                                 <option value="" selected>Select</option>
                                 <option value="top">Top Class</option>
@@ -43,6 +47,7 @@
                     <div id="numerical" style="padding-top: 20px;">
                         <% if(list.numerical != "empty") {%>
                         <h5>Numerical Column</h5>
+                        <h5 class="font-weight-bold">Select Column</h5>
                         <div class="input-group mb-3">
                             <select name="column" class="custom-select">
                                 <option value="" selected>Select</option>
@@ -51,7 +56,7 @@
                                 <% }) %>
                             </select>
                         </div>
-
+                        <h5>Method</h5>
                         <div class="input-group mb-3">
                             <select name="method" class="custom-select">
                                 <option value="" selected>Select</option>

@@ -4,6 +4,7 @@ import csv
 import category_encoders as ce
 import os
 
+#Methods to label categorical data
 
 def encodingLabel(df, column, filepath):
     for col in column:
@@ -11,7 +12,6 @@ def encodingLabel(df, column, filepath):
         df[col] = df[col].cat.codes
     df.to_csv(filepath, index=False)
     return df
-
 
 def oneHotEncoding(df, column, filepath):
     for col in column:
@@ -27,12 +27,15 @@ def binaryEncoding(df, column, filepath):
     return df
 
 def main():
+    #input buffer 
     lines = sys.stdin.readlines()
     lines = json.loads(lines[0])
     
     filePath = lines["filePath"]
     column = lines["column"]
     typeOfLabelling = lines["type"]
+
+    #dataframe input
     df = pd.read_csv(filePath)
     
     if typeOfLabelling == "findNReplace":
@@ -44,7 +47,5 @@ def main():
     elif typeOfLabelling == "binaryEncoding":
         df =  binaryEncoding(df, column, filePath)
 
-
-# start process
 if __name__ == "__main__":
     main()

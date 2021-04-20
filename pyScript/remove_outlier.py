@@ -3,12 +3,14 @@ import sys, json, numpy as np
 import csv
 from scipy import stats
 
+#Method to handle outliers
 
 def main():
+    #input buffer 
     lines = sys.stdin.readlines()
     lines = json.loads(lines[0])
 
-    
+    #dataframe input
     df = pd.read_csv(lines[0])
     df_num = df.select_dtypes(include=np.number)
 
@@ -20,16 +22,8 @@ def main():
 
     new_df = df[filtered_entries]
 
+    #output dataframe to csv
     new_df.to_csv(lines[0],index=False)
 
-    # output = {
-    #     # "file" : file,
-    #     "status" : done,
-    # }
-    # output = json.dumps(output)
-
-    # print(output)
-
-# start process
 if __name__ == "__main__":
     main()

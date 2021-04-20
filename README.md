@@ -18,7 +18,7 @@
 
 ## Introduction
 
-**Plotify**, as the name suggests, will let you to play with your data. It is a web app that helps to analyze data and perform different statistical methods without having to write code. It is deliberately developed for machine learning and data science enthusiats. You can upload your data, play with it using some of the methods, and thereafter download the results. Yes, you heard that right; it is that simple, and there is no need to worry about typing code and fixing it. And don't worry if you're a beginner who's not confident what to do with data and whatnot; we've got you covered with step-by-step tutorials, and you can even try your hands on data while learning.
+**Plotify**, as the name suggests, will let you play with your data. It is a web app that helps to analyze data and perform different statistical methods without having to write code. It is deliberately developed for machine learning and data science enthusiasts. You can upload your data, play with it using some of the methods, and thereafter download the results. Yes, you heard that right; it is that simple, and there is no need to worry about typing code and fixing it. And don't worry if you're a beginner who's not confident what to do with data and whatnot; we've got you covered with step-by-step tutorials, and you can even try your hands on data while learning.
 
 ## Purpose
 
@@ -66,14 +66,17 @@ To get a copy of the website running on your local system follow these steps :
 
 ## Demonstration
 
-**Have a look at the** <a href="https://google.com/">Video Demonstration</a>. 
+**Have a look at the** <a href="https://www.youtube.com/watch?v=kBaXzvMIU0w&t=190s">Video Demonstration</a>. 
 
 - Landing Page
-<img src="" alt="not found">
+<img src="./public/images/landing1.png" alt="not found">
+<img src="./public/images/landing2.png" alt="not found">
+
 - Dashboard
-<img src="" alt="not found">
+<img src="./public/images/dashboard.png" alt="not found">
+
 - Tutorials
-<img src="" alt="not found">
+<img src="./public/images/tutorial.png" alt="not found">
 
 ## Tools-Used
 
@@ -81,6 +84,10 @@ To get a copy of the website running on your local system follow these steps :
 - <a href="https://jquery.com/">JavaScript (JQuery)</a> - jQuery is a fast, small, and feature-rich JavaScript library.
 - <a href="https://www.python.org/">Python</a> - Python is a programming language that lets you work more quickly and integrate your systems more effectively.
 - <a href="https://expressjs.com/">Express</a> - Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
+- <a href="https://numpy.org/">Numpy</a> - NumPy is a library for the Python programming language, adding support for large, multi-dimensional arrays and matrices, along with a large collection of high-level mathematical functions to operate on these arrays.
+- <a href="https://pandas.pydata.org/">Pandas</a> - Pandas is a software library written for the Python programming language for data manipulation and analysis.
+- <a href="https://scikit-learn.org/stable/">Scikit-learn</a> - Scikit-learn is a free software machine learning library for the Python programming language.
+- <a href="https://www.scipy.org/">Scipy</a> - SciPy is a free and open-source Python library used for scientific computing and technical computing.
 - <a href="https://plotly.com/">Plotly</a> - Plotly is an open-source graphing library
 - <a href="https://getbootstrap.com/">Bootstrap</a> - Bootstrap, the world’s most popular front-end open source toolkit
 

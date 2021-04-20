@@ -14,14 +14,5 @@ def main():
 
     df.to_csv(lines[0],index=False)
 
-    # output = {
-    #     # "file" : file,
-    #     "status" : done,
-    # }
-    # output = json.dumps(output)
-
-    # print(output)
-
-# start process
 if __name__ == "__main__":
     main()

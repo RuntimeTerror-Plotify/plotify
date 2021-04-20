@@ -19,7 +19,7 @@
                 <p class="text-center">Click to run PCA: <br> <button onclick="run()" class="btn btn-lg btnrun">Run</button></p>
                 
 
-                <P style="color: red;font-size: 14px;">*IF YOU RUN pca ALL YOUR CATEGORICAL COLUMN WILL BE DELETED IF THERE IS
+                <P style="color: red;font-size: 14px;">*IF YOU RUN PCA, ALL YOUR CATEGORICAL COLUMN WILL BE DELETED IF THERE IS
                     ANY*
                 </P>
 
@@ -29,7 +29,7 @@
                         <p><i class="far fa-chart-bar fa-6x" style="color: rgba(0,0,0,0.3) !important;"></i></p>
                     </div>
                     <div id="loaderPca" class="loader" style="display:none;height: 300px;"></div>
-                    <div id="pcaGraph" style="display:none;width:600px;height:300px;"></div>
+                    <div id="pcaGraph" style="display:none;width:450px;height:300px;"></div>
                     <div id="pcaDiv" style="display: none;">
                         <form id="pcaForm" action="/drop_columns" method="POST">
                             <h5>Columns To Remove</h5>
