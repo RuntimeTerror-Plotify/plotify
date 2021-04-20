@@ -18,7 +18,7 @@
 
 ## Introduction
 
-**Plotify**, as the name suggests, will let you to play with your data. It is a web app that helps to analyze data and perform different statistical methods without having to write code. It is deliberately developed for machine learning and data science enthusiats. You can upload your data, play with it using some of the methods, and thereafter download the results. Yes, you heard that right; it is that simple, and there is no need to worry about typing code and fixing it. And don't worry if you're a beginner who's not confident what to do with data and whatnot; we've got you covered with step-by-step tutorials, and you can even try your hands on data while learning.
+**Plotify**, as the name suggests, will let you play with your data. It is a web app that helps to analyze data and perform different statistical methods without having to write code. It is deliberately developed for machine learning and data science enthusiasts. You can upload your data, play with it using some of the methods, and thereafter download the results. Yes, you heard that right; it is that simple, and there is no need to worry about typing code and fixing it. And don't worry if you're a beginner who's not confident what to do with data and whatnot; we've got you covered with step-by-step tutorials, and you can even try your hands on data while learning.
 
 ## Purpose
 
@@ -69,11 +69,14 @@ To get a copy of the website running on your local system follow these steps :
 **Have a look at the** <a href="https://google.com/">Video Demonstration</a>. 
 
 - Landing Page
-<img src="" alt="not found">
+<img src="./public/images/landing1.png" alt="not found">
+<img src="./public/images/landing2.png" alt="not found">
+
 - Dashboard
-<img src="" alt="not found">
+<img src="./public/images/dashboard.png" alt="not found">
+
 - Tutorials
-<img src="" alt="not found">
+<img src="./public/images/tutorial.png" alt="not found">
 
 ## Tools-Used
 
