@@ -68,6 +68,7 @@ $(document).ready(function () {
   });
 });
 
+// Correlation matrix
 function corrSub(event) {
   $("#loaderCorr").css("display", "block");
   event.preventDefault();
@@ -96,6 +97,7 @@ function corrSub(event) {
         },
       };
 
+      // Graph plot configuration
       var config = {
         scrollZoom: true,
         displayModBar: true,
@@ -126,6 +128,7 @@ function corrSub(event) {
         ],
       };
 
+      // Input data for plot
       var data = [
         {
           z: response.reverse(),
@@ -136,12 +139,14 @@ function corrSub(event) {
       ];
       $("#corrIcon").css("display", "none");
 
+      //plotting graph using plotly
       Plotly.newPlot("corrGraph", data, layout, config);
       $("#loaderCorr").css("display", "none");
     },
   });
 }
 
+// Select all function
 function selectall(input, name) {
   var checked = input.checked;
 
@@ -152,6 +157,7 @@ function selectall(input, name) {
   });
 }
 
+// Principal compoenent analysis
 function run() {
   $("#iconPca").css("display", "none");
   $("#loaderPca").css("display", "block");
@@ -168,6 +174,7 @@ function run() {
         },
       ];
 
+      // Plotting graph using plotly
       Plotly.newPlot("pcaGraph", data);
       $(".pcaRec").html("Keep First " + response.keep + " Columns");
       $("#pcaDiv").css("display", "block");
@@ -182,6 +189,7 @@ function run() {
   });
 }
 
+// File Upload name display
 function getFileContent() {
   var x = document.getElementById("file");
   document.getElementById("contentName").innerHTML = x.value.split("\\").pop();

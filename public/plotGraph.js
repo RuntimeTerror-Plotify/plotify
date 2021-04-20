@@ -23,6 +23,7 @@ $(document).ready(function () {
     },
   });
 
+  // Processing data input
   function processData(allText) {
     var allTextLines = allText.split(/\r\n|\n/);
     columns = allTextLines[0].split(",");
@@ -45,6 +46,7 @@ $(document).ready(function () {
   }
 });
 
+// Change in type of Data
 function dataClick() {
   typeOfData = $("#dataForm input:checked").val();
 
@@ -79,6 +81,7 @@ function typeClick(value) {
   makeGraph();
 }
 
+// Mapping data
 function getMap(arr) {
   const map = {};
   arr.forEach((item) => {
@@ -91,6 +94,7 @@ function getMap(arr) {
   return map;
 }
 
+// Preparing data for graph
 function gettrace(trace) {
   switch (graphType) {
     case "histogram":
@@ -160,6 +164,7 @@ function gettrace(trace) {
   return trace;
 }
 
+// Graph function
 function makeGraph() {
   typeOfData = $("#dataForm input:checked").val();
   if (typeOfData == "Numerical") {
@@ -174,6 +179,7 @@ function makeGraph() {
   var trace;
   info = data[index];
 
+  // Layout for plot graph
   layout = {
     autosize: true,
     title: {
@@ -221,6 +227,7 @@ function makeGraph() {
     trace = gettrace(trace);
   }
 
+  // Configuration for plot
   var config = {
     scrollZoom: true,
     displayModBar: true,
@@ -254,5 +261,6 @@ function makeGraph() {
 
   var temp = [trace];
 
+  // Plot graph using plotly
   Plotly.newPlot("unigraph", temp, layout, config);
 }

@@ -1,3 +1,4 @@
+// Importing
 const express = require("express");
 const multer = require("multer");
 const bodyParser = require("body-parser");
@@ -19,6 +20,7 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 
+// Multer configuration
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./public/csv/");
@@ -32,6 +34,7 @@ var uploadDisk = multer({
   storage: storage,
 });
 
+// Global variables
 let filePath = "";
 let fileExt = "";
 let fileName = "";
@@ -42,6 +45,7 @@ let section = "home";
 let currentPage = 0;
 let tutorialFile = false;
 
+// File handling for Undo
 function handleFiles() {
   if (fileNo < 3) {
     let oldPath = filePath;
@@ -84,6 +88,7 @@ function handleFiles() {
   }
 }
 
+// Csv folder handling
 const removeDir = function (path) {
   if (fs.existsSync(path)) {
     const files = fs.readdirSync(path);
@@ -105,6 +110,7 @@ const removeDir = function (path) {
   }
 };
 
+// Home route
 app.get("/", function (req, res) {
   if (fs.existsSync(folderPath)) {
     removeDir(folderPath);
@@ -117,6 +123,7 @@ app.get("/", function (req, res) {
   res.render("home_page", { section: "home" });
 });
 
+// Tutorial route
 app.get("/tutorial", function (req, res) {
   if (tutorialFile == false) {
     section = "tutorial";
@@ -131,6 +138,7 @@ app.get("/tutorial", function (req, res) {
   }
 });
 
+// Undo route
 app.get("/revert", function (req, res) {
   if (fileNo > 0) {
     fs.unlink(filePath, (err) => {
@@ -144,6 +152,7 @@ app.get("/revert", function (req, res) {
   }
 });
 
+// File upload route
 app.post("/file_upload", uploadDisk.single("file"), function (req, res) {
   fileNo = 0;
   section = req.body.section;
@@ -164,19 +173,23 @@ app.post("/file_upload", uploadDisk.single("file"), function (req, res) {
   res.redirect("/data_analysis");
 });
 
+// Download File
 app.get("/download", function (req, res) {
   res.download(filePath);
 });
 
+// Basic page route
 app.get("/data_analysis", function (req, res) {
   basic = [];
   var py = spawn("python", ["pyScript/basic.py"]),
     data = filePath;
 
+  // Python output
   py.stdout.on("data", function (output) {
     basic.push(output.toString());
   });
 
+  // Python Output display
   py.stdout.on("end", function () {
     try {
       basic = JSON.parse(basic[0]);
@@ -185,6 +198,7 @@ app.get("/data_analysis", function (req, res) {
         fs.readFile(filePath, "UTF-8", function (err, csv) {
           $.csv.toArrays(csv, {}, function (err, data) {
             head = data.shift();
+
             if (section == "home") {
               res.render("basic_info", {
                 list: basic,
@@ -219,11 +233,13 @@ app.get("/data_analysis", function (req, res) {
     }
   });
 
+  // Python data input
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
 });
 
+// Labelling route
 app.post("/categorical_labelling", function (req, res) {
   if (section == "tutorial") {
     currentPage = 7;
@@ -241,17 +257,21 @@ app.post("/categorical_labelling", function (req, res) {
       type: type,
     };
 
+  // Python output  // Python output
   py.stdout.on("data", function (output) {});
 
+  // Python Output display
   py.stdout.on("end", function () {
     res.redirect("/data_analysis");
   });
 
+  // Python data input
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
 });
 
+// Drop column route
 app.post("/drop_columns", function (req, res) {
   if (section == "tutorial") {
     currentPage = 1;
@@ -261,36 +281,49 @@ app.post("/drop_columns", function (req, res) {
   var py = spawn("python", ["pyScript/drop_col.py"]),
     data = [req.body.drop_col, filePath];
 
+  // Python output
   py.stdout.on("data", function (output) {});
 
+  // Python Output display
   py.stdout.on("end", function () {
     res.redirect("/data_analysis");
   });
 
+  // Python data input
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
 });
 
+// Drop rows route
 app.post("/drop_rows", function (req, res) {
   if (section == "tutorial") {
     currentPage = 2;
   }
   handleFiles();
-  var py = spawn("python", ["pyScript/drop_row.py"]),
-    data = [filePath, req.body.subset];
 
+  var x = req.body;
+  var column = [];
+  column = column.concat(Object.values(x)[0]);
+
+  var py = spawn("python", ["pyScript/drop_row.py"]),
+    data = [filePath, column];
+
+  // Python output
   py.stdout.on("data", function (output) {});
 
+  // Python Output display
   py.stdout.on("end", function () {
     res.redirect("/data_analysis");
   });
 
+  // Python data input
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
 });
 
+// Correaltion matrix route
 app.post("/corr_matrix", function (req, res) {
   var x = req.body;
   var column = [];
@@ -303,21 +336,25 @@ app.post("/corr_matrix", function (req, res) {
       column: column,
     };
 
+  // Python output
   py.stdout.on("data", function (output) {
     out += output.toString();
   });
 
+  // Python Output display
   py.stdout.on("end", function () {
     out = JSON.parse(out);
     res.send(out);
     // res.redirect("/data_analysis");
   });
 
+  // Python data input
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
 });
 
+// Normalisation and skewness remoaval route
 app.post("/data_transform", function (req, res) {
   if (section == "tutorial") {
     currentPage = 10;
@@ -335,17 +372,21 @@ app.post("/data_transform", function (req, res) {
       column: column,
     };
 
+  // Python output
   py.stdout.on("data", function (output) {});
 
+  // Python Output display
   py.stdout.on("end", function () {
     res.redirect("/data_analysis");
   });
 
+  // Python data input
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
 });
 
+// Principal component analysis route
 app.post("/pca", function (req, res) {
   if (section == "tutorial") {
     currentPage = 12;
@@ -357,21 +398,25 @@ app.post("/pca", function (req, res) {
       filePath: filePath,
     };
 
+  // Python output
   py.stdout.on("data", function (output) {
     out += output;
   });
 
+  // Python Output display
   py.stdout.on("end", function () {
     out = JSON.parse(out);
     res.send(out);
     // res.redirect("/data_analysis");
   });
 
+  // Python data input
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
 });
 
+//Fill NAN values route
 app.post("/fill_nan", function (req, res) {
   if (section == "tutorial") {
     currentPage = 3;
@@ -397,19 +442,23 @@ app.post("/fill_nan", function (req, res) {
   var py = spawn("python", ["pyScript/fill_nan.py"]),
     data = dataArr;
 
+  // Python output
   py.stdout.on("data", function (output) {
     out.push(output.toString());
   });
 
+  // Python Output display
   py.stdout.on("end", function () {
     res.redirect("/data_analysis");
   });
 
+  // Python data input
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
 });
 
+// Remove outliers route
 app.post("/remove_outlier", function (req, res) {
   if (section == "tutorial") {
     currentPage = 4;
@@ -419,19 +468,23 @@ app.post("/remove_outlier", function (req, res) {
   var py = spawn("python", ["pyScript/remove_outlier.py"]),
     data = [filePath, req.body.thresh];
 
+  // Python output
   py.stdout.on("data", function (output) {
     out.push(output.toString());
   });
 
+  // Python Output display
   py.stdout.on("end", function () {
     res.redirect("/data_analysis");
   });
 
+  // Python data input
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
 });
 
+// Clip values route
 app.post("/clip_values", function (req, res) {
   if (section == "tutorial") {
     currentPage = 4;
@@ -441,19 +494,23 @@ app.post("/clip_values", function (req, res) {
   var py = spawn("python", ["pyScript/clip_values.py"]),
     data = [filePath, req.body.minthresh, req.body.maxthresh, req.body.col];
 
+  // Python output
   py.stdout.on("data", function (output) {
     out.push(output.toString());
   });
 
+  // Python Output display
   py.stdout.on("end", function () {
     res.redirect("/data_analysis");
   });
 
+  // Python data input
   py.stdin.write(JSON.stringify(data));
 
   py.stdin.end();
 });
 
+// Server start
 app.listen(3000, function () {
   console.log("server started");
 });

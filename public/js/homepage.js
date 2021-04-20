@@ -1,5 +1,4 @@
-// rgba(245, 192, 192, 0.2) rgba(38, 160, 218, 0.5)
-
+// Dynamic graph array generation
 y1 = new Array(10)
   .fill(0)
   .map((d, i) => Math.random() * 10 + Math.random() * 20 + 5);
@@ -63,6 +62,7 @@ var trace2 = {
   },
 };
 
+// Layout configuration
 var layout = {
   autosize: true,
   showlegend: false,
@@ -89,6 +89,7 @@ var layout = {
 
 var data = [trace, trace2];
 
+// Plot graph usign plotly
 Plotly.plot("graph", data, layout, { staticPlot: true, responsive: true }).then(
   function () {
     return Plotly.animate(
@@ -105,6 +106,7 @@ Plotly.plot("graph", data, layout, { staticPlot: true, responsive: true }).then(
   }
 );
 
+// Adding line animation
 var $animation_elements = $(".animation-element");
 var $window = $(window);
 
