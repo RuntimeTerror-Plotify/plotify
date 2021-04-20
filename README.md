@@ -84,6 +84,10 @@ To get a copy of the website running on your local system follow these steps :
 - <a href="https://jquery.com/">JavaScript (JQuery)</a> - jQuery is a fast, small, and feature-rich JavaScript library.
 - <a href="https://www.python.org/">Python</a> - Python is a programming language that lets you work more quickly and integrate your systems more effectively.
 - <a href="https://expressjs.com/">Express</a> - Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
+- <a href="https://numpy.org/">Numpy</a> - NumPy is a library for the Python programming language, adding support for large, multi-dimensional arrays and matrices, along with a large collection of high-level mathematical functions to operate on these arrays.
+- <a href="https://pandas.pydata.org/">Pandas</a> - Pandas is a software library written for the Python programming language for data manipulation and analysis.
+- <a href="https://scikit-learn.org/stable/">Scikit-learn</a> - Scikit-learn is a free software machine learning library for the Python programming language.
+- <a href="https://www.scipy.org/">Scipy</a> - SciPy is a free and open-source Python library used for scientific computing and technical computing.
 - <a href="https://plotly.com/">Plotly</a> - Plotly is an open-source graphing library
 - <a href="https://getbootstrap.com/">Bootstrap</a> - Bootstrap, the world’s most popular front-end open source toolkit
 
